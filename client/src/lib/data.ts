@@ -258,20 +258,6 @@ export const pricingPlans = {
     description: "Generate professional videos from text descriptions",
     plans: [
       {
-        id: "free-video",
-        name: "Free",
-        price: "$0",
-        period: "/month",
-        isFree: true,
-        isPopular: false,
-        buttonText: "Get Started",
-        features: [
-          { text: "1 video/month", included: true },
-          { text: "5 seconds max", included: true },
-          { text: "720p quality", included: false }
-        ]
-      },
-      {
         id: "starter-video",
         name: "Starter",
         price: "$25",
@@ -279,67 +265,95 @@ export const pricingPlans = {
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
+        subtitle: "Best for trying out AI video generation",
         features: [
-          { text: "10 videos/month", included: true },
-          { text: "30 seconds max", included: true },
-          { text: "1080p quality", included: true }
+          { text: "📹 50 clips / month (5s each) at 480p", included: true },
+          { text: "📹 10 clips / month (5s each) at 720p", included: true },
+          { text: "📹 5 clips / month (5s each) at 1080p", included: true },
+          { text: "🎬 Access to AI video editor", included: true },
+          { text: "💾 Save & download your videos instantly", included: true },
+          { text: "✨ Perfect for creators, students, and small projects", included: true }
         ]
       },
       {
         id: "growth-video",
         name: "Growth",
-        price: "$69",
+        price: "$65",
         period: "/month",
         isFree: false,
         isPopular: true,
         buttonText: "Choose Plan",
+        subtitle: "For regular creators and small teams",
         features: [
-          { text: "50 videos/month", included: true },
-          { text: "60 seconds max", included: true },
-          { text: "4K quality", included: true }
+          { text: "📹 120 clips / month (5s each) at 480p", included: true },
+          { text: "📹 40 clips / month (5s each) at 720p", included: true },
+          { text: "📹 15 clips / month (5s each) at 1080p", included: true },
+          { text: "⚡ Priority rendering speed", included: true },
+          { text: "📁 Larger storage for video projects", included: true },
+          { text: "📧 Email support", included: true },
+          { text: "🎯 Great for freelancers, and content marketers", included: true }
         ]
       },
       {
         id: "business-video",
         name: "Business",
-        price: "$199",
+        price: "$140",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
+        subtitle: "For businesses with higher content needs",
         features: [
-          { text: "200 videos/month", included: true },
-          { text: "120 seconds max", included: true },
-          { text: "8K quality", included: true }
-        ]
-      },
-      {
-        id: "payg-video",
-        name: "Pay-as-you-go",
-        price: "$2.50",
-        period: "/video",
-        isFree: false,
-        isPopular: false,
-        buttonText: "Buy Credits",
-        features: [
-          { text: "No monthly limit", included: true },
-          { text: "120 seconds max", included: true },
-          { text: "8K quality", included: true }
+          { text: "📹 200 clips / month (5s each) at 480p", included: true },
+          { text: "📹 80 clips / month (5s each) at 720p", included: true },
+          { text: "📹 40 clips / month (5s each) at 1080p", included: true },
+          { text: "🚀 Priority queue for faster delivery", included: true },
+          { text: "👥 Team collaboration (multi-user access)", included: true },
+          { text: "🎗️ Priority support", included: true },
+          { text: "🏢 Designed for agencies, startups, and brands scaling their video content", included: true }
         ]
       }
     ],
     comparisonFeatures: [
       {
+        name: "480p Videos",
+        values: ["50 clips/month", "120 clips/month", "200 clips/month"]
+      },
+      {
+        name: "720p Videos",
+        values: ["10 clips/month", "40 clips/month", "80 clips/month"]
+      },
+      {
+        name: "1080p Videos",
+        values: ["5 clips/month", "15 clips/month", "40 clips/month"]
+      },
+      {
+        name: "Video Length",
+        values: ["5 seconds each", "5 seconds each", "5 seconds each"]
+      },
+      {
+        name: "AI Video Editor Access",
+        values: [true, true, true]
+      },
+      {
         name: "Processing Speed",
-        values: ["Standard", "Fast", "Priority", "Instant", "Priority"]
+        values: ["Standard queue", "Priority rendering speed", "Priority queue"]
       },
       {
-        name: "Aspect Ratios",
-        values: ["16:9", "Multiple", "All", "All + Custom", "All + Custom"]
+        name: "Storage",
+        values: ["Save & download instantly", "Larger storage for projects", "Large storage"]
       },
       {
-        name: "Export Formats",
-        values: ["MP4", "MP4 + WebM", "All Formats", "All + Raw", "All + Raw"]
+        name: "Team Collaboration",
+        values: [false, false, "Multi-user access"]
+      },
+      {
+        name: "Target Use Case",
+        values: ["Creators, students, small projects", "Freelancers, content marketers", "Agencies, startups, brands"]
+      },
+      {
+        name: "Support",
+        values: ["Email support", "Priority support", "Priority support"]
       }
     ]
   }
