@@ -51,30 +51,30 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={() => handleServiceClick('enhance')}
-              className="bg-primary-purple text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="bg-primary-purple text-white px-10 py-5 rounded-xl text-xl font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-110 border-2 border-primary-purple"
               data-testid="button-enhance-image"
             >
-              <Sparkles className="mr-2 h-5 w-5" />
+              <Sparkles className="mr-3 h-6 w-6" />
               Enhance My Image
             </Button>
             <Button 
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('generate')}
-              className="border-2 border-gray-300 bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold hover:border-primary-purple hover:text-primary-purple transition-all duration-300"
+              className="border-3 border-gray-400 bg-white text-gray-800 px-10 py-5 rounded-xl text-xl font-bold shadow-md hover:border-primary-purple hover:text-primary-purple hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-generate-image"
             >
-              <Palette className="mr-2 h-5 w-5" />
+              <Palette className="mr-3 h-6 w-6" />
               Generate Image from Text
             </Button>
             <Button 
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('video')}
-              className="border-2 border-gray-300 bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold hover:border-primary-purple hover:text-primary-purple transition-all duration-300"
+              className="border-3 border-gray-400 bg-white text-gray-800 px-10 py-5 rounded-xl text-xl font-bold shadow-md hover:border-primary-purple hover:text-primary-purple hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-create-video"
             >
-              <Video className="mr-2 h-5 w-5" />
+              <Video className="mr-3 h-6 w-6" />
               Create Video from Text
             </Button>
           </div>
