@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Image, Palette, Video } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Check, X, Image, Palette, Video, Info } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
@@ -210,7 +211,7 @@ export default function PricingSection() {
                     )}
                     
                     {/* Special handling for Pay-as-you-go credit options */}
-                    {plan.id === 'payg-ai' && (plan as any).creditOptions ? (
+                    {(plan.id === 'payg-ai' || plan.id === 'payg-image') && (plan as any).creditOptions ? (
                       <div className="mb-6">
                         <div className="text-sm text-gray-700 font-medium mb-4">Choose your bundle:</div>
                         <div className="space-y-2 text-sm">
@@ -224,7 +225,7 @@ export default function PricingSection() {
                               }}
                               className={`w-full flex justify-between items-center p-3 h-auto transition-all duration-200 ${
                                 selectedCredit === option.credits 
-                                  ? 'bg-primary-purple text-white border-primary-purple' 
+                                  ? `${colors.button.replace('hover:bg-', 'bg-').replace('bg-', 'bg-')} text-white border-current` 
                                   : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
                               }`}
                               data-testid={`button-credit-${optionIndex}`}
@@ -239,7 +240,21 @@ export default function PricingSection() {
                           {plan.features?.map((feature: any, featureIndex: number) => (
                             <li key={featureIndex} className="flex items-center">
                               <Check className="text-green-500 mr-2" size={14} />
-                              {feature.text}
+                              <span className="flex items-center gap-1">
+                                {feature.text}
+                                {feature.tooltip && (
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Info className="text-gray-400 cursor-help" size={14} />
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p className="max-w-xs">{feature.tooltip}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                )}
+                              </span>
                             </li>
                           ))}
                         </ul>
@@ -253,7 +268,21 @@ export default function PricingSection() {
                             ) : (
                               <span className="text-gray-400 mr-2 text-sm">—</span>
                             )}
-                            {feature.text}
+                            <span className="flex items-center gap-1">
+                              {feature.text}
+                              {feature.tooltip && (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <Info className="text-gray-400 cursor-help" size={14} />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p className="max-w-xs">{feature.tooltip}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              )}
+                            </span>
                           </li>
                         ))}
                       </ul>

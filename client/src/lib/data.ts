@@ -11,82 +11,128 @@ export const pricingPlans = {
         period: "/month",
         isFree: true,
         isPopular: false,
-        buttonText: "Get Started",
+        buttonText: "Start Free",
         features: [
-          { text: "5 images/month", included: true },
-          { text: "2x upscaling max", included: true },
-          { text: "Basic quality", included: false }
+          { text: "25 images per month", included: true },
+          { text: "Basic 2× upscaling", included: true },
+          { text: "Web upload only", included: true },
+          { text: "Watermarked output", included: false },
+          { text: "Standard processing queue", included: true }
         ]
       },
       {
         id: "starter-image",
         name: "Starter",
-        price: "$9",
+        price: "$15",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "100 images/month", included: true },
-          { text: "4x upscaling", included: true },
-          { text: "HD quality", included: true }
+          { text: "600 images per month", included: true },
+          { text: "HD upscaling (up to 4×)", included: true },
+          { text: "No watermark", included: true },
+          { text: "Basic denoise", included: true },
+          { text: "Standard support", included: true },
+          { text: "Email support", included: true }
         ]
       },
       {
         id: "growth-image",
         name: "Growth",
-        price: "$29",
+        price: "$55",
         period: "/month",
         isFree: false,
         isPopular: true,
         buttonText: "Choose Plan",
         features: [
-          { text: "500 images/month", included: true },
-          { text: "8x upscaling", included: true },
-          { text: "8K quality", included: true }
+          { text: "2000 images per month", included: true },
+          { text: "High-res upscaling (up to 6×) with advanced denoise + sharpen", included: true, tooltip: "Higher resolution outputs possible depending on original image size." },
+          { text: "Batch upload", included: true },
+          { text: "Faster queue priority", included: true },
+          { text: "Multi-format export (JPG/PNG)", included: true }
         ]
       },
       {
         id: "business-image",
         name: "Business",
-        price: "$99",
+        price: "$140",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "2,000 images/month", included: true },
-          { text: "8x upscaling", included: true },
-          { text: "Priority processing", included: true }
+          { text: "5000 images per month", included: true },
+          { text: "Ultra-HD upscaling (up to 6×) with advanced enhancement", included: true, tooltip: "Higher resolution outputs possible depending on original image size." },
+          { text: "Face restore + advanced enhancement", included: true },
+          { text: "API access", included: true },
+          { text: "Batch processing", included: true },
+          { text: "Priority support", included: true },
+          { text: "Commercial use license", included: true }
         ]
       },
       {
         id: "payg-image",
-        name: "Pay-as-you-go",
-        price: "$0.10",
-        period: "/image",
+        name: "PAYG (Pay As You Go)",
+        price: "Flexible",
+        period: "",
+        pricePerImage: "Starts from $5 for 100 credits (~$0.05 each)",
         isFree: false,
         isPopular: false,
         buttonText: "Buy Credits",
         features: [
-          { text: "No monthly limit", included: true },
-          { text: "8x upscaling", included: true },
-          { text: "8K quality", included: true }
+          { text: "High-quality upscaling & restoration", included: true },
+          { text: "Advanced denoise + sharpen filters", included: true },
+          { text: "No watermark", included: true },
+          { text: "No subscription required", included: true },
+          { text: "One-time payment", included: true },
+          { text: "Credits scale by resolution (fair usage):", included: true },
+          { text: "• 2× upscale = 1 credit", included: true },
+          { text: "• 4× upscale = 2 credits", included: true },
+          { text: "• 6× upscale = 3 credits", included: true },
+          { text: "• 8× upscale = 4 credits", included: true },
+          { text: "Higher resolution outputs possible depending on original image size and inputs", included: true }
+        ],
+        creditOptions: [
+          { credits: "100 credits", price: "$5" },
+          { credits: "500 credits", price: "$10" },
+          { credits: "1000 credits", price: "$19" },
+          { credits: "3000 credits", price: "$45" }
         ]
       }
     ],
     comparisonFeatures: [
       {
-        name: "Processing Speed",
-        values: ["Standard", "Fast", "Priority", "Instant", "Priority"]
+        name: "Monthly Images",
+        values: ["25", "600", "2000", "5000", "Pay per use"]
+      },
+      {
+        name: "Upscaling Quality",
+        values: ["Basic 2× upscaling", "HD upscaling (up to 4×)", "High-res upscaling (up to 6×)", "Ultra-HD upscaling (up to 6×)", "High-quality upscaling"]
+      },
+      {
+        name: "Watermark",
+        values: ["Watermarked output", "No watermark", "No watermark", "No watermark", "No watermark"]
+      },
+      {
+        name: "Processing Queue",
+        values: ["Standard processing queue", "Standard support", "Faster queue priority", "Priority support", "Standard"]
       },
       {
         name: "Batch Processing",
-        values: [false, true, true, true, true]
+        values: [false, false, "Batch upload", "Batch processing", false]
       },
       {
         name: "API Access",
-        values: [false, false, true, true, true]
+        values: [false, false, false, true, false]
+      },
+      {
+        name: "Support",
+        values: ["—", "Email support", "—", "Priority support", "—"]
+      },
+      {
+        name: "Commercial License",
+        values: [false, false, false, true, false]
       }
     ]
   },
