@@ -101,82 +101,155 @@ export const pricingPlans = {
         period: "/month",
         isFree: true,
         isPopular: false,
-        buttonText: "Get Started",
+        buttonText: "Start Free",
         features: [
-          { text: "3 images/month", included: true },
-          { text: "512x512 resolution", included: true },
-          { text: "Basic styles only", included: false }
+          { text: "20 images/month (all 512×512 px)", included: true },
+          { text: "Basic prompt styles", included: true },
+          { text: "Standard processing queue", included: true },
+          { text: "Watermarked output", included: false }
         ]
       },
       {
         id: "starter-ai",
         name: "Starter",
-        price: "$15",
+        price: "$12",
         period: "/month",
+        pricePerImage: "$0.020 per image",
         isFree: false,
-        isPopular: false,
+        isPopular: true,
         buttonText: "Choose Plan",
         features: [
-          { text: "50 images/month", included: true },
-          { text: "1024x1024 resolution", included: true },
-          { text: "All art styles", included: true }
+          { text: "600 images/month split across resolutions:", included: true },
+          { text: "• 300 × 512×512 px", included: true },
+          { text: "• 180 × 1024×1024 px", included: true },
+          { text: "• 120 × 2048×2048 px", included: true },
+          { text: "HD + Ultra HD generation", included: true },
+          { text: "No watermark", included: true },
+          { text: "Advanced prompt styles", included: true },
+          { text: "Custom aspect ratios", included: true },
+          { text: "Standard queue", included: true },
+          { text: "Email support", included: true }
         ]
       },
       {
         id: "growth-ai",
         name: "Growth",
-        price: "$39",
+        price: "$35",
         period: "/month",
+        pricePerImage: "$0.018 per image",
         isFree: false,
-        isPopular: true,
+        isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "200 images/month", included: true },
-          { text: "2048x2048 resolution", included: true },
-          { text: "Premium styles", included: true }
+          { text: "2000 images/month split across resolutions:", included: true },
+          { text: "• 1000 × 512×512 px", included: true },
+          { text: "• 600 × 1024×1024 px", included: true },
+          { text: "• 300 × 2048×2048 px", included: true },
+          { text: "• 100 × 4K (3840×2160 px)", included: true },
+          { text: "Ultra HD image generation", included: true },
+          { text: "All styles & effects", included: true },
+          { text: "Faster queue priority", included: true },
+          { text: "Multi-aspect ratios", included: true },
+          { text: "Commercial license included", included: true }
         ]
       },
       {
         id: "business-ai",
         name: "Business",
-        price: "$129",
+        price: "$70",
         period: "/month",
+        pricePerImage: "$0.014 per image",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "1,000 images/month", included: true },
-          { text: "4096x4096 resolution", included: true },
-          { text: "Custom training", included: true }
+          { text: "5000 images/month split across resolutions:", included: true },
+          { text: "• 2500 × 512×512 px", included: true },
+          { text: "• 1500 × 1024×1024 px", included: true },
+          { text: "• 800 × 2048×2048 px", included: true },
+          { text: "• 200 × 4K (3840×2160 px)", included: true },
+          { text: "Ultra HD image generation", included: true },
+          { text: "API access", included: true },
+          { text: "Fastest queue priority", included: true },
+          { text: "All styles & effects", included: true },
+          { text: "Commercial license", included: true },
+          { text: "Priority support", included: true }
         ]
       },
       {
         id: "payg-ai",
         name: "Pay-as-you-go",
-        price: "$0.25",
-        period: "/image",
+        price: "Flexible",
+        period: "",
+        pricePerImage: "Starts from $5 for 100 credits (~$0.05 each)",
         isFree: false,
         isPopular: false,
         buttonText: "Buy Credits",
         features: [
-          { text: "No monthly limit", included: true },
-          { text: "4096x4096 resolution", included: true },
-          { text: "All styles", included: true }
+          { text: "No monthly commitment", included: true },
+          { text: "No watermark", included: true },
+          { text: "Mix resolutions – pro-rata credit deduction:", included: true },
+          { text: "• 512px = 1 credit", included: true },
+          { text: "• 1K = 2 credits", included: true },
+          { text: "• 2K = 4 credits", included: true },
+          { text: "• 4K = 8 credits", included: true }
+        ],
+        creditOptions: [
+          { credits: "100 credits", price: "$5" },
+          { credits: "500 credits", price: "$10" },
+          { credits: "1000 credits", price: "$19", badge: "Best Value" },
+          { credits: "3000 credits", price: "$45" }
         ]
       }
     ],
     comparisonFeatures: [
       {
-        name: "Processing Speed",
-        values: ["Standard", "Fast", "Priority", "Instant", "Priority"]
+        name: "Monthly Images",
+        values: ["20", "600", "2000", "5000", "Pay per use"]
       },
       {
-        name: "Style Variations",
-        values: ["Basic", "Standard", "Premium", "All + Custom", "All + Custom"]
+        name: "512×512 px Images",
+        values: ["20 images", "300 images", "1000 images", "2500 images", "1 credit each"]
       },
       {
-        name: "Commercial Rights",
-        values: [true, true, true, true, true]
+        name: "1024×1024 px Images",
+        values: ["—", "180 images", "600 images", "1500 images", "2 credits each"]
+      },
+      {
+        name: "2048×2048 px Images",
+        values: ["—", "120 images", "300 images", "800 images", "4 credits each"]
+      },
+      {
+        name: "4K (3840×2160 px) Images",
+        values: ["—", "—", "100 images", "200 images", "8 credits each"]
+      },
+      {
+        name: "Prompt Styles",
+        values: ["Basic prompt styles", "Advanced prompt styles", "All styles & effects", "All styles & effects", "Mix resolutions"]
+      },
+      {
+        name: "Output Quality",
+        values: ["Watermarked output", "HD + Ultra HD, no watermark", "Ultra HD, no watermark", "Ultra HD, no watermark", "No watermark"]
+      },
+      {
+        name: "Processing Queue",
+        values: ["Standard processing queue", "Standard queue", "Faster queue priority", "Fastest queue priority", "Standard"]
+      },
+      {
+        name: "Custom Aspect Ratios",
+        values: [false, true, true, true, false]
+      },
+      {
+        name: "API Access",
+        values: [false, false, false, true, false]
+      },
+      {
+        name: "Commercial License",
+        values: [false, false, true, true, false]
+      },
+      {
+        name: "Support",
+        values: ["—", "Email support", "Priority support", "Priority support", "Email support"]
       }
     ]
   },

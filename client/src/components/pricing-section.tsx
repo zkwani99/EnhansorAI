@@ -161,22 +161,59 @@ export default function PricingSection() {
                 <CardContent className="p-6">
                   <div className="text-center">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
-                    <div className="text-3xl font-bold text-gray-900 mb-4">
+                    <div className="text-3xl font-bold text-gray-900 mb-2">
                       {plan.price}
                       <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
                     </div>
-                    <ul className="space-y-3 mb-6 text-sm text-gray-600">
-                      {plan.features?.map((feature: any, featureIndex: number) => (
-                        <li key={featureIndex} className="flex items-center">
-                          {feature.included ? (
-                            <Check className="text-green-500 mr-2" size={16} />
-                          ) : (
-                            <X className="text-red-500 mr-2" size={16} />
-                          )}
-                          {feature.text}
-                        </li>
-                      ))}
-                    </ul>
+                    {(plan as any).pricePerImage && (
+                      <div className="text-sm text-gray-500 mb-2">
+                        {(plan as any).pricePerImage}
+                      </div>
+                    )}
+                    
+                    {/* Special handling for Pay-as-you-go credit options */}
+                    {plan.id === 'payg-ai' && (plan as any).creditOptions ? (
+                      <div className="mb-6">
+                        <div className="text-sm text-gray-700 font-medium mb-4">Choose your bundle:</div>
+                        <div className="space-y-2 text-sm">
+                          {(plan as any).creditOptions.map((option: any, optionIndex: number) => (
+                            <div key={optionIndex} className="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                              <span className="font-medium">{option.credits}</span>
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-primary-purple">{option.price}</span>
+                                {option.badge && (
+                                  <span className="bg-primary-purple text-white text-xs px-2 py-1 rounded-full">
+                                    {option.badge}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <ul className="space-y-2 mt-4 text-sm text-gray-600">
+                          {plan.features?.map((feature: any, featureIndex: number) => (
+                            <li key={featureIndex} className="flex items-center">
+                              <Check className="text-green-500 mr-2" size={14} />
+                              {feature.text}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <ul className="space-y-3 mb-6 text-sm text-gray-600">
+                        {plan.features?.map((feature: any, featureIndex: number) => (
+                          <li key={featureIndex} className="flex items-center">
+                            {feature.included ? (
+                              <Check className="text-green-500 mr-2" size={16} />
+                            ) : (
+                              <X className="text-red-500 mr-2" size={16} />
+                            )}
+                            {feature.text}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <Button
                       className={`w-full ${
                         plan.isFree 
