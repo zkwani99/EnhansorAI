@@ -83,7 +83,29 @@ export default function WhyEnhansorSection() {
         </div>
         
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative px-12">
+          {/* Left Arrow */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={scrollPrev}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm"
+            data-testid="button-carousel-prev"
+          >
+            <ChevronLeft size={20} className="text-gray-600" />
+          </Button>
+          
+          {/* Right Arrow */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={scrollNext}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm"
+            data-testid="button-carousel-next"
+          >
+            <ChevronRight size={20} className="text-gray-600" />
+          </Button>
+          
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-6">
               {advantages.map((advantage, index) => {
@@ -121,28 +143,6 @@ export default function WhyEnhansorSection() {
                 );
               })}
             </div>
-          </div>
-          
-          {/* Navigation Arrows */}
-          <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 flex gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={scrollPrev}
-              className="w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50"
-              data-testid="button-carousel-prev"
-            >
-              <ChevronLeft size={20} className="text-gray-600" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={scrollNext}
-              className="w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50"
-              data-testid="button-carousel-next"
-            >
-              <ChevronRight size={20} className="text-gray-600" />
-            </Button>
           </div>
         </div>
         
