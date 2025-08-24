@@ -1,22 +1,29 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { redirectToService } from "@/lib/authRedirect";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleNavClick = (link: any) => {
+    if (link.route) {
+      // Navigate to service page with auth
+      redirectToService(link.route);
+    } else {
+      // Scroll to section on current page
+      const element = document.getElementById(link.id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
     setIsMobileMenuOpen(false);
   };
 
   const navLinks = [
-    { name: "Image Enhancement", id: "image-enhancement" },
-    { name: "AI Image Generator", id: "ai-generator" },
-    { name: "AI Video Generator", id: "video-generator" },
+    { name: "Image Enhancement", id: "image-enhancement", route: "enhance" },
+    { name: "AI Image Generator", id: "ai-generator", route: "generate" },
+    { name: "AI Video Generator", id: "video-generator", route: "video" },
     { name: "Gallery", id: "gallery" },
     { name: "Pricing", id: "pricing" },
   ];
@@ -38,7 +45,7 @@ export default function Navigation() {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => handleNavClick(link)}
                   className="text-gray-600 hover:text-primary-blue px-3 py-2 text-sm font-medium transition-colors"
                   data-testid={`nav-link-${link.id}`}
                 >
@@ -88,7 +95,7 @@ export default function Navigation() {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => handleNavClick(link)}
                   className="text-gray-600 hover:text-primary-blue px-3 py-2 text-sm font-medium transition-colors text-left"
                   data-testid={`mobile-nav-link-${link.id}`}
                 >
