@@ -36,34 +36,47 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            AI-Powered Image, Video & Text{" "}
+            <span className="text-primary-purple">AI-Powered</span> Image, Video & Text{" "}
             <span className="block">
               Generation
             </span>
           </h1>
           
           <p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-            One platform. Three powerful AI tools: Enhance your images, generate stunning visuals, or create videos from text.
+            One platform. Three powerful AI tools: <span className="text-primary-purple font-semibold">Enhance your images</span>, <span className="text-primary-purple font-semibold">generate stunning visuals</span>, or <span className="text-primary-purple font-semibold">create videos from text</span>.
           </p>
           
-          {/* Service Cards */}
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center max-w-5xl mx-auto">
-            {services.map((service) => {
-              const IconComponent = service.icon;
-              
-              return (
-                <Button
-                  key={service.id}
-                  onClick={() => handleServiceClick(service.id)}
-                  className={`${service.color} text-white px-8 py-6 rounded-2xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 flex flex-col items-center gap-2 min-w-[280px] h-auto`}
-                  data-testid={`button-service-${service.id}`}
-                >
-                  <IconComponent className="h-6 w-6 mb-1" />
-                  <span className="text-lg font-bold">{service.title}</span>
-                  <span className="text-sm opacity-90 font-normal">{service.subtitle}</span>
-                </Button>
-              );
-            })}
+          {/* Service Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg"
+              onClick={() => handleServiceClick('enhance')}
+              className="bg-primary-purple text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              data-testid="button-enhance-image"
+            >
+              <Sparkles className="mr-2 h-5 w-5" />
+              Enhance My Image
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              onClick={() => handleServiceClick('generate')}
+              className="border-2 border-gray-300 bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold hover:border-primary-purple hover:text-primary-purple transition-all duration-300"
+              data-testid="button-generate-image"
+            >
+              <Palette className="mr-2 h-5 w-5" />
+              Generate Image from Text
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              onClick={() => handleServiceClick('video')}
+              className="border-2 border-gray-300 bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold hover:border-primary-purple hover:text-primary-purple transition-all duration-300"
+              data-testid="button-create-video"
+            >
+              <Video className="mr-2 h-5 w-5" />
+              Create Video from Text
+            </Button>
           </div>
           
           {/* Hero Stats */}
