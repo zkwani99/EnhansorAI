@@ -1,78 +1,171 @@
+import { useRef, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Ban, Gem, Zap, DollarSign, Shield, Headphones } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Upload, Eye, Settings, Code, Cloud, Palette, Image, Video } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
 
 export default function WhyEnhansorSection() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: 'start',
+    slidesToScroll: 1,
+    containScroll: 'trimSnaps'
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   const advantages = [
     {
-      icon: Ban,
-      title: "No Watermarks",
-      description: "Clean, professional outputs without any branding or watermarks on your generated content.",
-      color: "from-green-400 to-green-500"
+      icon: Upload,
+      title: "Batch Processing",
+      description: "Upload multiple images at once and process them simultaneously. Save time with our efficient batch processing system designed for professionals.",
+      tags: ["Up to 50 images", "Queue Management"]
     },
     {
-      icon: Gem,
-      title: "HD Quality",
-      description: "Stunning high-definition results up to 8K resolution for images and 4K for videos.",
-      color: "from-blue-400 to-blue-500"
+      icon: Eye,
+      title: "Real-time Preview",
+      description: "See your enhancements instantly with our real-time preview system. Compare before and after results side-by-side as you adjust settings.",
+      tags: ["Instant Preview", "Side-by-side"]
     },
     {
-      icon: Zap,
-      title: "Lightning Fast",
-      description: "Average processing time of 30 seconds for images and 2 minutes for videos.",
-      color: "from-purple-400 to-purple-500"
+      icon: Settings,
+      title: "Advanced Controls",
+      description: "Fine-tune every aspect of your enhancement with professional-grade controls. From noise reduction to sharpening intensity.",
+      tags: ["Custom Settings", "Pro Controls"]
     },
     {
-      icon: DollarSign,
-      title: "Affordable Pricing",
-      description: "Competitive rates starting from $0.10 per image and flexible credit-based system.",
-      color: "from-orange-400 to-orange-500"
+      icon: Code,
+      title: "API Integration",
+      description: "Integrate our AI enhancement directly into your workflow or application with our robust REST API and comprehensive documentation.",
+      tags: ["REST API", "SDKs Available"]
     },
     {
-      icon: Shield,
-      title: "Secure & Private",
-      description: "Your data is encrypted and automatically deleted after 30 days for complete privacy.",
-      color: "from-indigo-400 to-indigo-500"
+      icon: Cloud,
+      title: "Cloud Storage",
+      description: "Your enhanced images are securely stored in the cloud with easy access and sharing options. Download anytime, anywhere.",
+      tags: ["Secure Storage", "Easy Sharing"]
     },
     {
-      icon: Headphones,
-      title: "24/7 Support",
-      description: "Round-the-clock customer support to help you with any questions or technical issues.",
-      color: "from-red-400 to-red-500"
+      icon: Palette,
+      title: "Creative AI Engine",
+      description: "Generate stunning original artwork from text descriptions. Our advanced AI understands context, style, and artistic nuance.",
+      tags: ["Text-to-Image", "Multiple Styles"]
+    },
+    {
+      icon: Image,
+      title: "Style Transfer",
+      description: "Transform images with artistic styles from photorealistic to anime, oil painting to digital art. Express your creative vision effortlessly.",
+      tags: ["Studio Quality", "AI Upscaling"]
+    },
+    {
+      icon: Video,
+      title: "AI Video Rendering",
+      description: "Generate cinematic-quality short videos directly from text, optimized for social media & marketing. Create engaging video content in seconds.",
+      tags: ["Text-to-Video", "HD Quality"]
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose Enhansor?
+            Why Enhansor?
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Experience the advantages that make us the preferred choice for AI-powered content creation
+          <p className="text-xl text-gray-600 max-w-4xl">
+            From content creators to enterprise businesses, successful professionals across industries grow and scale with Enhansor's AI-powered image enhancement technology.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {advantages.map((advantage, index) => {
-            const IconComponent = advantage.icon;
-            
-            return (
-              <Card
-                key={index}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
-                data-testid={`card-advantage-${index}`}
-              >
-                <CardContent className="p-6">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${advantage.color} rounded-lg flex items-center justify-center mb-4`}>
-                    <IconComponent className="text-white" size={24} />
+        {/* Carousel Container */}
+        <div className="relative">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-6">
+              {advantages.map((advantage, index) => {
+                const IconComponent = advantage.icon;
+                
+                return (
+                  <div key={index} className="flex-none w-80">
+                    <Card
+                      className="bg-white rounded-2xl border-2 border-primary-blue shadow-sm hover:shadow-md transition-shadow duration-300 h-full"
+                      data-testid={`card-advantage-${index}`}
+                    >
+                      <CardContent className="p-8 h-full flex flex-col">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-8 h-8 bg-primary-blue rounded-lg flex items-center justify-center">
+                            <IconComponent className="text-white" size={18} />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900">{advantage.title}</h3>
+                        </div>
+                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
+                          {advantage.description}
+                        </p>
+                        <div className="flex gap-2">
+                          {advantage.tags.map((tag, tagIndex) => (
+                            <span 
+                              key={tagIndex}
+                              className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{advantage.title}</h3>
-                  <p className="text-gray-600">{advantage.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
+                );
+              })}
+            </div>
+          </div>
+          
+          {/* Navigation Arrows */}
+          <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={scrollPrev}
+              className="w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50"
+              data-testid="button-carousel-prev"
+            >
+              <ChevronLeft size={20} className="text-gray-600" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={scrollNext}
+              className="w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50"
+              data-testid="button-carousel-next"
+            >
+              <ChevronRight size={20} className="text-gray-600" />
+            </Button>
+          </div>
+        </div>
+        
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <p className="text-gray-600 mb-8 text-lg">
+            Ready to experience the difference? Start with our free tier and upgrade as you grow.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              className="bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+              data-testid="button-try-free-now"
+            >
+              ⚡ Try Free Now
+            </Button>
+            <Button
+              variant="outline"
+              className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:border-primary-blue hover:text-primary-blue transition-colors"
+              data-testid="button-view-all-features"
+            >
+              View All Features
+            </Button>
+          </div>
         </div>
       </div>
     </section>
