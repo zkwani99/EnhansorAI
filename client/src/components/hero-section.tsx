@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Palette, Video } from "lucide-react";
+import { redirectToService } from "@/lib/authRedirect";
 
 export default function HeroSection() {
   const services = [
@@ -27,8 +28,7 @@ export default function HeroSection() {
   ];
 
   const handleServiceClick = (serviceId: string) => {
-    console.log("Service clicked:", serviceId);
-    // TODO: Navigate to specific service
+    redirectToService(serviceId);
   };
 
   return (

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, X, Image, Palette, Video } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
+import { redirectToService } from "@/lib/authRedirect";
 
 type ServiceKey = 'image' | 'ai' | 'video';
 
@@ -16,18 +17,35 @@ export default function PricingSection() {
   
   const handleSelectPlan = (planId: string) => {
     setSelectedPlan(planId);
-    toast({
-      title: "Plan Selected",
-      description: `You've selected the ${planId} plan. Redirecting to checkout...`,
-    });
+    // Store plan selection for post-auth processing
+    localStorage.setItem('selected_plan', planId);
+    localStorage.setItem('selected_service', activeService);
+    
+    // Redirect based on service type
+    const serviceRoutes = {
+      'image': 'enhance',
+      'ai': 'generate', 
+      'video': 'video'
+    } as const;
+    
+    redirectToService(serviceRoutes[activeService]);
   };
 
   const handleSelectCredit = (creditOption: any) => {
     setSelectedCredit(creditOption.credits);
-    toast({
-      title: "Credits Selected",
-      description: `${creditOption.credits} for ${creditOption.price} added to cart.`,
-    });
+    // Store credit selection for post-auth processing
+    localStorage.setItem('selected_credits', creditOption.credits);
+    localStorage.setItem('selected_price', creditOption.price);
+    localStorage.setItem('selected_service', activeService);
+    
+    // Redirect based on service type
+    const serviceRoutes = {
+      'image': 'enhance',
+      'ai': 'generate', 
+      'video': 'video'
+    } as const;
+    
+    redirectToService(serviceRoutes[activeService]);
   };
 
   const getServiceIcon = (service: string) => {

@@ -10,8 +10,8 @@ export default function FinalCTASection() {
   ];
 
   const handleTryFree = () => {
-    console.log("Try for Free clicked");
-    // TODO: Navigate to sign up
+    // Redirect to login/signup
+    window.location.href = '/api/login';
   };
 
   const handleComparePlans = () => {

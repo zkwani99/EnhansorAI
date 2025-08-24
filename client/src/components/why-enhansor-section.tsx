@@ -154,6 +154,7 @@ export default function WhyEnhansorSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               className="bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+              onClick={() => window.location.href = '/api/login'}
               data-testid="button-try-free-now"
             >
               ⚡ Try Free Now

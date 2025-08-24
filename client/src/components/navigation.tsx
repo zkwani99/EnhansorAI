@@ -53,12 +53,14 @@ export default function Navigation() {
             <Button
               variant="ghost"
               className="text-gray-600 hover:text-gray-900"
+              onClick={() => window.location.href = '/api/login'}
               data-testid="button-sign-in"
             >
               Sign In
             </Button>
             <Button
               className="bg-gradient-to-r from-primary-blue to-primary-purple text-white hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+              onClick={() => window.location.href = '/api/login'}
               data-testid="button-sign-up"
             >
               Sign Up
@@ -97,12 +99,14 @@ export default function Navigation() {
                 <Button
                   variant="ghost"
                   className="text-gray-600 hover:text-gray-900 justify-start"
+                  onClick={() => window.location.href = '/api/login'}
                   data-testid="mobile-button-sign-in"
                 >
                   Sign In
                 </Button>
                 <Button
                   className="bg-gradient-to-r from-primary-blue to-primary-purple text-white justify-start"
+                  onClick={() => window.location.href = '/api/login'}
                   data-testid="mobile-button-sign-up"
                 >
                   Sign Up
