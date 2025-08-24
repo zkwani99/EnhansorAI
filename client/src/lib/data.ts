@@ -197,7 +197,7 @@ export const pricingPlans = {
         creditOptions: [
           { credits: "100 credits", price: "$5" },
           { credits: "500 credits", price: "$10" },
-          { credits: "1000 credits", price: "$19", badge: "Best Value" },
+          { credits: "1000 credits", price: "$19" },
           { credits: "3000 credits", price: "$45" }
         ]
       }
