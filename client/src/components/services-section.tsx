@@ -9,7 +9,7 @@ export default function ServicesSection() {
       title: "Image Enhancement",
       description: "Transform low-quality images into crystal-clear, professional photos with our advanced AI upscaling and enhancement technology.",
       icon: Image,
-      color: "blue",
+      color: "purple",
       features: [
         "Up to 8K resolution upscaling",
         "Noise reduction & sharpening",
@@ -37,7 +37,7 @@ export default function ServicesSection() {
       title: "Text-to-Video AI",
       description: "Generate professional video content from text prompts with our cutting-edge video synthesis technology.",
       icon: Video,
-      color: "orange",
+      color: "purple",
       features: [
         "4K video generation",
         "Multiple duration options",
