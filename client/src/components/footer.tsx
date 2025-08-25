@@ -15,7 +15,7 @@ export default function Footer() {
   ];
 
   const handleLinkClick = (href: string) => {
-    if (href.startsWith("#")) {
+    if (href.startsWith("#") && href.length > 1) {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -37,7 +37,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold text-gray-900">Enhansor</span>
             </div>
-            <p className="text-gray-600 text-xs leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               Enhansor — AI tools to enhance, generate, and create. Smarter visuals, faster.
             </p>
           </div>
