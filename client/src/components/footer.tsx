@@ -66,12 +66,12 @@ export default function Footer() {
               {companyLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>
-                    <a
-                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                    <span
+                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                       data-testid={`footer-link-company-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
                     >
                       {link.name}
-                    </a>
+                    </span>
                   </Link>
                 </li>
               ))}

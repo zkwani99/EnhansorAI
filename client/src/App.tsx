@@ -12,6 +12,7 @@ import VideoPage from "@/pages/video";
 import AboutPage from "@/pages/about";
 import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
+import DashboardPage from "@/pages/dashboard";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/privacy" component={PrivacyPage} />
       <Route path="/terms" component={TermsPage} />
+      <Route path="/dashboard" component={DashboardPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

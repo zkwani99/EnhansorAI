@@ -1,0 +1,500 @@
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
+import { 
+  ArrowLeft, 
+  User, 
+  BarChart3, 
+  CreditCard, 
+  Bell, 
+  Settings, 
+  Eye, 
+  EyeOff,
+  Download,
+  Trash2,
+  Key,
+  Calendar,
+  DollarSign,
+  Zap
+} from "lucide-react";
+
+export default function DashboardPage() {
+  const { toast } = useToast();
+  const { isAuthenticated, isLoading, user } = useAuth();
+  const [activeTab, setActiveTab] = useState("profile");
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Redirect to home if not authenticated
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "You are logged out. Logging in again...",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/api/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, isLoading, toast]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-purple mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null; // Will redirect via useEffect
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link href="/">
+                <Button variant="ghost" size="sm" data-testid="button-back-home">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Home
+                </Button>
+              </Link>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary-purple rounded-full flex items-center justify-center">
+                <User className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-900">{(user as any)?.firstName || 'User'}</p>
+                <p className="text-xs text-gray-500">{(user as any)?.email}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-6">
+            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <p className="text-gray-600 mt-2">Manage your account and view your usage</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Dashboard Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <TabsList className="grid w-full grid-cols-5 bg-gray-100 p-1 rounded-lg">
+            <TabsTrigger value="profile" className="flex items-center gap-2" data-testid="tab-profile">
+              <User className="w-4 h-4" />
+              <span className="hidden sm:inline">Profile</span>
+            </TabsTrigger>
+            <TabsTrigger value="usage" className="flex items-center gap-2" data-testid="tab-usage">
+              <BarChart3 className="w-4 h-4" />
+              <span className="hidden sm:inline">Usage</span>
+            </TabsTrigger>
+            <TabsTrigger value="billing" className="flex items-center gap-2" data-testid="tab-billing">
+              <CreditCard className="w-4 h-4" />
+              <span className="hidden sm:inline">Billing</span>
+            </TabsTrigger>
+            <TabsTrigger value="notifications" className="flex items-center gap-2" data-testid="tab-notifications">
+              <Bell className="w-4 h-4" />
+              <span className="hidden sm:inline">Notifications</span>
+            </TabsTrigger>
+            <TabsTrigger value="advanced" className="flex items-center gap-2" data-testid="tab-advanced">
+              <Settings className="w-4 h-4" />
+              <span className="hidden sm:inline">Advanced</span>
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Profile Tab */}
+          <TabsContent value="profile" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <User className="w-5 h-5 text-primary-purple" />
+                    Profile Information
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="w-20 h-20 bg-primary-purple rounded-full flex items-center justify-center">
+                      <User className="w-10 h-10 text-white" />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName">First Name</Label>
+                      <Input 
+                        id="firstName" 
+                        defaultValue={(user as any)?.firstName || ""} 
+                        data-testid="input-first-name"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <Input 
+                        id="lastName" 
+                        defaultValue={(user as any)?.lastName || ""} 
+                        data-testid="input-last-name"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      defaultValue={(user as any)?.email || ""} 
+                      data-testid="input-email"
+                    />
+                  </div>
+                  
+                  <Button className="w-full bg-primary-purple hover:bg-purple-600" data-testid="button-update-profile">
+                    Update Profile
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Key className="w-5 h-5 text-primary-purple" />
+                    Change Password
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="currentPassword">Current Password</Label>
+                    <div className="relative">
+                      <Input 
+                        id="currentPassword" 
+                        type={showPassword ? "text" : "password"}
+                        data-testid="input-current-password"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                        onClick={() => setShowPassword(!showPassword)}
+                        data-testid="button-toggle-password"
+                      >
+                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="newPassword">New Password</Label>
+                    <Input 
+                      id="newPassword" 
+                      type={showPassword ? "text" : "password"}
+                      data-testid="input-new-password"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                    <Input 
+                      id="confirmPassword" 
+                      type={showPassword ? "text" : "password"}
+                      data-testid="input-confirm-password"
+                    />
+                  </div>
+                  
+                  <Button className="w-full bg-primary-purple hover:bg-purple-600" data-testid="button-change-password">
+                    Change Password
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* Usage Tab */}
+          <TabsContent value="usage" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <Card className="lg:col-span-2">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-primary-purple" />
+                    Credits Usage
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">Current Usage</span>
+                      <span className="text-sm text-gray-600">620 / 1000 credits</span>
+                    </div>
+                    <Progress value={62} className="h-3" />
+                    <div className="grid grid-cols-3 gap-4 mt-6">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary-purple">245</div>
+                        <div className="text-sm text-gray-600">Images Enhanced</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary-purple">180</div>
+                        <div className="text-sm text-gray-600">Images Generated</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary-purple">195</div>
+                        <div className="text-sm text-gray-600">Videos Created</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-primary-purple" />
+                    Usage Stats
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Today</span>
+                      <span className="font-medium">45 credits</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">This Month</span>
+                      <span className="font-medium">620 credits</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Total All Time</span>
+                      <span className="font-medium">2,840 credits</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* Billing Tab */}
+          <TabsContent value="billing" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <CreditCard className="w-5 h-5 text-primary-purple" />
+                    Current Plan
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="font-semibold text-lg">Growth Plan</h3>
+                        <p className="text-sm text-gray-600">1,000 credits per month</p>
+                      </div>
+                      <Badge className="bg-primary-purple text-white">Active</Badge>
+                    </div>
+                    <div className="text-2xl font-bold text-primary-purple">$55/month</div>
+                    <p className="text-sm text-gray-600">Renews on January 15, 2025</p>
+                    <div className="flex gap-2">
+                      <Button variant="outline" className="flex-1" data-testid="button-change-plan">
+                        Change Plan
+                      </Button>
+                      <Button variant="outline" className="flex-1" data-testid="button-cancel-subscription">
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <DollarSign className="w-5 h-5 text-primary-purple" />
+                    Payment Method
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-3 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                          <CreditCard className="w-4 h-4 text-white" />
+                        </div>
+                        <div>
+                          <p className="font-medium">•••• •••• •••• 4242</p>
+                          <p className="text-sm text-gray-600">Expires 12/27</p>
+                        </div>
+                      </div>
+                      <Badge variant="outline">Default</Badge>
+                    </div>
+                    <Button variant="outline" className="w-full" data-testid="button-update-payment">
+                      Update Payment Method
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Invoices</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { date: "December 15, 2024", amount: "$55.00", status: "Paid" },
+                    { date: "November 15, 2024", amount: "$55.00", status: "Paid" },
+                    { date: "October 15, 2024", amount: "$55.00", status: "Paid" }
+                  ].map((invoice, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                      <div>
+                        <p className="font-medium">{invoice.date}</p>
+                        <p className="text-sm text-gray-600">Growth Plan</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium">{invoice.amount}</p>
+                        <Badge variant="outline" className="text-green-600 border-green-600">
+                          {invoice.status}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Notifications Tab */}
+          <TabsContent value="notifications" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Bell className="w-5 h-5 text-primary-purple" />
+                  Notification Preferences
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Usage Alerts</h3>
+                    <p className="text-sm text-gray-600">Get notified when you're running low on credits</p>
+                  </div>
+                  <Switch defaultChecked data-testid="switch-usage-alerts" />
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Payment Reminders</h3>
+                    <p className="text-sm text-gray-600">Receive reminders before your subscription renews</p>
+                  </div>
+                  <Switch defaultChecked data-testid="switch-payment-reminders" />
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Account Updates</h3>
+                    <p className="text-sm text-gray-600">Security alerts and important account changes</p>
+                  </div>
+                  <Switch defaultChecked data-testid="switch-account-updates" />
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Marketing Emails</h3>
+                    <p className="text-sm text-gray-600">Product updates, tips, and promotional offers</p>
+                  </div>
+                  <Switch data-testid="switch-marketing-emails" />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Advanced Tab */}
+          <TabsContent value="advanced" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Key className="w-5 h-5 text-primary-purple" />
+                    API Keys
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-sm text-gray-600">
+                    Use API keys to integrate Enhansor with your applications
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 border rounded-lg">
+                      <div>
+                        <p className="font-medium">Production Key</p>
+                        <p className="text-sm text-gray-600 font-mono">en_prod_••••••••••••4f2a</p>
+                      </div>
+                      <Button variant="outline" size="sm" data-testid="button-copy-api-key">
+                        Copy
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <Button variant="outline" className="w-full" data-testid="button-generate-api-key">
+                    Generate New Key
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Account Actions</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h3 className="font-medium mb-2">Export Data</h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      Download all your account data and generated content
+                    </p>
+                    <Button variant="outline" className="w-full" data-testid="button-export-data">
+                      <Download className="w-4 h-4 mr-2" />
+                      Export Data
+                    </Button>
+                  </div>
+                  
+                  <div className="pt-4 border-t">
+                    <h3 className="font-medium mb-2 text-red-600">Danger Zone</h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      Permanently delete your account and all associated data
+                    </p>
+                    <Button variant="destructive" className="w-full" data-testid="button-delete-account">
+                      <Trash2 className="w-4 h-4 mr-2" />
+                      Delete Account
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+}

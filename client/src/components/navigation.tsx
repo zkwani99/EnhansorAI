@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { redirectToService } from "@/lib/authRedirect";
+import { useAuth } from "@/hooks/useAuth";
+import { Link } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isAuthenticated, user } = useAuth();
 
   const handleNavClick = (link: any) => {
     if (link.route) {
@@ -57,21 +60,47 @@ export default function Navigation() {
           
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              className="text-gray-600 hover:text-gray-900"
-              onClick={() => window.location.href = '/api/login'}
-              data-testid="button-sign-in"
-            >
-              Sign In
-            </Button>
-            <Button
-              className="bg-gradient-to-r from-primary-blue to-primary-purple text-white hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
-              onClick={() => window.location.href = '/api/login'}
-              data-testid="button-sign-up"
-            >
-              Sign Up
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Link href="/dashboard">
+                  <Button
+                    variant="ghost"
+                    className="text-gray-600 hover:text-gray-900 flex items-center gap-2"
+                    data-testid="button-dashboard"
+                  >
+                    <User className="w-4 h-4" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button
+                  variant="ghost"
+                  className="text-gray-600 hover:text-gray-900 flex items-center gap-2"
+                  onClick={() => window.location.href = '/api/logout'}
+                  data-testid="button-logout"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  className="text-gray-600 hover:text-gray-900"
+                  onClick={() => window.location.href = '/api/login'}
+                  data-testid="button-sign-in"
+                >
+                  Sign In
+                </Button>
+                <Button
+                  className="bg-gradient-to-r from-primary-blue to-primary-purple text-white hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+                  onClick={() => window.location.href = '/api/login'}
+                  data-testid="button-sign-up"
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
           </div>
           
           {/* Mobile menu button */}
@@ -103,21 +132,47 @@ export default function Navigation() {
                 </button>
               ))}
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100 mt-4">
-                <Button
-                  variant="ghost"
-                  className="text-gray-600 hover:text-gray-900 justify-start"
-                  onClick={() => window.location.href = '/api/login'}
-                  data-testid="mobile-button-sign-in"
-                >
-                  Sign In
-                </Button>
-                <Button
-                  className="bg-gradient-to-r from-primary-blue to-primary-purple text-white justify-start"
-                  onClick={() => window.location.href = '/api/login'}
-                  data-testid="mobile-button-sign-up"
-                >
-                  Sign Up
-                </Button>
+                {isAuthenticated ? (
+                  <>
+                    <Link href="/dashboard">
+                      <Button
+                        variant="ghost"
+                        className="text-gray-600 hover:text-gray-900 justify-start w-full"
+                        data-testid="mobile-button-dashboard"
+                      >
+                        <User className="w-4 h-4 mr-2" />
+                        Dashboard
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="ghost"
+                      className="text-gray-600 hover:text-gray-900 justify-start"
+                      onClick={() => window.location.href = '/api/logout'}
+                      data-testid="mobile-button-logout"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="ghost"
+                      className="text-gray-600 hover:text-gray-900 justify-start"
+                      onClick={() => window.location.href = '/api/login'}
+                      data-testid="mobile-button-sign-in"
+                    >
+                      Sign In
+                    </Button>
+                    <Button
+                      className="bg-gradient-to-r from-primary-blue to-primary-purple text-white justify-start"
+                      onClick={() => window.location.href = '/api/login'}
+                      data-testid="mobile-button-sign-up"
+                    >
+                      Sign Up
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
