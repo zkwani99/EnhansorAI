@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Progress } from "@/components/ui/progress";
 import { Link } from "wouter";
-import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap } from "lucide-react";
+import CreditBalance from "@/components/shared/credit-balance";
+import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,6 +18,11 @@ export default function GeneratePage() {
   const [selectedSize, setSelectedSize] = useState("square");
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [negativePrompt, setNegativePrompt] = useState("");
+  const [styleMemory, setStyleMemory] = useState(false);
+  const [realTimePreview, setRealTimePreview] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [currentPreview, setCurrentPreview] = useState(0);
 
   const aiStyles = [
     { id: "realistic", name: "Realistic", description: "Photographic quality", icon: Camera },
@@ -74,7 +82,41 @@ export default function GeneratePage() {
 
   const handleGenerate = () => {
     console.log("Generating image with:", { prompt, selectedStyle, selectedSize, negativePrompt });
-    // This would connect to actual AI image generation API
+    setIsGenerating(true);
+    
+    if (realTimePreview) {
+      // Simulate real-time preview generation
+      const mockPreviews = [
+        "https://via.placeholder.com/300x300/9333ea/ffffff?text=Preview+1",
+        "https://via.placeholder.com/300x300/7c3aed/ffffff?text=Preview+2",
+        "https://via.placeholder.com/300x300/6d28d9/ffffff?text=Preview+3"
+      ];
+      
+      let previewIndex = 0;
+      const interval = setInterval(() => {
+        if (previewIndex < mockPreviews.length) {
+          setPreviewImages(prev => [...prev, mockPreviews[previewIndex]]);
+          setCurrentPreview(previewIndex);
+          previewIndex++;
+        } else {
+          clearInterval(interval);
+          setIsGenerating(false);
+          toast({
+            title: "Image Generated!",
+            description: "Your AI image has been successfully created.",
+          });
+        }
+      }, 1500);
+    } else {
+      // Regular generation without preview
+      setTimeout(() => {
+        setIsGenerating(false);
+        toast({
+          title: "Image Generated!",
+          description: "Your AI image has been successfully created.",
+        });
+      }, 3000);
+    }
   };
 
   const usePreset = (preset: any) => {
@@ -137,9 +179,65 @@ export default function GeneratePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Credit Balance */}
+        <div className="mb-8">
+          <CreditBalance showDetails={true} />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Section - Create Your Image */}
           <div className="lg:col-span-2 space-y-8">
+            
+            {/* Smart Features */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Brain className="w-5 h-5 text-primary-purple" />
+                      <span className="font-medium text-gray-900">Style Memory</span>
+                    </div>
+                    <Switch 
+                      checked={styleMemory} 
+                      onCheckedChange={setStyleMemory}
+                      data-testid="switch-style-memory"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    AI remembers your brand colors and preferred visual style
+                  </p>
+                  {styleMemory && (
+                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                      Learning Active
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-5 h-5 text-primary-purple" />
+                      <span className="font-medium text-gray-900">Real-time Preview</span>
+                    </div>
+                    <Switch 
+                      checked={realTimePreview} 
+                      onCheckedChange={setRealTimePreview}
+                      data-testid="switch-real-time-preview"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    See evolving previews before final render
+                  </p>
+                  {realTimePreview && (
+                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                      Live Preview On
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
             <Card className="bg-white shadow-lg">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Your Image</h2>
@@ -160,13 +258,81 @@ export default function GeneratePage() {
 
                 <Button
                   onClick={handleGenerate}
-                  disabled={!prompt.trim()}
+                  disabled={!prompt.trim() || isGenerating}
                   className="w-full bg-gradient-to-r from-primary-purple to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white py-3 rounded-lg font-semibold text-lg mb-8"
                   data-testid="button-generate"
                 >
-                  <Zap className="w-5 h-5 mr-2" />
-                  Generate
+                  {isGenerating ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="w-5 h-5 mr-2" />
+                      Generate
+                    </>
+                  )}
                 </Button>
+
+                {/* Real-time Preview Section */}
+                {isGenerating && realTimePreview && (
+                  <div className="mb-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
+                    <div className="text-center mb-4">
+                      <h3 className="font-semibold text-gray-900 mb-2">Real-time Preview</h3>
+                      <p className="text-sm text-gray-600">Watch your image evolve as AI creates it</p>
+                    </div>
+                    
+                    {previewImages.length > 0 && (
+                      <div className="space-y-4">
+                        <div className="flex justify-center">
+                          <div className="relative">
+                            <img 
+                              src={previewImages[currentPreview]} 
+                              alt={`Preview ${currentPreview + 1}`}
+                              className="w-64 h-64 object-cover rounded-lg shadow-md"
+                            />
+                            <Badge className="absolute top-2 right-2 bg-primary-purple text-white">
+                              Step {currentPreview + 1}
+                            </Badge>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">
+                            Refining details... {Math.min((currentPreview + 1) * 33, 100)}%
+                          </span>
+                          <div className="flex gap-1">
+                            {previewImages.map((_, index) => (
+                              <div
+                                key={index}
+                                className={`w-2 h-2 rounded-full ${
+                                  index <= currentPreview ? 'bg-primary-purple' : 'bg-gray-300'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <Progress value={Math.min((currentPreview + 1) * 33, 100)} className="h-2" />
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {styleMemory && (
+                  <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Brain className="w-4 h-4 text-primary-purple" />
+                      <span className="font-medium text-primary-purple">Style Memory Active</span>
+                    </div>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <p>• Remembered brand colors: Purple, Blue gradients</p>
+                      <p>• Preferred style: Clean, modern, professional</p>
+                      <p>• Subject focus: Technology, SaaS, minimalist</p>
+                    </div>
+                  </div>
+                )}
 
                 {/* AI Style Options */}
                 <div className="mb-8">
@@ -251,8 +417,13 @@ export default function GeneratePage() {
           {/* Right Section - Style Presets */}
           <div className="space-y-6">
             <Card className="bg-white shadow-lg">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Style Presets</h2>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Palette className="w-5 h-5 text-primary-purple" />
+                  Style Presets
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <div className="space-y-4">
                   {stylePresets.map((preset) => (
                     <Card key={preset.id} className="border border-gray-200 hover:border-primary-purple transition-colors">
@@ -273,6 +444,24 @@ export default function GeneratePage() {
                     </Card>
                   ))}
                 </div>
+              </CardContent>
+            </Card>
+
+            {/* AI Concierge Mode */}
+            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+              <CardContent className="p-6 text-center">
+                <Sparkles className="w-8 h-8 mx-auto mb-3" />
+                <h3 className="font-bold text-lg mb-2">AI Concierge Mode</h3>
+                <p className="text-sm opacity-90 mb-4">
+                  "Create a coffee shop promo package" - Let AI handle the entire workflow automatically
+                </p>
+                <Button 
+                  variant="secondary" 
+                  className="w-full bg-white text-purple-600 hover:bg-gray-100"
+                  data-testid="button-ai-concierge"
+                >
+                  Try AI Concierge
+                </Button>
               </CardContent>
             </Card>
           </div>

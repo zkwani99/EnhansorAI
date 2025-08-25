@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Progress } from "@/components/ui/progress";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
+import CreditBalance from "@/components/shared/credit-balance";
 import { 
   ArrowLeft, 
   Play, 
@@ -16,7 +20,11 @@ import {
   Video,
   Sparkles,
   Clock,
-  Palette
+  Palette,
+  FileVideo,
+  Eye,
+  Grid3x3,
+  Zap
 } from "lucide-react";
 
 export default function VideoPage() {
@@ -28,6 +36,10 @@ export default function VideoPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
+  const [aiStoryboard, setAiStoryboard] = useState(true);
+  const [realTimePreview, setRealTimePreview] = useState(true);
+  const [storyboardFrames, setStoryboardFrames] = useState<string[]>([]);
+  const [showStoryboard, setShowStoryboard] = useState(false);
 
   // Redirect to home if not authenticated
   useEffect(() => {
@@ -55,10 +67,42 @@ export default function VideoPage() {
   const generateVideo = async () => {
     setIsGenerating(true);
     setShowResult(false);
+    setStoryboardFrames([]);
+    setShowStoryboard(false);
     
     try {
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      if (aiStoryboard) {
+        // Step 1: Generate AI Storyboard
+        toast({
+          title: "Creating Storyboard...",
+          description: "AI is analyzing your prompt and creating scene frames.",
+        });
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        const mockFrames = [
+          "https://via.placeholder.com/400x300/9333ea/ffffff?text=Scene+1",
+          "https://via.placeholder.com/400x300/7c3aed/ffffff?text=Scene+2",
+          "https://via.placeholder.com/400x300/6d28d9/ffffff?text=Scene+3"
+        ];
+        
+        setStoryboardFrames(mockFrames);
+        setShowStoryboard(true);
+        
+        // Wait for user to see storyboard
+        await new Promise(resolve => setTimeout(resolve, 3000));
+      }
+      
+      if (realTimePreview && !aiStoryboard) {
+        // Show real-time preview frames during generation
+        toast({
+          title: "Generating Preview...",
+          description: "Creating real-time preview frames as video is being generated.",
+        });
+      }
+      
+      // Step 2: Generate final video
+      await new Promise(resolve => setTimeout(resolve, 3000));
       
       // Placeholder video URL (you can replace with actual API call later)
       const sampleVideoUrl = "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4";
@@ -172,10 +216,65 @@ export default function VideoPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Credit Balance */}
+        <div className="mb-8">
+          <CreditBalance showDetails={true} />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* Form Section */}
           <div>
+            {/* Smart Features */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Grid3x3 className="w-5 h-5 text-primary-purple" />
+                      <span className="font-medium text-gray-900">AI Storyboard</span>
+                    </div>
+                    <Switch 
+                      checked={aiStoryboard} 
+                      onCheckedChange={setAiStoryboard}
+                      data-testid="switch-ai-storyboard"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Preview scene frames before final video generation
+                  </p>
+                  {aiStoryboard && (
+                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                      Storyboard Active
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-5 h-5 text-primary-purple" />
+                      <span className="font-medium text-gray-900">Real-time Preview</span>
+                    </div>
+                    <Switch 
+                      checked={realTimePreview} 
+                      onCheckedChange={setRealTimePreview}
+                      data-testid="switch-real-time-preview"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Watch video clips evolve during generation
+                  </p>
+                  {realTimePreview && (
+                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                      Live Preview On
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
             <Card className="bg-white shadow-lg border-0">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -271,14 +370,52 @@ export default function VideoPage() {
                   </Button>
                 </form>
 
+                {/* AI Storyboard Display */}
+                {showStoryboard && storyboardFrames.length > 0 && (
+                  <div className="mt-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
+                    <div className="text-center mb-4">
+                      <h3 className="font-semibold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                        <Grid3x3 className="w-5 h-5 text-primary-purple" />
+                        AI Storyboard Preview
+                      </h3>
+                      <p className="text-sm text-gray-600">Review the scene frames before final video generation</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-4 mb-4">
+                      {storyboardFrames.map((frame, index) => (
+                        <div key={index} className="relative">
+                          <img 
+                            src={frame} 
+                            alt={`Storyboard frame ${index + 1}`}
+                            className="w-full h-24 object-cover rounded-lg shadow-md"
+                          />
+                          <Badge className="absolute bottom-2 left-2 bg-primary-purple text-white text-xs">
+                            Scene {index + 1}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="text-center">
+                      <p className="text-sm text-gray-600">Storyboard looks good! Proceeding with video generation...</p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Processing State */}
                 {isGenerating && (
                   <div className="mt-8 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-purple rounded-full mb-4">
                       <Loader2 className="w-8 h-8 text-white animate-spin" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Creating your video...</h3>
-                    <p className="text-gray-600">This may take a few moments. Please don't close this page.</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {showStoryboard ? 'Generating final video...' : 'Creating your video...'}
+                    </h3>
+                    <p className="text-gray-600">
+                      {aiStoryboard && !showStoryboard ? 'Analyzing prompt and creating storyboard...' : 
+                       realTimePreview && !aiStoryboard ? 'Generating with real-time preview...' :
+                       'This may take a few moments. Please don\'t close this page.'}
+                    </p>
                     
                     <div className="mt-4 bg-gray-100 rounded-full h-2">
                       <div className="bg-gradient-to-r from-primary-purple to-purple-600 h-2 rounded-full animate-pulse" style={{width: '60%'}}></div>
@@ -363,6 +500,24 @@ export default function VideoPage() {
                 </CardContent>
               </Card>
             ) : null}
+
+            {/* AI Concierge Mode */}
+            <Card className="mt-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+              <CardContent className="p-6 text-center">
+                <Sparkles className="w-8 h-8 mx-auto mb-3" />
+                <h3 className="font-bold text-lg mb-2">AI Concierge Mode</h3>
+                <p className="text-sm opacity-90 mb-4">
+                  "Create a travel vlog intro" - Let AI handle your entire video workflow automatically
+                </p>
+                <Button 
+                  variant="secondary" 
+                  className="w-full bg-white text-purple-600 hover:bg-gray-100"
+                  data-testid="button-ai-concierge"
+                >
+                  Try AI Concierge
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
 

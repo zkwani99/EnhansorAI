@@ -28,6 +28,7 @@ export default function Navigation() {
     { name: "AI Image Generator", id: "ai-generator", route: "generate" },
     { name: "AI Video Generator", id: "video-generator", route: "video" },
     { name: "Gallery", id: "gallery" },
+    { name: "API / Developers", id: "api", route: "api" },
     { name: "Pricing", id: "pricing" },
   ];
 

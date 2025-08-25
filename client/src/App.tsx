@@ -9,6 +9,7 @@ import Home from "@/pages/home";
 import EnhancePage from "@/pages/enhance";
 import GeneratePage from "@/pages/generate";
 import VideoPage from "@/pages/video";
+import APIPage from "@/pages/api";
 import AboutPage from "@/pages/about";
 import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/enhance" component={EnhancePage} />
       <Route path="/generate" component={GeneratePage} />
       <Route path="/video" component={VideoPage} />
+      <Route path="/api" component={APIPage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/privacy" component={PrivacyPage} />
       <Route path="/terms" component={TermsPage} />
