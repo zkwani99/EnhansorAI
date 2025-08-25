@@ -36,14 +36,11 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            <span className="text-primary-purple">AI-Powered</span> Image, Video & Text{" "}
-            <span className="block">
-              Generation
-            </span>
+            ✨ One Platform. Unlimited Creativity.
           </h1>
           
           <p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-            One platform. Three powerful AI tools: <span className="text-primary-purple font-semibold">Enhance your images</span>, <span className="text-primary-purple font-semibold">generate stunning visuals</span>, or <span className="text-primary-purple font-semibold">create videos from text</span>.
+            Enhance photos, generate stunning art, and create videos from text — all powered by next-gen AI in one seamless studio.
           </p>
           
           {/* Service Buttons */}
@@ -82,15 +79,15 @@ export default function HeroSection() {
           {/* Hero Stats */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-purple" data-testid="stat-images-processed">50K+</div>
+              <div className="text-3xl font-bold text-primary-purple" data-testid="stat-images-processed">2K+</div>
               <div className="text-gray-600 mt-1">Images Enhanced</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-purple" data-testid="stat-videos-generated">12K+</div>
+              <div className="text-3xl font-bold text-primary-purple" data-testid="stat-videos-generated">1K+</div>
               <div className="text-gray-600 mt-1">Videos Generated</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-purple" data-testid="stat-happy-users">25K+</div>
+              <div className="text-3xl font-bold text-primary-purple" data-testid="stat-happy-users">500+</div>
               <div className="text-gray-600 mt-1">Happy Users</div>
             </div>
           </div>
