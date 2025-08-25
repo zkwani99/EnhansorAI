@@ -165,6 +165,7 @@ export const pricingPlans = {
         isPopular: true,
         buttonText: "Choose Plan",
         features: [
+          { text: "600 images per month", included: true },
           { text: "600 images/month split across resolutions:", included: true },
           { text: "• 300 × 512×512 px", included: true },
           { text: "• 180 × 1024×1024 px", included: true },
@@ -187,6 +188,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
+          { text: "2000 images per month", included: true },
           { text: "2000 images/month split across resolutions:", included: true },
           { text: "• 1000 × 512×512 px", included: true },
           { text: "• 600 × 1024×1024 px", included: true },
@@ -209,6 +211,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
+          { text: "5000 images per month", included: true },
           { text: "5000 images/month split across resolutions:", included: true },
           { text: "• 2500 × 512×512 px", included: true },
           { text: "• 1500 × 1024×1024 px", included: true },

@@ -63,48 +63,16 @@ export default function PricingSection() {
   };
 
   const getServiceColors = (service: string) => {
-    switch (service) {
-      case "image":
-        return {
-          iconBg: "bg-gradient-to-br from-primary-blue to-blue-400",
-          headerBg: "bg-primary-blue",
-          button: "bg-primary-blue hover:bg-blue-600",
-          border: "border-primary-blue",
-          popular: "bg-primary-blue",
-          tabActive: "bg-primary-blue text-white",
-          tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
-        };
-      case "ai":
-        return {
-          iconBg: "bg-gradient-to-br from-primary-purple to-purple-400",
-          headerBg: "bg-primary-purple",
-          button: "bg-primary-purple hover:bg-purple-600",
-          border: "border-primary-purple",
-          popular: "bg-primary-purple",
-          tabActive: "bg-primary-purple text-white",
-          tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
-        };
-      case "video":
-        return {
-          iconBg: "bg-gradient-to-br from-primary-orange to-orange-400",
-          headerBg: "bg-primary-orange",
-          button: "bg-primary-orange hover:bg-orange-600",
-          border: "border-primary-orange",
-          popular: "bg-primary-orange",
-          tabActive: "bg-primary-orange text-white",
-          tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
-        };
-      default:
-        return {
-          iconBg: "bg-gray-400",
-          headerBg: "bg-gray-400",
-          button: "bg-gray-400",
-          border: "border-gray-400",
-          popular: "bg-gray-400",
-          tabActive: "bg-gray-400 text-white",
-          tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
-        };
-    }
+    // All services now use purple color scheme
+    return {
+      iconBg: "bg-gradient-to-br from-primary-purple to-purple-400",
+      headerBg: "bg-primary-purple",
+      button: "bg-primary-purple hover:bg-purple-600",
+      border: "border-primary-purple",
+      popular: "bg-primary-purple",
+      tabActive: "bg-primary-purple text-white",
+      tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    };
   };
 
   const serviceTabs = [
@@ -176,12 +144,12 @@ export default function PricingSection() {
           </div>
           
           {/* Pricing Plans Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12 items-stretch">
             {currentServiceData?.plans?.map((plan: any, index: number) => (
               <Card
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                className={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col ${
                   selectedPlan === plan.id 
                     ? `border-2 ${colors.border} ring-2 ring-offset-2 ${colors.border.replace('border-', 'ring-')} relative transform scale-105` 
                     : plan.isPopular 
@@ -197,49 +165,55 @@ export default function PricingSection() {
                     </Badge>
                   </div>
                 )}
-                <CardContent className="p-6">
-                  <div className="text-center">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
-                    <div className="text-3xl font-bold text-gray-900 mb-2">
+                    <div className="text-3xl font-bold text-primary-purple mb-2">
                       {plan.price}
                       <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
                     </div>
                     {(plan as any).pricePerImage && (
-                      <div className="text-sm text-gray-500 mb-2">
+                      <div className="text-sm text-gray-500 mb-6">
                         {(plan as any).pricePerImage}
                       </div>
                     )}
                     
-                    {/* Special handling for Pay-as-you-go credit options */}
-                    {(plan.id === 'payg-ai' || plan.id === 'payg-image') && (plan as any).creditOptions ? (
-                      <div className="mb-6">
-                        <div className="text-sm text-gray-700 font-medium mb-4">Choose your bundle:</div>
-                        <div className="space-y-2 text-sm">
-                          {(plan as any).creditOptions.map((option: any, optionIndex: number) => (
-                            <Button
-                              key={optionIndex}
-                              variant="outline"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleSelectCredit(option);
-                              }}
-                              className={`w-full flex justify-between items-center p-3 h-auto transition-all duration-200 ${
-                                selectedCredit === option.credits 
-                                  ? `${colors.button.replace('hover:bg-', 'bg-').replace('bg-', 'bg-')} text-white border-current` 
-                                  : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
-                              }`}
-                              data-testid={`button-credit-${optionIndex}`}
-                            >
-                              <span className="font-medium">{option.credits}</span>
-                              <span className="font-bold">{option.price}</span>
-                            </Button>
-                          ))}
+                    {/* Features List - moved lower with more spacing */}
+                    <div className="mt-6 mb-8">
+                      {(plan.id === 'payg-ai' || plan.id === 'payg-image') && (plan as any).creditOptions ? (
+                        <div>
+                          <ul className="space-y-2 text-sm text-gray-600 text-left">
+                            {plan.features?.map((feature: any, featureIndex: number) => (
+                              <li key={featureIndex} className="flex items-center">
+                                <Check className="text-green-500 mr-2" size={14} />
+                                <span className="flex items-center gap-1">
+                                  {feature.text}
+                                  {feature.tooltip && (
+                                    <TooltipProvider>
+                                      <Tooltip>
+                                        <TooltipTrigger asChild>
+                                          <Info className="text-gray-400 cursor-help" size={14} />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                          <p className="max-w-xs">{feature.tooltip}</p>
+                                        </TooltipContent>
+                                      </Tooltip>
+                                    </TooltipProvider>
+                                  )}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                        
-                        <ul className="space-y-2 mt-4 text-sm text-gray-600">
+                      ) : (
+                        <ul className="space-y-3 text-sm text-gray-600 text-left">
                           {plan.features?.map((feature: any, featureIndex: number) => (
                             <li key={featureIndex} className="flex items-center">
-                              <Check className="text-green-500 mr-2" size={14} />
+                              {feature.included ? (
+                                <Check className="text-green-500 mr-2" size={16} />
+                              ) : (
+                                <span className="text-gray-400 mr-2 text-sm">—</span>
+                              )}
                               <span className="flex items-center gap-1">
                                 {feature.text}
                                 {feature.tooltip && (
@@ -258,49 +232,53 @@ export default function PricingSection() {
                             </li>
                           ))}
                         </ul>
+                      )}
+                    </div>
+                    
+                    {/* PAYG Bundle Selection - moved to bottom */}
+                    {(plan.id === 'payg-ai' || plan.id === 'payg-image') && (plan as any).creditOptions && (
+                      <div className="mb-6">
+                        <div className="text-sm text-gray-700 font-medium mb-4">Choose your bundle:</div>
+                        <div className="space-y-2 text-sm">
+                          {(plan as any).creditOptions.map((option: any, optionIndex: number) => (
+                            <Button
+                              key={optionIndex}
+                              variant="outline"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleSelectCredit(option);
+                              }}
+                              className={`w-full flex justify-between items-center p-3 h-auto transition-all duration-200 ${
+                                selectedCredit === option.credits 
+                                  ? `${colors.button} text-white border-current` 
+                                  : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
+                              }`}
+                              data-testid={`button-credit-${optionIndex}`}
+                            >
+                              <span className="font-medium">{option.credits}</span>
+                              <span className="font-bold">{option.price}</span>
+                            </Button>
+                          ))}
+                        </div>
                       </div>
-                    ) : (
-                      <ul className="space-y-3 mb-6 text-sm text-gray-600">
-                        {plan.features?.map((feature: any, featureIndex: number) => (
-                          <li key={featureIndex} className="flex items-center">
-                            {feature.included ? (
-                              <Check className="text-green-500 mr-2" size={16} />
-                            ) : (
-                              <span className="text-gray-400 mr-2 text-sm">—</span>
-                            )}
-                            <span className="flex items-center gap-1">
-                              {feature.text}
-                              {feature.tooltip && (
-                                <TooltipProvider>
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <Info className="text-gray-400 cursor-help" size={14} />
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <p className="max-w-xs">{feature.tooltip}</p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                </TooltipProvider>
-                              )}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
                     )}
-                    <Button
-                      className={`w-full ${
-                        plan.isFree 
-                          ? "bg-gray-200 text-gray-700 hover:bg-gray-300" 
-                          : `${colors.button} text-white`
-                      } py-2 rounded-lg font-medium transition-colors`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSelectPlan(plan.id);
-                      }}
-                      data-testid={`button-select-plan-${plan.id}`}
-                    >
-                      {plan.buttonText}
-                    </Button>
+                    {/* CTA Button - always at bottom */}
+                    <div className="mt-auto">
+                      <Button
+                        className={`w-full ${
+                          plan.isFree 
+                            ? "bg-gray-200 text-gray-700 hover:bg-gray-300" 
+                            : `${colors.button} text-white`
+                        } py-2 rounded-lg font-medium transition-colors`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelectPlan(plan.id);
+                        }}
+                        data-testid={`button-select-plan-${plan.id}`}
+                      >
+                        {plan.buttonText}
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
