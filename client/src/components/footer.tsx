@@ -26,7 +26,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-50 py-12">
+    <footer className="bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -37,11 +37,8 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold text-gray-900">Enhansor</span>
             </div>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              Enhansor is an AI-powered SaaS platform for enhancing images, 
-              generating visuals, and creating videos from text. Advanced 
-              upscaling, text-to-image, and text-to-video tools make content 
-              creation simple and affordable.
+            <p className="text-gray-600 text-xs leading-relaxed">
+              Enhansor — AI tools to enhance, generate, and create. Smarter visuals, faster.
             </p>
           </div>
           
@@ -100,7 +97,7 @@ export default function Footer() {
         
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-          <p className="text-sm text-gray-500">All rights reserved © 2025 Enhansor.</p>
+          <p className="text-sm text-gray-500">© 2025 Enhansor. All rights reserved</p>
         </div>
       </div>
     </footer>
