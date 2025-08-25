@@ -1,4 +1,5 @@
 import { Sparkles, Image as ImageIcon, Zap, Sun } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   const enhancementTools = [
@@ -9,21 +10,11 @@ export default function Footer() {
   ];
 
   const companyLinks = [
-    { name: "About Us", href: "#" },
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
+    { name: "About Us", href: "/about" },
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
   ];
 
-  const handleLinkClick = (href: string) => {
-    if (href.startsWith("#") && href.length > 1) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    } else {
-      console.log("Navigate to:", href);
-    }
-  };
 
   return (
     <footer className="bg-gray-50 py-8">
@@ -74,13 +65,14 @@ export default function Footer() {
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.name}>
-                  <button
-                    onClick={() => handleLinkClick(link.href)}
-                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors text-left"
-                    data-testid={`footer-link-company-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {link.name}
-                  </button>
+                  <Link href={link.href}>
+                    <a
+                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                      data-testid={`footer-link-company-${link.name.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      {link.name}
+                    </a>
+                  </Link>
                 </li>
               ))}
             </ul>

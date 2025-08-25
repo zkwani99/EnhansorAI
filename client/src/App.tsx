@@ -9,6 +9,9 @@ import Home from "@/pages/home";
 import EnhancePage from "@/pages/enhance";
 import GeneratePage from "@/pages/generate";
 import VideoPage from "@/pages/video";
+import AboutPage from "@/pages/about";
+import PrivacyPage from "@/pages/privacy";
+import TermsPage from "@/pages/terms";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -19,6 +22,9 @@ function Router() {
       <Route path="/enhance" component={EnhancePage} />
       <Route path="/generate" component={GeneratePage} />
       <Route path="/video" component={VideoPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/terms" component={TermsPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

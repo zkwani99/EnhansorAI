@@ -1,0 +1,101 @@
+Create three separate pages for my SaaS project Enhansor: About Us, Privacy Policy, and Terms of Service. Each page should look professional, easy to read, and styled consistently with the rest of the site (clean headings, short paragraphs, clear sections). Any Enhansor word in this three pages should be in Bold. 
+
+About Us
+
+
+
+Enhansor is an AI-powered SaaS platform built to make professional content creation simple, fast, and affordable. We provide advanced tools for image enhancement, text-to-image generation, and text-to-video creation—all in one platform.
+
+
+
+Our mission is to empower creators, businesses, and enterprises with cutting-edge AI technology that delivers high-quality results in seconds. Whether you’re a content creator, marketer, or business owner, Enhansor helps you unlock creativity without complexity.
+
+Privacy Policy
+
+
+
+1. Information We Collect
+
+Account details: email, name, login credentials.
+
+Usage data: activity logs, preferences, and generated content.
+
+Uploaded content: images, text, or other inputs provided by you.
+
+
+
+2. How We Use Your Information
+
+To provide and improve our services.
+
+To personalize your experience.
+
+To ensure platform safety and prevent misuse.
+
+
+
+3. Data Sharing
+
+We do not sell personal data.
+
+Third-party providers (e.g., payment processors, hosting) are used only to deliver the service.
+
+
+
+4. Security
+
+Data is stored securely with encryption and restricted access.
+
+While we prioritize security, no system is 100% risk-free.
+
+
+
+5. Your Rights
+
+Request access or deletion of your data anytime.
+
+Contact support for privacy concerns.
+
+Terms of Service
+
+
+
+1. Acceptance of Terms
+
+By using Enhansor, you agree to these Terms of Service.
+
+
+
+2. License
+
+You may use generated content for personal and commercial purposes unless restricted by your subscription plan.
+
+
+
+3. User Responsibilities
+
+Do not upload unlawful, harmful, or infringing content.
+
+Respect intellectual property rights.
+
+
+
+4. Payments & Subscriptions
+
+Plans are billed according to the pricing page.
+
+Refunds and renewals follow our policy.
+
+
+
+5. Limitation of Liability
+
+Enhansor is provided “as is.” We are not liable for indirect or incidental damages.
+
+
+
+6. Termination
+
+We may suspend or terminate accounts for violations of these terms.
+
+👉 Make sure each page is styled with clear headings, spacing, and a professional SaaS look.
