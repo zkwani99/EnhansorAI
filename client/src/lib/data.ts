@@ -70,69 +70,40 @@ export const pricingPlans = {
           { text: "Priority support", included: true },
           { text: "Commercial use license", included: true }
         ]
-      },
-      {
-        id: "payg-image",
-        name: "PAYG (Pay As You Go)",
-        price: "Flexible",
-        period: "",
-        pricePerImage: "Starts from $5 for 100 credits (~$0.05 each)",
-        isFree: false,
-        isPopular: false,
-        buttonText: "Buy Credits",
-        features: [
-          { text: "High-quality upscaling & restoration", included: true },
-          { text: "Advanced denoise + sharpen filters", included: true },
-          { text: "No watermark", included: true },
-          { text: "No subscription required", included: true },
-          { text: "One-time payment", included: true },
-          { text: "Credits scale by resolution (fair usage):", included: true },
-          { text: "• 2× upscale = 1 credit", included: true },
-          { text: "• 4× upscale = 2 credits", included: true },
-          { text: "• 6× upscale = 3 credits", included: true },
-          { text: "• 8× upscale = 4 credits", included: true },
-          { text: "Higher resolution outputs possible depending on original image size and inputs", included: true }
-        ],
-        creditOptions: [
-          { credits: "100 credits", price: "$5" },
-          { credits: "500 credits", price: "$10" },
-          { credits: "1000 credits", price: "$19" },
-          { credits: "3000 credits", price: "$45" }
-        ]
       }
     ],
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["25", "600", "2000", "5000", "Pay per use"]
+        values: ["25", "600", "2000", "5000"]
       },
       {
         name: "Upscaling Quality",
-        values: ["Basic 2× upscaling", "HD upscaling (up to 4×)", "High-res upscaling (up to 6×)", "Ultra-HD upscaling (up to 6×)", "High-quality upscaling"]
+        values: ["Basic 2× upscaling", "HD upscaling (up to 4×)", "High-res upscaling (up to 6×)", "Ultra-HD upscaling (up to 6×)"]
       },
       {
         name: "Watermark",
-        values: ["Watermarked output", "No watermark", "No watermark", "No watermark", "No watermark"]
+        values: ["Watermarked output", "No watermark", "No watermark", "No watermark"]
       },
       {
         name: "Processing Queue",
-        values: ["Standard processing queue", "Standard support", "Faster queue priority", "Priority support", "Standard"]
+        values: ["Standard processing queue", "Standard support", "Faster queue priority", "Priority support"]
       },
       {
         name: "Batch Processing",
-        values: [false, false, "Batch upload", "Batch processing", false]
+        values: [false, false, "Batch upload", "Batch processing"]
       },
       {
         name: "API Access",
-        values: [false, false, false, true, false]
+        values: [false, false, false, true]
       },
       {
         name: "Support",
-        values: ["—", "Email support", "—", "Priority support", "—"]
+        values: ["—", "Email support", "—", "Priority support"]
       },
       {
         name: "Commercial License",
-        values: [false, false, false, true, false]
+        values: [false, false, false, true]
       }
     ]
   },
@@ -162,7 +133,7 @@ export const pricingPlans = {
         period: "/month",
         pricePerImage: "$0.020 per image",
         isFree: false,
-        isPopular: true,
+        isPopular: false,
         buttonText: "Choose Plan",
         features: [
           { text: "600 images per month", included: true },
@@ -185,7 +156,7 @@ export const pricingPlans = {
         period: "/month",
         pricePerImage: "$0.018 per image",
         isFree: false,
-        isPopular: false,
+        isPopular: true,
         buttonText: "Choose Plan",
         features: [
           { text: "2000 images per month", included: true },
@@ -224,81 +195,56 @@ export const pricingPlans = {
           { text: "Commercial license", included: true },
           { text: "Priority support", included: true }
         ]
-      },
-      {
-        id: "payg-ai",
-        name: "Pay-as-you-go",
-        price: "Flexible",
-        period: "",
-        pricePerImage: "Starts from $5 for 100 credits (~$0.05 each)",
-        isFree: false,
-        isPopular: false,
-        buttonText: "Buy Credits",
-        features: [
-          { text: "No monthly commitment", included: true },
-          { text: "No watermark", included: true },
-          { text: "Mix resolutions – pro-rata credit deduction:", included: true },
-          { text: "• 512px = 1 credit", included: true },
-          { text: "• 1K = 2 credits", included: true },
-          { text: "• 2K = 4 credits", included: true },
-          { text: "• 4K = 8 credits", included: true }
-        ],
-        creditOptions: [
-          { credits: "100 credits", price: "$5" },
-          { credits: "500 credits", price: "$10" },
-          { credits: "1000 credits", price: "$19" },
-          { credits: "3000 credits", price: "$45" }
-        ]
       }
     ],
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["20", "600", "2000", "5000", "Pay per use"]
+        values: ["20", "600", "2000", "5000"]
       },
       {
         name: "512×512 px Images",
-        values: ["20 images", "300 images", "1000 images", "2500 images", "1 credit each"]
+        values: ["20 images", "300 images", "1000 images", "2500 images"]
       },
       {
         name: "1024×1024 px Images",
-        values: ["—", "180 images", "600 images", "1500 images", "2 credits each"]
+        values: ["—", "180 images", "600 images", "1500 images"]
       },
       {
         name: "2048×2048 px Images",
-        values: ["—", "120 images", "300 images", "800 images", "4 credits each"]
+        values: ["—", "120 images", "300 images", "800 images"]
       },
       {
         name: "4K (3840×2160 px) Images",
-        values: ["—", "—", "100 images", "200 images", "8 credits each"]
+        values: ["—", "—", "100 images", "200 images"]
       },
       {
         name: "Prompt Styles",
-        values: ["Basic prompt styles", "Advanced prompt styles", "All styles & effects", "All styles & effects", "Mix resolutions"]
+        values: ["Basic prompt styles", "Advanced prompt styles", "All styles & effects", "All styles & effects"]
       },
       {
         name: "Output Quality",
-        values: ["Watermarked output", "HD + Ultra HD, no watermark", "Ultra HD, no watermark", "Ultra HD, no watermark", "No watermark"]
+        values: ["Watermarked output", "HD + Ultra HD, no watermark", "Ultra HD, no watermark", "Ultra HD, no watermark"]
       },
       {
         name: "Processing Queue",
-        values: ["Standard processing queue", "Standard queue", "Faster queue priority", "Fastest queue priority", "Standard"]
+        values: ["Standard processing queue", "Standard queue", "Faster queue priority", "Fastest queue priority"]
       },
       {
         name: "Custom Aspect Ratios",
-        values: [false, true, true, true, false]
+        values: [false, true, true, true]
       },
       {
         name: "API Access",
-        values: [false, false, false, true, false]
+        values: [false, false, false, true]
       },
       {
         name: "Commercial License",
-        values: [false, false, true, true, false]
+        values: [false, false, true, true]
       },
       {
         name: "Support",
-        values: ["—", "Email support", "Priority support", "Priority support", "Email support"]
+        values: ["—", "Email support", "Priority support", "Priority support"]
       }
     ]
   },

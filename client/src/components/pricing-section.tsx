@@ -145,17 +145,17 @@ export default function PricingSection() {
           </div>
           
           {/* Pricing Plans Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 items-stretch">
             {currentServiceData?.plans?.map((plan: any, index: number) => (
               <Card
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col ${
+                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer h-full flex flex-col group ${
                   selectedPlan === plan.id 
                     ? `border-2 ${colors.border} ring-2 ring-offset-2 ${colors.border.replace('border-', 'ring-')} relative transform scale-105` 
                     : plan.isPopular 
-                      ? `border-2 ${colors.border} relative` 
-                      : 'border border-gray-200'
+                      ? `border-2 ${colors.border} relative hover:border-purple-400` 
+                      : 'border border-gray-200 hover:border-purple-300'
                 }`}
                 data-testid={`card-plan-${plan.id}`}
               >
@@ -181,96 +181,42 @@ export default function PricingSection() {
                     
                     {/* Features List - moved lower with more spacing */}
                     <div className="mt-6 mb-8">
-                      {(plan.id === 'payg-ai' || plan.id === 'payg-image') && (plan as any).creditOptions ? (
-                        <div>
-                          <ul className="space-y-2 text-sm text-gray-600 text-left">
-                            {plan.features?.map((feature: any, featureIndex: number) => (
-                              <li key={featureIndex} className="flex items-center">
-                                <Check className="text-green-500 mr-2" size={14} />
-                                <span className="flex items-center gap-1">
-                                  {feature.text}
-                                  {feature.tooltip && (
-                                    <TooltipProvider>
-                                      <Tooltip>
-                                        <TooltipTrigger asChild>
-                                          <Info className="text-gray-400 cursor-help" size={14} />
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                          <p className="max-w-xs">{feature.tooltip}</p>
-                                        </TooltipContent>
-                                      </Tooltip>
-                                    </TooltipProvider>
-                                  )}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ) : (
-                        <ul className="space-y-3 text-sm text-gray-600 text-left">
-                          {plan.features?.map((feature: any, featureIndex: number) => (
-                            <li key={featureIndex} className="flex items-center">
-                              {feature.included ? (
-                                <Check className="text-green-500 mr-2" size={16} />
-                              ) : (
-                                <span className="text-gray-400 mr-2 text-sm">—</span>
+                      <ul className="space-y-3 text-sm text-gray-600 text-left">
+                        {plan.features?.map((feature: any, featureIndex: number) => (
+                          <li key={featureIndex} className="flex items-center">
+                            {feature.included ? (
+                              <Check className="text-green-500 mr-2" size={16} />
+                            ) : (
+                              <span className="text-gray-400 mr-2 text-sm">—</span>
+                            )}
+                            <span className="flex items-center gap-1">
+                              {feature.text}
+                              {feature.tooltip && (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <Info className="text-gray-400 cursor-help" size={14} />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p className="max-w-xs">{feature.tooltip}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
                               )}
-                              <span className="flex items-center gap-1">
-                                {feature.text}
-                                {feature.tooltip && (
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Info className="text-gray-400 cursor-help" size={14} />
-                                      </TooltipTrigger>
-                                      <TooltipContent>
-                                        <p className="max-w-xs">{feature.tooltip}</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
-                                )}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     
-                    {/* PAYG Bundle Selection - moved to bottom */}
-                    {(plan.id === 'payg-ai' || plan.id === 'payg-image') && (plan as any).creditOptions && (
-                      <div className="mb-6">
-                        <div className="text-sm text-gray-700 font-medium mb-4">Choose your bundle:</div>
-                        <div className="space-y-2 text-sm">
-                          {(plan as any).creditOptions.map((option: any, optionIndex: number) => (
-                            <Button
-                              key={optionIndex}
-                              variant="outline"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleSelectCredit(option);
-                              }}
-                              className={`w-full flex justify-between items-center p-3 h-auto transition-all duration-200 ${
-                                selectedCredit === option.credits 
-                                  ? `${colors.button} text-white border-current` 
-                                  : 'bg-gray-50 hover:bg-gray-100 border-gray-200'
-                              }`}
-                              data-testid={`button-credit-${optionIndex}`}
-                            >
-                              <span className="font-medium">{option.credits}</span>
-                              <span className="font-bold">{option.price}</span>
-                            </Button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                     {/* CTA Button - always at bottom */}
                     <div className="mt-auto">
                       <Button
                         className={`w-full ${
                           plan.isFree 
-                            ? "bg-gray-200 text-gray-700 hover:bg-gray-300" 
-                            : `${colors.button} text-white`
-                        } py-2 rounded-lg font-medium transition-colors`}
+                            ? "bg-gray-200 text-gray-700 hover:bg-gray-300 group-hover:bg-gray-400 group-hover:text-white" 
+                            : `${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`
+                        } py-3 rounded-lg font-semibold transition-all duration-300`}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleSelectPlan(plan.id);
