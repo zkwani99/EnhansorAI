@@ -255,13 +255,14 @@ export const pricingPlans = {
       {
         id: "starter-video",
         name: "Starter",
-        price: "$25",
+        price: "$35",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         subtitle: "Best for trying out AI video generation",
         features: [
+          { text: "Up to 65 clips per month", included: true },
           { text: "📹 50 clips / month (5s each) at 480p", included: true },
           { text: "📹 10 clips / month (5s each) at 720p", included: true },
           { text: "📹 5 clips / month (5s each) at 1080p", included: true },
@@ -273,13 +274,14 @@ export const pricingPlans = {
       {
         id: "growth-video",
         name: "Growth",
-        price: "$65",
+        price: "$85",
         period: "/month",
         isFree: false,
         isPopular: true,
         buttonText: "Choose Plan",
         subtitle: "For regular creators and small teams",
         features: [
+          { text: "Up to 175 clips per month", included: true },
           { text: "📹 120 clips / month (5s each) at 480p", included: true },
           { text: "📹 40 clips / month (5s each) at 720p", included: true },
           { text: "📹 15 clips / month (5s each) at 1080p", included: true },
@@ -292,13 +294,14 @@ export const pricingPlans = {
       {
         id: "business-video",
         name: "Business",
-        price: "$140",
+        price: "$160",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         subtitle: "For businesses with higher content needs",
         features: [
+          { text: "Up to 320 clips per month", included: true },
           { text: "📹 200 clips / month (5s each) at 480p", included: true },
           { text: "📹 80 clips / month (5s each) at 720p", included: true },
           { text: "📹 40 clips / month (5s each) at 1080p", included: true },
