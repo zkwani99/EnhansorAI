@@ -443,6 +443,20 @@ export default function PricingSection() {
             </Card>
           </div>
 
+          {/* How Credits Are Used Section - Moved directly under credit packs */}
+          <div className="mt-16 mb-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                How Credits Are Used
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Transparent pricing for every service tier. Credits are deducted based on the quality and resolution you choose.
+              </p>
+            </div>
+
+            <CreditUsageDisplay />
+          </div>
+
           {/* Features List */}
           <Card className="bg-gray-50 border border-gray-200 rounded-2xl mb-8">
             <CardContent className="p-8">
@@ -523,20 +537,6 @@ export default function PricingSection() {
               </div>
             </CardContent>
           </Card>
-
-          {/* How Credits Are Used Section - Moved directly under credit packs */}
-          <div className="mt-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                How Credits Are Used
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Transparent pricing for every service tier. Credits are deducted based on the quality and resolution you choose.
-              </p>
-            </div>
-
-            <CreditUsageDisplay />
-          </div>
         </div>
       </div>
     </section>
