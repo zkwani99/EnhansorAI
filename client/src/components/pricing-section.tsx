@@ -169,6 +169,12 @@ export default function PricingSection() {
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
+                    {/* Show image count for AI service plans between name and price */}
+                    {activeService === 'ai' && !plan.isFree && plan.features?.[0]?.text?.includes('images per month') && (
+                      <div className="text-sm text-gray-600 mb-2 font-medium">
+                        {plan.features[0].text}
+                      </div>
+                    )}
                     <div className="text-3xl font-bold text-primary-purple mb-2">
                       {plan.price}
                       <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
@@ -182,30 +188,37 @@ export default function PricingSection() {
                     {/* Features List - moved lower with more spacing */}
                     <div className="mt-6 mb-8">
                       <ul className="space-y-3 text-sm text-gray-600 text-left">
-                        {plan.features?.map((feature: any, featureIndex: number) => (
-                          <li key={featureIndex} className="flex items-center">
-                            {feature.included ? (
-                              <Check className="text-green-500 mr-2" size={16} />
-                            ) : (
-                              <span className="text-gray-400 mr-2 text-sm">—</span>
-                            )}
-                            <span className="flex items-center gap-1">
-                              {feature.text}
-                              {feature.tooltip && (
-                                <TooltipProvider>
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <Info className="text-gray-400 cursor-help" size={14} />
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <p className="max-w-xs">{feature.tooltip}</p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                </TooltipProvider>
+                        {plan.features?.map((feature: any, featureIndex: number) => {
+                          // Skip first feature for AI service paid plans as it's shown above the price
+                          if (activeService === 'ai' && !plan.isFree && featureIndex === 0 && feature.text?.includes('images per month')) {
+                            return null;
+                          }
+                          
+                          return (
+                            <li key={featureIndex} className="flex items-center">
+                              {feature.included ? (
+                                <Check className="text-green-500 mr-2" size={16} />
+                              ) : (
+                                <span className="text-gray-400 mr-2 text-sm">—</span>
                               )}
-                            </span>
-                          </li>
-                        ))}
+                              <span className="flex items-center gap-1">
+                                {feature.text}
+                                {feature.tooltip && (
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <Info className="text-gray-400 cursor-help" size={14} />
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p className="max-w-xs">{feature.tooltip}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                )}
+                              </span>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                     
