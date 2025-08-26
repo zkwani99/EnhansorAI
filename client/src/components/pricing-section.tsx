@@ -7,6 +7,7 @@ import { Check, X, Image, Palette, Video, Info, Zap, Sparkles, Crown, Building2,
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
+import { useQuery } from "@tanstack/react-query";
 
 type ServiceKey = 'image' | 'ai' | 'video';
 
@@ -522,8 +523,126 @@ export default function PricingSection() {
               </div>
             </CardContent>
           </Card>
+
+          {/* How Credits Are Used Section */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                How Credits Are Used
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Transparent pricing for every service tier. Credits are deducted based on the quality and resolution you choose.
+              </p>
+            </div>
+
+            <CreditUsageDisplay />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+// Credit Usage Display Component
+function CreditUsageDisplay() {
+  const { data: pricing, isLoading, error } = useQuery({
+    queryKey: ['/api/credits/pricing'],
+  });
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[1, 2, 3].map((i) => (
+          <Card key={i} className="animate-pulse">
+            <CardContent className="p-6">
+              <div className="h-6 bg-gray-200 rounded mb-4"></div>
+              <div className="space-y-3">
+                {[1, 2, 3, 4].map((j) => (
+                  <div key={j} className="h-4 bg-gray-200 rounded"></div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
+  if (error || !pricing) {
+    return (
+      <div className="text-center text-red-500">
+        <p>Error loading credit pricing. Please try again later.</p>
+      </div>
+    );
+  }
+
+  // Group pricing by service
+  const groupedPricing = pricing.reduce((acc: any, item: any) => {
+    if (!acc[item.service]) {
+      acc[item.service] = [];
+    }
+    acc[item.service].push(item);
+    return acc;
+  }, {});
+
+  const serviceConfig = {
+    image: {
+      title: 'Image Enhancement',
+      icon: Image,
+      color: 'from-green-500 to-emerald-600',
+      bgColor: 'bg-green-50',
+      borderColor: 'border-green-200',
+    },
+    'text-to-image': {
+      title: 'Text-to-Image AI',
+      icon: Palette,
+      color: 'from-purple-500 to-violet-600',
+      bgColor: 'bg-purple-50',
+      borderColor: 'border-purple-200',
+    },
+    'text-to-video': {
+      title: 'Text-to-Video AI',
+      icon: Video,
+      color: 'from-blue-500 to-indigo-600',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200',
+    },
+  };
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {Object.entries(groupedPricing).map(([service, items]: [string, any[]]) => {
+        const config = serviceConfig[service as keyof typeof serviceConfig];
+        if (!config) return null;
+
+        const IconComponent = config.icon;
+
+        return (
+          <Card key={service} className={`${config.bgColor} ${config.borderColor} border-2 hover:shadow-lg transition-all duration-300`}>
+            <CardContent className="p-6">
+              <div className="text-center mb-6">
+                <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${config.color} rounded-2xl flex items-center justify-center`}>
+                  <IconComponent className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">{config.title}</h3>
+              </div>
+
+              <div className="space-y-3">
+                {items.map((item: any) => (
+                  <div key={item.tier} className="flex items-center justify-between py-2">
+                    <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="secondary" className="bg-white border border-gray-300">
+                        {item.credits} credit{item.credits > 1 ? 's' : ''}
+                      </Badge>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
   );
 }

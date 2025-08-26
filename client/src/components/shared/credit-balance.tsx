@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Zap, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useQuery } from "@tanstack/react-query";
 
 interface CreditBalanceProps {
   className?: string;
@@ -10,11 +11,20 @@ interface CreditBalanceProps {
 }
 
 export default function CreditBalance({ className = "", showDetails = true }: CreditBalanceProps) {
-  // Mock data - will be replaced with real API calls later
-  const credits = {
-    remaining: 620,
-    total: 1000,
-    percentage: 62
+  const { data: userCredits, isLoading } = useQuery({
+    queryKey: ['/api/credits/balance'],
+    refetchInterval: 30000, // Refetch every 30 seconds
+  });
+
+  // Fallback to mock data while loading or if no data
+  const credits = userCredits ? {
+    remaining: userCredits.totalCredits - userCredits.usedCredits,
+    total: userCredits.totalCredits,
+    percentage: Math.round((userCredits.usedCredits / userCredits.totalCredits) * 100)
+  } : {
+    remaining: isLoading ? 0 : 620,
+    total: isLoading ? 0 : 1000,
+    percentage: isLoading ? 0 : 62
   };
 
   return (

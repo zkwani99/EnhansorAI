@@ -1,6 +1,7 @@
 import { sql } from 'drizzle-orm';
 import {
   index,
+  integer,
   jsonb,
   pgTable,
   timestamp,
@@ -47,3 +48,64 @@ export const insertUserSchema = createInsertSchema(users).omit({
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
+
+// Credit pricing table - stores dynamic pricing for each service tier
+export const creditPricing = pgTable("credit_pricing", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  service: varchar("service").notNull(), // 'image', 'text-to-image', 'text-to-video'
+  tier: varchar("tier").notNull(), // '2x', '4x', '512px', '1k', '5s-480p', etc.
+  credits: integer("credits").notNull(), // Credit cost for this tier
+  displayName: varchar("display_name").notNull(), // Human-readable display name
+  description: varchar("description"), // Optional description
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// User credit balance and usage tracking
+export const userCredits = pgTable("user_credits", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  totalCredits: integer("total_credits").default(0).notNull(),
+  usedCredits: integer("used_credits").default(0).notNull(),
+  imageEnhanceUsed: integer("image_enhance_used").default(0).notNull(),
+  textToImageUsed: integer("text_to_image_used").default(0).notNull(),
+  textToVideoUsed: integer("text_to_video_used").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Credit usage history for tracking individual transactions
+export const creditTransactions = pgTable("credit_transactions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  service: varchar("service").notNull(), // 'image-enhance', 'text-to-image', 'text-to-video'
+  tier: varchar("tier").notNull(), // '2x', '4x', '512px', '1k', '5s-480p', etc.
+  creditsUsed: integer("credits_used").notNull(),
+  description: varchar("description"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export type CreditPricing = typeof creditPricing.$inferSelect;
+export type InsertCreditPricing = typeof creditPricing.$inferInsert;
+export type UserCredits = typeof userCredits.$inferSelect;
+export type InsertUserCredits = typeof userCredits.$inferInsert;
+export type CreditTransaction = typeof creditTransactions.$inferSelect;
+export type InsertCreditTransaction = typeof creditTransactions.$inferInsert;
+
+// Insert schemas
+export const insertCreditPricingSchema = createInsertSchema(creditPricing).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertUserCreditsSchema = createInsertSchema(userCredits).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCreditTransactionSchema = createInsertSchema(creditTransactions).omit({
+  id: true,
+  createdAt: true,
+});

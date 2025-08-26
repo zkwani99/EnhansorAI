@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { 
   ArrowLeft, 
   User, 
@@ -239,27 +240,7 @@ export default function DashboardPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">Current Usage</span>
-                      <span className="text-sm text-gray-600">620 / 1000 credits</span>
-                    </div>
-                    <Progress value={62} className="h-3" />
-                    <div className="grid grid-cols-3 gap-4 mt-6">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary-purple">245</div>
-                        <div className="text-sm text-gray-600">Images Enhanced</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary-purple">180</div>
-                        <div className="text-sm text-gray-600">Images Generated</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary-purple">195</div>
-                        <div className="text-sm text-gray-600">Videos Created</div>
-                      </div>
-                    </div>
-                  </div>
+                  <DynamicCreditUsage />
                 </CardContent>
               </Card>
 
@@ -494,6 +475,125 @@ export default function DashboardPage() {
             </div>
           </TabsContent>
         </Tabs>
+      </div>
+    </div>
+  );
+}
+
+// Dynamic Credit Usage Component
+function DynamicCreditUsage() {
+  const { data: userCredits, isLoading, error } = useQuery({
+    queryKey: ['/api/credits/balance'],
+    refetchInterval: 30000, // Refetch every 30 seconds for real-time updates
+  });
+
+  if (isLoading) {
+    return (
+      <div className="space-y-4 animate-pulse">
+        <div className="flex items-center justify-between">
+          <div className="h-4 bg-gray-200 rounded w-24"></div>
+          <div className="h-4 bg-gray-200 rounded w-32"></div>
+        </div>
+        <div className="h-3 bg-gray-200 rounded"></div>
+        <div className="grid grid-cols-3 gap-4 mt-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="text-center space-y-2">
+              <div className="h-8 bg-gray-200 rounded mx-auto w-16"></div>
+              <div className="h-4 bg-gray-200 rounded w-20 mx-auto"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !userCredits) {
+    return (
+      <div className="text-center text-gray-500 py-8">
+        <p>Unable to load credit usage data</p>
+        <p className="text-sm mt-1">Please try again later</p>
+      </div>
+    );
+  }
+
+  const remainingCredits = userCredits.totalCredits - userCredits.usedCredits;
+  const usagePercentage = Math.round((userCredits.usedCredits / userCredits.totalCredits) * 100);
+
+  // Calculate individual service percentages
+  const imageEnhancePercentage = userCredits.totalCredits > 0 
+    ? Math.round((userCredits.imageEnhanceUsed / userCredits.totalCredits) * 100) 
+    : 0;
+  const textToImagePercentage = userCredits.totalCredits > 0 
+    ? Math.round((userCredits.textToImageUsed / userCredits.totalCredits) * 100) 
+    : 0;
+  const textToVideoPercentage = userCredits.totalCredits > 0 
+    ? Math.round((userCredits.textToVideoUsed / userCredits.totalCredits) * 100) 
+    : 0;
+
+  return (
+    <div className="space-y-6">
+      {/* Overall Usage */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-medium">Current Usage</span>
+          <span className="text-sm text-gray-600">
+            {userCredits.usedCredits} / {userCredits.totalCredits} credits
+          </span>
+        </div>
+        <div className="space-y-2">
+          <Progress value={usagePercentage} className="h-3" />
+          <div className="flex justify-between text-xs text-gray-500">
+            <span>Used: {usagePercentage}%</span>
+            <span>Remaining: {remainingCredits} credits</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Service Breakdown */}
+      <div className="space-y-4">
+        <h4 className="font-medium text-gray-900">Usage by Service</h4>
+        
+        {/* Image Enhancement */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600 flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              Image Enhancement
+            </span>
+            <span className="text-sm font-medium">
+              {userCredits.imageEnhanceUsed} credits ({imageEnhancePercentage}%)
+            </span>
+          </div>
+          <Progress value={imageEnhancePercentage} className="h-2" />
+        </div>
+
+        {/* Text-to-Image */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600 flex items-center gap-2">
+              <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+              Text-to-Image AI
+            </span>
+            <span className="text-sm font-medium">
+              {userCredits.textToImageUsed} credits ({textToImagePercentage}%)
+            </span>
+          </div>
+          <Progress value={textToImagePercentage} className="h-2" />
+        </div>
+
+        {/* Text-to-Video */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600 flex items-center gap-2">
+              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              Text-to-Video AI
+            </span>
+            <span className="text-sm font-medium">
+              {userCredits.textToVideoUsed} credits ({textToVideoPercentage}%)
+            </span>
+          </div>
+          <Progress value={textToVideoPercentage} className="h-2" />
+        </div>
       </div>
     </div>
   );
