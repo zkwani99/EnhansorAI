@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Check, X, Image, Palette, Video, Info } from "lucide-react";
+import { Check, X, Image, Palette, Video, Info, Zap, Sparkles, Crown, Building2, HelpCircle, Calendar } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
@@ -326,6 +326,201 @@ export default function PricingSection() {
                 </tbody>
               </table>
             </div>
+          </Card>
+        </div>
+
+        {/* Flexible Pay-As-You-Go Credits Section */}
+        <div className="mt-20">
+          <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 rounded-3xl p-8 mb-12">
+            <div className="text-center text-white">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                Flexible Pay-As-You-Go Credits
+              </h2>
+              <p className="text-lg text-purple-100 max-w-4xl mx-auto leading-relaxed">
+                No commitments. Just buy credits when you need them—use them across all services: Image Enhancement, Text-to-Image, and Text-to-Video. Perfect for occasional creators or those testing the platform.
+              </p>
+            </div>
+          </div>
+
+          {/* Credits Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Starter Pack */}
+            <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
+              <CardContent className="p-6 text-center h-full flex flex-col">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Zap className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Starter Pack</h3>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-purple-600">$9</span>
+                    <span className="text-gray-500 ml-1">one-time</span>
+                  </div>
+                  <div className="text-2xl font-semibold text-gray-700 mb-4">100 credits</div>
+                  <p className="text-sm text-gray-500">$0.09 per credit</p>
+                </div>
+                <div className="mt-auto">
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
+                    Buy Starter Pack
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Creator Pack */}
+            <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-purple-300 ring-2 ring-purple-100 relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-xs font-semibold">
+                  BEST VALUE
+                </span>
+              </div>
+              <CardContent className="p-6 text-center h-full flex flex-col">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Sparkles className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Creator Pack</h3>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-purple-600">$25</span>
+                    <span className="text-gray-500 ml-1">one-time</span>
+                  </div>
+                  <div className="text-2xl font-semibold text-gray-700 mb-4">300 credits</div>
+                  <p className="text-sm text-gray-500">$0.08 per credit</p>
+                </div>
+                <div className="mt-auto">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium py-2 rounded-lg">
+                    Buy Creator Pack
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Pro Pack */}
+            <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
+              <CardContent className="p-6 text-center h-full flex flex-col">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Crown className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Pro Pack</h3>
+                  <div className="mb-4">
+                    <span className="text-3xl font-bold text-purple-600">$75</span>
+                    <span className="text-gray-500 ml-1">one-time</span>
+                  </div>
+                  <div className="text-2xl font-semibold text-gray-700 mb-4">1,000 credits</div>
+                  <p className="text-sm text-gray-500">$0.075 per credit</p>
+                </div>
+                <div className="mt-auto">
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
+                    Buy Pro Pack
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Pack */}
+            <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
+              <CardContent className="p-6 text-center h-full flex flex-col">
+                <div className="mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Building2 className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Enterprise Pack</h3>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-purple-600">Custom</span>
+                    <span className="text-gray-500 ml-1">pricing</span>
+                  </div>
+                  <div className="text-lg font-semibold text-gray-700 mb-4">Unlimited credits</div>
+                  <p className="text-sm text-gray-500">Volume discounts</p>
+                </div>
+                <div className="mt-auto">
+                  <Button variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 font-medium py-2 rounded-lg">
+                    Contact Sales
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Features List */}
+          <Card className="bg-gray-50 border border-gray-200 rounded-2xl mb-8">
+            <CardContent className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900 mb-1">Use credits across all services</p>
+                    <p className="text-sm text-gray-600">(Enhance, Generate, Create)</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900 mb-1">No expiration for credits</p>
+                    <p className="text-sm text-gray-600">(lifetime until used)</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900 mb-1">Access to premium features</p>
+                    <p className="text-sm text-gray-600">(4K outputs, batch processing, real-time preview, commercial licensing)</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900 mb-1">Scale up anytime</p>
+                    <p className="text-sm text-gray-600">by buying more packs</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-gray-900 mb-1">Perfect add-on</p>
+                    <p className="text-sm text-gray-600">for subscription users who need extra runs</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Decision Helper Box */}
+          <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-2xl">
+            <CardContent className="p-6">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <HelpCircle className="w-6 h-6 text-purple-600" />
+                  <h3 className="text-lg font-bold text-gray-900">Not sure what's right for you?</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                  <div className="bg-white rounded-xl p-6 border border-purple-200">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Calendar className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Choose Subscriptions if...</h4>
+                    <p className="text-sm text-gray-600">
+                      you need steady, monthly usage at a lower cost per credit.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-6 border border-purple-200">
+                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Zap className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Choose PAYG if...</h4>
+                    <p className="text-sm text-gray-600">
+                      you want total flexibility and only need occasional credits.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
           </Card>
         </div>
       </div>
