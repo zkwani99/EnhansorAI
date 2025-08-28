@@ -20,7 +20,7 @@ export default function HeroSection() {
     },
     {
       id: "video",
-      title: "Create Video from Text",
+      title: "Create Video from Text or Image",
       subtitle: "AI-powered short clips",
       icon: Video,
       color: "bg-purple-600"
@@ -72,7 +72,7 @@ export default function HeroSection() {
               data-testid="button-create-video"
             >
               <Video className="mr-3 h-6 w-6" />
-              Create Video from Text
+              Create Video from Text or Image
             </Button>
           </div>
           
