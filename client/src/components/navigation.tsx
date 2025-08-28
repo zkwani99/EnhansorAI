@@ -27,6 +27,7 @@ export default function Navigation() {
     { name: "Image Enhancement", id: "image-enhancement", route: "enhance" },
     { name: "AI Image Generator", id: "ai-generator", route: "generate" },
     { name: "AI Video Generator", id: "video-generator", route: "video" },
+    { name: "AI Image-to-Video", id: "image-to-video", route: "image-to-video" },
     { name: "Gallery", id: "gallery" },
     { name: "API / Developers", id: "api", route: "api" },
     { name: "Pricing", id: "pricing" },
