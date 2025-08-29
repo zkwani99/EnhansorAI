@@ -225,7 +225,11 @@ export default function PricingSection() {
                                 <span className="text-gray-400 mr-2 text-sm">—</span>
                               )}
                               <span className="flex items-center gap-1">
-                                {feature.text}
+                                {activeService === 'imageVideo' && feature.text.includes('\n') ? (
+                                  <div className="whitespace-pre-line">{feature.text}</div>
+                                ) : (
+                                  feature.text
+                                )}
                                 {feature.tooltip && (
                                   <TooltipProvider>
                                     <Tooltip>
