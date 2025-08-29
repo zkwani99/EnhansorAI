@@ -72,7 +72,17 @@ export default function HeroSection() {
               data-testid="button-create-video"
             >
               <Video className="mr-3 h-6 w-6" />
-              Create Video from Text or Image
+              Create Video from Text
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              onClick={() => handleServiceClick('image-to-video')}
+              className="border-3 border-gray-400 bg-white text-gray-800 px-10 py-5 rounded-xl text-xl font-bold shadow-md hover:border-primary-purple hover:text-primary-purple hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              data-testid="button-create-video-from-image"
+            >
+              <Video className="mr-3 h-6 w-6" />
+              Create Video from Image
             </Button>
           </div>
           
