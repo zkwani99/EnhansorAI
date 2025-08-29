@@ -279,6 +279,8 @@ export default function PricingSection() {
                                   </div>
                                 ) : activeService === 'imageVideo' && feature.text.includes('\n') ? (
                                   <div className="whitespace-pre-line">{feature.text}</div>
+                                ) : feature.text.includes('<strong>') ? (
+                                  <span dangerouslySetInnerHTML={{ __html: feature.text }} />
                                 ) : (
                                   feature.text
                                 )}

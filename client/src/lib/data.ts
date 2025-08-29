@@ -174,7 +174,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "**Unlimited images per month**", included: true },
+          { text: "<strong>Unlimited images per month</strong>", included: true },
           { text: "HD + Ultra-HD rendering (up to 4K)", included: true },
           { text: "Unlimited batch processing", included: true },
           { text: "Team / multi-user accounts", included: true },
