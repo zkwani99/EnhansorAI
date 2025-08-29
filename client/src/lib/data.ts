@@ -253,105 +253,104 @@ export const pricingPlans = {
     description: "Generate professional videos from text descriptions",
     plans: [
       {
+        id: "free-video",
+        name: "Free",
+        price: "$0",
+        period: "/month",
+        isFree: true,
+        isPopular: false,
+        buttonText: "Start Free",
+        subtitle: "Perfect for testing the platform",
+        features: [
+          { text: "15 clips (5s each)", included: true },
+          { text: "480p resolution", included: true },
+          { text: "Watermarked output", included: true },
+          { text: "Basic support", included: true }
+        ]
+      },
+      {
         id: "starter-video",
         name: "Starter",
-        price: "$35",
+        price: "$12",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         subtitle: "Best for trying out AI video generation",
         features: [
-          { text: "Up to 65 clips per month", included: true },
-          { text: "📹 50 clips / month (5s each) at 480p", included: true },
-          { text: "📹 10 clips / month (5s each) at 720p", included: true },
-          { text: "📹 5 clips / month (5s each) at 1080p", included: true },
-          { text: "🎬 Access to AI video editor", included: true },
-          { text: "💾 Save & download your videos instantly", included: true },
-          { text: "✨ Perfect for creators, students, and small projects", included: true }
+          { text: "200 clips (5s each)", included: true },
+          { text: "720p resolution", included: true },
+          { text: "Email support", included: true },
+          { text: "No watermark", included: true }
         ]
       },
       {
         id: "growth-video",
         name: "Growth",
-        price: "$85",
+        price: "$29",
         period: "/month",
         isFree: false,
         isPopular: true,
         buttonText: "Choose Plan",
-        subtitle: "For regular creators and small teams",
+        subtitle: "Great for freelancers & content creators",
         features: [
-          { text: "Up to 175 clips per month", included: true },
-          { text: "📹 120 clips / month (5s each) at 480p", included: true },
-          { text: "📹 40 clips / month (5s each) at 720p", included: true },
-          { text: "📹 15 clips / month (5s each) at 1080p", included: true },
-          { text: "⚡ Priority rendering speed", included: true },
-          { text: "📁 Larger storage for video projects", included: true },
-          { text: "📧 Email support", included: true },
-          { text: "🎯 Great for freelancers, and content marketers", included: true }
+          { text: "400 clips (5s each)", included: true },
+          { text: "720p + 1080p resolution access", included: true },
+          { text: "Priority processing", included: true },
+          { text: "Standard support", included: true }
         ]
       },
       {
         id: "business-video",
         name: "Business",
-        price: "$160",
+        price: "$79",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
-        subtitle: "For businesses with higher content needs",
+        subtitle: "Perfect for agencies & professional teams",
         features: [
-          { text: "Up to 320 clips per month", included: true },
-          { text: "📹 200 clips / month (5s each) at 480p", included: true },
-          { text: "📹 80 clips / month (5s each) at 720p", included: true },
-          { text: "📹 40 clips / month (5s each) at 1080p", included: true },
-          { text: "🚀 Priority queue for faster delivery", included: true },
-          { text: "👥 Team collaboration (multi-user access)", included: true },
-          { text: "🎗️ Priority support", included: true },
-          { text: "🏢 Designed for agencies, startups, and brands scaling their video content", included: true }
+          { text: "800 clips (10s each)", included: true },
+          { text: "Full HD (1080p) resolution", included: true },
+          { text: "AI Concierge Mode", included: true },
+          { text: "AI Storyboard", included: true },
+          { text: "Real-time Preview", included: true },
+          { text: "Priority support + onboarding", included: true }
         ]
       }
     ],
     comparisonFeatures: [
       {
-        name: "480p Videos",
-        values: ["50 clips/month", "120 clips/month", "200 clips/month"]
+        name: "Monthly Clips",
+        values: ["15 clips (5s)", "200 clips (5s)", "400 clips (5s)", "800 clips (10s)"]
       },
       {
-        name: "720p Videos",
-        values: ["10 clips/month", "40 clips/month", "80 clips/month"]
+        name: "Max Resolution",
+        values: ["480p", "720p", "720p + 1080p", "Full HD (1080p)"]
       },
       {
-        name: "1080p Videos",
-        values: ["5 clips/month", "15 clips/month", "40 clips/month"]
+        name: "Watermark",
+        values: ["Yes", "No", "No", "No"]
       },
       {
-        name: "Video Length",
-        values: ["5 seconds each", "5 seconds each", "5 seconds each"]
+        name: "Processing Queue",
+        values: ["Standard", "Standard", "Priority", "Priority"]
       },
       {
-        name: "AI Video Editor Access",
-        values: [true, true, true]
+        name: "AI Storyboard",
+        values: ["—", "—", "—", "✓"]
       },
       {
-        name: "Processing Speed",
-        values: ["Standard queue", "Priority rendering speed", "Priority queue"]
+        name: "Real-time Preview",
+        values: ["—", "—", "—", "✓"]
       },
       {
-        name: "Storage",
-        values: ["Save & download instantly", "Larger storage for projects", "Large storage"]
-      },
-      {
-        name: "Team Collaboration",
-        values: [false, false, "Multi-user access"]
-      },
-      {
-        name: "Target Use Case",
-        values: ["Creators, students, small projects", "Freelancers, content marketers", "Agencies, startups, brands"]
+        name: "AI Concierge Mode",
+        values: ["—", "—", "—", "✓"]
       },
       {
         name: "Support",
-        values: ["Email support", "Priority support", "Priority support"]
+        values: ["Basic", "Email", "Standard", "Priority + Onboarding"]
       }
     ]
   },
