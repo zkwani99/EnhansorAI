@@ -15,13 +15,29 @@ export default function PricingSection() {
   const [activeService, setActiveService] = useState<ServiceKey>('ai'); // Start with Text-to-Image AI as shown in the image
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [selectedCredit, setSelectedCredit] = useState<string | null>(null);
+  const [imageVideoSelections, setImageVideoSelections] = useState<{[planId: string]: 'clips' | 'videos' | null}>({});
   const { toast } = useToast();
   
   const handleSelectPlan = (planId: string) => {
+    // For imageVideo service, check if user has selected an option first (except for free plan)
+    if (activeService === 'imageVideo' && !planId.includes('free') && !imageVideoSelections[planId]) {
+      toast({
+        title: "Please select an option",
+        description: "Choose between clips or videos before proceeding.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setSelectedPlan(planId);
     // Store plan selection for post-auth processing
     localStorage.setItem('selected_plan', planId);
     localStorage.setItem('selected_service', activeService);
+    
+    // Store imageVideo selection if applicable
+    if (activeService === 'imageVideo' && imageVideoSelections[planId]) {
+      localStorage.setItem('selected_imageVideo_option', imageVideoSelections[planId]);
+    }
     
     // Redirect based on service type
     const serviceRoutes = {
@@ -32,6 +48,13 @@ export default function PricingSection() {
     } as const;
     
     redirectToService(serviceRoutes[activeService]);
+  };
+
+  const handleImageVideoSelection = (planId: string, option: 'clips' | 'videos') => {
+    setImageVideoSelections(prev => ({
+      ...prev,
+      [planId]: prev[planId] === option ? null : option
+    }));
   };
 
   const handleSelectCredit = (creditOption: any) => {
@@ -225,7 +248,38 @@ export default function PricingSection() {
                                 <span className="text-gray-400 mr-2 text-sm">—</span>
                               )}
                               <span className="flex items-center gap-1">
-                                {activeService === 'imageVideo' && feature.text.includes('\n') ? (
+                                {activeService === 'imageVideo' && (feature as any).options ? (
+                                  <div className="w-full">
+                                    <div className="text-sm font-medium text-gray-700 mb-3">{feature.text}</div>
+                                    <div className="grid grid-cols-1 gap-2">
+                                      {(feature as any).options.map((option: any, optionIndex: number) => {
+                                        const isSelected = imageVideoSelections[plan.id] === option.id;
+                                        return (
+                                          <button
+                                            key={optionIndex}
+                                            onClick={(e) => {
+                                              e.stopPropagation();
+                                              handleImageVideoSelection(plan.id, option.id);
+                                            }}
+                                            className={`relative p-3 rounded-lg border text-left text-sm transition-all duration-200 hover:shadow-md ${
+                                              isSelected 
+                                                ? 'border-primary-purple bg-purple-50 text-purple-900' 
+                                                : 'border-gray-200 bg-white text-gray-700 hover:border-purple-200 hover:bg-purple-25'
+                                            }`}
+                                            data-testid={`option-${plan.id}-${option.id}`}
+                                          >
+                                            <div className="flex items-center justify-between">
+                                              <span className="font-medium">{option.text}</span>
+                                              {isSelected && (
+                                                <Check className="text-primary-purple flex-shrink-0" size={16} />
+                                              )}
+                                            </div>
+                                          </button>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+                                ) : activeService === 'imageVideo' && feature.text.includes('\n') ? (
                                   <div className="whitespace-pre-line">{feature.text}</div>
                                 ) : (
                                   feature.text
@@ -251,20 +305,32 @@ export default function PricingSection() {
                     
                     {/* CTA Button - always at bottom */}
                     <div className="mt-auto">
-                      <Button
-                        className={`w-full ${
-                          plan.isFree 
-                            ? "bg-gray-200 text-gray-700 hover:bg-gray-300 group-hover:bg-gray-400 group-hover:text-white" 
-                            : `${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`
-                        } py-3 rounded-lg font-semibold transition-all duration-300`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleSelectPlan(plan.id);
-                        }}
-                        data-testid={`button-select-plan-${plan.id}`}
-                      >
-                        {plan.buttonText}
-                      </Button>
+                      {(() => {
+                        const isImageVideoService = activeService === 'imageVideo';
+                        const isPaidPlan = !plan.isFree;
+                        const hasSelection = imageVideoSelections[plan.id];
+                        const isDisabled = isImageVideoService && isPaidPlan && !hasSelection;
+                        
+                        return (
+                          <Button
+                            className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                              plan.isFree 
+                                ? "bg-gray-200 text-gray-700 hover:bg-gray-300 group-hover:bg-gray-400 group-hover:text-white" 
+                                : isDisabled
+                                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                  : `${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSelectPlan(plan.id);
+                            }}
+                            disabled={isDisabled}
+                            data-testid={`button-select-plan-${plan.id}`}
+                          >
+                            {plan.buttonText}
+                          </Button>
+                        );
+                      })()}
                     </div>
                   </div>
                 </CardContent>

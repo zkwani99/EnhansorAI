@@ -385,7 +385,14 @@ export const pricingPlans = {
         buttonText: "Upgrade to Starter",
         subtitle: "Perfect for hobbyists & creators",
         features: [
-          { text: "Choose:\n• 240 clips (Up to 5s each)\nOR\n• 20 stitched videos (up to 1-minute each)", included: true },
+          { 
+            text: "Choose:", 
+            included: true,
+            options: [
+              { id: 'clips', text: '240 short clips (Up to 5s each)' },
+              { id: 'videos', text: '20 stitched videos (Up to 1-minute each)' }
+            ]
+          },
           { text: "Up to 720p resolution", included: true },
           { text: "No watermark", included: true },
           { text: "AI Storyboard (basic)", included: true },
@@ -403,7 +410,14 @@ export const pricingPlans = {
         buttonText: "Go Growth",
         subtitle: "Great for freelancers & small teams",
         features: [
-          { text: "Choose:\n• 600 clips (Up to 5s each)\nOR\n• 25 stitched videos (up to 2-minute each)", included: true },
+          { 
+            text: "Choose:", 
+            included: true,
+            options: [
+              { id: 'clips', text: '600 short clips (Up to 5s each)' },
+              { id: 'videos', text: '25 stitched videos (Up to 2-minutes each)' }
+            ]
+          },
           { text: "Up to 1080p resolution", included: true },
           { text: "No watermark", included: true },
           { text: "AI Storyboard (advanced)", included: true },
@@ -421,7 +435,14 @@ export const pricingPlans = {
         buttonText: "Scale with Business",
         subtitle: "Designed for agencies & pros",
         features: [
-          { text: "Choose:\n• 1800 clips (Up to 5s each)\nOR\n• 50 stitched videos (up to 3-minute each)", included: true },
+          { 
+            text: "Choose:", 
+            included: true,
+            options: [
+              { id: 'clips', text: '1800 short clips (Up to 5s each)' },
+              { id: 'videos', text: '50 stitched videos (Up to 3-minutes each)' }
+            ]
+          },
           { text: "Up to 1080p resolution", included: true },
           { text: "No watermark", included: true },
           { text: "AI Storyboard (full)", included: true },
