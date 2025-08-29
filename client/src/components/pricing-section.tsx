@@ -177,11 +177,7 @@ export default function PricingSection() {
           </div>
           
           {/* Pricing Plans Grid */}
-          <div className={`grid gap-6 mb-12 items-stretch ${
-            activeService === 'video' 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center max-w-5xl mx-auto' 
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
-          }`}>
+          <div className="grid gap-6 mb-12 items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {currentServiceData?.plans?.map((plan: any, index: number) => (
               <Card
                 key={plan.id}
