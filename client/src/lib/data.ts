@@ -120,7 +120,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Start Free",
         features: [
-          { text: "40 images / month", included: true },
+          { text: "25 images / month", included: true },
           { text: "Watermarked outputs", included: true },
           { text: "Basic styles only", included: true },
           { text: "Basic support", included: true },
@@ -190,7 +190,7 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["40 images", "2,000 images", "10,000 images", "Unlimited"]
+        values: ["25 images", "2,000 images", "10,000 images", "Unlimited"]
       },
       {
         name: "Resolution",
