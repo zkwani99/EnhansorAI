@@ -354,6 +354,113 @@ export const pricingPlans = {
         values: ["Email support", "Priority support", "Priority support"]
       }
     ]
+  },
+  imageVideo: {
+    title: "Image-to-Video AI Pricing",
+    description: "Transform your images into stunning videos with AI-powered platform",
+    plans: [
+      {
+        id: "free-image-video",
+        name: "Free",
+        price: "$0",
+        period: "/month",
+        isFree: true,
+        isPopular: false,
+        buttonText: "Start Free",
+        subtitle: "Perfect for testing the platform",
+        features: [
+          { text: "5 clips (5s each)", included: true },
+          { text: "480p resolution", included: true },
+          { text: "Watermarked output", included: true },
+          { text: "Basic support", included: true }
+        ]
+      },
+      {
+        id: "starter-image-video",
+        name: "Starter",
+        price: "$15",
+        period: "/month",
+        isFree: false,
+        isPopular: true,
+        buttonText: "Upgrade to Starter",
+        subtitle: "Perfect for hobbyists & creators",
+        features: [
+          { text: "240 clips (5s) OR 20 stitched videos (1-min)", included: true },
+          { text: "Up to 720p resolution", included: true },
+          { text: "No watermark", included: true },
+          { text: "AI Storyboard (basic)", included: true },
+          { text: "Real-time preview", included: true },
+          { text: "Email support", included: true }
+        ]
+      },
+      {
+        id: "growth-image-video",
+        name: "Growth",
+        price: "$39",
+        period: "/month",
+        isFree: false,
+        isPopular: false,
+        buttonText: "Go Growth",
+        subtitle: "Great for freelancers & small teams",
+        features: [
+          { text: "600 clips (5s) OR 25 stitched videos (2-min)", included: true },
+          { text: "Up to 1080p resolution", included: true },
+          { text: "No watermark", included: true },
+          { text: "AI Storyboard (advanced)", included: true },
+          { text: "Real-time preview", included: true },
+          { text: "Priority support", included: true }
+        ]
+      },
+      {
+        id: "business-image-video",
+        name: "Business",
+        price: "$99",
+        period: "/month",
+        isFree: false,
+        isPopular: false,
+        buttonText: "Scale with Business",
+        subtitle: "Designed for agencies & pros",
+        features: [
+          { text: "1800 clips (5s) OR 50 stitched videos (3-min)", included: true },
+          { text: "Up to 1080p resolution", included: true },
+          { text: "No watermark", included: true },
+          { text: "AI Storyboard (full)", included: true },
+          { text: "Real-time preview", included: true },
+          { text: "Priority support + onboarding", included: true },
+          { text: "AI Concierge Mode", included: true }
+        ]
+      }
+    ],
+    comparisonFeatures: [
+      {
+        name: "Video Generation",
+        values: ["5 clips (5s)", "240 clips OR 20 videos", "600 clips OR 25 videos", "1800 clips OR 50 videos"]
+      },
+      {
+        name: "Max Resolution",
+        values: ["480p", "720p", "1080p", "1080p"]
+      },
+      {
+        name: "Watermark",
+        values: ["Yes", "No", "No", "No"]
+      },
+      {
+        name: "AI Storyboard",
+        values: ["×", "Basic", "Advanced", "Full"]
+      },
+      {
+        name: "Real-time Preview",
+        values: ["×", "✓", "✓", "✓"]
+      },
+      {
+        name: "Support",
+        values: ["Basic", "Email", "Priority", "Priority + Onboarding"]
+      },
+      {
+        name: "AI Concierge Mode",
+        values: ["×", "×", "×", "✓"]
+      }
+    ]
   }
 };
 

@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
 import { useQuery } from "@tanstack/react-query";
 
-type ServiceKey = 'image' | 'ai' | 'video';
+type ServiceKey = 'image' | 'ai' | 'video' | 'imageVideo';
 
 export default function PricingSection() {
   const [activeService, setActiveService] = useState<ServiceKey>('ai'); // Start with Text-to-Image AI as shown in the image
@@ -27,7 +27,8 @@ export default function PricingSection() {
     const serviceRoutes = {
       'image': 'enhance',
       'ai': 'generate', 
-      'video': 'video'
+      'video': 'video',
+      'imageVideo': 'image-to-video'
     } as const;
     
     redirectToService(serviceRoutes[activeService]);
@@ -44,7 +45,8 @@ export default function PricingSection() {
     const serviceRoutes = {
       'image': 'enhance',
       'ai': 'generate', 
-      'video': 'video'
+      'video': 'video',
+      'imageVideo': 'image-to-video'
     } as const;
     
     redirectToService(serviceRoutes[activeService]);
@@ -57,6 +59,8 @@ export default function PricingSection() {
       case "ai":
         return <Palette className="text-white text-2xl" size={32} />;
       case "video":
+        return <Video className="text-white text-2xl" size={32} />;
+      case "imageVideo":
         return <Video className="text-white text-2xl" size={32} />;
       default:
         return <Image className="text-white text-2xl" size={32} />;
@@ -90,6 +94,11 @@ export default function PricingSection() {
     {
       key: 'video' as ServiceKey,
       name: 'Text-to-Video AI',
+      icon: Video
+    },
+    {
+      key: 'imageVideo' as ServiceKey,
+      name: 'Image-to-Video AI',
       icon: Video
     }
   ];
