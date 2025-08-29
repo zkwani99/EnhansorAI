@@ -265,7 +265,8 @@ export const pricingPlans = {
           { text: "15 clips (5s each)", included: true },
           { text: "480p resolution", included: true },
           { text: "Watermarked output", included: true },
-          { text: "Basic support", included: true }
+          { text: "Basic support", included: true },
+          { text: "Great for practice & exploring possibilities", included: true }
         ]
       },
       {
