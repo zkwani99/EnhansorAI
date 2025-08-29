@@ -13,85 +13,97 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Start Free",
         features: [
-          { text: "25 images per month", included: true },
-          { text: "Basic 2× upscaling", included: true },
-          { text: "Web upload only", included: true },
-          { text: "Watermarked output", included: false },
-          { text: "Standard processing queue", included: true }
+          { text: "50 images per month", included: true },
+          { text: "Up to 1K resolution", included: true },
+          { text: "Basic AI upscaling (1×)", included: true },
+          { text: "Watermarked results", included: true },
+          { text: "Basic support", included: true },
+          { text: "Great for testing AI upscaling with no commitment", included: true }
         ]
       },
       {
         id: "starter-image",
         name: "Starter",
-        price: "$15",
+        price: "$12",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "600 images per month", included: true },
-          { text: "HD upscaling (up to 4×)", included: true },
-          { text: "No watermark", included: true },
+          { text: "1,000 images per month", included: true },
+          { text: "Up to 2K resolution", included: true },
+          { text: "Multiple upscale modes (2×)", included: true },
+          { text: "Batch processing (up to 5 at once)", included: true },
           { text: "Basic denoise", included: true },
-          { text: "Standard support", included: true },
-          { text: "Email support", included: true }
+          { text: "Email support", included: true },
+          { text: "Ideal for everyday creators and personal use", included: true }
         ]
       },
       {
         id: "growth-image",
         name: "Growth",
-        price: "$55",
+        price: "$39",
         period: "/month",
         isFree: false,
         isPopular: true,
         buttonText: "Choose Plan",
         features: [
-          { text: "2000 images per month", included: true },
-          { text: "High-res upscaling (up to 6×) with advanced denoise + sharpen", included: true, tooltip: "Higher resolution outputs possible depending on original image size." },
-          { text: "Batch upload", included: true },
-          { text: "Faster queue priority", included: true },
-          { text: "Multi-format export (JPG/PNG)", included: true }
+          { text: "5,000 images per month", included: true },
+          { text: "Up to 4K resolution", included: true },
+          { text: "Advanced upscaling (2×, 4×)", included: true },
+          { text: "Batch processing (up to 20 at once)", included: true },
+          { text: "Smart denoise + sharpen", included: true },
+          { text: "Priority support", included: true },
+          { text: "Early access to new models", included: true },
+          { text: "Designed for freelancers, marketers & pros", included: true }
         ]
       },
       {
         id: "business-image",
         name: "Business",
-        price: "$140",
+        price: "$99",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "5000 images per month", included: true },
-          { text: "Ultra-HD upscaling (up to 6×) with advanced enhancement", included: true, tooltip: "Higher resolution outputs possible depending on original image size." },
-          { text: "Face restore + advanced enhancement", included: true },
+          { text: "Unlimited image enhancements per month", included: true, bold: true },
+          { text: "Up to 6K resolution", included: true },
+          { text: "Full upscale range (2×, 4×, 6× Ultra HD)", included: true },
+          { text: "Unlimited batch processing", included: true },
           { text: "API access", included: true },
-          { text: "Batch processing", included: true },
-          { text: "Priority support", included: true },
-          { text: "Commercial use license", included: true }
+          { text: "Face restore + advanced enhancement", included: true },
+          { text: "Real-time preview before final render", included: true },
+          { text: "Priority support + onboarding", included: true },
+          { text: "Commercial use license", included: true },
+          { text: "Built for agencies and high-volume teams", included: true }
         ]
       }
     ],
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["25", "600", "2000", "5000"]
+        values: ["50 images", "1,000 images", "5,000 images", "Unlimited"]
       },
       {
-        name: "Upscaling Quality",
-        values: ["Basic 2× upscaling", "HD upscaling (up to 4×)", "High-res upscaling (up to 6×)", "Ultra-HD upscaling (up to 6×)"]
+        name: "Resolution",
+        values: ["Up to 1K", "Up to 2K", "Up to 4K", "Up to 6K"]
+      },
+      {
+        name: "Upscaling Modes",
+        values: ["Basic AI (1×)", "Multiple modes (2×)", "Advanced (2×, 4×)", "Full range (2×, 4×, 6×)"]
       },
       {
         name: "Watermark",
-        values: ["Watermarked output", "No watermark", "No watermark", "No watermark"]
-      },
-      {
-        name: "Processing Queue",
-        values: ["Standard processing queue", "Standard support", "Faster queue priority", "Priority support"]
+        values: ["Watermarked results", "No watermark", "No watermark", "No watermark"]
       },
       {
         name: "Batch Processing",
-        values: [false, false, "Batch upload", "Batch processing"]
+        values: ["—", "Up to 5 at once", "Up to 20 at once", "Unlimited"]
+      },
+      {
+        name: "Enhancement Features",
+        values: ["—", "Basic denoise", "Smart denoise + sharpen", "Face restore + advanced"]
       },
       {
         name: "API Access",
@@ -99,11 +111,15 @@ export const pricingPlans = {
       },
       {
         name: "Support",
-        values: ["—", "Email support", "—", "Priority support"]
+        values: ["Basic support", "Email support", "Priority support", "Priority + onboarding"]
       },
       {
         name: "Commercial License",
         values: [false, false, false, true]
+      },
+      {
+        name: "Special Features",
+        values: ["—", "—", "Early access to models", "Real-time preview"]
       }
     ]
   },
