@@ -281,7 +281,9 @@ export const pricingPlans = {
           { text: "200 clips (5s each)", included: true },
           { text: "720p resolution", included: true },
           { text: "Email support", included: true },
-          { text: "No watermark", included: true }
+          { text: "No watermark", included: true },
+          { text: "Save & download your videos instantly", included: true },
+          { text: "Perfect for creator, students, and small projects", included: true }
         ]
       },
       {
@@ -297,7 +299,9 @@ export const pricingPlans = {
           { text: "400 clips (5s each)", included: true },
           { text: "720p + 1080p resolution access", included: true },
           { text: "Priority processing", included: true },
-          { text: "Standard support", included: true }
+          { text: "Standard support", included: true },
+          { text: "Large storage for video projects", included: true },
+          { text: "Great for freelancers, and content marketers", included: true }
         ]
       },
       {
@@ -315,7 +319,9 @@ export const pricingPlans = {
           { text: "AI Concierge Mode", included: true },
           { text: "AI Storyboard", included: true },
           { text: "Real-time Preview", included: true },
-          { text: "Priority support + onboarding", included: true }
+          { text: "Priority support + onboarding", included: true },
+          { text: "Priority queue for faster delivery", included: true },
+          { text: "Designed for agencies, startups, and brands scaling their video content", included: true }
         ]
       }
     ],
