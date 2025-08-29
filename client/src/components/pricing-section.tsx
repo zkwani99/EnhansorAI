@@ -227,8 +227,9 @@ export default function PricingSection() {
                     <div className="mt-6 mb-8">
                       <ul className="space-y-3 text-sm text-gray-600 text-left">
                         {plan.features?.map((feature: any, featureIndex: number) => {
-                          // Skip first feature for AI service paid plans as it's shown above the price
-                          if (activeService === 'ai' && !plan.isFree && featureIndex === 0 && feature.text?.includes('images per month')) {
+                          // Note: We want to show the unlimited images feature in the list for Business tier
+                          // Skip first feature for AI service paid plans as it's shown above the price, except for Business tier
+                          if (activeService === 'ai' && !plan.isFree && featureIndex === 0 && feature.text?.includes('images per month') && plan.id !== 'business-ai') {
                             return null;
                           }
                           // Skip first feature for video service plans as it's shown above the price
