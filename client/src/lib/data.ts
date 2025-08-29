@@ -385,7 +385,7 @@ export const pricingPlans = {
         buttonText: "Upgrade to Starter",
         subtitle: "Perfect for hobbyists & creators",
         features: [
-          { text: "240 clips (5s) OR 20 stitched videos (1-min)", included: true },
+          { text: "Choose:\n• 240 clips (Up to 5s each)\nOR\n• 20 stitched videos (up to 1-minute each)", included: true },
           { text: "Up to 720p resolution", included: true },
           { text: "No watermark", included: true },
           { text: "AI Storyboard (basic)", included: true },
@@ -403,7 +403,7 @@ export const pricingPlans = {
         buttonText: "Go Growth",
         subtitle: "Great for freelancers & small teams",
         features: [
-          { text: "600 clips (5s) OR 25 stitched videos (2-min)", included: true },
+          { text: "Choose:\n• 600 clips (Up to 5s each)\nOR\n• 25 stitched videos (up to 2-minute each)", included: true },
           { text: "Up to 1080p resolution", included: true },
           { text: "No watermark", included: true },
           { text: "AI Storyboard (advanced)", included: true },
@@ -421,7 +421,7 @@ export const pricingPlans = {
         buttonText: "Scale with Business",
         subtitle: "Designed for agencies & pros",
         features: [
-          { text: "1800 clips (5s) OR 50 stitched videos (3-min)", included: true },
+          { text: "Choose:\n• 1800 clips (Up to 5s each)\nOR\n• 50 stitched videos (up to 3-minute each)", included: true },
           { text: "Up to 1080p resolution", included: true },
           { text: "No watermark", included: true },
           { text: "AI Storyboard (full)", included: true },
