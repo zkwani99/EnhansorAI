@@ -364,7 +364,11 @@ export default function PricingSection() {
                         {feature.name}
                       </td>
                       {feature.values?.map((value: any, valueIndex: number) => (
-                        <td key={valueIndex} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                        <td key={valueIndex} className={`px-6 py-4 text-sm text-gray-500 text-center ${
+                          feature.name === 'Video Generation' && activeService === 'imageVideo' 
+                            ? 'whitespace-pre-line min-h-[80px] align-top' 
+                            : 'whitespace-nowrap'
+                        }`}>
                           {typeof value === 'boolean' ? (
                             value ? (
                               <Check className="text-green-500 mx-auto" size={16} />
