@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ImageVideoPricing from "@/components/image-video-pricing";
 
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -367,6 +368,9 @@ export default function ImageToVideoPage() {
           </Card>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <ImageVideoPricing />
 
       <Footer />
     </div>
