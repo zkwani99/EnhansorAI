@@ -455,7 +455,12 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Video Generation",
-        values: ["5 clips (5s)", "240 clips OR 20 videos", "600 clips OR 25 videos", "1800 clips OR 50 videos"]
+        values: [
+          "5 clips (5s)", 
+          "240 short clips (Up to 5s each)\nOR\n20 stitched videos (Up to 1-minute each)", 
+          "600 short clips (Up to 5s each)\nOR\n25 stitched videos (Up to 2-minutes each)", 
+          "1800 short clips (Up to 5s each)\nOR\n50 stitched videos (Up to 3-minutes each)"
+        ]
       },
       {
         name: "Max Resolution",
