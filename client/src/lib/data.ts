@@ -381,7 +381,7 @@ export const pricingPlans = {
         price: "$15",
         period: "/month",
         isFree: false,
-        isPopular: true,
+        isPopular: false,
         buttonText: "Upgrade to Starter",
         subtitle: "Perfect for hobbyists & creators",
         features: [
@@ -406,7 +406,7 @@ export const pricingPlans = {
         price: "$39",
         period: "/month",
         isFree: false,
-        isPopular: false,
+        isPopular: true,
         buttonText: "Go Growth",
         subtitle: "Great for freelancers & small teams",
         features: [

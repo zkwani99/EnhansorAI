@@ -241,11 +241,13 @@ export default function PricingSection() {
                           }
                           
                           return (
-                            <li key={featureIndex} className="flex items-center">
-                              {feature.included ? (
-                                <Check className="text-green-500 mr-2" size={16} />
+                            <li key={featureIndex} className="flex items-start">
+                              {activeService === 'imageVideo' && (feature as any).options ? (
+                                <span className="mr-2 mt-0.5"></span>
+                              ) : feature.included ? (
+                                <Check className="text-green-500 mr-2 mt-0.5 flex-shrink-0" size={16} />
                               ) : (
-                                <span className="text-gray-400 mr-2 text-sm">—</span>
+                                <span className="text-gray-400 mr-2 text-sm mt-0.5">—</span>
                               )}
                               <span className="flex items-center gap-1">
                                 {activeService === 'imageVideo' && (feature as any).options ? (
