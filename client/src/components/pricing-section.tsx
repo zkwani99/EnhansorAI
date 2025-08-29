@@ -201,8 +201,8 @@ export default function PricingSection() {
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
-                    {/* Show image count for AI service plans between name and price */}
-                    {activeService === 'ai' && !plan.isFree && plan.features?.[0]?.text?.includes('images per month') && (
+                    {/* Show image count for AI service plans between name and price, except Business tier */}
+                    {activeService === 'ai' && !plan.isFree && plan.features?.[0]?.text?.includes('images per month') && plan.id !== 'business-ai' && (
                       <div className="text-sm text-gray-600 mb-2 font-medium">
                         {plan.features[0].text}
                       </div>
