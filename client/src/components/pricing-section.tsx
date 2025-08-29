@@ -375,6 +375,8 @@ export default function PricingSection() {
                             ) : (
                               <span className="text-gray-400 mx-auto text-sm">—</span>
                             )
+                          ) : value === '✓' ? (
+                            <Check className="text-green-500 mx-auto" size={16} />
                           ) : (
                             value
                           )}

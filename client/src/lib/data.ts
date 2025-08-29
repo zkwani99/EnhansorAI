@@ -472,11 +472,11 @@ export const pricingPlans = {
       },
       {
         name: "AI Storyboard",
-        values: ["×", "Basic", "Advanced", "Full"]
+        values: ["—", "Basic", "Advanced", "Full"]
       },
       {
         name: "Real-time Preview",
-        values: ["×", "✓", "✓", "✓"]
+        values: ["—", "✓", "✓", "✓"]
       },
       {
         name: "Support",
@@ -484,7 +484,7 @@ export const pricingPlans = {
       },
       {
         name: "AI Concierge Mode",
-        values: ["×", "×", "×", "✓"]
+        values: ["—", "—", "—", "✓"]
       }
     ]
   }
