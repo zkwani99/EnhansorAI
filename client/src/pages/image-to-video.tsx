@@ -20,7 +20,7 @@ import { VideoStitchingModal } from "@/components/VideoStitchingModal";
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
-  const [duration, setDuration] = useState([5]);
+  const [selectedDuration, setSelectedDuration] = useState(5);
   const [resolution, setResolution] = useState("720p");
   const [style, setStyle] = useState("cinematic");
   const [isGenerating, setIsGenerating] = useState(false);
@@ -180,7 +180,7 @@ export default function ImageToVideoPage() {
             <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>3-10 second clips</span>
+                <span>3-8 second clips</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -316,21 +316,23 @@ export default function ImageToVideoPage() {
                 <div>
                   <Label className="text-lg font-semibold text-gray-900 mb-4 block flex items-center gap-2">
                     <Clock className="h-5 w-5" />
-                    Duration: {duration[0]}s
+                    Duration: {selectedDuration}s
                   </Label>
-                  <Slider
-                    value={duration}
-                    onValueChange={setDuration}
-                    max={10}
-                    min={2}
-                    step={1}
-                    className="w-full"
-                    data-testid="slider-duration"
-                  />
-                  <div className="flex justify-between text-sm text-gray-500 mt-2">
-                    <span>2s</span>
-                    <span>5s</span>
-                    <span>10s</span>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[3, 5, 8].map((duration) => (
+                      <Button
+                        key={duration}
+                        variant={selectedDuration === duration ? "default" : "outline"}
+                        onClick={() => setSelectedDuration(duration)}
+                        className={selectedDuration === duration ? 
+                          "bg-purple-600 hover:bg-purple-700 text-white" : 
+                          "border-purple-300 text-purple-600 hover:bg-purple-50"
+                        }
+                        data-testid={`button-duration-${duration}`}
+                      >
+                        {duration}s
+                      </Button>
+                    ))}
                   </div>
                 </div>
 
@@ -340,36 +342,55 @@ export default function ImageToVideoPage() {
                     <Monitor className="h-5 w-5" />
                     Resolution
                   </Label>
-                  <Select value={resolution} onValueChange={setResolution}>
-                    <SelectTrigger className="w-full" data-testid="select-resolution">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="480p">480p (Standard)</SelectItem>
-                      <SelectItem value="720p">720p (HD)</SelectItem>
-                      <SelectItem value="1080p">1080p (Full HD)</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <div className="grid grid-cols-1 gap-2">
+                    {[
+                      { value: "480p", label: "480p (Standard)" },
+                      { value: "720p", label: "720p (HD)" },
+                      { value: "1080p", label: "1080p (Full HD)" }
+                    ].map((res) => (
+                      <Button
+                        key={res.value}
+                        variant={resolution === res.value ? "default" : "outline"}
+                        onClick={() => setResolution(res.value)}
+                        className={resolution === res.value ? 
+                          "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" : 
+                          "border-purple-300 text-purple-600 hover:bg-purple-50"
+                        }
+                        data-testid={`button-resolution-${res.value}`}
+                      >
+                        {res.label}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Style Dropdown */}
+                {/* Style Selection */}
                 <div>
                   <Label className="text-lg font-semibold text-gray-900 mb-4 block flex items-center gap-2">
                     <Palette className="h-5 w-5" />
                     Style
                   </Label>
-                  <Select value={style} onValueChange={setStyle}>
-                    <SelectTrigger className="w-full" data-testid="select-style">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="cinematic">Cinematic</SelectItem>
-                      <SelectItem value="product-ad">Product Ad</SelectItem>
-                      <SelectItem value="reel">Reel</SelectItem>
-                      <SelectItem value="cartoon">Cartoon</SelectItem>
-                      <SelectItem value="realistic">Realistic</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { value: "cinematic", label: "Cinematic" },
+                      { value: "product-ad", label: "Product Ad" },
+                      { value: "reel", label: "Reel" },
+                      { value: "realistic", label: "Realistic" }
+                    ].map((styleOption) => (
+                      <Button
+                        key={styleOption.value}
+                        variant={style === styleOption.value ? "default" : "outline"}
+                        onClick={() => setStyle(styleOption.value)}
+                        className={style === styleOption.value ? 
+                          "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" : 
+                          "border-purple-300 text-purple-600 hover:bg-purple-50"
+                        }
+                        data-testid={`button-style-${styleOption.value}`}
+                      >
+                        {styleOption.label}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Generate Button */}
@@ -420,50 +441,37 @@ export default function ImageToVideoPage() {
               </Card>
             )}
             
-            {/* Style Showcase */}
-            <Card className="shadow-lg">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Video Styles</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { name: "Cinematic", desc: "Movie-like quality" },
-                    { name: "Product Ad", desc: "Commercial style" },
-                    { name: "Reel", desc: "Social media ready" },
-                    { name: "Realistic", desc: "Natural motion" }
-                  ].map((style) => (
-                    <div key={style.name} className="border-2 border-purple-200 rounded-lg p-3 text-center hover:border-purple-400 transition-colors">
-                      <div className="bg-purple-100 rounded h-16 mb-2 flex items-center justify-center">
-                        <Palette className="h-6 w-6 text-purple-600" />
-                      </div>
-                      <h4 className="font-medium text-sm text-gray-900">{style.name}</h4>
-                      <p className="text-xs text-gray-600">{style.desc}</p>
-                    </div>
-                  ))}
+            {/* Stitched Video Feature */}
+            <Card className="shadow-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+              <CardContent className="p-6 text-center">
+                <Film className="w-12 h-12 mx-auto mb-4" />
+                <h3 className="text-xl font-bold mb-3">Create Stitched Videos</h3>
+                <p className="text-sm opacity-90 mb-4 leading-relaxed">
+                  Combine multiple video clips into one seamless video. Perfect for storytelling, product showcases, and creative compilations.
+                </p>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Scissors className="w-4 h-4" />
+                    <span>Drag & drop to reorder clips</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4" />
+                    <span>Up to 3 minutes total duration</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Play className="w-4 h-4" />
+                    <span>Professional MP4 output</span>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-            
-            {/* Pro Tips */}
-            <Card className="shadow-lg bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Lightbulb className="h-5 w-5 text-purple-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Pro Tips</h3>
-                </div>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-600 font-bold">•</span>
-                    <span>Use high-contrast images for better motion detection</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-600 font-bold">•</span>
-                    <span>Center your subject for optimal results</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-600 font-bold">•</span>
-                    <span>Try different prompts for varied motion styles</span>
-                  </li>
-                </ul>
+                <Button 
+                  onClick={() => setShowStitchingModal(true)}
+                  variant="secondary" 
+                  className="w-full bg-white text-purple-600 hover:bg-gray-100 font-semibold py-3"
+                  data-testid="button-open-stitching-sidebar"
+                >
+                  <Film className="mr-2 h-5 w-5" />
+                  Open Video Stitcher
+                </Button>
               </CardContent>
             </Card>
           </div>
