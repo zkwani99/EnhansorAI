@@ -529,13 +529,16 @@ function DynamicCreditUsage() {
   const textToVideoPercentage = userCredits.totalCredits > 0 
     ? Math.round((userCredits.textToVideoUsed / userCredits.totalCredits) * 100) 
     : 0;
+  const imageToVideoPercentage = userCredits.totalCredits > 0 
+    ? Math.round((userCredits.imageToVideoUsed / userCredits.totalCredits) * 100) 
+    : 0;
 
   return (
     <div className="space-y-6">
       {/* Overall Usage */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium">Current Usage</span>
+          <span className="text-sm font-medium">Current Usage for Flexible PAYG - Use Across All Services</span>
           <span className="text-sm text-gray-600">
             {userCredits.usedCredits} / {userCredits.totalCredits} credits
           </span>
@@ -593,6 +596,20 @@ function DynamicCreditUsage() {
             </span>
           </div>
           <Progress value={textToVideoPercentage} className="h-2" />
+        </div>
+
+        {/* Image-to-Video */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600 flex items-center gap-2">
+              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+              Image-to-Video AI
+            </span>
+            <span className="text-sm font-medium">
+              {userCredits.imageToVideoUsed || 0} credits ({imageToVideoPercentage}%)
+            </span>
+          </div>
+          <Progress value={imageToVideoPercentage} className="h-2" />
         </div>
       </div>
     </div>

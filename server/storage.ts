@@ -114,6 +114,9 @@ export class DatabaseStorage implements IStorage {
         case 'text-to-video':
           serviceUpdate = { textToVideoUsed: currentCredits.textToVideoUsed + creditsUsed };
           break;
+        case 'image-to-video':
+          serviceUpdate = { imageToVideoUsed: currentCredits.imageToVideoUsed + creditsUsed };
+          break;
       }
 
       // Update user credits
@@ -152,6 +155,7 @@ export class DatabaseStorage implements IStorage {
         imageEnhanceUsed: 0,
         textToImageUsed: 0,
         textToVideoUsed: 0,
+        imageToVideoUsed: 0,
       })
       .onConflictDoNothing()
       .returning();

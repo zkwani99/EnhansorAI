@@ -70,6 +70,7 @@ export const userCredits = pgTable("user_credits", {
   imageEnhanceUsed: integer("image_enhance_used").default(0).notNull(),
   textToImageUsed: integer("text_to_image_used").default(0).notNull(),
   textToVideoUsed: integer("text_to_video_used").default(0).notNull(),
+  imageToVideoUsed: integer("image_to_video_used").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
