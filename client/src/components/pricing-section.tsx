@@ -686,7 +686,7 @@ function CreditUsageDisplay() {
               <div className="space-y-3">
                 {items.map((item: any) => {
                   // Special handling for plan inclusions and notes
-                  if (item.tier === 'plans-included' || item.tier === 'note') {
+                  if (item.tier === 'plans-included' || item.tier === '1-plans-included' || item.tier === 'note') {
                     return (
                       <div key={item.tier} className="py-3 px-3 rounded-lg bg-white/60 border border-purple-200">
                         <span className="text-sm font-medium text-gray-700 whitespace-pre-line">{item.displayName}</span>
