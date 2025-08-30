@@ -6,6 +6,7 @@ import {
   videoJobs,
   aiSuggestions,
   generatedFiles,
+  videoStitchingProjects,
   type User,
   type UpsertUser,
   type InsertUser,
@@ -20,6 +21,8 @@ import {
   type InsertAISuggestion,
   type GeneratedFile,
   type InsertGeneratedFile,
+  type VideoStitchingProject,
+  type InsertVideoStitchingProject,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql, and, desc } from "drizzle-orm";
@@ -47,6 +50,12 @@ export interface IStorage {
   updateFileDownloadCount(id: string): Promise<void>;
   deleteExpiredFiles(): Promise<number>;
   deleteFile(id: string): Promise<void>;
+  
+  // Video stitching operations
+  createVideoStitchingProject(project: InsertVideoStitchingProject): Promise<VideoStitchingProject>;
+  getUserVideoStitchingProjects(userId: string): Promise<VideoStitchingProject[]>;
+  getVideoStitchingProject(id: string): Promise<VideoStitchingProject | null>;
+  updateVideoStitchingProject(id: string, updates: Partial<VideoStitchingProject>): Promise<VideoStitchingProject>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -310,6 +319,43 @@ export class DatabaseStorage implements IStorage {
     await db
       .delete(generatedFiles)
       .where(eq(generatedFiles.id, id));
+  }
+
+  // Video stitching operations
+  async createVideoStitchingProject(project: InsertVideoStitchingProject): Promise<VideoStitchingProject> {
+    const [result] = await db
+      .insert(videoStitchingProjects)
+      .values(project)
+      .returning();
+    return result;
+  }
+
+  async getUserVideoStitchingProjects(userId: string): Promise<VideoStitchingProject[]> {
+    return await db
+      .select()
+      .from(videoStitchingProjects)
+      .where(eq(videoStitchingProjects.userId, userId))
+      .orderBy(desc(videoStitchingProjects.createdAt));
+  }
+
+  async getVideoStitchingProject(id: string): Promise<VideoStitchingProject | null> {
+    const [project] = await db
+      .select()
+      .from(videoStitchingProjects)
+      .where(eq(videoStitchingProjects.id, id));
+    return project || null;
+  }
+
+  async updateVideoStitchingProject(id: string, updates: Partial<VideoStitchingProject>): Promise<VideoStitchingProject> {
+    const [result] = await db
+      .update(videoStitchingProjects)
+      .set({
+        ...updates,
+        updatedAt: new Date(),
+      })
+      .where(eq(videoStitchingProjects.id, id))
+      .returning();
+    return result;
   }
 }
 

@@ -10,11 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid3x3, Eye, Sparkles } from "lucide-react";
+import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid3x3, Eye, Sparkles, Film, Scissors } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
+import { VideoStitchingModal } from "@/components/VideoStitchingModal";
 
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -26,6 +27,7 @@ export default function ImageToVideoPage() {
   const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
   const [aiStoryboard, setAiStoryboard] = useState(true);
   const [realTimePreview, setRealTimePreview] = useState(true);
+  const [showStitchingModal, setShowStitchingModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const { isAuthenticated, user } = useAuth();
@@ -413,9 +415,23 @@ export default function ImageToVideoPage() {
       {isAuthenticated && (
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Generated Videos</h2>
+                <p className="text-gray-600">Manage your video files or create stitched videos from multiple clips.</p>
+              </div>
+              <Button
+                onClick={() => setShowStitchingModal(true)}
+                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                data-testid="button-open-stitching"
+              >
+                <Film className="mr-2 h-5 w-5" />
+                Create Stitched Video
+              </Button>
+            </div>
             <FileManager 
               service="image-to-video" 
-              title="Your Generated Videos"
+              title=""
               className="w-full"
             />
           </div>
@@ -453,6 +469,12 @@ export default function ImageToVideoPage() {
       </section>
 
       <Footer />
+      
+      {/* Video Stitching Modal */}
+      <VideoStitchingModal 
+        isOpen={showStitchingModal}
+        onClose={() => setShowStitchingModal(false)}
+      />
     </div>
   );
 }

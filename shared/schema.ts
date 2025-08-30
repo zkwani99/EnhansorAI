@@ -189,3 +189,28 @@ export const insertGeneratedFileSchema = createInsertSchema(generatedFiles).omit
   createdAt: true,
   updatedAt: true,
 });
+
+// Video stitching projects table
+export const videoStitchingProjects = pgTable("video_stitching_projects", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  name: varchar("name").notNull(),
+  clipIds: jsonb("clip_ids").$type<string[]>().notNull().default(sql`'[]'::jsonb`),
+  totalDuration: integer("total_duration").notNull().default(0), // in seconds
+  maxDuration: integer("max_duration").notNull().default(60), // max allowed duration based on user tier
+  status: varchar("status").notNull().default("draft"), // draft, processing, completed, failed
+  outputFileId: varchar("output_file_id"),
+  progress: integer("progress").default(0), // 0-100
+  error: text("error"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type VideoStitchingProject = typeof videoStitchingProjects.$inferSelect;
+export type InsertVideoStitchingProject = typeof videoStitchingProjects.$inferInsert;
+
+export const insertVideoStitchingProjectSchema = createInsertSchema(videoStitchingProjects).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});

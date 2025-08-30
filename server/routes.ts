@@ -500,6 +500,126 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Video Stitching Routes
+  
+  // Create a new video stitching project
+  app.post('/api/video-stitching/create', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { name, clipIds, totalDuration } = req.body;
+      
+      // Validate input
+      if (!name || !clipIds || !Array.isArray(clipIds) || clipIds.length < 2) {
+        return res.status(400).json({ 
+          message: "Invalid input: name and at least 2 clip IDs required" 
+        });
+      }
+      
+      // Get user's tier limits (simplified - in real app, get from user subscription)
+      const maxDuration = 180; // 3 minutes for demo
+      
+      if (totalDuration > maxDuration) {
+        return res.status(400).json({ 
+          message: `Duration exceeds limit: ${totalDuration}s > ${maxDuration}s` 
+        });
+      }
+      
+      // Verify all clips belong to the user
+      const clipFiles = await Promise.all(
+        clipIds.map(id => storage.getFileById(id))
+      );
+      
+      const invalidClips = clipFiles.some(clip => 
+        !clip || clip.userId !== userId || clip.fileType !== 'video'
+      );
+      
+      if (invalidClips) {
+        return res.status(400).json({ 
+          message: "Invalid or unauthorized clip IDs provided" 
+        });
+      }
+      
+      const project = await storage.createVideoStitchingProject({
+        userId,
+        name,
+        clipIds,
+        totalDuration,
+        maxDuration,
+        status: 'processing'
+      });
+      
+      // For demo, simulate immediate completion
+      // In real implementation, this would queue a background job
+      setTimeout(async () => {
+        try {
+          // Simulate stitching process and create output file
+          const outputFile = await storage.createGeneratedFile({
+            userId,
+            service: 'video-stitching',
+            fileType: 'video',
+            fileName: `${name}_stitched.mp4`,
+            fileUrl: `https://example.com/stitched/${project.id}.mp4`,
+            fileSize: 15728640, // ~15MB
+            originalPrompt: `Stitched video: ${name}`,
+            processingDetails: JSON.stringify({
+              clipCount: clipIds.length,
+              totalDuration,
+              stitchingMethod: 'ffmpeg'
+            }),
+            creditsUsed: Math.ceil(totalDuration / 10), // 1 credit per 10 seconds
+          });
+          
+          await storage.updateVideoStitchingProject(project.id, {
+            status: 'completed',
+            outputFileId: outputFile.id,
+            progress: 100
+          });
+        } catch (error) {
+          console.error("Error completing stitching project:", error);
+          await storage.updateVideoStitchingProject(project.id, {
+            status: 'failed',
+            error: 'Failed to stitch video clips'
+          });
+        }
+      }, 5000); // Complete after 5 seconds for demo
+      
+      res.json(project);
+    } catch (error) {
+      console.error("Error creating video stitching project:", error);
+      res.status(500).json({ message: "Failed to create stitching project" });
+    }
+  });
+  
+  // Get user's video stitching projects
+  app.get('/api/video-stitching/projects', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const projects = await storage.getUserVideoStitchingProjects(userId);
+      res.json(projects);
+    } catch (error) {
+      console.error("Error fetching stitching projects:", error);
+      res.status(500).json({ message: "Failed to fetch stitching projects" });
+    }
+  });
+  
+  // Get a specific stitching project
+  app.get('/api/video-stitching/:id', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { id } = req.params;
+      
+      const project = await storage.getVideoStitchingProject(id);
+      if (!project || project.userId !== userId) {
+        return res.status(404).json({ message: "Project not found" });
+      }
+      
+      res.json(project);
+    } catch (error) {
+      console.error("Error fetching stitching project:", error);
+      res.status(500).json({ message: "Failed to fetch stitching project" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   // Initialize WebSocket service
