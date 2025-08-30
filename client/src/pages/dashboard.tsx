@@ -554,13 +554,13 @@ function DynamicCreditUsage() {
 
       {/* Service Breakdown */}
       <div className="space-y-4">
-        <h4 className="font-medium text-gray-900">Usage by Service</h4>
+        <h4 className="font-medium text-gray-900">Usage by Service - Subscription plan</h4>
         
         {/* Image Enhancement */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
               Image Enhancement
             </span>
             <span className="text-sm font-medium">
@@ -574,7 +574,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
               Text-to-Image AI
             </span>
             <span className="text-sm font-medium">
@@ -588,7 +588,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
               Text-to-Video AI
             </span>
             <span className="text-sm font-medium">
@@ -602,7 +602,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
               Image-to-Video AI
             </span>
             <span className="text-sm font-medium">
