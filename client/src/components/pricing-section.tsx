@@ -669,7 +669,7 @@ function CreditUsageDisplay() {
   const serviceOrder = ['image', 'text-to-image', 'text-to-video', 'image-to-video'];
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
       {serviceOrder.map((service) => {
         const items = groupedPricing[service];
         if (!items) return null;
