@@ -665,9 +665,25 @@ function CreditUsageDisplay() {
     },
   };
 
+  // Define the order of services to maintain consistent display
+  const serviceOrder = ['image', 'text-to-image', 'text-to-video', 'image-to-video'];
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {Object.entries(groupedPricing).map(([service, items]: [string, any[]]) => {
+      {serviceOrder.map((service) => {
+        const items = groupedPricing[service];
+        if (!items) return null;
+        
+        // Sort items to ensure proper order within each service
+        const sortedItems = [...items].sort((a, b) => {
+          // For text-to-video, ensure plans-included comes first
+          if (service === 'text-to-video') {
+            if (a.tier === '1-plans-included') return -1;
+            if (b.tier === '1-plans-included') return 1;
+          }
+          return a.tier.localeCompare(b.tier);
+        });
+        
         const config = serviceConfig[service as keyof typeof serviceConfig];
         if (!config) return null;
 
@@ -684,7 +700,7 @@ function CreditUsageDisplay() {
               </div>
 
               <div className="space-y-3">
-                {items.map((item: any) => {
+                {sortedItems.map((item: any) => {
                   // Special handling for plan inclusions and notes
                   if (item.tier === 'plans-included' || item.tier === '1-plans-included' || item.tier === 'note') {
                     return (
