@@ -201,7 +201,7 @@ export default function VideoPage() {
             <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>2-5 second clips</span>
+                <span>3-10 second clips</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -312,8 +312,8 @@ export default function VideoPage() {
                       <Slider
                         value={duration}
                         onValueChange={setDuration}
-                        max={5}
-                        min={2}
+                        max={10}
+                        min={3}
                         step={1}
                         className="w-full"
                         disabled={isGenerating}
@@ -334,7 +334,7 @@ export default function VideoPage() {
                       Video Style
                     </Label>
                     <Select value={style} onValueChange={setStyle} disabled={isGenerating}>
-                      <SelectTrigger className="w-full" data-testid="select-style">
+                      <SelectTrigger className="w-full border-purple-300 focus:border-purple-500" data-testid="select-style">
                         <SelectValue placeholder="Choose a style" />
                       </SelectTrigger>
                       <SelectContent>
