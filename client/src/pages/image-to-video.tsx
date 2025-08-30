@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -8,9 +10,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette } from "lucide-react";
+import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid3x3, Eye, Sparkles } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CreditBalance from "@/components/shared/credit-balance";
 
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -20,6 +23,8 @@ export default function ImageToVideoPage() {
   const [style, setStyle] = useState("cinematic");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
+  const [aiStoryboard, setAiStoryboard] = useState(true);
+  const [realTimePreview, setRealTimePreview] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const { isAuthenticated, user } = useAuth();
@@ -137,6 +142,92 @@ export default function ImageToVideoPage() {
           </Button>
         </div>
       </section>
+
+      {/* Credits Section */}
+      {isAuthenticated && (
+        <section className="py-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CreditBalance showDetails={true} />
+          </div>
+        </section>
+      )}
+
+      {/* AI Features Section */}
+      {isAuthenticated && (
+        <section className="py-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {/* AI Storyboard Toggle */}
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Grid3x3 className="w-5 h-5 text-primary-purple" />
+                      <span className="font-medium text-gray-900">AI Storyboard</span>
+                    </div>
+                    <Switch 
+                      checked={aiStoryboard} 
+                      onCheckedChange={setAiStoryboard}
+                      data-testid="switch-ai-storyboard"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Preview scene frames before final video generation
+                  </p>
+                  {aiStoryboard && (
+                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                      Storyboard Active
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Real-time Preview Toggle */}
+              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-5 h-5 text-primary-purple" />
+                      <span className="font-medium text-gray-900">Real-time Preview</span>
+                    </div>
+                    <Switch 
+                      checked={realTimePreview} 
+                      onCheckedChange={setRealTimePreview}
+                      data-testid="switch-real-time-preview"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Watch video clips evolve during generation
+                  </p>
+                  {realTimePreview && (
+                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                      Live Preview On
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* AI Concierge Mode Card */}
+            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+              <CardContent className="p-6 text-center">
+                <Sparkles className="w-8 h-8 mx-auto mb-3" />
+                <h3 className="font-bold text-lg mb-2">AI Concierge Mode</h3>
+                <p className="text-sm opacity-90 mb-4">
+                  "Create a travel vlog intro" - Let AI handle your entire video workflow automatically
+                </p>
+                <Button 
+                  variant="secondary" 
+                  className="w-full bg-white text-purple-600 hover:bg-gray-100"
+                  data-testid="button-ai-concierge"
+                >
+                  Try AI Concierge
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      )}
 
       {/* Generation Flow */}
       <section id="generator" className="py-16">
