@@ -83,55 +83,55 @@ export default function WhyEnhansorSection() {
         </div>
         
         {/* Carousel Container */}
-        <div className="relative px-12">
-          {/* Left Arrow */}
+        <div className="relative px-4 sm:px-12">
+          {/* Left Arrow - Hidden on mobile */}
           <Button
             variant="outline"
             size="icon"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm hidden sm:flex items-center justify-center"
             data-testid="button-carousel-prev"
           >
             <ChevronLeft size={20} className="text-gray-600" />
           </Button>
           
-          {/* Right Arrow */}
+          {/* Right Arrow - Hidden on mobile */}
           <Button
             variant="outline"
             size="icon"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm hidden sm:flex items-center justify-center"
             data-testid="button-carousel-next"
           >
             <ChevronRight size={20} className="text-gray-600" />
           </Button>
           
           <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
+            <div className="flex gap-4 sm:gap-6">
               {advantages.map((advantage, index) => {
                 const IconComponent = advantage.icon;
                 
                 return (
-                  <div key={index} className="flex-none w-80">
+                  <div key={index} className="flex-none w-72 sm:w-80">
                     <Card
                       className="bg-white rounded-2xl border-2 border-primary-blue shadow-sm hover:shadow-md transition-shadow duration-300 h-full"
                       data-testid={`card-advantage-${index}`}
                     >
-                      <CardContent className="p-8 h-full flex flex-col">
+                      <CardContent className="p-6 sm:p-8 h-full flex flex-col">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-8 h-8 bg-primary-blue rounded-lg flex items-center justify-center">
                             <IconComponent className="text-white" size={18} />
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900">{advantage.title}</h3>
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900">{advantage.title}</h3>
                         </div>
-                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
+                        <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 flex-1 leading-relaxed">
                           {advantage.description}
                         </p>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-wrap">
                           {advantage.tags.map((tag, tagIndex) => (
                             <span 
                               key={tagIndex}
-                              className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded"
+                              className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap"
                             >
                               {tag}
                             </span>
