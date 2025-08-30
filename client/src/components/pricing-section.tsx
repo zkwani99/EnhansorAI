@@ -208,12 +208,6 @@ export default function PricingSection() {
                         {plan.features[0].text}
                       </div>
                     )}
-                    {/* Show clip count for video service plans between name and price */}
-                    {activeService === 'video' && plan.features?.[0]?.text?.includes('clips per month') && (
-                      <div className="text-sm text-gray-600 mb-2 font-medium">
-                        {plan.features[0].text}
-                      </div>
-                    )}
                     <div className="text-3xl font-bold text-primary-purple mb-2">
                       {plan.price}
                       <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
@@ -231,10 +225,6 @@ export default function PricingSection() {
                           // Note: We want to show the unlimited images feature in the list for Business tier
                           // Skip first feature for AI service paid plans as it's shown above the price, except for Business tier
                           if (activeService === 'ai' && !plan.isFree && featureIndex === 0 && feature.text?.includes('images per month') && plan.id !== 'business-ai') {
-                            return null;
-                          }
-                          // Skip first feature for video service plans as it's shown above the price
-                          if (activeService === 'video' && featureIndex === 0 && feature.text?.includes('clips per month')) {
                             return null;
                           }
                           
