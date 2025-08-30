@@ -22,9 +22,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/enhance" component={EnhancePage} />
-      <Route path="/generate" component={GeneratePage} />
-      <Route path="/video" component={VideoPage} />
+      <Route path="/image-enhancement" component={EnhancePage} />
+      <Route path="/text-to-image" component={GeneratePage} />
+      <Route path="/text-to-video" component={VideoPage} />
       <Route path="/image-to-video" component={ImageToVideoPage} />
       <Route path="/api" component={APIPage} />
       <Route path="/about" component={AboutPage} />
