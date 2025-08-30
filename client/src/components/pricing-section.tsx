@@ -655,10 +655,18 @@ function CreditUsageDisplay() {
       borderColor: 'border-purple-400',
       badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
     },
+    'image-to-video': {
+      title: 'Image-to-Video AI',
+      icon: Video,
+      color: 'from-purple-700 to-purple-800', // Darkest purple
+      bgColor: 'bg-purple-50',
+      borderColor: 'border-purple-500',
+      badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
+    },
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {Object.entries(groupedPricing).map(([service, items]: [string, any[]]) => {
         const config = serviceConfig[service as keyof typeof serviceConfig];
         if (!config) return null;
@@ -676,22 +684,54 @@ function CreditUsageDisplay() {
               </div>
 
               <div className="space-y-3">
-                {items.map((item: any) => (
-                  <Tooltip key={item.tier}>
-                    <TooltipTrigger asChild>
-                      <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-white/80 transition-all duration-200 cursor-help">
-                        <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
-                        <Badge className={`${config.badgeColor} font-semibold shadow-sm`}>
-                          {item.credits} credit{item.credits > 1 ? 's' : ''}
-                        </Badge>
+                {items.map((item: any) => {
+                  // Special handling for plan inclusions and notes
+                  if (item.tier === 'plans-included' || item.tier === 'note') {
+                    return (
+                      <div key={item.tier} className="py-3 px-3 rounded-lg bg-white/60 border border-purple-200">
+                        <span className="text-sm font-medium text-gray-700 whitespace-pre-line">{item.displayName}</span>
                       </div>
-                    </TooltipTrigger>
-                    <TooltipContent className="bg-purple-600 text-white border-purple-700 shadow-lg">
-                      <p>Costs {item.credits} credit{item.credits > 1 ? 's' : ''} per {service === 'text-to-video' ? 'video' : 'image'}</p>
-                      {item.description && <p className="text-purple-100 text-xs mt-1">{item.description}</p>}
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
+                    );
+                  }
+
+                  // Special handling for stitched videos (0 credits)
+                  if (item.credits === 0 && service === 'image-to-video' && item.tier.includes('stitched')) {
+                    return (
+                      <Tooltip key={item.tier}>
+                        <TooltipTrigger asChild>
+                          <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-white/80 transition-all duration-200 cursor-help">
+                            <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
+                            <Badge className="bg-green-100 text-green-700 border-green-300 font-semibold shadow-sm">
+                              Included
+                            </Badge>
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-purple-600 text-white border-purple-700 shadow-lg">
+                          <p>Included in subscription plan</p>
+                          {item.description && <p className="text-purple-100 text-xs mt-1">{item.description}</p>}
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  }
+
+                  // Regular credit-based items
+                  return (
+                    <Tooltip key={item.tier}>
+                      <TooltipTrigger asChild>
+                        <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-white/80 transition-all duration-200 cursor-help">
+                          <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
+                          <Badge className={`${config.badgeColor} font-semibold shadow-sm`}>
+                            {item.credits} credit{item.credits > 1 ? 's' : ''}
+                          </Badge>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent className="bg-purple-600 text-white border-purple-700 shadow-lg">
+                        <p>Costs {item.credits} credit{item.credits > 1 ? 's' : ''} per {service === 'text-to-video' || service === 'image-to-video' ? 'video' : 'image'}</p>
+                        {item.description && <p className="text-purple-100 text-xs mt-1">{item.description}</p>}
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
