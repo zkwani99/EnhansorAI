@@ -136,7 +136,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Start Free",
         features: [
-          { text: "25 images / month", included: true },
+          { text: "25 images per month", included: true },
           { text: "Watermarked outputs", included: true },
           { text: "Basic styles only", included: true },
           { text: "Basic support", included: true },
@@ -152,7 +152,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "Up to 2,000 images / month", included: true },
+          { text: "Up to 2,000 images per month", included: true },
           { text: "512px–1K resolution", included: true },
           { text: "No watermark", included: true },
           { text: "Email support", included: true },
@@ -170,7 +170,7 @@ export const pricingPlans = {
         isPopular: true,
         buttonText: "Choose Plan",
         features: [
-          { text: "Up to 10,000 images / month", included: true },
+          { text: "Up to 10,000 images per month", included: true },
           { text: "Resolutions up to 4K", included: true },
           { text: "Batch generation (up to 20 at once)", included: true },
           { text: "Style presets & custom prompts", included: true },
@@ -206,7 +206,7 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["25 images", "2,000 images", "10,000 images", "Unlimited"]
+        values: ["25 images per month", "2,000 images per month", "10,000 images per month", "Unlimited"]
       },
       {
         name: "Resolution",
