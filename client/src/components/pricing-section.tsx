@@ -199,6 +199,7 @@ export default function PricingSection() {
                   </div>
                 )}
                 <CardContent className="p-6 h-full flex flex-col">
+                  {/* Content area that grows */}
                   <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
                     {/* Show image count for AI service plans between name and price, except Business tier */}
@@ -224,7 +225,7 @@ export default function PricingSection() {
                     )}
                     
                     {/* Features List - moved lower with more spacing */}
-                    <div className="mt-6 mb-8">
+                    <div className="mt-6">
                       <ul className="space-y-3 text-sm text-gray-600 text-left">
                         {plan.features?.map((feature: any, featureIndex: number) => {
                           // Note: We want to show the unlimited images feature in the list for Business tier
@@ -303,36 +304,36 @@ export default function PricingSection() {
                         })}
                       </ul>
                     </div>
-                    
-                    {/* CTA Button - always at bottom */}
-                    <div className="mt-auto">
-                      {(() => {
-                        const isImageVideoService = activeService === 'imageVideo';
-                        const isPaidPlan = !plan.isFree;
-                        const hasSelection = imageVideoSelections[plan.id];
-                        const isDisabled = isImageVideoService && isPaidPlan && !hasSelection;
-                        
-                        return (
-                          <Button
-                            className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
-                              plan.isFree 
-                                ? "bg-gray-200 text-gray-700 hover:bg-gray-300 group-hover:bg-gray-400 group-hover:text-white" 
-                                : isDisabled
-                                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                  : `${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`
-                            }`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleSelectPlan(plan.id);
-                            }}
-                            disabled={isDisabled}
-                            data-testid={`button-select-plan-${plan.id}`}
-                          >
-                            {plan.buttonText}
-                          </Button>
-                        );
-                      })()}
-                    </div>
+                  </div>
+                  
+                  {/* CTA Button - always at bottom outside content div */}
+                  <div className="mt-8">
+                    {(() => {
+                      const isImageVideoService = activeService === 'imageVideo';
+                      const isPaidPlan = !plan.isFree;
+                      const hasSelection = imageVideoSelections[plan.id];
+                      const isDisabled = isImageVideoService && isPaidPlan && !hasSelection;
+                      
+                      return (
+                        <Button
+                          className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                            plan.isFree 
+                              ? "bg-gray-200 text-gray-700 hover:bg-gray-300 group-hover:bg-gray-400 group-hover:text-white" 
+                              : isDisabled
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : `${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`
+                          }`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSelectPlan(plan.id);
+                          }}
+                          disabled={isDisabled}
+                          data-testid={`button-select-plan-${plan.id}`}
+                        >
+                          {plan.buttonText}
+                        </Button>
+                      );
+                    })()}
                   </div>
                 </CardContent>
               </Card>
