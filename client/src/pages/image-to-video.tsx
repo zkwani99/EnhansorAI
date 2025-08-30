@@ -483,19 +483,9 @@ export default function ImageToVideoPage() {
       {isAuthenticated && (
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Generated Videos</h2>
-                <p className="text-gray-600">Manage your video files or create stitched videos from multiple clips.</p>
-              </div>
-              <Button
-                onClick={() => setShowStitchingModal(true)}
-                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-                data-testid="button-open-stitching"
-              >
-                <Film className="mr-2 h-5 w-5" />
-                Create Stitched Video
-              </Button>
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Generated Videos</h2>
+              <p className="text-gray-600">Manage your video files and download your creations.</p>
             </div>
             <FileManager 
               service="image-to-video" 
