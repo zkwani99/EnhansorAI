@@ -202,12 +202,6 @@ export default function PricingSection() {
                   {/* Content area that grows */}
                   <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
-                    {/* Show image count for AI service plans between name and price, except Business tier */}
-                    {activeService === 'ai' && !plan.isFree && plan.features?.[0]?.text?.includes('images per month') && plan.id !== 'business-ai' && (
-                      <div className="text-sm text-gray-600 mb-2 font-medium">
-                        {plan.features[0].text}
-                      </div>
-                    )}
                     <div className="text-3xl font-bold text-primary-purple mb-2">
                       {plan.price}
                       <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
@@ -222,11 +216,6 @@ export default function PricingSection() {
                     <div className="mt-6">
                       <ul className="space-y-3 text-sm text-gray-600 text-left">
                         {plan.features?.map((feature: any, featureIndex: number) => {
-                          // Note: We want to show the unlimited images feature in the list for Business tier
-                          // Skip first feature for AI service paid plans as it's shown above the price, except for Business tier
-                          if (activeService === 'ai' && !plan.isFree && featureIndex === 0 && feature.text?.includes('images per month') && plan.id !== 'business-ai') {
-                            return null;
-                          }
                           
                           return (
                             <li key={featureIndex} className="flex items-start">
