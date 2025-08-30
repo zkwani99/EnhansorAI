@@ -146,21 +146,35 @@ export function FileManager({ service, title, className = "" }: FileManagerProps
           {title || "Generated Files"}
         </CardTitle>
         
-        {/* 30-day warning notice */}
-        <div className="flex items-center gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-          <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0" />
-          <span className="text-sm text-amber-800">
-            ⚠️ All generated content is automatically deleted after 30 days. Please download before this time.
-          </span>
+        {/* Auto-deletion warning notice */}
+        <div className="relative bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200/60 rounded-xl p-4 shadow-sm">
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-9 h-9 bg-orange-100 rounded-full flex items-center justify-center">
+              <AlertTriangle className="h-5 w-5 text-orange-600" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                Auto-deletion Notice
+              </h4>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Your generated content will be automatically deleted after 30 days. 
+                <span className="font-medium text-orange-700 ml-1">Download files to keep them permanently.</span>
+              </p>
+            </div>
+          </div>
         </div>
       </CardHeader>
       
       <CardContent className="space-y-4">
         {files.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            <FileType className="h-12 w-12 mx-auto mb-3 opacity-50" />
-            <p>No files generated yet.</p>
-            <p className="text-sm">Start creating content to see your files here!</p>
+          <div className="text-center py-12 px-6">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <FileType className="h-8 w-8 text-gray-400" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No files yet</h3>
+            <p className="text-gray-500 max-w-sm mx-auto leading-relaxed">
+              Start creating content to see your generated files here. All files are automatically organized for easy access.
+            </p>
           </div>
         ) : (
           <>
