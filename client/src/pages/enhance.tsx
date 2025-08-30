@@ -9,6 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "wouter";
 import CreditBalance from "@/components/shared/credit-balance";
+import { FileManager } from "@/components/FileManager";
 import { 
   ArrowLeft, 
   Upload, 
@@ -404,6 +405,13 @@ export default function EnhancePage() {
                 </Button>
               </CardContent>
             </Card>
+
+            {/* File Manager Section */}
+            <FileManager 
+              service="image-enhancement" 
+              title="Your Enhanced Images"
+              className="w-full"
+            />
           </div>
         </div>
       </div>

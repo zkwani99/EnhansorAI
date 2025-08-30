@@ -161,3 +161,31 @@ export const insertAISuggestionSchema = createInsertSchema(aiSuggestions).omit({
   id: true,
   createdAt: true,
 });
+
+// Generated files table - tracks all user-generated content for auto-deletion and downloads
+export const generatedFiles = pgTable("generated_files", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  service: varchar("service").notNull(), // 'image-enhancement', 'text-to-image', 'text-to-video', 'image-to-video'
+  fileType: varchar("file_type").notNull(), // 'image', 'video'
+  fileName: varchar("file_name").notNull(),
+  fileUrl: varchar("file_url").notNull(),
+  fileSize: integer("file_size"), // File size in bytes
+  originalPrompt: text("original_prompt"), // For AI-generated content
+  processingDetails: text("processing_details"), // JSON with processing parameters
+  creditsUsed: integer("credits_used").default(0),
+  downloadCount: integer("download_count").default(0),
+  lastDownloaded: timestamp("last_downloaded"),
+  scheduledDeletion: timestamp("scheduled_deletion").notNull(), // Auto-delete date (30 days from creation)
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type GeneratedFile = typeof generatedFiles.$inferSelect;
+export type InsertGeneratedFile = typeof generatedFiles.$inferInsert;
+
+export const insertGeneratedFileSchema = createInsertSchema(generatedFiles).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});

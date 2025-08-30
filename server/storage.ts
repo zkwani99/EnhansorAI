@@ -5,6 +5,7 @@ import {
   creditTransactions,
   videoJobs,
   aiSuggestions,
+  generatedFiles,
   type User,
   type UpsertUser,
   type InsertUser,
@@ -17,6 +18,8 @@ import {
   type InsertVideoJob,
   type AISuggestion,
   type InsertAISuggestion,
+  type GeneratedFile,
+  type InsertGeneratedFile,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql, and, desc } from "drizzle-orm";
@@ -36,6 +39,14 @@ export interface IStorage {
   getUserCredits(userId: string): Promise<UserCredits | null>;
   useCredits(userId: string, service: string, tier: string, creditsUsed: number, description?: string): Promise<CreditTransaction>;
   initializeUserCredits(userId: string, initialCredits?: number): Promise<UserCredits>;
+  
+  // File management operations
+  createGeneratedFile(file: InsertGeneratedFile): Promise<GeneratedFile>;
+  getUserFiles(userId: string, service?: string): Promise<GeneratedFile[]>;
+  getFileById(id: string): Promise<GeneratedFile | null>;
+  updateFileDownloadCount(id: string): Promise<void>;
+  deleteExpiredFiles(): Promise<number>;
+  deleteFile(id: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -236,6 +247,69 @@ export class DatabaseStorage implements IStorage {
         usedCount: sql`${aiSuggestions.usedCount} + 1`
       })
       .where(eq(aiSuggestions.id, suggestionId));
+  }
+
+  // File management operations
+  async createGeneratedFile(fileData: InsertGeneratedFile): Promise<GeneratedFile> {
+    // Calculate scheduled deletion date (30 days from now)
+    const scheduledDeletion = new Date();
+    scheduledDeletion.setDate(scheduledDeletion.getDate() + 30);
+
+    const [file] = await db
+      .insert(generatedFiles)
+      .values({
+        ...fileData,
+        scheduledDeletion,
+      })
+      .returning();
+    return file;
+  }
+
+  async getUserFiles(userId: string, service?: string): Promise<GeneratedFile[]> {
+    const conditions = [eq(generatedFiles.userId, userId)];
+    if (service) {
+      conditions.push(eq(generatedFiles.service, service));
+    }
+
+    return await db
+      .select()
+      .from(generatedFiles)
+      .where(and(...conditions))
+      .orderBy(desc(generatedFiles.createdAt));
+  }
+
+  async getFileById(id: string): Promise<GeneratedFile | null> {
+    const [file] = await db
+      .select()
+      .from(generatedFiles)
+      .where(eq(generatedFiles.id, id));
+    return file || null;
+  }
+
+  async updateFileDownloadCount(id: string): Promise<void> {
+    await db
+      .update(generatedFiles)
+      .set({
+        downloadCount: sql`${generatedFiles.downloadCount} + 1`,
+        lastDownloaded: new Date(),
+        updatedAt: new Date(),
+      })
+      .where(eq(generatedFiles.id, id));
+  }
+
+  async deleteExpiredFiles(): Promise<number> {
+    const now = new Date();
+    const result = await db
+      .delete(generatedFiles)
+      .where(sql`${generatedFiles.scheduledDeletion} <= ${now}`);
+    
+    return result.rowCount || 0;
+  }
+
+  async deleteFile(id: string): Promise<void> {
+    await db
+      .delete(generatedFiles)
+      .where(eq(generatedFiles.id, id));
   }
 }
 

@@ -1,0 +1,261 @@
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { AlertTriangle, Download, Calendar, FileType, HardDrive } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+
+interface GeneratedFile {
+  id: string;
+  service: string;
+  fileType: string;
+  fileName: string;
+  fileUrl: string;
+  fileSize?: number;
+  originalPrompt?: string;
+  creditsUsed: number;
+  downloadCount: number;
+  lastDownloaded?: string;
+  scheduledDeletion: string;
+  createdAt: string;
+}
+
+interface FileManagerProps {
+  service: string;
+  title?: string;
+  className?: string;
+}
+
+function formatFileSize(bytes?: number): string {
+  if (!bytes) return "Unknown size";
+  const sizes = ["Bytes", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + " " + sizes[i];
+}
+
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function getDaysUntilDeletion(scheduledDeletion: string): number {
+  const deletionDate = new Date(scheduledDeletion);
+  const now = new Date();
+  const diffTime = deletionDate.getTime() - now.getTime();
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
+export function FileManager({ service, title, className = "" }: FileManagerProps) {
+  const [downloadingFiles, setDownloadingFiles] = useState<Set<string>>(new Set());
+  const queryClient = useQueryClient();
+
+  // Fetch user's files for this service
+  const { data: files = [], isLoading } = useQuery({
+    queryKey: ["/api/files", service],
+  });
+
+  // Download mutation
+  const downloadMutation = useMutation({
+    mutationFn: async (fileId: string) => {
+      const response = await apiRequest(`/api/files/${fileId}/download`);
+      return response as { downloadUrl: string; fileName: string; fileType: string };
+    },
+    onSuccess: (data, fileId) => {
+      // Create a temporary link to download the file
+      const link = document.createElement("a");
+      link.href = data.downloadUrl;
+      link.download = data.fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: "Download Started",
+        description: `${data.fileName} is being downloaded.`,
+      });
+      
+      setDownloadingFiles(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(fileId);
+        return newSet;
+      });
+      
+      // Refresh files to update download count
+      queryClient.invalidateQueries({ queryKey: ["/api/files", service] });
+    },
+    onError: (error, fileId) => {
+      console.error("Download error:", error);
+      toast({
+        title: "Download Failed",
+        description: "Failed to download the file. Please try again.",
+        variant: "destructive",
+      });
+      
+      setDownloadingFiles(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(fileId);
+        return newSet;
+      });
+    },
+  });
+
+  const handleDownload = (fileId: string) => {
+    setDownloadingFiles(prev => new Set(prev).add(fileId));
+    downloadMutation.mutate(fileId);
+  };
+
+  const handleDownloadAll = () => {
+    files.forEach(file => {
+      if (!downloadingFiles.has(file.id)) {
+        handleDownload(file.id);
+      }
+    });
+  };
+
+  if (isLoading) {
+    return (
+      <Card className={className}>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <HardDrive className="h-5 w-5" />
+            {title || "Generated Files"}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-center py-8">
+            <Progress value={undefined} className="w-32" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className={className}>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <HardDrive className="h-5 w-5" />
+          {title || "Generated Files"}
+        </CardTitle>
+        
+        {/* 30-day warning notice */}
+        <div className="flex items-center gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+          <AlertTriangle className="h-5 w-5 text-amber-600 flex-shrink-0" />
+          <span className="text-sm text-amber-800">
+            ⚠️ All generated content is automatically deleted after 30 days. Please download before this time.
+          </span>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="space-y-4">
+        {files.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <FileType className="h-12 w-12 mx-auto mb-3 opacity-50" />
+            <p>No files generated yet.</p>
+            <p className="text-sm">Start creating content to see your files here!</p>
+          </div>
+        ) : (
+          <>
+            {/* Bulk download option */}
+            {files.length > 1 && (
+              <div className="flex justify-between items-center border-b pb-4">
+                <span className="text-sm text-gray-600">
+                  {files.length} file{files.length !== 1 ? "s" : ""} available
+                </span>
+                <Button
+                  onClick={handleDownloadAll}
+                  variant="outline"
+                  size="sm"
+                  disabled={downloadMutation.isPending}
+                  data-testid="button-download-all"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Download All
+                </Button>
+              </div>
+            )}
+
+            {/* File list */}
+            <div className="space-y-3">
+              {files.map((file) => {
+                const daysLeft = getDaysUntilDeletion(file.scheduledDeletion);
+                const isDownloading = downloadingFiles.has(file.id);
+                
+                return (
+                  <div
+                    key={file.id}
+                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+                    data-testid={`file-item-${file.id}`}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h4 className="font-medium truncate" data-testid={`text-filename-${file.id}`}>
+                          {file.fileName}
+                        </h4>
+                        <Badge variant={file.fileType === "video" ? "default" : "secondary"}>
+                          {file.fileType}
+                        </Badge>
+                        {daysLeft <= 7 && (
+                          <Badge variant="destructive" className="text-xs">
+                            {daysLeft} days left
+                          </Badge>
+                        )}
+                      </div>
+                      
+                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {formatDate(file.createdAt)}
+                        </span>
+                        <span>{formatFileSize(file.fileSize)}</span>
+                        <span>{file.creditsUsed} credits used</span>
+                        {file.downloadCount > 0 && (
+                          <span className="text-blue-600">
+                            Downloaded {file.downloadCount} time{file.downloadCount !== 1 ? "s" : ""}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {file.originalPrompt && (
+                        <p className="text-xs text-gray-400 mt-1 truncate">
+                          "{file.originalPrompt}"
+                        </p>
+                      )}
+                    </div>
+                    
+                    <Button
+                      onClick={() => handleDownload(file.id)}
+                      disabled={isDownloading || downloadMutation.isPending}
+                      size="sm"
+                      data-testid={`button-download-${file.id}`}
+                    >
+                      {isDownloading ? (
+                        <>
+                          <Progress value={undefined} className="h-4 w-4 mr-2" />
+                          Downloading...
+                        </>
+                      ) : (
+                        <>
+                          <Download className="h-4 w-4 mr-2" />
+                          Download
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
+      </CardContent>
+    </Card>
+  );
+}

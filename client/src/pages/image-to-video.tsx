@@ -14,6 +14,7 @@ import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import CreditBalance from "@/components/shared/credit-balance";
+import { FileManager } from "@/components/FileManager";
 
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -408,23 +409,15 @@ export default function ImageToVideoPage() {
         </section>
       )}
 
-      {/* Recent Creations */}
+      {/* File Manager Section */}
       {isAuthenticated && (
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Your Recent Creations</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {recentVideos.map((video) => (
-                <Card key={video.id} className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <CardContent className="p-4">
-                    <div className="bg-gray-200 rounded-lg h-32 flex items-center justify-center mb-3">
-                      <Play className="h-8 w-8 text-gray-500" />
-                    </div>
-                    <p className="font-medium text-gray-900">{video.title}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <FileManager 
+              service="image-to-video" 
+              title="Your Generated Videos"
+              className="w-full"
+            />
           </div>
         </section>
       )}

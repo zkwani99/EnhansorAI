@@ -6,6 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "wouter";
 import CreditBalance from "@/components/shared/credit-balance";
+import { FileManager } from "@/components/FileManager";
 import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -465,6 +466,15 @@ export default function GeneratePage() {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* File Manager Section */}
+        <div className="mt-12">
+          <FileManager 
+            service="text-to-image" 
+            title="Your Generated Images"
+            className="w-full"
+          />
         </div>
 
         {/* Bottom Section - Pro Tips */}

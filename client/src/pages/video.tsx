@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
 import CreditBalance from "@/components/shared/credit-balance";
+import { FileManager } from "@/components/FileManager";
 import { 
   ArrowLeft, 
   Play, 
@@ -519,6 +520,15 @@ export default function VideoPage() {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* File Manager Section */}
+        <div className="mt-12">
+          <FileManager 
+            service="text-to-video" 
+            title="Your Generated Videos"
+            className="w-full"
+          />
         </div>
 
         {/* Tips Section */}

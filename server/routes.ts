@@ -422,6 +422,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // File Management Routes
+  
+  // Get user's generated files
+  app.get('/api/files', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { service } = req.query;
+      
+      const files = await storage.getUserFiles(userId, service);
+      res.json(files);
+    } catch (error) {
+      console.error("Error fetching user files:", error);
+      res.status(500).json({ message: "Failed to fetch files" });
+    }
+  });
+
+  // Download a specific file
+  app.get('/api/files/:id/download', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { id } = req.params;
+      
+      const file = await storage.getFileById(id);
+      if (!file) {
+        return res.status(404).json({ message: "File not found" });
+      }
+      
+      // Check if user owns the file
+      if (file.userId !== userId) {
+        return res.status(403).json({ message: "Access denied" });
+      }
+      
+      // Update download count
+      await storage.updateFileDownloadCount(id);
+      
+      // Return file URL for frontend to handle download
+      res.json({ 
+        downloadUrl: file.fileUrl,
+        fileName: file.fileName,
+        fileType: file.fileType
+      });
+    } catch (error) {
+      console.error("Error downloading file:", error);
+      res.status(500).json({ message: "Failed to download file" });
+    }
+  });
+
+  // Create a new generated file record
+  app.post('/api/files', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const fileData = {
+        ...req.body,
+        userId,
+      };
+      
+      const file = await storage.createGeneratedFile(fileData);
+      res.json(file);
+    } catch (error) {
+      console.error("Error creating file record:", error);
+      res.status(500).json({ message: "Failed to create file record" });
+    }
+  });
+
+  // Delete expired files (admin/cron job endpoint)
+  app.post('/api/files/cleanup', async (req, res) => {
+    try {
+      const deletedCount = await storage.deleteExpiredFiles();
+      res.json({ 
+        message: `Cleaned up ${deletedCount} expired files`,
+        deletedCount 
+      });
+    } catch (error) {
+      console.error("Error cleaning up files:", error);
+      res.status(500).json({ message: "Failed to cleanup files" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   // Initialize WebSocket service
