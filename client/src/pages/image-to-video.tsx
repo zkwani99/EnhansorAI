@@ -474,6 +474,30 @@ export default function ImageToVideoPage() {
                 </Button>
               </CardContent>
             </Card>
+            
+            {/* Pro Tips */}
+            <Card className="shadow-lg bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Lightbulb className="h-5 w-5 text-purple-600" />
+                  <h3 className="text-lg font-bold text-gray-900">Pro Tips for Better Results</h3>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>Keep prompts short & descriptive for best results</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>Try cinematic or product mode for smooth, professional motion</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>Higher resolution uses more credits but gives better quality</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
@@ -496,35 +520,6 @@ export default function ImageToVideoPage() {
         </section>
       )}
 
-      {/* Tips Box */}
-      <section className="py-16 bg-gradient-to-r from-purple-50 to-blue-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-purple-200 bg-white/80 backdrop-blur">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-4">
-                <Lightbulb className="h-8 w-8 text-purple-600 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Pro Tips for Better Results</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <span className="w-2 h-2 bg-purple-600 rounded-full flex-shrink-0 mt-2"></span>
-                      <span>Keep prompts short & descriptive for best results</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-2 h-2 bg-purple-600 rounded-full flex-shrink-0 mt-2"></span>
-                      <span>Try cinematic or product mode for smooth, professional motion</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-2 h-2 bg-purple-600 rounded-full flex-shrink-0 mt-2"></span>
-                      <span>Higher resolution uses more credits but gives better quality</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
       <Footer />
       
