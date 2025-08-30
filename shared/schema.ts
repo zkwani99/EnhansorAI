@@ -109,3 +109,54 @@ export const insertCreditTransactionSchema = createInsertSchema(creditTransactio
   id: true,
   createdAt: true,
 });
+
+// Video generation jobs table
+export const videoJobs = pgTable("video_jobs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  type: varchar("type").notNull(), // 'text-to-video', 'image-to-video'
+  status: varchar("status").default('queued').notNull(), // 'queued', 'processing', 'completed', 'failed'
+  prompt: text("prompt"),
+  imageUrl: varchar("image_url"),
+  duration: integer("duration").default(5),
+  resolution: varchar("resolution").default('720p'),
+  style: varchar("style").default('cinematic'),
+  aiStoryboard: integer("ai_storyboard").default(0), // 0 or 1 (boolean)
+  realTimePreview: integer("real_time_preview").default(0), // 0 or 1 (boolean)
+  creditsUsed: integer("credits_used").default(0),
+  resultUrl: varchar("result_url"),
+  storyboardFrames: text("storyboard_frames"), // JSON array of frame URLs
+  progress: integer("progress").default(0),
+  error: text("error"),
+  vastJobId: varchar("vast_job_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+  completedAt: timestamp("completed_at"),
+});
+
+// AI Concierge suggestions cache
+export const aiSuggestions = pgTable("ai_suggestions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  context: text("context").notNull(), // Input that generated suggestions
+  type: varchar("type").notNull(), // 'text-to-video', 'image-to-video'
+  suggestions: text("suggestions").notNull(), // JSON array of suggestions
+  usedCount: integer("used_count").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export type VideoJob = typeof videoJobs.$inferSelect;
+export type InsertVideoJob = typeof videoJobs.$inferInsert;
+export type AISuggestion = typeof aiSuggestions.$inferSelect;
+export type InsertAISuggestion = typeof aiSuggestions.$inferInsert;
+
+export const insertVideoJobSchema = createInsertSchema(videoJobs).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertAISuggestionSchema = createInsertSchema(aiSuggestions).omit({
+  id: true,
+  createdAt: true,
+});

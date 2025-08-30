@@ -3,6 +3,8 @@ import {
   creditPricing,
   userCredits,
   creditTransactions,
+  videoJobs,
+  aiSuggestions,
   type User,
   type UpsertUser,
   type InsertUser,
@@ -11,9 +13,13 @@ import {
   type CreditTransaction,
   type InsertUserCredits,
   type InsertCreditTransaction,
+  type VideoJob,
+  type InsertVideoJob,
+  type AISuggestion,
+  type InsertAISuggestion,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, sql } from "drizzle-orm";
+import { eq, sql, and, desc } from "drizzle-orm";
 
 // Interface for storage operations
 export interface IStorage {
@@ -157,6 +163,75 @@ export class DatabaseStorage implements IStorage {
     // If already exists, return existing
     const [existing] = await db.select().from(userCredits).where(eq(userCredits.userId, userId));
     return existing;
+  }
+
+  // Video Jobs Management
+  async createVideoJob(jobData: InsertVideoJob): Promise<VideoJob> {
+    const [job] = await db
+      .insert(videoJobs)
+      .values(jobData)
+      .returning();
+    return job;
+  }
+
+  async getVideoJob(jobId: string): Promise<VideoJob | null> {
+    const [job] = await db
+      .select()
+      .from(videoJobs)
+      .where(eq(videoJobs.id, jobId));
+    return job || null;
+  }
+
+  async getUserVideoJobs(userId: string, limit: number = 10): Promise<VideoJob[]> {
+    return await db
+      .select()
+      .from(videoJobs)
+      .where(eq(videoJobs.userId, userId))
+      .orderBy(desc(videoJobs.createdAt))
+      .limit(limit);
+  }
+
+  async updateVideoJob(jobId: string, updates: Partial<VideoJob>): Promise<VideoJob> {
+    const [job] = await db
+      .update(videoJobs)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(videoJobs.id, jobId))
+      .returning();
+    return job;
+  }
+
+  // AI Suggestions Management
+  async saveAISuggestions(suggestionData: InsertAISuggestion): Promise<AISuggestion> {
+    const [suggestion] = await db
+      .insert(aiSuggestions)
+      .values(suggestionData)
+      .returning();
+    return suggestion;
+  }
+
+  async getAISuggestions(userId: string, context: string, type: string): Promise<AISuggestion | null> {
+    const [suggestion] = await db
+      .select()
+      .from(aiSuggestions)
+      .where(
+        and(
+          eq(aiSuggestions.userId, userId),
+          eq(aiSuggestions.context, context),
+          eq(aiSuggestions.type, type)
+        )
+      )
+      .orderBy(desc(aiSuggestions.createdAt))
+      .limit(1);
+    return suggestion || null;
+  }
+
+  async incrementSuggestionUsage(suggestionId: string): Promise<void> {
+    await db
+      .update(aiSuggestions)
+      .set({ 
+        usedCount: sql`${aiSuggestions.usedCount} + 1`
+      })
+      .where(eq(aiSuggestions.id, suggestionId));
   }
 }
 
