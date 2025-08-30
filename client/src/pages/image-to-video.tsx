@@ -122,45 +122,91 @@ export default function ImageToVideoPage() {
     { id: 3, thumbnail: "/placeholder-thumbnail3.jpg", title: "Animation Test" },
   ];
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Turn Images Into <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Stunning AI Videos</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Upload your image and bring it to life with cinematic AI motion — product ads, reels, animations, and more.
-          </p>
-          <Button 
-            size="lg" 
-            onClick={scrollToGenerator}
-            className="bg-primary-purple hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            data-testid="button-start-creating"
-          >
-            Start Creating
-          </Button>
-        </div>
-      </section>
-
-      {/* Credits Section */}
-      {isAuthenticated && (
-        <section className="py-8">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <CreditBalance showDetails={true} />
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        {/* Hero Section for logged out users */}
+        <section className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Turn Images Into <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Stunning AI Videos</span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              Upload your image and bring it to life with cinematic AI motion — product ads, reels, animations, and more.
+            </p>
+            <Button 
+              size="lg" 
+              onClick={() => window.location.href = '/api/login'}
+              className="bg-primary-purple hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              data-testid="button-start-creating"
+            >
+              Sign In to Start Creating
+            </Button>
           </div>
         </section>
-      )}
+        <Footer />
+      </div>
+    );
+  }
 
-      {/* AI Features Section */}
-      {isAuthenticated && (
-        <section className="py-8">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="flex items-center gap-4 mb-8">
+            <Button variant="ghost" size="sm" onClick={() => window.history.back()} data-testid="button-back">
+              <Upload className="w-4 h-4 mr-2" />
+              Back
+            </Button>
+          </div>
+          
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 bg-primary-purple rounded-2xl">
+                <Film className="w-12 h-12 text-white" />
+              </div>
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Turn Images Into Motion
+            </h1>
+            
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Upload an image and transform it into stunning AI-powered video clips. Perfect for product demos, social media, and creative projects.
+            </p>
+            
+            <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                <span>3-10 second clips</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                <span>AI-powered motion</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Palette className="w-4 h-4" />
+                <span>Multiple styles</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Credit Balance */}
+        <div className="mb-8">
+          <CreditBalance showDetails={true} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Form Section */}
+          <div>
+            {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              {/* AI Storyboard Toggle */}
               <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
@@ -175,7 +221,7 @@ export default function ImageToVideoPage() {
                     />
                   </div>
                   <p className="text-sm text-gray-600">
-                    Preview scene frames before final video generation
+                    Preview scene frames before generation
                   </p>
                   {aiStoryboard && (
                     <Badge className="mt-2 bg-primary-purple text-white text-xs">
@@ -185,7 +231,6 @@ export default function ImageToVideoPage() {
                 </CardContent>
               </Card>
 
-              {/* Real-time Preview Toggle */}
               <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
@@ -200,7 +245,7 @@ export default function ImageToVideoPage() {
                     />
                   </div>
                   <p className="text-sm text-gray-600">
-                    Watch video clips evolve during generation
+                    Watch clips evolve during generation
                   </p>
                   {realTimePreview && (
                     <Badge className="mt-2 bg-blue-600 text-white text-xs">
@@ -211,33 +256,10 @@ export default function ImageToVideoPage() {
               </Card>
             </div>
 
-            {/* AI Concierge Mode Card */}
-            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
-              <CardContent className="p-6 text-center">
-                <Sparkles className="w-8 h-8 mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-2">AI Concierge Mode</h3>
-                <p className="text-sm opacity-90 mb-4">
-                  "Create a travel vlog intro" - Let AI handle your entire video workflow automatically
-                </p>
-                <Button 
-                  variant="secondary" 
-                  className="w-full bg-white text-purple-600 hover:bg-gray-100"
-                  data-testid="button-ai-concierge"
-                >
-                  Try AI Concierge
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      )}
-
-      {/* Generation Flow */}
-      <section id="generator" className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="shadow-xl border-0 bg-white">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Generate Your AI Video</h2>
+            {/* Main Form */}
+            <Card className="shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Create Your Video</h3>
               
               <div className="space-y-8">
                 {/* Image Upload */}
@@ -362,54 +384,92 @@ export default function ImageToVideoPage() {
               </div>
             </CardContent>
           </Card>
-        </div>
-      </section>
-
-      {/* Preview & Results */}
-      {(isGenerating || generatedVideo) && (
-        <section className="py-16 bg-gray-100">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="shadow-xl border-0 bg-white">
-              <CardContent className="p-8 text-center">
-                {isGenerating ? (
-                  <div className="space-y-6">
-                    <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto"></div>
-                    <h3 className="text-xl font-semibold text-gray-900">Generating your video...</h3>
-                    <p className="text-gray-600">This may take a few moments. Please don't close this page.</p>
-                  </div>
-                ) : generatedVideo && (
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-gray-900">Your Video is Ready!</h3>
-                    <div className="bg-gray-900 rounded-xl p-8 max-w-2xl mx-auto">
-                      <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-center h-64">
-                        <Play className="h-16 w-16 text-white" />
-                        <p className="text-white ml-4">Video Preview Player</p>
+          </div>
+          
+          {/* Features Section */}
+          <div className="space-y-6">
+            {/* Preview Results */}
+            {(isGenerating || generatedVideo) && (
+              <Card className="shadow-lg border-purple-200">
+                <CardContent className="p-6 text-center">
+                  {isGenerating ? (
+                    <div className="space-y-4">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+                      <h3 className="text-lg font-semibold text-gray-900">Generating...</h3>
+                      <p className="text-gray-600 text-sm">Please wait while we create your video</p>
+                    </div>
+                  ) : generatedVideo && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-bold text-gray-900">Video Ready!</h3>
+                      <div className="bg-gray-900 rounded-lg p-4 flex items-center justify-center h-32">
+                        <Play className="h-8 w-8 text-white" />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" className="bg-green-600 hover:bg-green-700" data-testid="button-download">
+                          <Download className="mr-1 h-4 w-4" />
+                          Download
+                        </Button>
+                        <Button size="sm" variant="outline" data-testid="button-share">
+                          <Share className="mr-1 h-4 w-4" />
+                          Share
+                        </Button>
                       </div>
                     </div>
-                    <div className="flex gap-4 justify-center">
-                      <Button
-                        className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold"
-                        data-testid="button-download"
-                      >
-                        <Download className="mr-2 h-5 w-5" />
-                        Download
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border-purple-300 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-lg font-semibold"
-                        data-testid="button-share"
-                      >
-                        <Share className="mr-2 h-5 w-5" />
-                        Share
-                      </Button>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+            
+            {/* Style Showcase */}
+            <Card className="shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Video Styles</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { name: "Cinematic", desc: "Movie-like quality" },
+                    { name: "Product Ad", desc: "Commercial style" },
+                    { name: "Reel", desc: "Social media ready" },
+                    { name: "Realistic", desc: "Natural motion" }
+                  ].map((style) => (
+                    <div key={style.name} className="border-2 border-purple-200 rounded-lg p-3 text-center hover:border-purple-400 transition-colors">
+                      <div className="bg-purple-100 rounded h-16 mb-2 flex items-center justify-center">
+                        <Palette className="h-6 w-6 text-purple-600" />
+                      </div>
+                      <h4 className="font-medium text-sm text-gray-900">{style.name}</h4>
+                      <p className="text-xs text-gray-600">{style.desc}</p>
                     </div>
-                  </div>
-                )}
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Pro Tips */}
+            <Card className="shadow-lg bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Lightbulb className="h-5 w-5 text-purple-600" />
+                  <h3 className="text-lg font-bold text-gray-900">Pro Tips</h3>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>Use high-contrast images for better motion detection</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>Center your subject for optimal results</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>Try different prompts for varied motion styles</span>
+                  </li>
+                </ul>
               </CardContent>
             </Card>
           </div>
-        </section>
-      )}
+        </div>
+      </div>
+
 
       {/* File Manager Section */}
       {isAuthenticated && (
