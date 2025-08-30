@@ -108,7 +108,7 @@ export default function ServicesSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => {
             const colorClasses = getColorClasses(service.color);
             const IconComponent = service.icon;
@@ -117,10 +117,10 @@ export default function ServicesSection() {
               <Card
                 key={service.id}
                 id={service.id}
-                className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border}`}
+                className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border} h-full`}
                 data-testid={`card-service-${service.id}`}
               >
-                <CardContent className="p-8">
+                <CardContent className="p-6 h-full flex flex-col">
                   <div className={`w-16 h-16 ${colorClasses.icon} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <IconComponent className="text-white text-2xl" size={32} />
                   </div>
@@ -130,7 +130,7 @@ export default function ServicesSection() {
                     {service.description}
                   </p>
                   
-                  <div className="space-y-3 mb-8">
+                  <div className="space-y-3 mb-6 flex-grow">
                     {service.features.map((feature, index) => (
                       <div key={index} className="flex items-center text-sm text-gray-600">
                         <Check className={`${colorClasses.checkIcon} mr-3`} size={16} />
@@ -139,12 +139,14 @@ export default function ServicesSection() {
                     ))}
                   </div>
                   
-                  <Button
-                    className={`w-full ${colorClasses.button} text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200`}
-                    data-testid={service.buttonTestId}
-                  >
-                    {service.buttonText}
-                  </Button>
+                  <div className="mt-auto">
+                    <Button
+                      className={`w-full ${colorClasses.button} text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200`}
+                      data-testid={service.buttonTestId}
+                    >
+                      {service.buttonText}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             );
