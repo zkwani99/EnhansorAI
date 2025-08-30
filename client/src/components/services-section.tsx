@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Image, Palette, Video, Check } from "lucide-react";
+import { Image, Palette, Video, Check, Film } from "lucide-react";
 
 export default function ServicesSection() {
   const services = [
@@ -45,6 +45,21 @@ export default function ServicesSection() {
       ],
       buttonText: "Create Videos",
       buttonTestId: "button-try-video-generation"
+    },
+    {
+      id: "image-to-video",
+      title: "Image-to-Video AI",
+      description: "Bring still images to life with cinematic AI motion. Transform photos into dynamic short clips perfect for ads, reels, and creative projects.",
+      icon: Film,
+      color: "purple",
+      features: [
+        "720p & 1080p video generation",
+        "Multiple motion styles",
+        "Up to 10s clips or stitched longer videos",
+        "Batch processing supported"
+      ],
+      buttonText: "Create Video from Image",
+      buttonTestId: "button-try-image-to-video"
     }
   ];
 
@@ -93,7 +108,7 @@ export default function ServicesSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => {
             const colorClasses = getColorClasses(service.color);
             const IconComponent = service.icon;
