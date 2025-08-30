@@ -303,28 +303,29 @@ export default function VideoPage() {
                     </p>
                   </div>
 
-                  {/* Duration Slider */}
+                  {/* Duration Selection */}
                   <div>
                     <Label className="text-base font-medium text-gray-900 mb-3 block">
                       Duration: {duration[0]} seconds
                     </Label>
-                    <div className="px-2">
-                      <Slider
-                        value={duration}
-                        onValueChange={setDuration}
-                        max={10}
-                        min={3}
-                        step={1}
-                        className="w-full"
-                        disabled={isGenerating}
-                        data-testid="slider-duration"
-                      />
-                      <div className="flex justify-between text-sm text-gray-500 mt-2">
-                        <span>2s</span>
-                        <span>3s</span>
-                        <span>4s</span>
-                        <span>5s</span>
-                      </div>
+                    <div className="grid grid-cols-4 gap-3">
+                      {[3, 5, 7, 10].map((seconds) => (
+                        <Button
+                          key={seconds}
+                          type="button"
+                          variant={duration[0] === seconds ? "default" : "outline"}
+                          className={`h-12 ${
+                            duration[0] === seconds 
+                              ? "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" 
+                              : "border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-500"
+                          }`}
+                          onClick={() => setDuration([seconds])}
+                          disabled={isGenerating}
+                          data-testid={`button-duration-${seconds}s`}
+                        >
+                          {seconds}s
+                        </Button>
+                      ))}
                     </div>
                   </div>
 
