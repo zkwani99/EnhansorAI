@@ -676,11 +676,13 @@ function CreditUsageDisplay() {
         
         // Sort items to ensure proper order within each service
         const sortedItems = [...items].sort((a, b) => {
-          // For text-to-video, ensure plans-included comes first
-          if (service === 'text-to-video') {
-            if (a.tier === '1-plans-included') return -1;
-            if (b.tier === '1-plans-included') return 1;
-          }
+          // Special items (plans-included, notes) should appear at the bottom
+          const aIsSpecial = a.tier === '1-plans-included' || a.tier === 'plans-included' || a.tier === 'note';
+          const bIsSpecial = b.tier === '1-plans-included' || b.tier === 'plans-included' || b.tier === 'note';
+          
+          if (aIsSpecial && !bIsSpecial) return 1;  // a goes to bottom
+          if (!aIsSpecial && bIsSpecial) return -1; // b goes to bottom
+          
           return a.tier.localeCompare(b.tier);
         });
         
