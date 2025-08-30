@@ -683,6 +683,11 @@ function CreditUsageDisplay() {
           if (aIsSpecial && !bIsSpecial) return 1;  // a goes to bottom
           if (!aIsSpecial && bIsSpecial) return -1; // b goes to bottom
           
+          // For non-special items, sort by credit count (low to high)
+          if (!aIsSpecial && !bIsSpecial) {
+            return a.credits - b.credits;
+          }
+          
           return a.tier.localeCompare(b.tier);
         });
         
