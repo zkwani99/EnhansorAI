@@ -89,10 +89,10 @@ export default function WhyEnhansorSection() {
             variant="outline"
             size="icon"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 z-10 shadow-sm hidden sm:flex items-center justify-center"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
             data-testid="button-carousel-prev"
           >
-            <ChevronLeft size={20} className="text-gray-600 group-hover:text-white" />
+            <ChevronLeft size={20} className="text-purple-600 group-hover:text-white transition-colors duration-300" />
           </Button>
           
           {/* Right Arrow - Hidden on mobile */}
@@ -100,10 +100,10 @@ export default function WhyEnhansorSection() {
             variant="outline"
             size="icon"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 z-10 shadow-sm hidden sm:flex items-center justify-center"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
             data-testid="button-carousel-next"
           >
-            <ChevronRight size={20} className="text-gray-600 group-hover:text-white" />
+            <ChevronRight size={20} className="text-purple-600 group-hover:text-white transition-colors duration-300" />
           </Button>
           
           <div className="overflow-hidden" ref={emblaRef}>
@@ -114,24 +114,25 @@ export default function WhyEnhansorSection() {
                 return (
                   <div key={index} className="flex-none w-72 sm:w-80">
                     <Card
-                      className="bg-white rounded-2xl border-2 border-purple-300 shadow-sm hover:shadow-md hover:border-purple-600 transition-all duration-300 h-full"
+                      className="bg-white rounded-2xl border-2 border-purple-300 shadow-sm hover:shadow-lg hover:shadow-purple-100 hover:border-purple-600 hover:scale-105 transform transition-all duration-300 h-full group"
                       data-testid={`card-advantage-${index}`}
                     >
                       <CardContent className="p-6 sm:p-8 h-full flex flex-col">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center">
-                            <IconComponent className="text-white" size={18} />
+                          <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center group-hover:animate-pulse transition-all duration-300">
+                            <IconComponent className="text-white transition-transform duration-300 group-hover:scale-110" size={18} />
                           </div>
-                          <h3 className="text-lg sm:text-xl font-bold text-gray-900">{advantage.title}</h3>
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors duration-300">{advantage.title}</h3>
                         </div>
-                        <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 flex-1 leading-relaxed">
+                        <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 flex-1 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                           {advantage.description}
                         </p>
                         <div className="flex gap-2 flex-wrap">
                           {advantage.tags.map((tag, tagIndex) => (
                             <span 
                               key={tagIndex}
-                              className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap"
+                              className="text-xs text-purple-600 bg-purple-50 px-2 py-1 rounded whitespace-nowrap group-hover:bg-purple-100 group-hover:text-purple-700 transition-all duration-300"
+                              style={{ transitionDelay: `${tagIndex * 50}ms` }}
                             >
                               {tag}
                             </span>
@@ -153,7 +154,7 @@ export default function WhyEnhansorSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 transition-all duration-300"
+              className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 hover:scale-105 hover:shadow-lg hover:shadow-purple-200 transform transition-all duration-300"
               onClick={() => window.location.href = '/api/login'}
               data-testid="button-try-free-now"
             >
@@ -161,7 +162,7 @@ export default function WhyEnhansorSection() {
             </Button>
             <Button
               variant="outline"
-              className="border-2 border-purple-300 text-purple-700 px-8 py-3 rounded-lg font-semibold hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:text-white hover:border-purple-600 transition-all duration-300"
+              className="border-2 border-purple-300 text-purple-700 px-8 py-3 rounded-lg font-semibold hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:text-white hover:border-purple-600 hover:scale-105 hover:shadow-lg hover:shadow-purple-200 transform transition-all duration-300"
               data-testid="button-view-all-features"
             >
               View All Features
