@@ -127,10 +127,10 @@ export default function ImageToVideoPage() {
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         {/* Hero Section for logged out users */}
-        <section className="relative bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-20">
+        <section className="relative bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200 py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Turn Images Into <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Stunning AI Videos</span>
+              Turn Images Into <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">Stunning AI Videos</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Upload your image and bring it to life with cinematic AI motion — product ads, reels, animations, and more.
@@ -153,7 +153,7 @@ export default function ImageToVideoPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 border-b border-gray-200">
+      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-center gap-4 mb-8">
             <Button variant="ghost" size="sm" onClick={() => window.history.back()} data-testid="button-back">
@@ -207,7 +207,7 @@ export default function ImageToVideoPage() {
           <div>
             {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -231,7 +231,7 @@ export default function ImageToVideoPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -248,7 +248,7 @@ export default function ImageToVideoPage() {
                     Watch clips evolve during generation
                   </p>
                   {realTimePreview && (
-                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Live Preview On
                     </Badge>
                   )}

@@ -131,7 +131,7 @@ export default function PricingSection() {
   const colors = getServiceColors(activeService);
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -242,7 +242,7 @@ export default function PricingSection() {
                                             }}
                                             className={`relative p-3 rounded-lg border text-left text-sm transition-all duration-200 hover:shadow-md ${
                                               isSelected 
-                                                ? 'border-primary-purple bg-purple-50 text-purple-900' 
+                                                ? 'border-purple-600 bg-purple-50 text-purple-900' 
                                                 : 'border-gray-200 bg-white text-gray-700 hover:border-purple-200 hover:bg-purple-25'
                                             }`}
                                             data-testid={`option-${plan.id}-${option.id}`}
@@ -250,7 +250,7 @@ export default function PricingSection() {
                                             <div className="flex items-center justify-between">
                                               <span className="font-medium">{option.text}</span>
                                               {isSelected && (
-                                                <Check className="text-primary-purple flex-shrink-0" size={16} />
+                                                <Check className="text-purple-600 flex-shrink-0" size={16} />
                                               )}
                                             </div>
                                           </button>
@@ -371,7 +371,7 @@ export default function PricingSection() {
 
         {/* Flexible Pay-As-You-Go Credits Section */}
         <div className="mt-20">
-          <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 rounded-3xl p-8 mb-12">
+          <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-3xl p-8 mb-12">
             <div className="text-center text-white">
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">
                 Flexible Pay-As-You-Go Credits
@@ -410,7 +410,7 @@ export default function PricingSection() {
             {/* Creator Pack */}
             <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-purple-300 ring-2 ring-purple-100 relative">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-xs font-semibold">
+                <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-4 py-1 rounded-full text-xs font-semibold">
                   BEST VALUE
                 </span>
               </div>
@@ -428,7 +428,7 @@ export default function PricingSection() {
                   <p className="text-sm text-gray-500">$0.08 per credit</p>
                 </div>
                 <div className="mt-auto">
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium py-2 rounded-lg">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white font-medium py-2 rounded-lg">
                     Buy Creator Pack
                   </Button>
                 </div>

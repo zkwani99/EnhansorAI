@@ -127,7 +127,7 @@ export default function EnhancePage() {
             
             {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -151,7 +151,7 @@ export default function EnhancePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -221,7 +221,7 @@ export default function EnhancePage() {
                     <Button
                       onClick={handleEnhancement}
                       disabled={isProcessing}
-                      className="flex-1 bg-gradient-to-r from-primary-purple to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white"
+                      className="flex-1 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white"
                       data-testid="button-enhance-images"
                     >
                       {isProcessing ? (

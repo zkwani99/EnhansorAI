@@ -172,7 +172,7 @@ export default function VideoPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 border-b border-gray-200">
+      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-center gap-4 mb-8">
             <Link href="/">
@@ -228,7 +228,7 @@ export default function VideoPage() {
           <div>
             {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export default function VideoPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -269,7 +269,7 @@ export default function VideoPage() {
                     Watch video clips evolve during generation
                   </p>
                   {realTimePreview && (
-                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Live Preview On
                     </Badge>
                   )}
@@ -294,7 +294,7 @@ export default function VideoPage() {
                       value={prompt}
                       onChange={(e) => setPrompt(e.target.value)}
                       placeholder="A majestic eagle soaring through mountain clouds at sunset..."
-                      className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-purple focus:border-transparent resize-none text-gray-900 placeholder-gray-500"
+                      className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none text-gray-900 placeholder-gray-500"
                       data-testid="input-video-prompt"
                       disabled={isGenerating}
                     />
@@ -355,7 +355,7 @@ export default function VideoPage() {
                   <Button
                     type="submit"
                     disabled={isGenerating || !prompt.trim()}
-                    className="w-full bg-gradient-to-r from-primary-purple to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                     data-testid="button-generate-video"
                   >
                     {isGenerating ? (
@@ -420,7 +420,7 @@ export default function VideoPage() {
                     </p>
                     
                     <div className="mt-4 bg-gray-100 rounded-full h-2">
-                      <div className="bg-gradient-to-r from-primary-purple to-purple-600 h-2 rounded-full animate-pulse" style={{width: '60%'}}></div>
+                      <div className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 h-2 rounded-full animate-pulse" style={{width: '60%'}}></div>
                     </div>
                   </div>
                 )}
@@ -466,7 +466,7 @@ export default function VideoPage() {
                     <Button
                       onClick={handleTryAgain}
                       variant="outline"
-                      className="flex-1 border-primary-purple text-purple-600 hover:bg-purple-50"
+                      className="flex-1 border-purple-600 text-purple-600 hover:bg-purple-50"
                       data-testid="button-try-again"
                     >
                       <RotateCcw className="w-4 h-4 mr-2" />

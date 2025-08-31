@@ -53,7 +53,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-purple mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function DashboardPage() {
               </Link>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary-purple rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center">
                 <User className="w-4 h-4 text-white" />
               </div>
               <div>
@@ -128,13 +128,13 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <User className="w-5 h-5 text-primary-purple" />
+                    <User className="w-5 h-5 text-purple-600" />
                     Profile Information
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-center mb-6">
-                    <div className="w-20 h-20 bg-primary-purple rounded-full flex items-center justify-center">
+                    <div className="w-20 h-20 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center">
                       <User className="w-10 h-10 text-white" />
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export default function DashboardPage() {
                     />
                   </div>
                   
-                  <Button className="w-full bg-primary-purple hover:bg-purple-600" data-testid="button-update-profile">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-600" data-testid="button-update-profile">
                     Update Profile
                   </Button>
                 </CardContent>
@@ -177,7 +177,7 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Key className="w-5 h-5 text-primary-purple" />
+                    <Key className="w-5 h-5 text-purple-600" />
                     Change Password
                   </CardTitle>
                 </CardHeader>
@@ -221,7 +221,7 @@ export default function DashboardPage() {
                     />
                   </div>
                   
-                  <Button className="w-full bg-primary-purple hover:bg-purple-600" data-testid="button-change-password">
+                  <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-600" data-testid="button-change-password">
                     Change Password
                   </Button>
                 </CardContent>
@@ -235,7 +235,7 @@ export default function DashboardPage() {
               <Card className="lg:col-span-2">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-primary-purple" />
+                    <Zap className="w-5 h-5 text-purple-600" />
                     Credits Usage
                   </CardTitle>
                 </CardHeader>
@@ -247,7 +247,7 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-primary-purple" />
+                    <Calendar className="w-5 h-5 text-purple-600" />
                     Usage Stats
                   </CardTitle>
                 </CardHeader>
@@ -281,7 +281,7 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <CreditCard className="w-5 h-5 text-primary-purple" />
+                    <CreditCard className="w-5 h-5 text-purple-600" />
                     Current Plan
                   </CardTitle>
                 </CardHeader>
@@ -292,9 +292,9 @@ export default function DashboardPage() {
                         <h3 className="font-semibold text-lg">Growth Plan</h3>
                         <p className="text-sm text-gray-600">1,000 credits per month</p>
                       </div>
-                      <Badge className="bg-primary-purple text-white">Active</Badge>
+                      <Badge className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white">Active</Badge>
                     </div>
-                    <div className="text-2xl font-bold text-primary-purple">$55/month</div>
+                    <div className="text-2xl font-bold text-purple-600">$55/month</div>
                     <p className="text-sm text-gray-600">Renews on January 15, 2025</p>
                     <div className="flex gap-2">
                       <Button variant="outline" className="flex-1" data-testid="button-change-plan">
@@ -311,7 +311,7 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <DollarSign className="w-5 h-5 text-primary-purple" />
+                    <DollarSign className="w-5 h-5 text-purple-600" />
                     Payment Method
                   </CardTitle>
                 </CardHeader>
@@ -319,7 +319,7 @@ export default function DashboardPage() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-3 border rounded-lg">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded flex items-center justify-center">
                           <CreditCard className="w-4 h-4 text-white" />
                         </div>
                         <div>
@@ -371,7 +371,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Bell className="w-5 h-5 text-primary-purple" />
+                  <Bell className="w-5 h-5 text-purple-600" />
                   Notification Preferences
                 </CardTitle>
               </CardHeader>
@@ -417,7 +417,7 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Key className="w-5 h-5 text-primary-purple" />
+                    <Key className="w-5 h-5 text-purple-600" />
                     API Keys
                   </CardTitle>
                 </CardHeader>
@@ -560,7 +560,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Image Enhancement
             </span>
             <span className="text-sm font-medium">
@@ -574,7 +574,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Text-to-Image AI
             </span>
             <span className="text-sm font-medium">
@@ -588,7 +588,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Text-to-Video AI
             </span>
             <span className="text-sm font-medium">
@@ -602,7 +602,7 @@ function DynamicCreditUsage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-600 flex items-center gap-2">
-              <div className="w-3 h-3 bg-primary-purple rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Image-to-Video AI
             </span>
             <span className="text-sm font-medium">

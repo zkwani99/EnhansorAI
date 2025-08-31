@@ -191,7 +191,7 @@ export default function GeneratePage() {
             
             {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -215,7 +215,7 @@ export default function GeneratePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-200 bg-gradient-to-r from-blue-50 to-purple-50">
+              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export default function GeneratePage() {
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Describe the image you want to generate..."
-                    className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-purple focus:border-transparent resize-none"
+                    className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none"
                     data-testid="input-prompt"
                   />
                 </div>
@@ -260,7 +260,7 @@ export default function GeneratePage() {
                 <Button
                   onClick={handleGenerate}
                   disabled={!prompt.trim() || isGenerating}
-                  className="w-full bg-gradient-to-r from-primary-purple to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white py-3 rounded-lg font-semibold text-lg mb-8"
+                  className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white py-3 rounded-lg font-semibold text-lg mb-8"
                   data-testid="button-generate"
                 >
                   {isGenerating ? (
@@ -278,7 +278,7 @@ export default function GeneratePage() {
 
                 {/* Real-time Preview Section */}
                 {isGenerating && realTimePreview && (
-                  <div className="mb-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
+                  <div className="mb-8 p-6 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-200">
                     <div className="text-center mb-4">
                       <h3 className="font-semibold text-gray-900 mb-2">Real-time Preview</h3>
                       <p className="text-sm text-gray-600">Watch your image evolve as AI creates it</p>
@@ -404,7 +404,7 @@ export default function GeneratePage() {
                           value={negativePrompt}
                           onChange={(e) => setNegativePrompt(e.target.value)}
                           placeholder="Describe what you don't want in the image..."
-                          className="w-full h-24 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-purple focus:border-transparent resize-none"
+                          className="w-full h-24 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none"
                           data-testid="input-negative-prompt"
                         />
                       </div>
@@ -449,7 +449,7 @@ export default function GeneratePage() {
             </Card>
 
             {/* AI Concierge Mode */}
-            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+            <Card className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white border-0">
               <CardContent className="p-6 text-center">
                 <Sparkles className="w-8 h-8 mx-auto mb-3" />
                 <h3 className="font-bold text-lg mb-2">AI Concierge Mode</h3>
@@ -478,7 +478,7 @@ export default function GeneratePage() {
         </div>
 
         {/* Bottom Section - Pro Tips */}
-        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200">
+        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200">
           <CardContent className="p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">

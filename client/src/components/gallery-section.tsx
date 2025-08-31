@@ -6,9 +6,9 @@ export default function GallerySection() {
   const [activeFilter, setActiveFilter] = useState("enhanced");
 
   const filterButtons = [
-    { id: "enhanced", label: "Enhanced Images", color: "bg-primary-blue" },
-    { id: "generated", label: "AI Generated", color: "bg-primary-purple" },
-    { id: "videos", label: "AI Videos", color: "bg-primary-orange" },
+    { id: "enhanced", label: "Enhanced Images", color: "bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800" },
+    { id: "generated", label: "AI Generated", color: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800" },
+    { id: "videos", label: "AI Videos", color: "bg-gradient-to-r from-orange-600 via-orange-700 to-orange-800" },
     { id: "all", label: "All", color: "bg-gray-400" },
   ];
 

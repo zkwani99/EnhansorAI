@@ -232,7 +232,7 @@ export function FileManager({ service, title, className = "" }: FileManagerProps
                         <span>{formatFileSize(file.fileSize)}</span>
                         <span>{file.creditsUsed} credits used</span>
                         {file.downloadCount > 0 && (
-                          <span className="text-blue-600">
+                          <span className="text-purple-600">
                             Downloaded {file.downloadCount} time{file.downloadCount !== 1 ? "s" : ""}
                           </span>
                         )}

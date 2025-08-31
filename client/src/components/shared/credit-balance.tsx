@@ -28,7 +28,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
   };
 
   return (
-    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-blue-50 ${className}`}>
+    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-purple-100 ${className}`}>
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

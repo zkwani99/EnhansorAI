@@ -197,18 +197,18 @@ export function VideoStitchingModal({ isOpen, onClose }: VideoStitchingModalProp
           </div>
 
           {/* Duration Limit Info */}
-          <div className={`p-4 rounded-lg border ${isOverLimit ? 'bg-red-50 border-red-200' : 'bg-blue-50 border-blue-200'}`}>
+          <div className={`p-4 rounded-lg border ${isOverLimit ? 'bg-red-50 border-red-200' : 'bg-purple-50 border-purple-200'}`}>
             <div className="flex items-center gap-2 mb-2">
               {isOverLimit ? (
                 <AlertTriangle className="h-5 w-5 text-red-600" />
               ) : (
-                <CheckCircle className="h-5 w-5 text-blue-600" />
+                <CheckCircle className="h-5 w-5 text-purple-600" />
               )}
-              <span className={`font-medium ${isOverLimit ? 'text-red-900' : 'text-blue-900'}`}>
+              <span className={`font-medium ${isOverLimit ? 'text-red-900' : 'text-purple-900'}`}>
                 Duration: {totalDuration}s / {maxDuration}s
               </span>
             </div>
-            <p className={`text-sm ${isOverLimit ? 'text-red-700' : 'text-blue-700'}`}>
+            <p className={`text-sm ${isOverLimit ? 'text-red-700' : 'text-purple-700'}`}>
               {isOverLimit 
                 ? "Your selection exceeds the duration limit for your plan. Please remove some clips."
                 : `You can add ${Math.floor((maxDuration - totalDuration) / 5)} more 5s clips.`

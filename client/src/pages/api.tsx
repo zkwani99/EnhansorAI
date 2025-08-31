@@ -82,7 +82,7 @@ console.log(result.imageUrl);`;
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
-      <div className="bg-gradient-to-br from-purple-50 via-white to-blue-50 border-b border-gray-200">
+      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-center gap-4 mb-8">
             <Link href="/">
@@ -95,7 +95,7 @@ console.log(result.imageUrl);`;
           
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-purple rounded-2xl">
+              <div className="p-4 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-2xl">
                 <Code className="w-12 h-12 text-white" />
               </div>
             </div>
@@ -136,7 +136,7 @@ console.log(result.imageUrl);`;
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Key className="w-5 h-5 text-primary-purple" />
+                  <Key className="w-5 h-5 text-purple-600" />
                   Quick Start
                 </CardTitle>
               </CardHeader>
@@ -149,7 +149,7 @@ console.log(result.imageUrl);`;
                         <Copy className="w-3 h-3" />
                       </Button>
                     </div>
-                    <code className="text-sm text-primary-purple font-mono">
+                    <code className="text-sm text-purple-600 font-mono">
                       https://api.enhansor.com/v1
                     </code>
                   </div>
@@ -159,7 +159,7 @@ console.log(result.imageUrl);`;
                       Get your API key from your dashboard and start making requests:
                     </p>
                     <Link href="/dashboard">
-                      <Button className="w-full bg-primary-purple hover:bg-purple-600">
+                      <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900">
                         Get API Key
                       </Button>
                     </Link>
@@ -190,7 +190,7 @@ console.log(result.imageUrl);`;
                         </div>
                       </div>
                       <p className="text-sm text-gray-600 mb-1">{endpoint.description}</p>
-                      <p className="text-xs text-primary-purple font-medium">{endpoint.credits}</p>
+                      <p className="text-xs text-purple-600 font-medium">{endpoint.credits}</p>
                     </div>
                   ))}
                 </div>
@@ -208,7 +208,7 @@ console.log(result.imageUrl);`;
                     const IconComponent = feature.icon;
                     return (
                       <div key={index} className="text-center p-4">
-                        <div className="p-3 bg-primary-purple rounded-lg w-fit mx-auto mb-3">
+                        <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg w-fit mx-auto mb-3">
                           <IconComponent className="w-6 h-6 text-white" />
                         </div>
                         <h3 className="font-semibold text-gray-900 mb-1">{feature.title}</h3>
@@ -250,14 +250,14 @@ console.log(result.imageUrl);`;
             <Card className="shadow-lg border-purple-200">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-primary-purple" />
+                  <Zap className="w-5 h-5 text-purple-600" />
                   API Pricing
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="text-center p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg">
-                    <div className="text-3xl font-bold text-primary-purple mb-2">
+                  <div className="text-center p-6 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg">
+                    <div className="text-3xl font-bold text-purple-600 mb-2">
                       $0.01
                     </div>
                     <div className="text-sm text-gray-600 mb-4">per credit used</div>
@@ -317,7 +317,7 @@ console.log(result.imageUrl);`;
             </Card>
 
             {/* Support */}
-            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+            <Card className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white border-0">
               <CardContent className="p-6 text-center">
                 <h3 className="font-bold text-lg mb-2">Need Help?</h3>
                 <p className="text-sm opacity-90 mb-4">

@@ -67,10 +67,10 @@ export default function ServicesSection() {
     switch (color) {
       case "blue":
         return {
-          border: "border-blue-100 hover:border-primary-blue",
-          icon: "bg-gradient-to-br from-primary-blue to-blue-400",
-          checkIcon: "text-primary-blue",
-          button: "bg-gradient-to-r from-primary-blue to-blue-500"
+          border: "border-purple-100 hover:border-purple-600",
+          icon: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
+          checkIcon: "text-purple-700",
+          button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800"
         };
       case "purple":
         return {

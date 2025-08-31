@@ -16,7 +16,7 @@ export default function HeroSection() {
       title: "Generate Image from Text",
       subtitle: "AI art & visuals",
       icon: Palette,
-      color: "bg-primary-purple"
+      color: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800"
     },
     {
       id: "video",
@@ -32,7 +32,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-purple-50 py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-white via-purple-50 to-purple-100 py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -59,7 +59,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('generate')}
-              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-primary-purple hover:text-primary-purple hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-generate-image"
             >
               <Palette className="mr-3 h-5 w-5" />
@@ -70,7 +70,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('video')}
-              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-primary-purple hover:text-primary-purple hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-create-video"
             >
               <Video className="mr-3 h-5 w-5" />
@@ -80,7 +80,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('image-to-video')}
-              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-primary-purple hover:text-primary-purple hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-create-video-from-image"
             >
               <Film className="mr-3 h-5 w-5" />
