@@ -89,10 +89,10 @@ export default function WhyEnhansorSection() {
             variant="outline"
             size="icon"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm hidden sm:flex items-center justify-center"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 z-10 shadow-sm hidden sm:flex items-center justify-center"
             data-testid="button-carousel-prev"
           >
-            <ChevronLeft size={20} className="text-gray-600" />
+            <ChevronLeft size={20} className="text-gray-600 group-hover:text-white" />
           </Button>
           
           {/* Right Arrow - Hidden on mobile */}
@@ -100,10 +100,10 @@ export default function WhyEnhansorSection() {
             variant="outline"
             size="icon"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-gray-300 hover:bg-gray-50 z-10 shadow-sm hidden sm:flex items-center justify-center"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 z-10 shadow-sm hidden sm:flex items-center justify-center"
             data-testid="button-carousel-next"
           >
-            <ChevronRight size={20} className="text-gray-600" />
+            <ChevronRight size={20} className="text-gray-600 group-hover:text-white" />
           </Button>
           
           <div className="overflow-hidden" ref={emblaRef}>
@@ -114,12 +114,12 @@ export default function WhyEnhansorSection() {
                 return (
                   <div key={index} className="flex-none w-72 sm:w-80">
                     <Card
-                      className="bg-white rounded-2xl border-2 border-primary-blue shadow-sm hover:shadow-md transition-shadow duration-300 h-full"
+                      className="bg-white rounded-2xl border-2 border-purple-300 shadow-sm hover:shadow-md hover:border-purple-600 transition-all duration-300 h-full"
                       data-testid={`card-advantage-${index}`}
                     >
                       <CardContent className="p-6 sm:p-8 h-full flex flex-col">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-8 h-8 bg-primary-blue rounded-lg flex items-center justify-center">
+                          <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center">
                             <IconComponent className="text-white" size={18} />
                           </div>
                           <h3 className="text-lg sm:text-xl font-bold text-gray-900">{advantage.title}</h3>
@@ -153,7 +153,7 @@ export default function WhyEnhansorSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              className="bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+              className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 transition-all duration-300"
               onClick={() => window.location.href = '/api/login'}
               data-testid="button-try-free-now"
             >
@@ -161,7 +161,7 @@ export default function WhyEnhansorSection() {
             </Button>
             <Button
               variant="outline"
-              className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:border-primary-blue hover:text-primary-blue transition-colors"
+              className="border-2 border-purple-300 text-purple-700 px-8 py-3 rounded-lg font-semibold hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:text-white hover:border-purple-600 transition-all duration-300"
               data-testid="button-view-all-features"
             >
               View All Features

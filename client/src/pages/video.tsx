@@ -158,7 +158,7 @@ export default function VideoPage() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-purple mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
@@ -185,7 +185,7 @@ export default function VideoPage() {
           
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-purple rounded-2xl">
+              <div className="p-4 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-2xl">
                 <Video className="w-12 h-12 text-white" />
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function VideoPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Grid3x3 className="w-5 h-5 text-primary-purple" />
+                      <Grid3x3 className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">AI Storyboard</span>
                     </div>
                     <Switch 
@@ -245,7 +245,7 @@ export default function VideoPage() {
                     Preview scene frames before final video generation
                   </p>
                   {aiStoryboard && (
-                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Storyboard Active
                     </Badge>
                   )}
@@ -256,7 +256,7 @@ export default function VideoPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Eye className="w-5 h-5 text-primary-purple" />
+                      <Eye className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">Real-time Preview</span>
                     </div>
                     <Switch 
@@ -279,7 +279,7 @@ export default function VideoPage() {
             <Card className="bg-white shadow-lg border-0">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <Video className="w-6 h-6 text-primary-purple" />
+                  <Video className="w-6 h-6 text-purple-600" />
                   Create Your Video
                 </h2>
                 
@@ -377,7 +377,7 @@ export default function VideoPage() {
                   <div className="mt-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
                     <div className="text-center mb-4">
                       <h3 className="font-semibold text-gray-900 mb-2 flex items-center justify-center gap-2">
-                        <Grid3x3 className="w-5 h-5 text-primary-purple" />
+                        <Grid3x3 className="w-5 h-5 text-purple-600" />
                         AI Storyboard Preview
                       </h3>
                       <p className="text-sm text-gray-600">Review the scene frames before final video generation</p>
@@ -391,7 +391,7 @@ export default function VideoPage() {
                             alt={`Storyboard frame ${index + 1}`}
                             className="w-full h-24 object-cover rounded-lg shadow-md"
                           />
-                          <Badge className="absolute bottom-2 left-2 bg-primary-purple text-white text-xs">
+                          <Badge className="absolute bottom-2 left-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                             Scene {index + 1}
                           </Badge>
                         </div>
@@ -407,7 +407,7 @@ export default function VideoPage() {
                 {/* Processing State */}
                 {isGenerating && (
                   <div className="mt-8 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-purple rounded-full mb-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mb-4">
                       <Loader2 className="w-8 h-8 text-white animate-spin" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -434,7 +434,7 @@ export default function VideoPage() {
               <Card className="bg-white shadow-lg border-0">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <Sparkles className="w-6 h-6 text-primary-purple" />
+                    <Sparkles className="w-6 h-6 text-purple-600" />
                     Your Generated Video
                   </h2>
 
@@ -466,7 +466,7 @@ export default function VideoPage() {
                     <Button
                       onClick={handleTryAgain}
                       variant="outline"
-                      className="flex-1 border-primary-purple text-primary-purple hover:bg-purple-50"
+                      className="flex-1 border-primary-purple text-purple-600 hover:bg-purple-50"
                       data-testid="button-try-again"
                     >
                       <RotateCcw className="w-4 h-4 mr-2" />
@@ -492,8 +492,8 @@ export default function VideoPage() {
             ) : !isGenerating ? (
               <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200">
                 <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 bg-primary-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Video className="w-10 h-10 text-primary-purple" />
+                  <div className="w-20 h-20 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Video className="w-10 h-10 text-purple-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Ready to Create</h3>
                   <p className="text-gray-600">
@@ -536,7 +536,7 @@ export default function VideoPage() {
         <Card className="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200">
           <CardContent className="p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-primary-purple rounded-lg">
+              <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">Pro Tips for Better Videos</h2>
@@ -545,21 +545,21 @@ export default function VideoPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Describe specific actions and movements</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Include camera angles and lighting details</p>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Keep prompts concise but descriptive</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Experiment with different styles for varied results</p>
                 </div>
               </div>

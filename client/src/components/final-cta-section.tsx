@@ -22,7 +22,7 @@ export default function FinalCTASection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary-blue via-primary-purple to-primary-orange">
+    <section className="py-20 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
           Ready to Transform Your Content?
@@ -36,7 +36,7 @@ export default function FinalCTASection() {
           <Button
             size="lg"
             onClick={handleTryFree}
-            className="bg-white text-primary-blue px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 min-w-[200px]"
+            className="bg-white text-purple-700 px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl hover:bg-purple-50 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 min-w-[200px]"
             data-testid="button-final-try-free"
           >
             <Rocket className="mr-2" size={20} />
@@ -46,7 +46,7 @@ export default function FinalCTASection() {
             size="lg"
             variant="outline"
             onClick={handleComparePlans}
-            className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-primary-blue transition-all duration-300 min-w-[200px] bg-transparent"
+            className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-purple-700 transition-all duration-300 min-w-[200px] bg-transparent"
             data-testid="button-final-compare-plans"
           >
             <BarChart3 className="mr-2" size={20} />

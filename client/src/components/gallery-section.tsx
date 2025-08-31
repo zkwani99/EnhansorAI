@@ -123,8 +123,8 @@ export default function GallerySection() {
               onClick={() => handleFilterChange(button.id)}
               className={`px-6 py-3 rounded-full font-medium transition-colors ${
                 activeFilter === button.id
-                  ? `${button.color} text-white`
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  ? "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:text-white"
               }`}
               data-testid={`button-filter-${button.id}`}
             >
@@ -141,7 +141,7 @@ export default function GallerySection() {
               {enhancedImages.map((image) => (
                 <div
                   key={image.id}
-                  className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-300"
                   data-testid={`card-enhanced-image-${image.id}`}
                 >
                   <div className="aspect-w-4 aspect-h-3 relative">
@@ -151,7 +151,7 @@ export default function GallerySection() {
                       className="w-full h-64 object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/70 via-purple-800/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="text-sm font-medium">{image.title}</div>
                       <div className="text-xs text-gray-200">{image.subtitle}</div>
@@ -171,7 +171,7 @@ export default function GallerySection() {
               {generatedImages.map((image) => (
                 <div
                   key={image.id}
-                  className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-300"
                   data-testid={`card-generated-image-${image.id}`}
                 >
                   <div className="aspect-w-4 aspect-h-3 relative">
@@ -181,7 +181,7 @@ export default function GallerySection() {
                       className="w-full h-64 object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/70 via-purple-800/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="text-sm font-medium">{image.title}</div>
                       <div className="text-xs text-gray-200">{image.subtitle}</div>
@@ -201,7 +201,7 @@ export default function GallerySection() {
               {videoThumbnails.map((video) => (
                 <div
                   key={video.id}
-                  className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-300"
                   data-testid={`card-video-${video.id}`}
                 >
                   <div className="aspect-w-16 aspect-h-9 relative">
@@ -213,8 +213,8 @@ export default function GallerySection() {
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Play className="text-primary-orange ml-1" size={24} />
+                      <div className="w-16 h-16 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Play className="text-white ml-1" size={24} />
                       </div>
                     </div>
                     <div className="absolute bottom-4 left-4 text-white">

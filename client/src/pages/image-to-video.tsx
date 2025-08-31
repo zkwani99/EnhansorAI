@@ -138,7 +138,7 @@ export default function ImageToVideoPage() {
             <Button 
               size="lg" 
               onClick={() => window.location.href = '/api/login'}
-              className="bg-primary-purple hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               data-testid="button-start-creating"
             >
               Sign In to Start Creating
@@ -164,7 +164,7 @@ export default function ImageToVideoPage() {
           
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-purple rounded-2xl">
+              <div className="p-4 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-2xl">
                 <Film className="w-12 h-12 text-white" />
               </div>
             </div>
@@ -211,7 +211,7 @@ export default function ImageToVideoPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Grid3x3 className="w-5 h-5 text-primary-purple" />
+                      <Grid3x3 className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">AI Storyboard</span>
                     </div>
                     <Switch 
@@ -224,7 +224,7 @@ export default function ImageToVideoPage() {
                     Preview scene frames before generation
                   </p>
                   {aiStoryboard && (
-                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Storyboard Active
                     </Badge>
                   )}
@@ -235,7 +235,7 @@ export default function ImageToVideoPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Eye className="w-5 h-5 text-primary-purple" />
+                      <Eye className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">Real-time Preview</span>
                     </div>
                     <Switch 
@@ -397,7 +397,7 @@ export default function ImageToVideoPage() {
                 <Button
                   onClick={handleGenerate}
                   disabled={isGenerating || !uploadedImage}
-                  className="w-full bg-primary-purple hover:bg-purple-700 text-white py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-700 text-white py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid="button-generate-video"
                 >
                   {isGenerating ? "Generating your video..." : "Generate Video"}

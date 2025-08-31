@@ -143,7 +143,7 @@ export default function GeneratePage() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-purple mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
@@ -195,7 +195,7 @@ export default function GeneratePage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Brain className="w-5 h-5 text-primary-purple" />
+                      <Brain className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">Style Memory</span>
                     </div>
                     <Switch 
@@ -208,7 +208,7 @@ export default function GeneratePage() {
                     AI remembers your brand colors and preferred visual style
                   </p>
                   {styleMemory && (
-                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Learning Active
                     </Badge>
                   )}
@@ -219,7 +219,7 @@ export default function GeneratePage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Eye className="w-5 h-5 text-primary-purple" />
+                      <Eye className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">Real-time Preview</span>
                     </div>
                     <Switch 
@@ -232,7 +232,7 @@ export default function GeneratePage() {
                     See evolving previews before final render
                   </p>
                   {realTimePreview && (
-                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Live Preview On
                     </Badge>
                   )}
@@ -293,7 +293,7 @@ export default function GeneratePage() {
                               alt={`Preview ${currentPreview + 1}`}
                               className="w-64 h-64 object-cover rounded-lg shadow-md"
                             />
-                            <Badge className="absolute top-2 right-2 bg-primary-purple text-white">
+                            <Badge className="absolute top-2 right-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white">
                               Step {currentPreview + 1}
                             </Badge>
                           </div>
@@ -308,7 +308,7 @@ export default function GeneratePage() {
                               <div
                                 key={index}
                                 className={`w-2 h-2 rounded-full ${
-                                  index <= currentPreview ? 'bg-primary-purple' : 'bg-gray-300'
+                                  index <= currentPreview ? 'bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800' : 'bg-gray-300'
                                 }`}
                               />
                             ))}
@@ -324,8 +324,8 @@ export default function GeneratePage() {
                 {styleMemory && (
                   <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
                     <div className="flex items-center gap-2 mb-2">
-                      <Brain className="w-4 h-4 text-primary-purple" />
-                      <span className="font-medium text-primary-purple">Style Memory Active</span>
+                      <Brain className="w-4 h-4 text-purple-600" />
+                      <span className="font-medium text-purple-600">Style Memory Active</span>
                     </div>
                     <div className="text-sm text-gray-600 space-y-1">
                       <p>• Remembered brand colors: Purple, Blue gradients</p>
@@ -347,7 +347,7 @@ export default function GeneratePage() {
                           onClick={() => setSelectedStyle(style.id)}
                           className={`p-4 rounded-lg border-2 transition-all duration-200 ${
                             selectedStyle === style.id
-                              ? 'border-primary-purple bg-purple-50 text-primary-purple'
+                              ? 'border-purple-600 bg-purple-50 text-purple-600'
                               : 'border-gray-200 hover:border-gray-300 bg-white'
                           }`}
                           data-testid={`style-${style.id}`}
@@ -371,7 +371,7 @@ export default function GeneratePage() {
                         onClick={() => setSelectedSize(size.id)}
                         className={`px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
                           selectedSize === size.id
-                            ? 'border-primary-purple bg-purple-50 text-primary-purple'
+                            ? 'border-purple-600 bg-purple-50 text-purple-600'
                             : 'border-gray-200 hover:border-gray-300 bg-white'
                         }`}
                         data-testid={`size-${size.id}`}
@@ -387,7 +387,7 @@ export default function GeneratePage() {
                 <div>
                   <button
                     onClick={() => setShowAdvanced(!showAdvanced)}
-                    className="flex items-center gap-2 text-primary-purple hover:text-purple-700 font-medium mb-4"
+                    className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium mb-4"
                     data-testid="toggle-advanced"
                   >
                     <Info className="w-4 h-4" />
@@ -420,21 +420,21 @@ export default function GeneratePage() {
             <Card className="bg-white shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Palette className="w-5 h-5 text-primary-purple" />
+                  <Palette className="w-5 h-5 text-purple-600" />
                   Style Presets
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {stylePresets.map((preset) => (
-                    <Card key={preset.id} className="border border-gray-200 hover:border-primary-purple transition-colors">
+                    <Card key={preset.id} className="border border-gray-200 hover:border-purple-600 transition-colors">
                       <CardContent className="p-4">
                         <div className="flex justify-between items-start mb-2">
                           <h3 className="font-semibold text-gray-900">{preset.name}</h3>
                           <Button
                             onClick={() => usePreset(preset)}
                             size="sm"
-                            className="bg-primary-purple hover:bg-purple-600 text-white"
+                            className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-600 text-white"
                             data-testid={`preset-${preset.id}`}
                           >
                             Use This
@@ -481,7 +481,7 @@ export default function GeneratePage() {
         <Card className="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200">
           <CardContent className="p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-primary-purple rounded-lg">
+              <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">Pro Tips</h2>
@@ -490,21 +490,21 @@ export default function GeneratePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Be specific in your descriptions</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Include lighting and mood details</p>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Use negative prompts to avoid unwanted elements</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary-purple rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-gray-700">Try different styles for varied results</p>
                 </div>
               </div>

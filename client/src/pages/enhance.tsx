@@ -73,7 +73,7 @@ export default function EnhancePage() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-purple mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function EnhancePage() {
           
           <div className="text-center">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-purple rounded-2xl">
+              <div className="p-4 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-2xl">
                 <Sparkles className="w-12 h-12 text-white" />
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function EnhancePage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-primary-purple" />
+                      <Clock className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">Smart Restore</span>
                     </div>
                     <Switch 
@@ -144,7 +144,7 @@ export default function EnhancePage() {
                     AI-powered restoration for old, scratched, or blurred photos
                   </p>
                   {smartRestore && (
-                    <Badge className="mt-2 bg-primary-purple text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       Active
                     </Badge>
                   )}
@@ -155,7 +155,7 @@ export default function EnhancePage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-primary-purple" />
+                      <Users className="w-5 h-5 text-purple-600" />
                       <span className="font-medium text-gray-900">Batch Processing</span>
                     </div>
                     <Switch 
@@ -168,7 +168,7 @@ export default function EnhancePage() {
                     Upload and enhance multiple images simultaneously
                   </p>
                   {batchMode && (
-                    <Badge className="mt-2 bg-blue-600 text-white text-xs">
+                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
                       {uploadedFiles.length} files ready
                     </Badge>
                   )}
@@ -179,14 +179,14 @@ export default function EnhancePage() {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Upload className="w-5 h-5 text-primary-purple" />
+                  <Upload className="w-5 h-5 text-purple-600" />
                   Upload Images
                   {batchMode && <Badge variant="outline">Batch Mode</Badge>}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div 
-                  className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-primary-purple transition-colors cursor-pointer"
+                  className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-purple-600 transition-colors cursor-pointer"
                   data-testid="upload-dropzone"
                 >
                   <div className="mb-4">
@@ -208,7 +208,7 @@ export default function EnhancePage() {
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {uploadedFiles.map((file, index) => (
                         <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
-                          <FileImage className="w-4 h-4 text-primary-purple" />
+                          <FileImage className="w-4 h-4 text-purple-600" />
                           <span className="text-sm text-gray-700 truncate">{file.name}</span>
                         </div>
                       ))}
@@ -264,7 +264,7 @@ export default function EnhancePage() {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Settings className="w-5 h-5 text-primary-purple" />
+                  <Settings className="w-5 h-5 text-purple-600" />
                   Enhancement Settings
                 </CardTitle>
               </CardHeader>
@@ -292,7 +292,7 @@ export default function EnhancePage() {
                       variant={intensityLevel === "subtle" ? "default" : "outline"}
                       size="sm"
                       onClick={() => setIntensityLevel("subtle")}
-                      className={intensityLevel === "subtle" ? "bg-primary-purple hover:bg-purple-600" : ""}
+                      className={intensityLevel === "subtle" ? "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-600" : ""}
                       data-testid="button-intensity-subtle"
                     >
                       Subtle
@@ -301,7 +301,7 @@ export default function EnhancePage() {
                       variant={intensityLevel === "balanced" ? "default" : "outline"}
                       size="sm"
                       onClick={() => setIntensityLevel("balanced")}
-                      className={intensityLevel === "balanced" ? "bg-primary-purple hover:bg-purple-600" : ""}
+                      className={intensityLevel === "balanced" ? "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-600" : ""}
                       data-testid="button-intensity-balanced"
                     >
                       Balanced
@@ -310,7 +310,7 @@ export default function EnhancePage() {
                       variant={intensityLevel === "maximum" ? "default" : "outline"}
                       size="sm"
                       onClick={() => setIntensityLevel("maximum")}
-                      className={intensityLevel === "maximum" ? "bg-primary-purple hover:bg-purple-600" : ""}
+                      className={intensityLevel === "maximum" ? "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:bg-purple-600" : ""}
                       data-testid="button-intensity-maximum"
                     >
                       Maximum
@@ -357,8 +357,8 @@ export default function EnhancePage() {
                     {smartRestore && (
                       <div className="p-3 bg-purple-50 rounded-lg border border-purple-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <RotateCcw className="w-4 h-4 text-primary-purple" />
-                          <span className="font-medium text-primary-purple">Smart Restore Active</span>
+                          <RotateCcw className="w-4 h-4 text-purple-600" />
+                          <span className="font-medium text-purple-600">Smart Restore Active</span>
                         </div>
                         <ul className="text-sm text-gray-600 space-y-1">
                           <li>• Scratch and tear repair</li>
