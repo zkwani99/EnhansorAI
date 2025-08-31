@@ -28,11 +28,11 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
   };
 
   return (
-    <Card className={`border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50 ${className}`}>
+    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-blue-50 ${className}`}>
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-primary-purple rounded-lg">
+            <div className="p-1.5 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">
               <Zap className="w-4 h-4 text-white" />
             </div>
             <div>
@@ -56,7 +56,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
           </div>
           
           <div className="text-right">
-            <div className="text-lg font-bold text-primary-purple">
+            <div className="text-lg font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">
               {credits.remaining}
             </div>
             {!showDetails && (

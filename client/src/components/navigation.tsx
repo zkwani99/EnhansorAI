@@ -74,7 +74,7 @@ export default function Navigation() {
               {/* Tools Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                     Tools
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
@@ -96,7 +96,7 @@ export default function Navigation() {
               {/* Explore Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                     Explore
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
@@ -127,7 +127,7 @@ export default function Navigation() {
               {/* Developers Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                     Developers
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
@@ -150,7 +150,7 @@ export default function Navigation() {
               {isAuthenticated && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="flex items-center text-gray-600 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                    <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                       Account
                       <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                     </button>
@@ -226,7 +226,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
                     data-testid={`mobile-nav-tools-${item.id}`}
                   >
                     {item.name}
@@ -241,7 +241,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
                     data-testid={`mobile-nav-explore-${item.id}`}
                   >
                     {item.name}
@@ -267,7 +267,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
                     data-testid={`mobile-nav-developers-${item.id}`}
                   >
                     {item.name}
@@ -291,7 +291,7 @@ export default function Navigation() {
                           }
                           setIsMobileMenuOpen(false);
                         }}
-                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'}`}
+                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
                         data-testid={`mobile-nav-account-${item.id}`}
                       >
                         {item.name === 'Logout' && <LogOut className="w-4 h-4 mr-2" />}

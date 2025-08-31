@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1">
             <div className="flex items-center mb-3">
-              <div className="w-8 h-8 bg-primary-blue rounded-lg flex items-center justify-center mr-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={18} />
               </div>
               <span className="text-xl font-bold text-gray-900">Enhansor</span>
@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Enhancement Tools */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-5 h-5 bg-primary-blue rounded-full flex items-center justify-center mr-2">
+              <div className="w-5 h-5 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={12} />
               </div>
               <h4 className="text-sm font-semibold text-gray-900">Enhancement Tools</h4>
@@ -46,7 +46,7 @@ export default function Footer() {
                 const IconComponent = tool.icon;
                 return (
                   <li key={tool.name} className="flex items-center">
-                    <IconComponent className="text-primary-blue mr-2" size={14} />
+                    <IconComponent className="text-purple-700 mr-2" size={14} />
                     <span className="text-sm text-gray-600">{tool.name}</span>
                   </li>
                 );
@@ -57,7 +57,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-5 h-5 bg-primary-blue rounded-full flex items-center justify-center mr-2">
+              <div className="w-5 h-5 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center mr-2">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
               </div>
               <h4 className="text-sm font-semibold text-gray-900">Company</h4>

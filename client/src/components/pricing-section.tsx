@@ -91,14 +91,14 @@ export default function PricingSection() {
   };
 
   const getServiceColors = (service: string) => {
-    // All services now use purple color scheme
+    // All services now use dark gradient purple color scheme
     return {
-      iconBg: "bg-gradient-to-br from-primary-purple to-purple-400",
-      headerBg: "bg-primary-purple",
-      button: "bg-primary-purple hover:bg-purple-600",
-      border: "border-primary-purple",
-      popular: "bg-primary-purple",
-      tabActive: "bg-primary-purple text-white",
+      iconBg: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
+      headerBg: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
+      button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-gray-900",
+      border: "border-purple-600",
+      popular: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
+      tabActive: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white",
       tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
     };
   };
@@ -202,7 +202,7 @@ export default function PricingSection() {
                   {/* Content area that grows */}
                   <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
-                    <div className="text-3xl font-bold text-primary-purple mb-2">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent mb-2">
                       {plan.price}
                       <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
                     </div>
