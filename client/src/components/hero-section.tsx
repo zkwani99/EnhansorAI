@@ -36,7 +36,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Turn <span className="bg-gradient-to-r from-purple-800 via-purple-900 to-gray-900 bg-clip-text text-transparent">Ideas</span> into Visual <span className="bg-gradient-to-r from-purple-800 via-purple-900 to-gray-900 bg-clip-text text-transparent">Magic</span> — Instantly.
+            Turn <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">Ideas</span> into Visual <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">Magic</span> — Instantly.
           </h1>
           
           <p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
@@ -49,7 +49,7 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={() => handleServiceClick('enhance')}
-              className="bg-gradient-to-r from-purple-800 via-purple-900 to-gray-900 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-purple-800"
+              className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-purple-600"
               data-testid="button-enhance-image"
             >
               <Sparkles className="mr-3 h-5 w-5" />
@@ -91,15 +91,15 @@ export default function HeroSection() {
           {/* Hero Stats */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-800 via-purple-900 to-gray-900 bg-clip-text text-transparent" data-testid="stat-images-processed">2K+</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-images-processed">2K+</div>
               <div className="text-gray-600 mt-1">Images Enhanced</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-800 via-purple-900 to-gray-900 bg-clip-text text-transparent" data-testid="stat-videos-generated">1K+</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-videos-generated">1K+</div>
               <div className="text-gray-600 mt-1">Videos Generated</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-800 via-purple-900 to-gray-900 bg-clip-text text-transparent" data-testid="stat-happy-users">500+</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-happy-users">500+</div>
               <div className="text-gray-600 mt-1">Happy Users</div>
             </div>
           </div>
