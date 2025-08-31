@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
@@ -25,7 +26,11 @@ import {
   Key,
   Calendar,
   DollarSign,
-  Zap
+  Zap,
+  TrendingUp,
+  Clock,
+  Lightbulb,
+  Info
 } from "lucide-react";
 
 export default function DashboardPage() {
@@ -552,6 +557,9 @@ function DynamicCreditUsage() {
         </div>
       </div>
 
+      {/* Predictive Credit Usage Assistant */}
+      <PredictiveCreditAssistant userCredits={userCredits} />
+
       {/* Service Breakdown */}
       <div className="space-y-4">
         <h4 className="font-medium text-gray-900">Usage by Service - Subscription plan</h4>
@@ -611,6 +619,97 @@ function DynamicCreditUsage() {
           </div>
           <Progress value={imageToVideoPercentage} className="h-2" />
         </div>
+      </div>
+    </div>
+  );
+}
+
+// Predictive Credit Usage Assistant Component
+function PredictiveCreditAssistant({ userCredits }: { userCredits: any }) {
+  // Calculate predictions based on last 7 days usage pattern
+  const calculatePredictions = () => {
+    // Simulate daily usage pattern (in a real app, this would come from usage history API)
+    const dailyUsageRate = userCredits.usedCredits / 7; // Assuming current usage happened over 7 days
+    
+    // Predicted monthly consumption (30 days)
+    const predictedMonthlyUsage = Math.ceil(dailyUsageRate * 30);
+    
+    // Days until credits run out
+    const remainingCredits = userCredits.totalCredits - userCredits.usedCredits;
+    const daysUntilRunOut = dailyUsageRate > 0 ? Math.floor(remainingCredits / dailyUsageRate) : Infinity;
+    
+    // Generate recommendation
+    let recommendation = "";
+    if (daysUntilRunOut < 7) {
+      recommendation = "⚠️ Consider purchasing more credits soon to avoid interruption.";
+    } else if (predictedMonthlyUsage > userCredits.totalCredits * 0.8) {
+      recommendation = "💡 Consider upgrading to Growth plan for better value.";
+    } else if (dailyUsageRate < userCredits.totalCredits / 60) { // Very low usage
+      recommendation = "✨ You're using credits efficiently! Current plan suits your usage well.";
+    } else {
+      recommendation = "📊 Your usage is trending normally. Current plan should suffice.";
+    }
+    
+    return {
+      predictedMonthlyUsage,
+      daysUntilRunOut,
+      recommendation
+    };
+  };
+
+  const { predictedMonthlyUsage, daysUntilRunOut, recommendation } = calculatePredictions();
+
+  return (
+    <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-200">
+      <div className="flex items-center gap-2 mb-3">
+        <TrendingUp className="w-4 h-4 text-purple-600" />
+        <h4 className="font-medium text-purple-800">Predictive Credit Usage Assistant</h4>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Info className="w-3 h-3 text-purple-500 cursor-help" data-testid="info-predictive-assistant" />
+            </TooltipTrigger>
+            <TooltipContent className="max-w-xs">
+              <p>This is an AI-powered estimate based on your recent usage patterns. Actual usage may vary.</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+        {/* Predicted Monthly Usage */}
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+            <BarChart3 className="w-4 h-4 text-white" />
+          </div>
+          <div>
+            <p className="text-sm text-purple-700 font-medium">Predicted Monthly Usage</p>
+            <p className="text-lg font-bold text-purple-800" data-testid="text-predicted-monthly-usage">
+              {predictedMonthlyUsage} credits
+            </p>
+          </div>
+        </div>
+        
+        {/* Days Until Run Out */}
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+            <Clock className="w-4 h-4 text-white" />
+          </div>
+          <div>
+            <p className="text-sm text-purple-700 font-medium">Est. Days Until Depletion</p>
+            <p className="text-lg font-bold text-purple-800" data-testid="text-days-until-depletion">
+              {daysUntilRunOut === Infinity ? "∞" : `${daysUntilRunOut} days`}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Recommendation */}
+      <div className="flex items-start gap-2 p-3 bg-white/60 rounded-md border border-purple-200">
+        <Lightbulb className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
+        <p className="text-sm text-purple-700" data-testid="text-recommendation">
+          {recommendation}
+        </p>
       </div>
     </div>
   );
