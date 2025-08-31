@@ -10,10 +10,10 @@ export default function GallerySection() {
   const [showBeforeAfter, setShowBeforeAfter] = useState(false);
 
   const filterButtons = [
-    { id: "enhanced", label: "Enhanced", icon: ImageIcon, color: "from-blue-600 via-blue-700 to-blue-800" },
+    { id: "enhanced", label: "Enhanced", icon: ImageIcon, color: "from-purple-600 via-purple-700 to-purple-800" },
     { id: "generated", label: "AI Generated", icon: Sparkles, color: "from-purple-600 via-purple-700 to-purple-800" },
-    { id: "videos", label: "AI Videos", icon: Video, color: "from-orange-600 via-orange-700 to-orange-800" },
-    { id: "all", label: "All", icon: FolderOpen, color: "from-gray-600 to-gray-700" },
+    { id: "videos", label: "AI Videos", icon: Video, color: "from-purple-600 via-purple-700 to-purple-800" },
+    { id: "all", label: "All", icon: FolderOpen, color: "from-purple-600 via-purple-700 to-purple-800" },
   ];
 
   const enhancedImages = [
@@ -245,7 +245,7 @@ export default function GallerySection() {
                       </Badge>
                     )}
                     {item.type === 'enhanced' && (
-                      <Badge className="bg-blue-600/80 text-white text-xs">
+                      <Badge className="bg-purple-600/80 text-white text-xs">
                         Before/After
                       </Badge>
                     )}

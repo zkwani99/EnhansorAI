@@ -102,24 +102,16 @@ export default function TemplatesSection() {
   };
 
   const getTypeColor = (type: string) => {
-    switch (type) {
-      case "image":
-        return "bg-purple-100 text-purple-700";
-      case "video":
-        return "bg-orange-100 text-orange-700";
-      case "enhancement":
-        return "bg-blue-100 text-blue-700";
-      default:
-        return "bg-gray-100 text-gray-700";
-    }
+    // All types now use unified purple color scheme
+    return "bg-purple-100 text-purple-700";
   };
 
   return (
     <section className="py-20 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-32 right-20 w-64 h-64 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute bottom-32 left-20 w-48 h-48 bg-gradient-to-br from-orange-100 to-pink-100 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute top-32 right-20 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-32 left-20 w-48 h-48 bg-gradient-to-br from-purple-200 to-purple-300 rounded-full blur-3xl opacity-30"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +129,7 @@ export default function TemplatesSection() {
           <div className="flex items-center justify-center gap-4">
             <span className="text-sm font-medium text-gray-700">Filter by type:</span>
             <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-48 border-purple-200 focus:border-purple-400 focus:ring-purple-200">
                 <SelectValue placeholder="Select template type" />
               </SelectTrigger>
               <SelectContent>
@@ -155,7 +147,7 @@ export default function TemplatesSection() {
           {getFilteredTemplates().map((template) => (
             <Card
               key={template.id}
-              className="group relative overflow-hidden bg-white border border-gray-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="group relative overflow-hidden bg-white border-2 border-purple-200 hover:border-purple-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-200"
               data-testid={`template-card-${template.id}`}
             >
               <div className="relative">
@@ -192,7 +184,7 @@ export default function TemplatesSection() {
 
               <CardContent className="p-6">
                 <div className="mb-3">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">
                     {template.title}
                   </h3>
                   <p className="text-sm text-gray-600 line-clamp-2">
@@ -221,7 +213,7 @@ export default function TemplatesSection() {
                   </span>
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white"
+                    className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white shadow-md hover:shadow-lg"
                     data-testid={`button-use-template-${template.id}`}
                   >
                     Use Template
@@ -238,7 +230,7 @@ export default function TemplatesSection() {
           <Button
             variant="outline"
             size="lg"
-            className="px-8 py-3 text-purple-600 border-purple-300 hover:bg-purple-50 hover:border-purple-400"
+            className="px-8 py-3 text-purple-700 border-2 border-purple-300 hover:bg-purple-50 hover:border-purple-400 hover:text-purple-800 transition-all duration-200"
             data-testid="button-view-all-templates"
           >
             <ArrowRight className="w-5 h-5 mr-2" />
