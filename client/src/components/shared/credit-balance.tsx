@@ -17,10 +17,10 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
   });
 
   // Fallback to mock data while loading or if no data
-  const credits = userCredits ? {
-    remaining: userCredits.totalCredits - userCredits.usedCredits,
-    total: userCredits.totalCredits,
-    percentage: Math.round((userCredits.usedCredits / userCredits.totalCredits) * 100)
+  const credits = userCredits && typeof userCredits === 'object' && 'totalCredits' in userCredits && 'usedCredits' in userCredits ? {
+    remaining: (userCredits as any).totalCredits - (userCredits as any).usedCredits,
+    total: (userCredits as any).totalCredits,
+    percentage: Math.round(((userCredits as any).usedCredits / (userCredits as any).totalCredits) * 100)
   } : {
     remaining: isLoading ? 0 : 620,
     total: isLoading ? 0 : 1000,

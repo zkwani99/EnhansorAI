@@ -622,13 +622,13 @@ function CreditUsageDisplay() {
   }
 
   // Group pricing by service
-  const groupedPricing = pricing.reduce((acc: any, item: any) => {
+  const groupedPricing = Array.isArray(pricing) ? pricing.reduce((acc: any, item: any) => {
     if (!acc[item.service]) {
       acc[item.service] = [];
     }
     acc[item.service].push(item);
     return acc;
-  }, {});
+  }, {}) : {};
 
   const serviceConfig = {
     image: {
