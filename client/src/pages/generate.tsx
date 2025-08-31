@@ -7,6 +7,8 @@ import { Progress } from "@/components/ui/progress";
 import { Link } from "wouter";
 import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
+import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
+import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -190,31 +192,7 @@ export default function GeneratePage() {
           <div className="lg:col-span-2 space-y-8">
             
             {/* Smart Features */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <Brain className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900">Style Memory</span>
-                    </div>
-                    <Switch 
-                      checked={styleMemory} 
-                      onCheckedChange={setStyleMemory}
-                      data-testid="switch-style-memory"
-                    />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    AI remembers your brand colors and preferred visual style
-                  </p>
-                  {styleMemory && (
-                    <Badge className="mt-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white text-xs">
-                      Learning Active
-                    </Badge>
-                  )}
-                </CardContent>
-              </Card>
-
+            <div className="grid grid-cols-1 gap-4">
               <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
@@ -447,6 +425,27 @@ export default function GeneratePage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Style Memory Toggle */}
+            <StyleMemoryToggle 
+              service="text-to-image"
+              onStyleApplied={(style) => {
+                setPrompt(prev => prev ? `${prev} ${style.description}`.trim() : style.description);
+                toast({
+                  title: "Style Applied",
+                  description: `Applied your saved style: ${style.name}`,
+                });
+              }}
+            />
+
+            {/* AI Task Copilot */}
+            <AITaskCopilot 
+              service="text-to-image"
+              currentStep={prompt ? (selectedStyle ? 2 : 1) : 0}
+              onStepComplete={(stepId) => {
+                console.log('Text-to-image workflow step completed:', stepId);
+              }}
+            />
 
             {/* AI Concierge Mode */}
             <Card className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white border-0">

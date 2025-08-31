@@ -81,6 +81,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // User Preferences Routes
+  app.get('/api/preferences', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const preferences = await storage.getUserPreferences(userId);
+      
+      // If no preferences exist, create default ones
+      if (!preferences) {
+        const defaultPrefs = await storage.createUserPreferences({
+          userId,
+          styleMemoryEnabled: 0,
+          defaultResolution: "1024x1024",
+          defaultAspectRatio: "square",
+          watermarkEnabled: 1,
+          realTimePreviewEnabled: 1,
+          showCopilot: 1,
+          copilotLevel: "beginner",
+        });
+        return res.json(defaultPrefs);
+      }
+      
+      res.json(preferences);
+    } catch (error) {
+      console.error("Error fetching user preferences:", error);
+      res.status(500).json({ message: "Failed to fetch user preferences" });
+    }
+  });
+
+  app.put('/api/preferences', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const updates = req.body;
+      
+      const preferences = await storage.upsertUserPreferences(userId, updates);
+      res.json(preferences);
+    } catch (error) {
+      console.error("Error updating user preferences:", error);
+      res.status(500).json({ message: "Failed to update user preferences" });
+    }
+  });
+
+  app.post('/api/preferences/reset', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      
+      const defaultPrefs = {
+        styleMemoryEnabled: 0,
+        savedBrandColors: null,
+        preferredStyles: null,
+        defaultResolution: "1024x1024",
+        defaultAspectRatio: "square",
+        watermarkEnabled: 1,
+        realTimePreviewEnabled: 1,
+        imageEnhancePrefs: null,
+        textToImagePrefs: null,
+        textToVideoPrefs: null,
+        imageToVideoPrefs: null,
+        showCopilot: 1,
+        copilotLevel: "beginner",
+      };
+      
+      const preferences = await storage.upsertUserPreferences(userId, defaultPrefs);
+      res.json(preferences);
+    } catch (error) {
+      console.error("Error resetting user preferences:", error);
+      res.status(500).json({ message: "Failed to reset user preferences" });
+    }
+  });
+
   // Video Generation Routes
   
   // Text-to-Video Generation

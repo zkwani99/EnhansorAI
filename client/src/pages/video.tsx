@@ -12,6 +12,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
 import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
+import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
+import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { 
   ArrowLeft, 
   Play, 
@@ -502,6 +504,29 @@ export default function VideoPage() {
                 </CardContent>
               </Card>
             ) : null}
+
+            {/* Style Memory Toggle */}
+            <StyleMemoryToggle 
+              service="text-to-video"
+              onStyleApplied={(style) => {
+                setPrompt(prev => `${prev} ${style.description}`.trim());
+                toast({
+                  title: "Style Applied",
+                  description: `Applied your saved style: ${style.name}`,
+                });
+              }}
+              className="mt-6"
+            />
+
+            {/* AI Task Copilot */}
+            <AITaskCopilot 
+              service="text-to-video"
+              currentStep={prompt ? (showStoryboard ? 2 : 1) : 0}
+              onStepComplete={(stepId) => {
+                console.log('Video workflow step completed:', stepId);
+              }}
+              className="mt-6"
+            />
 
             {/* AI Concierge Mode */}
             <Card className="mt-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">

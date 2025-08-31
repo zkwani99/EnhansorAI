@@ -214,3 +214,42 @@ export const insertVideoStitchingProjectSchema = createInsertSchema(videoStitchi
   createdAt: true,
   updatedAt: true,
 });
+
+// User AI preferences and style memory table
+export const userPreferences = pgTable("user_preferences", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull().unique(),
+  
+  // Style Memory settings for all services
+  styleMemoryEnabled: integer("style_memory_enabled").default(0), // 0 or 1 (boolean)
+  savedBrandColors: text("saved_brand_colors"), // JSON array of brand colors
+  preferredStyles: text("preferred_styles"), // JSON object with preferred styles per service
+  
+  // General preferences
+  defaultResolution: varchar("default_resolution").default("1024x1024"),
+  defaultAspectRatio: varchar("default_aspect_ratio").default("square"),
+  watermarkEnabled: integer("watermark_enabled").default(1), // 0 or 1 (boolean)
+  realTimePreviewEnabled: integer("real_time_preview_enabled").default(1), // 0 or 1 (boolean)
+  
+  // Service-specific preferences
+  imageEnhancePrefs: text("image_enhance_prefs"), // JSON object
+  textToImagePrefs: text("text_to_image_prefs"), // JSON object
+  textToVideoPrefs: text("text_to_video_prefs"), // JSON object
+  imageToVideoPrefs: text("image_to_video_prefs"), // JSON object
+  
+  // AI Copilot settings
+  showCopilot: integer("show_copilot").default(1), // 0 or 1 (boolean)
+  copilotLevel: varchar("copilot_level").default("beginner"), // beginner, intermediate, advanced
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type UserPreferences = typeof userPreferences.$inferSelect;
+export type InsertUserPreferences = typeof userPreferences.$inferInsert;
+
+export const insertUserPreferencesSchema = createInsertSchema(userPreferences).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});

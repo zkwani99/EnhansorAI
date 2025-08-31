@@ -16,6 +16,8 @@ import Footer from "@/components/footer";
 import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
 import { VideoStitchingModal } from "@/components/VideoStitchingModal";
+import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
+import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -440,6 +442,27 @@ export default function ImageToVideoPage() {
                 </CardContent>
               </Card>
             )}
+            
+            {/* Style Memory Toggle */}
+            <StyleMemoryToggle 
+              service="image-to-video"
+              onStyleApplied={(style) => {
+                setPrompt(prev => prev ? `${prev} ${style.description}`.trim() : style.description);
+                toast({
+                  title: "Style Applied",
+                  description: `Applied your saved style: ${style.name}`,
+                });
+              }}
+            />
+
+            {/* AI Task Copilot */}
+            <AITaskCopilot 
+              service="image-to-video"
+              currentStep={uploadedImage ? (prompt ? 2 : 1) : 0}
+              onStepComplete={(stepId) => {
+                console.log('Image-to-video workflow step completed:', stepId);
+              }}
+            />
             
             {/* Stitched Video Feature */}
             <Card className="shadow-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">

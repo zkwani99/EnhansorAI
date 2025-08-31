@@ -7,6 +7,7 @@ import {
   aiSuggestions,
   generatedFiles,
   videoStitchingProjects,
+  userPreferences,
   type User,
   type UpsertUser,
   type InsertUser,
@@ -23,6 +24,8 @@ import {
   type InsertGeneratedFile,
   type VideoStitchingProject,
   type InsertVideoStitchingProject,
+  type UserPreferences,
+  type InsertUserPreferences,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql, and, desc } from "drizzle-orm";
@@ -356,6 +359,48 @@ export class DatabaseStorage implements IStorage {
       .where(eq(videoStitchingProjects.id, id))
       .returning();
     return result;
+  }
+
+  // User preferences operations
+  async getUserPreferences(userId: string): Promise<UserPreferences | null> {
+    const [preferences] = await db
+      .select()
+      .from(userPreferences)
+      .where(eq(userPreferences.userId, userId));
+    return preferences || null;
+  }
+
+  async createUserPreferences(prefsData: InsertUserPreferences): Promise<UserPreferences> {
+    const [preferences] = await db
+      .insert(userPreferences)
+      .values(prefsData)
+      .returning();
+    return preferences;
+  }
+
+  async updateUserPreferences(userId: string, updates: Partial<UserPreferences>): Promise<UserPreferences> {
+    const [result] = await db
+      .update(userPreferences)
+      .set({
+        ...updates,
+        updatedAt: new Date(),
+      })
+      .where(eq(userPreferences.userId, userId))
+      .returning();
+    return result;
+  }
+
+  async upsertUserPreferences(userId: string, prefsData: Partial<InsertUserPreferences>): Promise<UserPreferences> {
+    const existing = await this.getUserPreferences(userId);
+    
+    if (existing) {
+      return await this.updateUserPreferences(userId, prefsData);
+    } else {
+      return await this.createUserPreferences({
+        userId,
+        ...prefsData,
+      } as InsertUserPreferences);
+    }
   }
 }
 

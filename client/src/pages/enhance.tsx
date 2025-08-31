@@ -10,6 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "wouter";
 import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
+import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
+import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { 
   ArrowLeft, 
   Upload, 
@@ -387,6 +389,27 @@ export default function EnhancePage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Style Memory Toggle */}
+            <StyleMemoryToggle 
+              service="image-enhance"
+              onStyleApplied={(style) => {
+                console.log('Applied style for enhancement:', style);
+                toast({
+                  title: "Style Applied",
+                  description: `Applied your saved style: ${style.name}`,
+                });
+              }}
+            />
+
+            {/* AI Task Copilot */}
+            <AITaskCopilot 
+              service="image-enhance"
+              currentStep={uploadedFiles.length > 0 ? 1 : 0}
+              onStepComplete={(stepId) => {
+                console.log('Step completed:', stepId);
+              }}
+            />
 
             {/* AI Concierge Mode */}
             <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
