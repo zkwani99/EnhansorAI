@@ -13,6 +13,7 @@ import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
+import { PredictiveCreditAssistant } from "@/components/shared/predictive-credit-assistant";
 import { 
   ArrowLeft, 
   Upload, 
@@ -421,6 +422,9 @@ export default function EnhancePage() {
                 console.log('Step completed:', stepId);
               }}
             />
+
+            {/* Predictive Credit Usage Assistant */}
+            <PredictiveCreditAssistant />
 
             {/* AI Concierge Mode */}
             <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Zap, Info } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -114,7 +115,16 @@ export function CreditCostEstimator({
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-purple-600" />
             <span className="text-sm font-medium text-purple-800">Credits Needed</span>
-            <Info className="w-3 h-3 text-purple-500" />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Info className="w-3 h-3 text-purple-500 cursor-help" data-testid="info-credit-cost" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Credit cost is calculated based on your selected options: resolution, duration (for videos), and enhancement settings. Higher settings require more processing power and use more credits.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
           
           <div className="text-right">

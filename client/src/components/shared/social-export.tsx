@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Share2, Instagram, Download, ExternalLink } from "lucide-react";
-import { SiTiktok, SiX } from "react-icons/si";
+import { SiTiktok, SiX, SiLinkedin } from "react-icons/si";
 import { useToast } from "@/hooks/use-toast";
 
 interface SocialExportProps {
@@ -44,6 +44,13 @@ export function SocialExport({ fileUrl, fileName, fileType, className = "" }: So
       icon: SiX,
       color: "hover:bg-black hover:text-white",
       formats: fileType === "image" ? ["1200x675", "1080x1080"] : ["1280x720", "1080x1920"]
+    },
+    {
+      id: "linkedin",
+      name: "LinkedIn",
+      icon: SiLinkedin,
+      color: "hover:bg-blue-600 hover:text-white",
+      formats: fileType === "image" ? ["1200x627", "1080x1080"] : ["1280x720", "1920x1080"]
     }
   ];
 
@@ -57,7 +64,8 @@ export function SocialExport({ fileUrl, fileName, fileType, className = "" }: So
       const shareUrls = {
         instagram: `https://www.instagram.com/`, // Instagram doesn't support direct sharing via URL
         tiktok: `https://www.tiktok.com/upload`,
-        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fileUrl)}&text=${encodeURIComponent(`Check out this amazing ${fileType} I created with Enhansor AI! ✨`)}`
+        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fileUrl)}&text=${encodeURIComponent(`Check out this amazing ${fileType} I created with Enhansor AI! ✨`)}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fileUrl)}`
       };
 
       const shareUrl = shareUrls[platform as keyof typeof shareUrls];
@@ -71,9 +79,10 @@ export function SocialExport({ fileUrl, fileName, fileType, className = "" }: So
         });
       } else {
         window.open(shareUrl, '_blank', 'width=600,height=400');
+        const platformName = platform === "twitter" ? "Twitter/X" : platform === "linkedin" ? "LinkedIn" : "TikTok";
         toast({
           title: "Sharing prepared!",
-          description: `Opening ${platform === "twitter" ? "Twitter/X" : "TikTok"} in a new window.`,
+          description: `Opening ${platformName} in a new window.`,
         });
       }
     } catch (error) {
@@ -126,7 +135,7 @@ export function SocialExport({ fileUrl, fileName, fileType, className = "" }: So
             </Badge>
           </div>
 
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {socialPlatforms.map((platform) => {
               const IconComponent = platform.icon;
               const isExportingThis = isExporting === platform.id;
