@@ -13,7 +13,6 @@ import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
-import { PredictiveCreditAssistant } from "@/components/shared/predictive-credit-assistant";
 import { 
   ArrowLeft, 
   Upload, 
@@ -38,6 +37,7 @@ export default function EnhancePage() {
   const [intensityLevel, setIntensityLevel] = useState("balanced");
   const [isProcessing, setIsProcessing] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   // Redirect to home if not authenticated
   useEffect(() => {
@@ -58,6 +58,34 @@ export default function EnhancePage() {
     setUploadedFiles(files);
     if (files.length > 1) {
       setBatchMode(true);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const files = Array.from(e.dataTransfer.files).filter(file => 
+      file.type.startsWith('image/')
+    );
+    if (files.length > 0) {
+      handleFileUpload(files);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length > 0) {
+      handleFileUpload(files);
     }
   };
 
@@ -190,9 +218,24 @@ export default function EnhancePage() {
               </CardHeader>
               <CardContent>
                 <div 
-                  className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-purple-600 transition-colors cursor-pointer"
+                  className={`border-2 border-dashed rounded-lg p-12 text-center transition-colors cursor-pointer relative ${
+                    isDragOver ? 'border-purple-600 bg-purple-50' : 'border-gray-300 hover:border-purple-600'
+                  }`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  onClick={() => document.getElementById('file-input')?.click()}
                   data-testid="upload-dropzone"
                 >
+                  <input
+                    id="file-input"
+                    type="file"
+                    accept="image/*"
+                    multiple={batchMode}
+                    onChange={handleFileSelect}
+                    className="hidden"
+                    data-testid="input-file-upload"
+                  />
                   <div className="mb-4">
                     <Upload className="w-12 h-12 text-gray-400 mx-auto" />
                   </div>
@@ -222,12 +265,29 @@ export default function EnhancePage() {
 
                 {uploadedFiles.length > 0 && (
                   <>
-                    {/* Credit Cost Estimator */}
+                    {/* Credits Needed */}
                     <div className="mt-6">
-                      <CreditCostEstimator 
-                        service="image-enhancement"
-                        selectedResolution="original"
-                      />
+                      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-200">
+                        <div className="flex items-center gap-2">
+                          <Zap className="w-4 h-4 text-purple-600" />
+                          <span className="text-sm font-medium text-purple-800">Credits Needed</span>
+                          <div className="group relative">
+                            <button className="w-4 h-4 rounded-full bg-purple-200 hover:bg-purple-300 transition-colors flex items-center justify-center">
+                              <span className="text-xs font-bold text-purple-700">?</span>
+                            </button>
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-10">
+                              <div className="bg-gray-900 text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap">
+                                Credits are consumed based on image resolution and enhancement features
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold text-purple-700">{uploadedFiles.length * (smartRestore ? 8 : 5)} credits</span>
+                          <span className="text-xs text-purple-600">{smartRestore ? '8' : '5'} per image</span>
+                        </div>
+                      </div>
                     </div>
                     
                     <div className="mt-6 flex gap-3">
@@ -423,8 +483,6 @@ export default function EnhancePage() {
               }}
             />
 
-            {/* Predictive Credit Usage Assistant */}
-            <PredictiveCreditAssistant />
 
             {/* AI Concierge Mode */}
             <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
