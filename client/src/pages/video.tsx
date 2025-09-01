@@ -16,6 +16,7 @@ import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
+import { PillSelector } from "@/components/shared/pill-selector";
 import { 
   ArrowLeft, 
   Play, 
@@ -29,7 +30,8 @@ import {
   FileVideo,
   Eye,
   Grid3x3,
-  Zap
+  Zap,
+  Monitor
 } from "lucide-react";
 
 export default function VideoPage() {
@@ -45,6 +47,8 @@ export default function VideoPage() {
   const [realTimePreview, setRealTimePreview] = useState(true);
   const [storyboardFrames, setStoryboardFrames] = useState<string[]>([]);
   const [showStoryboard, setShowStoryboard] = useState(false);
+  const [selectedResolution, setSelectedResolution] = useState("720p");
+  const [selectedDuration, setSelectedDuration] = useState("5s");
 
   // Redirect to home if not authenticated
   useEffect(() => {
@@ -367,6 +371,32 @@ export default function VideoPage() {
                         ))}
                       </SelectContent>
                     </Select>
+                  </div>
+
+                  {/* Resolution & Duration Options */}
+                  <div className="mb-6 space-y-4">
+                    <PillSelector
+                      title="Resolution Options"
+                      icon={<Monitor className="w-4 h-4 text-purple-600" />}
+                      options={[
+                        { id: "480p", label: "480p", value: "480p", credits: 10, description: "480p resolution", isAvailable: true },
+                        { id: "720p", label: "720p (HD)", value: "720p", credits: 15, description: "720p HD resolution", isAvailable: true },
+                        { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 25, description: "1080p Full HD resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                      ]}
+                      selectedValue={selectedResolution}
+                      onSelectionChange={setSelectedResolution}
+                    />
+
+                    <PillSelector
+                      title="Clip Duration"
+                      icon={<Clock className="w-4 h-4 text-purple-600" />}
+                      options={[
+                        { id: "5s", label: "5s", value: "5s", credits: 0, description: "5 second clip", isAvailable: true },
+                        { id: "10s", label: "10s", value: "10s", credits: 10, description: "10 second clip", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                      ]}
+                      selectedValue={selectedDuration}
+                      onSelectionChange={setSelectedDuration}
+                    />
                   </div>
 
                   {/* Credit Cost Estimator */}

@@ -12,6 +12,7 @@ import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
+import { PillSelector } from "@/components/shared/pill-selector";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 import { 
   ArrowLeft, 
@@ -24,7 +25,9 @@ import {
   FileImage,
   RotateCcw,
   Download,
-  Loader2
+  Loader2,
+  Maximize2,
+  Monitor
 } from "lucide-react";
 
 export default function EnhancePage() {
@@ -38,6 +41,8 @@ export default function EnhancePage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [selectedUpscaling, setSelectedUpscaling] = useState("2x");
+  const [selectedResolution, setSelectedResolution] = useState("2K");
 
   // Redirect to home if not authenticated
   useEffect(() => {
@@ -265,6 +270,35 @@ export default function EnhancePage() {
 
                 {uploadedFiles.length > 0 && (
                   <>
+                    {/* Resolution & Upscaling Options */}
+                    <div className="mt-6 space-y-4">
+                      <PillSelector
+                        title="Upscaling Options"
+                        icon={<Maximize2 className="w-4 h-4 text-purple-600" />}
+                        options={[
+                          { id: "1x", label: "1×", value: "1x", credits: 5, description: "Original size", isAvailable: true },
+                          { id: "2x", label: "2×", value: "2x", credits: 8, description: "Double resolution", isAvailable: true },
+                          { id: "4x-hd", label: "4× HD", value: "4x-hd", credits: 15, description: "4x upscaling with HD quality", isAvailable: true },
+                          { id: "6x", label: "6×", value: "6x", credits: 25, description: "6x upscaling", isAvailable: true, isPremium: true },
+                          { id: "6x-ultra", label: "6× Ultra-HD", value: "6x-ultra", credits: 35, description: "6x upscaling with Ultra-HD quality", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                        ]}
+                        selectedValue={selectedUpscaling}
+                        onSelectionChange={setSelectedUpscaling}
+                      />
+
+                      <PillSelector
+                        title="Resolution Options"
+                        icon={<Monitor className="w-4 h-4 text-purple-600" />}
+                        options={[
+                          { id: "1k", label: "1K", value: "1k", credits: 5, description: "1280x720 resolution", isAvailable: true },
+                          { id: "2k", label: "2K", value: "2k", credits: 10, description: "1920x1080 resolution", isAvailable: true },
+                          { id: "4k", label: "4K", value: "4k", credits: 20, description: "3840x2160 resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                        ]}
+                        selectedValue={selectedResolution}
+                        onSelectionChange={setSelectedResolution}
+                      />
+                    </div>
+
                     {/* Credits Needed */}
                     <div className="mt-6">
                       <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-200">

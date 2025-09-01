@@ -12,7 +12,8 @@ import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 import { SocialExport } from "@/components/shared/social-export";
-import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2 } from "lucide-react";
+import { PillSelector } from "@/components/shared/pill-selector";
+import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2, Monitor, RectangleHorizontal } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -29,6 +30,8 @@ export default function GeneratePage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [currentPreview, setCurrentPreview] = useState(0);
+  const [selectedResolution, setSelectedResolution] = useState("1k");
+  const [selectedAspectRatio, setSelectedAspectRatio] = useState("1:1");
 
   const aiStyles = [
     { id: "realistic", name: "Realistic", description: "Photographic quality", icon: Camera },
@@ -250,6 +253,34 @@ export default function GeneratePage() {
                       }}
                     />
                   </div>
+                </div>
+
+                {/* Resolution & Aspect Ratio Options */}
+                <div className="mb-6 space-y-4">
+                  <PillSelector
+                    title="Resolution Options"
+                    icon={<Monitor className="w-4 h-4 text-purple-600" />}
+                    options={[
+                      { id: "512px", label: "512px", value: "512px", credits: 3, description: "512×512 resolution", isAvailable: true },
+                      { id: "1k", label: "1K", value: "1k", credits: 5, description: "1024×1024 resolution", isAvailable: true },
+                      { id: "2k", label: "2K", value: "2k", credits: 10, description: "1536×1536 resolution", isAvailable: true },
+                      { id: "4k", label: "4K", value: "4k", credits: 20, description: "2048×2048 resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                    ]}
+                    selectedValue={selectedResolution}
+                    onSelectionChange={setSelectedResolution}
+                  />
+
+                  <PillSelector
+                    title="Aspect Ratio Options"
+                    icon={<RectangleHorizontal className="w-4 h-4 text-purple-600" />}
+                    options={[
+                      { id: "1:1", label: "1:1", value: "1:1", credits: 0, description: "Square format", isAvailable: true },
+                      { id: "16:9", label: "16:9", value: "16:9", credits: 2, description: "Widescreen format", isAvailable: true },
+                      { id: "9:16", label: "9:16", value: "9:16", credits: 2, description: "Portrait format", isAvailable: true }
+                    ]}
+                    selectedValue={selectedAspectRatio}
+                    onSelectionChange={setSelectedAspectRatio}
+                  />
                 </div>
 
                 {/* Credit Cost Estimator */}
