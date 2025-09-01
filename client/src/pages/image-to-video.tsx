@@ -456,7 +456,7 @@ export default function ImageToVideoPage() {
                 <div className="mb-4">
                   <CreditCostEstimator 
                     service="image-to-video"
-                    selectedResolution={resolution}
+                    selectedResolution={selectedResolution}
                     selectedDuration={selectedDuration}
                   />
                 </div>

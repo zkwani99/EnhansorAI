@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Zap, Info } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 
 interface CreditCostEstimatorProps {
@@ -11,15 +10,8 @@ interface CreditCostEstimatorProps {
   selectedResolution?: string;
   selectedDuration?: number; // for video services
   selectedSize?: string; // for image services
+  selectedUpscaling?: string; // for image enhancement
   className?: string;
-}
-
-interface CreditConfig {
-  service: string;
-  baseCost: number;
-  resolutionMultipliers: Record<string, number>;
-  durationMultipliers?: Record<string, number>;
-  sizeMultipliers?: Record<string, number>;
 }
 
 export function CreditCostEstimator({ 
@@ -27,9 +19,9 @@ export function CreditCostEstimator({
   selectedResolution = "1080p", 
   selectedDuration = 5, 
   selectedSize = "square",
+  selectedUpscaling = "2x",
   className = "" 
 }: CreditCostEstimatorProps) {
-  const [estimatedCost, setEstimatedCost] = useState(0);
   const { user } = useAuth();
 
   // Determine if user is on subscription plan
@@ -41,52 +33,70 @@ export function CreditCostEstimator({
     return null;
   }
 
-  // Fetch credit configuration from backend
-  const { data: creditConfig, isLoading } = useQuery<CreditConfig[]>({
-    queryKey: ['/api/credits/config'],
-    retry: false,
-  });
+  // Calculate credits based on exact pricing structure from homepage
+  const estimatedCost = useMemo(() => {
+    switch (service) {
+      case "image-enhancement":
+        // Based on upscaling level:
+        // 2× Upscale: 1 credit
+        // Up to 4× HD Upscaling: 2 credits  
+        // Up to 6× Upscaling: 3 credits
+        // Up to 6× Ultra-HD Upscaling: 4 credits
+        if (selectedUpscaling?.includes("6x") && selectedUpscaling?.includes("Ultra")) {
+          return 4;
+        } else if (selectedUpscaling?.includes("6x")) {
+          return 3;
+        } else if (selectedUpscaling?.includes("4x")) {
+          return 2;
+        } else {
+          return 1; // 2x upscale
+        }
 
-  useEffect(() => {
-    if (!creditConfig) return;
+      case "text-to-image":
+        // Based on resolution:
+        // 512px: 1 credit
+        // 1K: 2 credits
+        // 2K: 3 credits  
+        // 4K: 4 credits
+        if (selectedResolution?.includes("4K") || selectedResolution === "3840x2160") {
+          return 4;
+        } else if (selectedResolution?.includes("2K") || selectedResolution === "2048x2048") {
+          return 3;
+        } else if (selectedResolution?.includes("1K") || selectedResolution === "1024x1024") {
+          return 2;
+        } else {
+          return 1; // 512px
+        }
 
-    const serviceConfig = creditConfig.find(config => config.service === service);
-    if (!serviceConfig) return;
+      case "text-to-video":
+        // Based on resolution for 5 seconds:
+        // 5 seconds at 480p: 10 credits
+        // 5 seconds at 720p: 15 credits
+        // 5 seconds at 1080p: 20 credits
+        // Scale by duration (5s is base)
+        let baseCredits = 10; // 480p default
+        if (selectedResolution === "1080p") {
+          baseCredits = 20;
+        } else if (selectedResolution === "720p") {
+          baseCredits = 15;
+        }
+        // Scale by duration (5s is the base)
+        return Math.ceil(baseCredits * (selectedDuration / 5));
 
-    let cost = serviceConfig.baseCost;
+      case "image-to-video":
+        // Based on resolution for short clips:
+        // Short Clip (up to 5s, up to 720p resolution): 15 credits
+        // Short Clip (up to 8s, up to 1080p resolution): 20 credits
+        if (selectedResolution === "1080p") {
+          return 20;
+        } else {
+          return 15; // 720p
+        }
 
-    // Apply resolution multiplier
-    if (selectedResolution && serviceConfig.resolutionMultipliers[selectedResolution]) {
-      cost *= serviceConfig.resolutionMultipliers[selectedResolution];
+      default:
+        return 1;
     }
-
-    // Apply duration multiplier for video services
-    if ((service === "text-to-video" || service === "image-to-video") && selectedDuration) {
-      const durationKey = selectedDuration <= 5 ? "short" : selectedDuration <= 15 ? "medium" : "long";
-      if (serviceConfig.durationMultipliers?.[durationKey]) {
-        cost *= serviceConfig.durationMultipliers[durationKey];
-      }
-      // Also multiply by actual duration
-      cost = Math.ceil(cost * (selectedDuration / 5));
-    }
-
-    // Apply size multiplier for image services
-    if ((service === "image-enhancement" || service === "text-to-image") && selectedSize) {
-      if (serviceConfig.sizeMultipliers?.[selectedSize]) {
-        cost *= serviceConfig.sizeMultipliers[selectedSize];
-      }
-    }
-
-    setEstimatedCost(Math.ceil(cost));
-  }, [creditConfig, service, selectedResolution, selectedDuration, selectedSize]);
-
-  if (isLoading) {
-    return (
-      <div className={`animate-pulse ${className}`}>
-        <div className="h-6 bg-gray-200 rounded w-20"></div>
-      </div>
-    );
-  }
+  }, [service, selectedResolution, selectedDuration, selectedUpscaling]);
 
   const getServiceDisplayName = () => {
     switch (service) {

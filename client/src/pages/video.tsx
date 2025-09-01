@@ -403,7 +403,7 @@ export default function VideoPage() {
                   <div className="mb-4">
                     <CreditCostEstimator 
                       service="text-to-video"
-                      selectedResolution="1080p"
+                      selectedResolution={selectedResolution}
                       selectedDuration={duration[0]}
                     />
                   </div>

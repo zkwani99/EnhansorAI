@@ -517,6 +517,12 @@ export default function EnhancePage() {
               }}
             />
 
+            {/* Credit Cost Estimator */}
+            <CreditCostEstimator 
+              service="image-enhancement"
+              selectedUpscaling={selectedUpscaling}
+              selectedResolution={selectedResolution}
+            />
 
             {/* AI Concierge Mode */}
             <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">

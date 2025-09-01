@@ -288,7 +288,7 @@ export default function GeneratePage() {
                   <CreditCostEstimator 
                     service="text-to-image"
                     selectedSize={selectedSize}
-                    selectedResolution="1024x1024"
+                    selectedResolution={selectedResolution}
                   />
                 </div>
 
