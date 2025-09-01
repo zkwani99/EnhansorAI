@@ -37,60 +37,67 @@ export function CreditCostEstimator({
   const estimatedCost = useMemo(() => {
     switch (service) {
       case "image-enhancement":
-        // Based on upscaling level:
-        // 2× Upscale: 1 credit
-        // Up to 4× HD Upscaling: 2 credits  
-        // Up to 6× Upscaling: 3 credits
-        // Up to 6× Ultra-HD Upscaling: 4 credits
-        if (selectedUpscaling?.includes("6x") && selectedUpscaling?.includes("Ultra")) {
-          return 4;
-        } else if (selectedUpscaling?.includes("6x")) {
-          return 3;
-        } else if (selectedUpscaling?.includes("4x")) {
-          return 2;
+        // Based on upscaling level - EXACT HOMEPAGE PRICING:
+        // 2× Upscale = 1 credit
+        // Up to 4× HD Upscaling = 2 credits
+        // Up to 6× Upscaling = 3 credits
+        // Up to 6× Ultra-HD Upscaling = 4 credits
+        if (selectedUpscaling === "6x-ultra") {
+          return 4; // 6× Ultra-HD
+        } else if (selectedUpscaling === "6x") {
+          return 3; // 6× Upscaling
+        } else if (selectedUpscaling === "4x-hd") {
+          return 2; // 4× HD Upscaling
+        } else if (selectedUpscaling === "2x") {
+          return 1; // 2× Upscale
         } else {
-          return 1; // 2x upscale
+          return 1; // Default to 2× pricing
         }
 
       case "text-to-image":
-        // Based on resolution:
-        // 512px: 1 credit
-        // 1K: 2 credits
-        // 2K: 3 credits  
-        // 4K: 4 credits
-        if (selectedResolution?.includes("4K") || selectedResolution === "3840x2160") {
-          return 4;
-        } else if (selectedResolution?.includes("2K") || selectedResolution === "2048x2048") {
-          return 3;
-        } else if (selectedResolution?.includes("1K") || selectedResolution === "1024x1024") {
-          return 2;
-        } else {
+        // Based on resolution - EXACT HOMEPAGE PRICING:
+        // 512px = 1 credit
+        // 1K = 2 credits
+        // 2K = 3 credits
+        // 4K = 4 credits
+        if (selectedResolution === "4k") {
+          return 4; // 4K
+        } else if (selectedResolution === "2k") {
+          return 3; // 2K
+        } else if (selectedResolution === "1k") {
+          return 2; // 1K
+        } else if (selectedResolution === "512px") {
           return 1; // 512px
+        } else {
+          return 1; // Default to 512px pricing
         }
 
       case "text-to-video":
-        // Based on resolution for 5 seconds:
-        // 5 seconds at 480p: 10 credits
-        // 5 seconds at 720p: 15 credits
-        // 5 seconds at 1080p: 20 credits
-        // Scale by duration (5s is base)
+        // Based on resolution for 5 seconds - EXACT HOMEPAGE PRICING:
+        // 5 seconds at 480p resolution = 10 credits
+        // 5 seconds at 720p resolution = 15 credits
+        // 5 seconds at 1080p resolution = 20 credits
         let baseCredits = 10; // 480p default
         if (selectedResolution === "1080p") {
           baseCredits = 20;
         } else if (selectedResolution === "720p") {
           baseCredits = 15;
+        } else if (selectedResolution === "480p") {
+          baseCredits = 10;
         }
         // Scale by duration (5s is the base)
         return Math.ceil(baseCredits * (selectedDuration / 5));
 
       case "image-to-video":
-        // Based on resolution for short clips:
-        // Short Clip (up to 5s, up to 720p resolution): 15 credits
-        // Short Clip (up to 8s, up to 1080p resolution): 20 credits
+        // Based on resolution for short clips - EXACT HOMEPAGE PRICING:
+        // Short Clip (Up to 5s, up to 720p resolution) = 15 credits
+        // Short Clip (Up to 8s, up to 1080p resolution) = 20 credits
         if (selectedResolution === "1080p") {
-          return 20;
+          return 20; // Short Clip 1080p
+        } else if (selectedResolution === "720p") {
+          return 15; // Short Clip 720p
         } else {
-          return 15; // 720p
+          return 15; // Default to 720p pricing
         }
 
       default:
