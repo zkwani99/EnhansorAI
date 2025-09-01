@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { AlertTriangle, Download, Calendar, FileType, HardDrive } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { SocialExport } from "@/components/shared/social-export";
 
 interface GeneratedFile {
   id: string;
@@ -206,63 +207,78 @@ export function FileManager({ service, title, className = "" }: FileManagerProps
                 return (
                   <div
                     key={file.id}
-                    className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+                    className="p-4 border rounded-lg hover:bg-gray-50"
                     data-testid={`file-item-${file.id}`}
                   >
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h4 className="font-medium truncate" data-testid={`text-filename-${file.id}`}>
-                          {file.fileName}
-                        </h4>
-                        <Badge variant={file.fileType === "video" ? "default" : "secondary"}>
-                          {file.fileType}
-                        </Badge>
-                        {daysLeft <= 7 && (
-                          <Badge variant="destructive" className="text-xs">
-                            {daysLeft} days left
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h4 className="font-medium truncate" data-testid={`text-filename-${file.id}`}>
+                            {file.fileName}
+                          </h4>
+                          <Badge variant={file.fileType === "video" ? "default" : "secondary"}>
+                            {file.fileType}
                           </Badge>
-                        )}
-                      </div>
-                      
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {formatDate(file.createdAt)}
-                        </span>
-                        <span>{formatFileSize(file.fileSize)}</span>
-                        <span>{file.creditsUsed} credits used</span>
-                        {file.downloadCount > 0 && (
-                          <span className="text-purple-600">
-                            Downloaded {file.downloadCount} time{file.downloadCount !== 1 ? "s" : ""}
+                          {daysLeft <= 7 && (
+                            <Badge variant="destructive" className="text-xs">
+                              {daysLeft} days left
+                            </Badge>
+                          )}
+                        </div>
+                        
+                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            {formatDate(file.createdAt)}
                           </span>
+                          <span>{formatFileSize(file.fileSize)}</span>
+                          <span>{file.creditsUsed} credits used</span>
+                          {file.downloadCount > 0 && (
+                            <span className="text-purple-600">
+                              Downloaded {file.downloadCount} time{file.downloadCount !== 1 ? "s" : ""}
+                            </span>
+                          )}
+                        </div>
+                        
+                        {file.originalPrompt && (
+                          <p className="text-xs text-gray-400 mt-1 truncate">
+                            "{file.originalPrompt}"
+                          </p>
                         )}
                       </div>
-                      
-                      {file.originalPrompt && (
-                        <p className="text-xs text-gray-400 mt-1 truncate">
-                          "{file.originalPrompt}"
-                        </p>
-                      )}
                     </div>
                     
-                    <Button
-                      onClick={() => handleDownload(file.id)}
-                      disabled={isDownloading || downloadMutation.isPending}
-                      size="sm"
-                      data-testid={`button-download-${file.id}`}
-                    >
-                      {isDownloading ? (
-                        <>
-                          <Progress value={undefined} className="h-4 w-4 mr-2" />
-                          Downloading...
-                        </>
-                      ) : (
-                        <>
-                          <Download className="h-4 w-4 mr-2" />
-                          Download
-                        </>
-                      )}
-                    </Button>
+                    {/* Action Buttons Row */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      <Button
+                        onClick={() => handleDownload(file.id)}
+                        disabled={isDownloading || downloadMutation.isPending}
+                        size="sm"
+                        className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white"
+                        data-testid={`button-download-${file.id}`}
+                      >
+                        {isDownloading ? (
+                          <>
+                            <Progress value={undefined} className="h-4 w-4 mr-2" />
+                            Downloading...
+                          </>
+                        ) : (
+                          <>
+                            <Download className="h-4 w-4 mr-2" />
+                            Download
+                          </>
+                        )}
+                      </Button>
+                      
+                      <div className="lg:max-w-xs">
+                        <SocialExport 
+                          fileUrl={file.fileUrl}
+                          fileName={file.fileName}
+                          fileType={file.fileType as "image" | "video"}
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
                   </div>
                 );
               })}

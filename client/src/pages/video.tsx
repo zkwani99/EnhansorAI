@@ -14,6 +14,8 @@ import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
+import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
+import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 import { 
   ArrowLeft, 
   Play, 
@@ -303,6 +305,20 @@ export default function VideoPage() {
                     <p className="text-sm text-gray-500 mt-2">
                       Be specific about actions, objects, and visual style for best results.
                     </p>
+                    
+                    {/* AI Prompt Assistant */}
+                    <div className="flex justify-center mt-3">
+                      <AIPromptAssistant 
+                        service="text-to-video"
+                        onPromptSelect={(selectedPrompt) => {
+                          setPrompt(selectedPrompt);
+                          toast({
+                            title: "Prompt Applied",
+                            description: "AI suggestion has been added to your video prompt!",
+                          });
+                        }}
+                      />
+                    </div>
                   </div>
 
                   {/* Duration Selection */}
@@ -351,6 +367,15 @@ export default function VideoPage() {
                         ))}
                       </SelectContent>
                     </Select>
+                  </div>
+
+                  {/* Credit Cost Estimator */}
+                  <div className="mb-4">
+                    <CreditCostEstimator 
+                      service="text-to-video"
+                      selectedResolution="1080p"
+                      selectedDuration={duration[0]}
+                    />
                   </div>
 
                   {/* Generate Button */}

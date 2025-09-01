@@ -9,6 +9,9 @@ import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
+import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
+import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
+import { SocialExport } from "@/components/shared/social-export";
 import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -232,6 +235,29 @@ export default function GeneratePage() {
                     placeholder="Describe the image you want to generate..."
                     className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none"
                     data-testid="input-prompt"
+                  />
+                  
+                  {/* AI Prompt Assistant */}
+                  <div className="flex justify-center">
+                    <AIPromptAssistant 
+                      service="text-to-image"
+                      onPromptSelect={(selectedPrompt) => {
+                        setPrompt(selectedPrompt);
+                        toast({
+                          title: "Prompt Applied",
+                          description: "AI suggestion has been added to your prompt!",
+                        });
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Credit Cost Estimator */}
+                <div className="mb-4">
+                  <CreditCostEstimator 
+                    service="text-to-image"
+                    selectedSize={selectedSize}
+                    selectedResolution="1024x1024"
                   />
                 </div>
 

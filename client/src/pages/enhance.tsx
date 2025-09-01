@@ -12,6 +12,7 @@ import CreditBalance from "@/components/shared/credit-balance";
 import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
+import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 import { 
   ArrowLeft, 
   Upload, 
@@ -219,8 +220,17 @@ export default function EnhancePage() {
                 )}
 
                 {uploadedFiles.length > 0 && (
-                  <div className="mt-6 flex gap-3">
-                    <Button
+                  <>
+                    {/* Credit Cost Estimator */}
+                    <div className="mt-6">
+                      <CreditCostEstimator 
+                        service="image-enhancement"
+                        selectedResolution="original"
+                      />
+                    </div>
+                    
+                    <div className="mt-6 flex gap-3">
+                      <Button
                       onClick={handleEnhancement}
                       disabled={isProcessing}
                       className="flex-1 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white"
@@ -242,6 +252,7 @@ export default function EnhancePage() {
                       Clear
                     </Button>
                   </div>
+                  </>
                 )}
 
                 {isProcessing && (

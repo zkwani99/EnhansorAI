@@ -56,6 +56,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Credit configuration endpoint for cost estimation
+  app.get('/api/credits/config', async (req, res) => {
+    try {
+      const creditConfig = [
+        {
+          service: "image-enhancement",
+          baseCost: 2,
+          resolutionMultipliers: {
+            "720p": 1,
+            "1080p": 1.5,
+            "2K": 2,
+            "4K": 3
+          },
+          sizeMultipliers: {
+            "square": 1,
+            "portrait": 1.2,
+            "landscape": 1.2
+          }
+        },
+        {
+          service: "text-to-image",
+          baseCost: 3,
+          resolutionMultipliers: {
+            "512x512": 1,
+            "1024x1024": 1.5,
+            "2048x2048": 2.5
+          },
+          sizeMultipliers: {
+            "square": 1,
+            "portrait": 1.3,
+            "landscape": 1.3
+          }
+        },
+        {
+          service: "text-to-video",
+          baseCost: 8,
+          resolutionMultipliers: {
+            "720p": 1,
+            "1080p": 1.8,
+            "2K": 3,
+            "4K": 5
+          },
+          durationMultipliers: {
+            "short": 1,
+            "medium": 2,
+            "long": 3.5
+          }
+        },
+        {
+          service: "image-to-video",
+          baseCost: 6,
+          resolutionMultipliers: {
+            "720p": 1,
+            "1080p": 1.6,
+            "2K": 2.8,
+            "4K": 4.5
+          },
+          durationMultipliers: {
+            "short": 1,
+            "medium": 1.8,
+            "long": 3
+          }
+        }
+      ];
+      
+      res.json(creditConfig);
+    } catch (error) {
+      console.error('Error fetching credit config:', error);
+      res.status(500).json({ message: 'Failed to fetch credit configuration' });
+    }
+  });
+
   // User Credits Routes  
   app.get('/api/credits/balance', isAuthenticated, async (req: any, res) => {
     try {

@@ -18,6 +18,8 @@ import { FileManager } from "@/components/FileManager";
 import { VideoStitchingModal } from "@/components/VideoStitchingModal";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
+import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
+import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 
 export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -312,6 +314,20 @@ export default function ImageToVideoPage() {
                     className="min-h-24 resize-none border-gray-300 focus:border-purple-500 focus:ring-purple-500"
                     data-testid="textarea-prompt"
                   />
+                  
+                  {/* AI Prompt Assistant */}
+                  <div className="flex justify-center mt-3">
+                    <AIPromptAssistant 
+                      service="image-to-video"
+                      onPromptSelect={(selectedPrompt) => {
+                        setPrompt(selectedPrompt);
+                        toast({
+                          title: "Prompt Applied",
+                          description: "AI suggestion has been added to your video prompt!",
+                        });
+                      }}
+                    />
+                  </div>
                 </div>
 
                 {/* Duration Selector */}
@@ -393,6 +409,15 @@ export default function ImageToVideoPage() {
                       </Button>
                     ))}
                   </div>
+                </div>
+
+                {/* Credit Cost Estimator */}
+                <div className="mb-4">
+                  <CreditCostEstimator 
+                    service="image-to-video"
+                    selectedResolution={resolution}
+                    selectedDuration={selectedDuration}
+                  />
                 </div>
 
                 {/* Generate Button */}
