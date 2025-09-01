@@ -415,42 +415,6 @@ export default function ImageToVideoPage() {
                   </div>
                 </div>
 
-                {/* Resolution & Duration Options */}
-                <div className="mb-6 space-y-4">
-                  <PillSelector
-                    title="Resolution Options"
-                    icon={<Monitor className="w-4 h-4 text-purple-600" />}
-                    options={[
-                      { id: "720p", label: "720p (HD)", value: "720p", credits: 15, description: "720p HD resolution", isAvailable: true },
-                      { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 25, description: "1080p Full HD resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
-                    ]}
-                    selectedValue={selectedResolution}
-                    onSelectionChange={setSelectedResolution}
-                  />
-
-                  <PillSelector
-                    title="Clip Duration"
-                    icon={<Clock className="w-4 h-4 text-purple-600" />}
-                    options={[
-                      { id: "5s", label: "5s", value: "5s", credits: 0, description: "5 second clip", isAvailable: true },
-                      { id: "8s", label: "8s", value: "8s", credits: 5, description: "8 second clip", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
-                    ]}
-                    selectedValue={selectedClipDuration}
-                    onSelectionChange={setSelectedClipDuration}
-                  />
-
-                  <PillSelector
-                    title="Stitched Video Duration"
-                    icon={<Scissors className="w-4 h-4 text-purple-600" />}
-                    options={[
-                      { id: "1min", label: "1min", value: "1min", credits: 20, description: "1 minute stitched video", isAvailable: true },
-                      { id: "2min", label: "2min", value: "2min", credits: 35, description: "2 minute stitched video", isAvailable: true, isPremium: true },
-                      { id: "3min", label: "3min", value: "3min", credits: 50, description: "3 minute stitched video", isAvailable: false, isPremium: true, planRequired: "Business" }
-                    ]}
-                    selectedValue={selectedStitchedDuration}
-                    onSelectionChange={setSelectedStitchedDuration}
-                  />
-                </div>
 
                 {/* Credit Cost Estimator */}
                 <div className="mb-4">

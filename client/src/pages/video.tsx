@@ -387,16 +387,6 @@ export default function VideoPage() {
                       onSelectionChange={setSelectedResolution}
                     />
 
-                    <PillSelector
-                      title="Clip Duration"
-                      icon={<Clock className="w-4 h-4 text-purple-600" />}
-                      options={[
-                        { id: "5s", label: "5s", value: "5s", credits: 0, description: "5 second clip", isAvailable: true },
-                        { id: "10s", label: "10s", value: "10s", credits: 10, description: "10 second clip", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
-                      ]}
-                      selectedValue={selectedDuration}
-                      onSelectionChange={setSelectedDuration}
-                    />
                   </div>
 
                   {/* Credit Cost Estimator */}
