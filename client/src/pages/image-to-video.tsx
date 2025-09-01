@@ -26,16 +26,13 @@ export default function ImageToVideoPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
   const [selectedDuration, setSelectedDuration] = useState(5);
-  const [resolution, setResolution] = useState("720p");
+  const [selectedResolution, setSelectedResolution] = useState("720p");
   const [style, setStyle] = useState("cinematic");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
   const [aiStoryboard, setAiStoryboard] = useState(true);
   const [realTimePreview, setRealTimePreview] = useState(true);
   const [showStitchingModal, setShowStitchingModal] = useState(false);
-  const [selectedResolution, setSelectedResolution] = useState("720p");
-  const [selectedClipDuration, setSelectedClipDuration] = useState("5s");
-  const [selectedStitchedDuration, setSelectedStitchedDuration] = useState("1min");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const { isAuthenticated, user } = useAuth();
@@ -372,9 +369,9 @@ export default function ImageToVideoPage() {
                     ].map((res) => (
                       <Button
                         key={res.value}
-                        variant={resolution === res.value ? "default" : "outline"}
-                        onClick={() => setResolution(res.value)}
-                        className={resolution === res.value ? 
+                        variant={selectedResolution === res.value ? "default" : "outline"}
+                        onClick={() => setSelectedResolution(res.value)}
+                        className={selectedResolution === res.value ? 
                           "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" : 
                           "border-purple-300 text-purple-600 hover:bg-purple-50"
                         }

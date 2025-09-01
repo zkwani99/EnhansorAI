@@ -521,7 +521,6 @@ export default function EnhancePage() {
             <CreditCostEstimator 
               service="image-enhancement"
               selectedUpscaling={selectedUpscaling}
-              selectedResolution={selectedResolution}
             />
 
             {/* AI Concierge Mode */}

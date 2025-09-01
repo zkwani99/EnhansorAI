@@ -89,15 +89,18 @@ export function CreditCostEstimator({
         return Math.ceil(baseCredits * (selectedDuration / 5));
 
       case "image-to-video":
-        // Based on resolution for short clips - EXACT HOMEPAGE PRICING:
+        // Based on resolution and duration - EXACT HOMEPAGE PRICING:
         // Short Clip (Up to 5s, up to 720p resolution) = 15 credits
         // Short Clip (Up to 8s, up to 1080p resolution) = 20 credits
+        // Scale proportionally with duration
+        let baseCreditsImageVideo = 15; // 720p base
         if (selectedResolution === "1080p") {
-          return 20; // Short Clip 1080p
-        } else if (selectedResolution === "720p") {
-          return 15; // Short Clip 720p
+          baseCreditsImageVideo = 20; // 1080p base (for 8s)
+          // Scale from 8s base for 1080p
+          return Math.ceil(baseCreditsImageVideo * (selectedDuration / 8));
         } else {
-          return 15; // Default to 720p pricing
+          // 720p and other resolutions scale from 5s base
+          return Math.ceil(baseCreditsImageVideo * (selectedDuration / 5));
         }
 
       default:
