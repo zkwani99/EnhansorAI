@@ -10,7 +10,7 @@ import { Slider } from "@/components/ui/slider";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import CreditBalance from "@/components/shared/credit-balance";
+import { DualMeterSystem } from "@/components/shared/dual-meter-system";
 import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
@@ -227,7 +227,7 @@ export default function VideoPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Credit Balance */}
         <div className="mb-8">
-          <CreditBalance showDetails={true} />
+          <DualMeterSystem service="text-to-video" showDetails={true} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

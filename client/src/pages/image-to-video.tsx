@@ -13,7 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid3x3, Eye, Sparkles, Film, Scissors } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-import CreditBalance from "@/components/shared/credit-balance";
+import { DualMeterSystem } from "@/components/shared/dual-meter-system";
 import { FileManager } from "@/components/FileManager";
 import { VideoStitchingModal } from "@/components/VideoStitchingModal";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
@@ -206,7 +206,7 @@ export default function ImageToVideoPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Credit Balance */}
         <div className="mb-8">
-          <CreditBalance showDetails={true} />
+          <DualMeterSystem service="image-to-video" showDetails={true} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

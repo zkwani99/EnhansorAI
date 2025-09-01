@@ -8,6 +8,7 @@ import {
   generatedFiles,
   videoStitchingProjects,
   userPreferences,
+  userSubscriptionOutputs,
   type User,
   type UpsertUser,
   type InsertUser,
@@ -26,6 +27,8 @@ import {
   type InsertVideoStitchingProject,
   type UserPreferences,
   type InsertUserPreferences,
+  type UserSubscriptionOutputs,
+  type InsertUserSubscriptionOutputs,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql, and, desc } from "drizzle-orm";
@@ -59,6 +62,11 @@ export interface IStorage {
   getUserVideoStitchingProjects(userId: string): Promise<VideoStitchingProject[]>;
   getVideoStitchingProject(id: string): Promise<VideoStitchingProject | null>;
   updateVideoStitchingProject(id: string, updates: Partial<VideoStitchingProject>): Promise<VideoStitchingProject>;
+  
+  // Subscription outputs operations
+  getUserSubscriptionOutputs(userId: string): Promise<UserSubscriptionOutputs | null>;
+  initializeUserSubscriptionOutputs(userId: string, planType: string): Promise<UserSubscriptionOutputs>;
+  useSubscriptionOutput(userId: string, service: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -401,6 +409,87 @@ export class DatabaseStorage implements IStorage {
         ...prefsData,
       } as InsertUserPreferences);
     }
+  }
+
+  // Subscription outputs operations
+  async getUserSubscriptionOutputs(userId: string): Promise<UserSubscriptionOutputs | null> {
+    const [outputs] = await db
+      .select()
+      .from(userSubscriptionOutputs)
+      .where(eq(userSubscriptionOutputs.userId, userId));
+    return outputs || null;
+  }
+
+  async initializeUserSubscriptionOutputs(userId: string, planType: string): Promise<UserSubscriptionOutputs> {
+    // Define limits based on plan type
+    let limits = {
+      imageEnhanceLimit: 0,
+      textToImageLimit: 0,
+      textToVideoLimit: 0,
+      imageToVideoLimit: 0,
+    };
+
+    switch (planType) {
+      case 'basic':
+        limits = {
+          imageEnhanceLimit: 50,
+          textToImageLimit: 100,
+          textToVideoLimit: 20,
+          imageToVideoLimit: 15,
+        };
+        break;
+      case 'growth':
+        limits = {
+          imageEnhanceLimit: 200,
+          textToImageLimit: 500,
+          textToVideoLimit: 100,
+          imageToVideoLimit: 75,
+        };
+        break;
+      case 'business':
+        limits = {
+          imageEnhanceLimit: 1000,
+          textToImageLimit: 2000,
+          textToVideoLimit: 500,
+          imageToVideoLimit: 300,
+        };
+        break;
+    }
+
+    const billingCycleEnd = new Date();
+    billingCycleEnd.setMonth(billingCycleEnd.getMonth() + 1);
+
+    const [result] = await db
+      .insert(userSubscriptionOutputs)
+      .values({
+        userId,
+        ...limits,
+        billingCycleEnd,
+      })
+      .returning();
+    return result;
+  }
+
+  async useSubscriptionOutput(userId: string, service: string): Promise<void> {
+    const fieldMap: Record<string, string> = {
+      'image-enhancement': 'imageEnhanceUsed',
+      'text-to-image': 'textToImageUsed',
+      'text-to-video': 'textToVideoUsed',
+      'image-to-video': 'imageToVideoUsed',
+    };
+
+    const field = fieldMap[service];
+    if (!field) {
+      throw new Error(`Unknown service: ${service}`);
+    }
+
+    await db
+      .update(userSubscriptionOutputs)
+      .set({
+        [field]: sql`${userSubscriptionOutputs[field as keyof typeof userSubscriptionOutputs]} + 1`,
+        updatedAt: new Date(),
+      })
+      .where(eq(userSubscriptionOutputs.userId, userId));
   }
 }
 

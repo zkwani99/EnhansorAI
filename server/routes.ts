@@ -222,6 +222,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // User subscription outputs endpoint
+  app.get('/api/subscription/outputs', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const outputs = await storage.getUserSubscriptionOutputs(userId);
+      res.json(outputs);
+    } catch (error) {
+      console.error("Error fetching subscription outputs:", error);
+      res.status(500).json({ error: "Failed to fetch subscription outputs" });
+    }
+  });
+
   // Video Generation Routes
   
   // Text-to-Video Generation

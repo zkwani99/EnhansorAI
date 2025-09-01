@@ -35,6 +35,9 @@ export const users = pgTable("users", {
   // Keep legacy fields for backward compatibility if needed
   username: text("username").unique(),
   password: text("password"),
+  // Plan and subscription information
+  planType: varchar("plan_type").default("payg"), // 'payg', 'basic', 'growth', 'business'
+  subscriptionStatus: varchar("subscription_status").default("active"), // 'active', 'expired', 'cancelled'
 });
 
 export type UpsertUser = typeof users.$inferInsert;
@@ -249,6 +252,42 @@ export type UserPreferences = typeof userPreferences.$inferSelect;
 export type InsertUserPreferences = typeof userPreferences.$inferInsert;
 
 export const insertUserPreferencesSchema = createInsertSchema(userPreferences).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// User subscription outputs table - tracks monthly usage for subscription plans
+export const userSubscriptionOutputs = pgTable("user_subscription_outputs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  
+  // Monthly limits by service (reset each billing cycle)
+  imageEnhanceLimit: integer("image_enhance_limit").default(0).notNull(),
+  imageEnhanceUsed: integer("image_enhance_used").default(0).notNull(),
+  
+  textToImageLimit: integer("text_to_image_limit").default(0).notNull(),
+  textToImageUsed: integer("text_to_image_used").default(0).notNull(),
+  
+  textToVideoLimit: integer("text_to_video_limit").default(0).notNull(),
+  textToVideoUsed: integer("text_to_video_used").default(0).notNull(),
+  
+  imageToVideoLimit: integer("image_to_video_limit").default(0).notNull(),
+  imageToVideoUsed: integer("image_to_video_used").default(0).notNull(),
+  
+  // Billing cycle tracking
+  billingCycleStart: timestamp("billing_cycle_start").defaultNow(),
+  billingCycleEnd: timestamp("billing_cycle_end"),
+  lastReset: timestamp("last_reset"),
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type UserSubscriptionOutputs = typeof userSubscriptionOutputs.$inferSelect;
+export type InsertUserSubscriptionOutputs = typeof userSubscriptionOutputs.$inferInsert;
+
+export const insertUserSubscriptionOutputsSchema = createInsertSchema(userSubscriptionOutputs).omit({
   id: true,
   createdAt: true,
   updatedAt: true,

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "wouter";
-import CreditBalance from "@/components/shared/credit-balance";
+import { DualMeterSystem } from "@/components/shared/dual-meter-system";
 import { FileManager } from "@/components/FileManager";
 import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
@@ -155,7 +155,7 @@ export default function EnhancePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Credit Balance */}
         <div className="mb-8">
-          <CreditBalance showDetails={true} />
+          <DualMeterSystem service="image-enhancement" showDetails={true} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

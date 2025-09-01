@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Zap, Info } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/hooks/useAuth";
 
 interface CreditCostEstimatorProps {
   service: "image-enhancement" | "text-to-image" | "text-to-video" | "image-to-video";
@@ -29,6 +30,16 @@ export function CreditCostEstimator({
   className = "" 
 }: CreditCostEstimatorProps) {
   const [estimatedCost, setEstimatedCost] = useState(0);
+  const { user } = useAuth();
+
+  // Determine if user is on subscription plan
+  const planType = (user as any)?.planType || "payg";
+  const isSubscriptionPlan = ["basic", "growth", "business"].includes(planType);
+
+  // Hide credit cost estimator for subscription users
+  if (isSubscriptionPlan) {
+    return null;
+  }
 
   // Fetch credit configuration from backend
   const { data: creditConfig, isLoading } = useQuery<CreditConfig[]>({
