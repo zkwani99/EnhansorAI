@@ -81,12 +81,12 @@ export default function Navigation() {
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-white shadow-lg border border-gray-200">
+                <DropdownMenuContent className="w-56 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
                   {navigationGroups.tools.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
                       onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer hover:bg-purple-50 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
+                      className={`cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
                       data-testid={`dropdown-tools-${item.id}`}
                     >
                       {item.name}
@@ -103,12 +103,12 @@ export default function Navigation() {
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48 bg-white shadow-lg border border-gray-200">
+                <DropdownMenuContent className="w-48 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
                   {navigationGroups.explore.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
                       onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer hover:bg-purple-50 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
+                      className={`cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
                       data-testid={`dropdown-explore-${item.id}`}
                     >
                       {item.name}
@@ -134,12 +134,12 @@ export default function Navigation() {
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48 bg-white shadow-lg border border-gray-200">
+                <DropdownMenuContent className="w-48 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
                   {navigationGroups.developers.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
                       onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer hover:bg-purple-50 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
+                      className={`cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
                       data-testid={`dropdown-developers-${item.id}`}
                     >
                       {item.name}
@@ -147,18 +147,6 @@ export default function Navigation() {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-
-              {/* Theme Toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 transition-all duration-200"
-                data-testid="button-theme-toggle"
-                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              >
-                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-              </Button>
 
               {/* Account Dropdown (only if authenticated) */}
               {isAuthenticated && (
@@ -169,7 +157,7 @@ export default function Navigation() {
                       <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-48 bg-white shadow-lg border border-gray-200">
+                  <DropdownMenuContent className="w-48 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
                     {navigationGroups.account.map((item) => (
                       <DropdownMenuItem
                         key={item.id}
@@ -180,7 +168,7 @@ export default function Navigation() {
                             handleNavClick(item);
                           }
                         }}
-                        className={`cursor-pointer hover:bg-purple-50 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
+                        className={`cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-600 font-semibold' : ''}`}
                         data-testid={`dropdown-account-${item.id}`}
                       >
                         {item.name === 'Logout' && <LogOut className="w-4 h-4 mr-2" />}
@@ -191,6 +179,18 @@ export default function Navigation() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               )}
+
+              {/* Theme Toggle - Rightmost position */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 transition-all duration-200"
+                data-testid="button-theme-toggle"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              </Button>
             </div>
           </div>
           
@@ -211,6 +211,18 @@ export default function Navigation() {
                 data-testid="button-sign-up"
               >
                 Sign Up
+              </Button>
+              
+              {/* Theme Toggle - For non-authenticated users */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 transition-all duration-200"
+                data-testid="button-theme-toggle"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
               </Button>
             </div>
           )}
@@ -240,7 +252,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                     data-testid={`mobile-nav-tools-${item.id}`}
                   >
                     {item.name}
@@ -255,7 +267,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                     data-testid={`mobile-nav-explore-${item.id}`}
                   >
                     {item.name}
@@ -281,7 +293,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                     data-testid={`mobile-nav-developers-${item.id}`}
                   >
                     {item.name}
@@ -294,7 +306,7 @@ export default function Navigation() {
                 <Button
                   variant="ghost"
                   onClick={toggleTheme}
-                  className="w-full text-gray-600 dark:text-gray-400 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 justify-start"
+                  className="w-full text-gray-600 dark:text-gray-400 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200 dark:hover:bg-purple-900/20 justify-start"
                   data-testid="mobile-button-theme-toggle"
                 >
                   {theme === 'light' ? <Moon className="w-4 h-4 mr-2" /> : <Sun className="w-4 h-4 mr-2" />}
@@ -318,7 +330,7 @@ export default function Navigation() {
                           }
                           setIsMobileMenuOpen(false);
                         }}
-                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
+                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                         data-testid={`mobile-nav-account-${item.id}`}
                       >
                         {item.name === 'Logout' && <LogOut className="w-4 h-4 mr-2" />}

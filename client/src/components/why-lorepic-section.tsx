@@ -71,13 +71,13 @@ export default function WhyLorepicSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Why Lorepic?
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl">
             From content creators to enterprise businesses, successful professionals across industries grow and scale with Lorepic's AI-powered image enhancement technology.
           </p>
         </div>
