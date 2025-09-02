@@ -33,11 +33,11 @@ export default function AboutPage() {
         <div className="bg-white rounded-lg shadow-lg p-8 lg:p-12">
           <div className="prose prose-lg max-w-none">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              <strong>Enhansor</strong> is an AI-powered SaaS platform built to make professional content creation simple, fast, and affordable. We provide advanced tools for image enhancement, text-to-image generation, and text-to-video creation—all in one platform.
+              <strong>Lorepic</strong> is an AI-powered SaaS platform built to make professional content creation simple, fast, and affordable. We provide advanced tools for image enhancement, text-to-image generation, and text-to-video creation—all in one platform.
             </p>
             
             <p className="text-lg text-gray-700 leading-relaxed">
-              Our mission is to empower creators, businesses, and enterprises with cutting-edge AI technology that delivers high-quality results in seconds. Whether you're a content creator, marketer, or business owner, <strong>Enhansor</strong> helps you unlock creativity without complexity.
+              Our mission is to empower creators, businesses, and enterprises with cutting-edge AI technology that delivers high-quality results in seconds. Whether you're a content creator, marketer, or business owner, <strong>Lorepic</strong> helps you unlock creativity without complexity.
             </p>
           </div>
         </div>

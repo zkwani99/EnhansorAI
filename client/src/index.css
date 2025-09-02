@@ -51,7 +51,7 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
   
-  /* Enhansor Custom Colors */
+  /* Lorepic Custom Colors */
   --primary-blue: hsl(258 90% 66%);
   --primary-purple: hsl(258 90% 66%);
   --primary-orange: hsl(258 90% 66%);
@@ -106,7 +106,7 @@
   --shadow-xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
   --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
   
-  /* Enhansor Custom Colors for Dark Mode */
+  /* Lorepic Custom Colors for Dark Mode */
   --primary-blue: hsl(258 90% 66%);
   --primary-purple: hsl(258 90% 66%);
   --primary-orange: hsl(258 90% 66%);

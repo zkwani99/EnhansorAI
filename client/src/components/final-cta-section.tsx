@@ -28,7 +28,7 @@ export default function FinalCTASection() {
           Ready to Transform Your Content?
         </h2>
         <p className="text-xl text-white/90 mb-10 leading-relaxed">
-          Join thousands of creators, businesses, and artists who trust Enhansor for their AI-powered content needs. 
+          Join thousands of creators, businesses, and artists who trust Lorepic for their AI-powered content needs. 
           Start your free trial today and experience the future of content creation.
         </p>
         

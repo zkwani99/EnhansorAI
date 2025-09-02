@@ -435,7 +435,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-sm text-gray-600">
-                    Use API keys to integrate Enhansor with your applications
+                    Use API keys to integrate Lorepic with your applications
                   </p>
                   
                   <div className="space-y-3">

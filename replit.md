@@ -1,6 +1,6 @@
 # Overview
 
-Enhansor is a comprehensive AI-powered content creation platform offering image enhancement, text-to-image generation, and text-to-video creation services. The application is built as a modern full-stack web application with a React frontend and Express.js backend, featuring a marketing landing page with multiple service offerings and tiered pricing plans.
+Lorepic is a comprehensive AI-powered content creation platform offering image enhancement, text-to-image generation, and text-to-video creation services. The application is built as a modern full-stack web application with a React frontend and Express.js backend, featuring a marketing landing page with multiple service offerings and tiered pricing plans.
 
 # User Preferences
 

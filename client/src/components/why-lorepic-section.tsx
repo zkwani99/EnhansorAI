@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Upload, Eye, Settings, Code, Cloud, Palette, Image, Video } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
 
-export default function WhyEnhansorSection() {
+export default function WhyLorepicSection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     align: 'start',
     slidesToScroll: 1,
@@ -75,10 +75,10 @@ export default function WhyEnhansorSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Why Enhansor?
+            Why Lorepic?
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl">
-            From content creators to enterprise businesses, successful professionals across industries grow and scale with Enhansor's AI-powered image enhancement technology.
+            From content creators to enterprise businesses, successful professionals across industries grow and scale with Lorepic's AI-powered image enhancement technology.
           </p>
         </div>
         

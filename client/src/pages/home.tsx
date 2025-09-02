@@ -1,7 +1,7 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import ServicesSection from "@/components/services-section";
-import WhyEnhansorSection from "@/components/why-enhansor-section";
+import WhyLorepicSection from "@/components/why-lorepic-section";
 import WhatMakesUsDifferentSection from "@/components/what-makes-us-different-section";
 import GallerySection from "@/components/gallery-section";
 import TemplatesSection from "@/components/templates-section";
@@ -16,7 +16,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <ServicesSection />
-      <WhyEnhansorSection />
+      <WhyLorepicSection />
       <WhatMakesUsDifferentSection />
       <GallerySection />
       <TemplatesSection />

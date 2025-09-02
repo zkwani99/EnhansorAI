@@ -37,7 +37,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
               <p className="text-gray-700">
-                By using <strong>Enhansor</strong>, you agree to these Terms of Service.
+                By using <strong>Lorepic</strong>, you agree to these Terms of Service.
               </p>
             </div>
 
@@ -71,7 +71,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Limitation of Liability</h2>
               <p className="text-gray-700">
-                <strong>Enhansor</strong> is provided "as is." We are not liable for indirect or incidental damages.
+                <strong>Lorepic</strong> is provided "as is." We are not liable for indirect or incidental damages.
               </p>
             </div>
 

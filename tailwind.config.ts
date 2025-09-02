@@ -61,7 +61,7 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
-        // Enhansor brand colors
+        // Lorepic brand colors
         "primary-blue": "var(--primary-blue)",
         "primary-purple": "var(--primary-purple)",
         "primary-orange": "var(--primary-orange)",

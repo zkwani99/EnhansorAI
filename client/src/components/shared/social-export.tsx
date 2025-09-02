@@ -64,7 +64,7 @@ export function SocialExport({ fileUrl, fileName, fileType, className = "" }: So
       const shareUrls = {
         instagram: `https://www.instagram.com/`, // Instagram doesn't support direct sharing via URL
         tiktok: `https://www.tiktok.com/upload`,
-        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fileUrl)}&text=${encodeURIComponent(`Check out this amazing ${fileType} I created with Enhansor AI! ✨`)}`,
+        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fileUrl)}&text=${encodeURIComponent(`Check out this amazing ${fileType} I created with Lorepic AI! ✨`)}`,
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fileUrl)}`
       };
 

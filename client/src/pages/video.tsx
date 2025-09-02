@@ -150,7 +150,7 @@ export default function VideoPage() {
     if (generatedVideo) {
       const link = document.createElement('a');
       link.href = generatedVideo;
-      link.download = `enhansor-video-${Date.now()}.mp4`;
+      link.download = `lorepic-video-${Date.now()}.mp4`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

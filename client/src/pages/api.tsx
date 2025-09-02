@@ -60,13 +60,13 @@ export default function APIPage() {
     }
   ];
 
-  const codeExample = `// Install the Enhansor SDK
-npm install @enhansor/sdk
+  const codeExample = `// Install the Lorepic SDK
+npm install @lorepic/sdk
 
 // Initialize the client
-import { Enhansor } from '@enhansor/sdk';
+import { Lorepic } from '@lorepic/sdk';
 
-const client = new Enhansor({
+const client = new Lorepic({
   apiKey: 'your_api_key_here'
 });
 
@@ -101,7 +101,7 @@ console.log(result.imageUrl);`;
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Enhansor Developer API
+              Lorepic Developer API
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -150,7 +150,7 @@ console.log(result.imageUrl);`;
                       </Button>
                     </div>
                     <code className="text-sm text-purple-600 font-mono">
-                      https://api.enhansor.com/v1
+                      https://api.lorepic.com/v1
                     </code>
                   </div>
                   

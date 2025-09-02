@@ -26,10 +26,10 @@ export default function Footer() {
               <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={18} />
               </div>
-              <span className="text-xl font-bold text-gray-900">Enhansor</span>
+              <span className="text-xl font-bold text-gray-900">Lorepic</span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Enhansor — AI tools to enhance, generate, and create. Smarter visuals, faster.
+              Lorepic — AI tools to enhance, generate, and create. Smarter visuals, faster.
             </p>
           </div>
           
@@ -82,14 +82,14 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-gray-900 mb-4">Contact & Support</h4>
             <div className="text-sm text-gray-600">
-              support@enhansor.com
+              support@lorepic.com
             </div>
           </div>
         </div>
         
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-200 text-center">
-          <p className="text-sm text-gray-500">© 2025 Enhansor. All rights reserved</p>
+          <p className="text-sm text-gray-500">© 2025 Lorepic. All rights reserved</p>
         </div>
       </div>
     </footer>
