@@ -299,30 +299,6 @@ export default function EnhancePage() {
                       />
                     </div>
 
-                    {/* Credits Needed */}
-                    <div className="mt-6">
-                      <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-200">
-                        <div className="flex items-center gap-2">
-                          <Zap className="w-4 h-4 text-purple-600" />
-                          <span className="text-sm font-medium text-purple-800">Credits Needed</span>
-                          <div className="group relative">
-                            <button className="w-4 h-4 rounded-full bg-purple-200 hover:bg-purple-300 transition-colors flex items-center justify-center">
-                              <span className="text-xs font-bold text-purple-700">?</span>
-                            </button>
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-10">
-                              <div className="bg-gray-900 text-white text-xs rounded-lg px-3 py-2 whitespace-nowrap">
-                                Credits are consumed based on image resolution and enhancement features
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg font-bold text-purple-700">{uploadedFiles.length * (smartRestore ? 8 : 5)} credits</span>
-                          <span className="text-xs text-purple-600">{smartRestore ? '8' : '5'} per image</span>
-                        </div>
-                      </div>
-                    </div>
                     
                     <div className="mt-6 flex gap-3">
                       <Button
