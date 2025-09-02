@@ -333,83 +333,48 @@ export default function ImageToVideoPage() {
 
                 {/* Duration Selector */}
                 <div>
-                  <Label className="text-lg font-semibold text-gray-900 mb-4 block flex items-center gap-2">
-                    <Clock className="h-5 w-5" />
-                    Duration: {selectedDuration}s
-                  </Label>
-                  <div className="grid grid-cols-3 gap-3">
-                    {[3, 5, 8].map((duration) => (
-                      <Button
-                        key={duration}
-                        variant={selectedDuration === duration ? "default" : "outline"}
-                        onClick={() => setSelectedDuration(duration)}
-                        className={selectedDuration === duration ? 
-                          "bg-purple-600 hover:bg-purple-700 text-white" : 
-                          "border-purple-300 text-purple-600 hover:bg-purple-50"
-                        }
-                        data-testid={`button-duration-${duration}`}
-                      >
-                        {duration}s
-                      </Button>
-                    ))}
-                  </div>
+                  <PillSelector
+                    title="Duration Options"
+                    icon={<Clock className="w-4 h-4 text-purple-600" />}
+                    options={[
+                      { id: "3s", label: "3s", value: "3s", credits: 12, description: "3 second video", isAvailable: true },
+                      { id: "5s", label: "5s", value: "5s", credits: 15, description: "5 second video", isAvailable: true },
+                      { id: "8s", label: "8s", value: "8s", credits: 20, description: "8 second video", isAvailable: true }
+                    ]}
+                    selectedValue={`${selectedDuration}s`}
+                    onSelectionChange={(value) => setSelectedDuration(parseInt(value))}
+                  />
                 </div>
 
                 {/* Resolution Options */}
                 <div>
-                  <Label className="text-lg font-semibold text-gray-900 mb-4 block flex items-center gap-2">
-                    <Monitor className="h-5 w-5" />
-                    Resolution
-                  </Label>
-                  <div className="grid grid-cols-1 gap-2">
-                    {[
-                      { value: "480p", label: "480p (Standard)" },
-                      { value: "720p", label: "720p (HD)" },
-                      { value: "1080p", label: "1080p (Full HD)" }
-                    ].map((res) => (
-                      <Button
-                        key={res.value}
-                        variant={selectedResolution === res.value ? "default" : "outline"}
-                        onClick={() => setSelectedResolution(res.value)}
-                        className={selectedResolution === res.value ? 
-                          "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" : 
-                          "border-purple-300 text-purple-600 hover:bg-purple-50"
-                        }
-                        data-testid={`button-resolution-${res.value}`}
-                      >
-                        {res.label}
-                      </Button>
-                    ))}
-                  </div>
+                  <PillSelector
+                    title="Resolution Options"
+                    icon={<Monitor className="w-4 h-4 text-purple-600" />}
+                    options={[
+                      { id: "480p", label: "480p (Standard)", value: "480p", credits: 15, description: "480p resolution", isAvailable: true },
+                      { id: "720p", label: "720p (HD)", value: "720p", credits: 20, description: "720p HD resolution", isAvailable: true },
+                      { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 25, description: "1080p Full HD resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                    ]}
+                    selectedValue={selectedResolution}
+                    onSelectionChange={setSelectedResolution}
+                  />
                 </div>
 
                 {/* Style Selection */}
                 <div>
-                  <Label className="text-lg font-semibold text-gray-900 mb-4 block flex items-center gap-2">
-                    <Palette className="h-5 w-5" />
-                    Style
-                  </Label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { value: "cinematic", label: "Cinematic" },
-                      { value: "product-ad", label: "Product Ad" },
-                      { value: "reel", label: "Reel" },
-                      { value: "realistic", label: "Realistic" }
-                    ].map((styleOption) => (
-                      <Button
-                        key={styleOption.value}
-                        variant={style === styleOption.value ? "default" : "outline"}
-                        onClick={() => setStyle(styleOption.value)}
-                        className={style === styleOption.value ? 
-                          "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" : 
-                          "border-purple-300 text-purple-600 hover:bg-purple-50"
-                        }
-                        data-testid={`button-style-${styleOption.value}`}
-                      >
-                        {styleOption.label}
-                      </Button>
-                    ))}
-                  </div>
+                  <PillSelector
+                    title="Style Options"
+                    icon={<Palette className="w-4 h-4 text-purple-600" />}
+                    options={[
+                      { id: "cinematic", label: "Cinematic", value: "cinematic", credits: 0, description: "Movie-like quality with professional lighting", isAvailable: true },
+                      { id: "product-ad", label: "Product Ad", value: "product-ad", credits: 0, description: "Perfect for product showcases", isAvailable: true },
+                      { id: "reel", label: "Reel", value: "reel", credits: 0, description: "Social media optimized style", isAvailable: true },
+                      { id: "realistic", label: "Realistic", value: "realistic", credits: 0, description: "Natural, photorealistic rendering", isAvailable: true }
+                    ]}
+                    selectedValue={style}
+                    onSelectionChange={setStyle}
+                  />
                 </div>
 
 
