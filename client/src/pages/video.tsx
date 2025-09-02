@@ -38,7 +38,7 @@ export default function VideoPage() {
   const { toast } = useToast();
   const { isAuthenticated, isLoading } = useAuth();
   const [prompt, setPrompt] = useState("");
-  const [duration, setDuration] = useState([3]);
+  const [duration, setDuration] = useState([5]);
   const [style, setStyle] = useState("cinematic");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
@@ -209,7 +209,7 @@ export default function VideoPage() {
             <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>3-10 second clips</span>
+                <span>5 or 10 second clips</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -331,7 +331,7 @@ export default function VideoPage() {
                       Duration: {duration[0]} seconds
                     </Label>
                     <div className="grid grid-cols-4 gap-3">
-                      {[3, 5, 7, 10].map((seconds) => (
+                      {[5, 10].map((seconds) => (
                         <Button
                           key={seconds}
                           type="button"
