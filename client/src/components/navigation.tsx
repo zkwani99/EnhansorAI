@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, User, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, User, LogOut, ChevronDown, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,11 +9,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { redirectToService } from "@/lib/authRedirect";
 import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/components/theme-provider";
 import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [location] = useLocation();
 
   const handleNavClick = (link: any) => {
@@ -58,12 +60,12 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <nav className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <div className="text-2xl font-bold gradient-text">
+            <div className="text-2xl font-bold gradient-text dark:text-white">
               Lorepic
             </div>
           </div>
@@ -74,7 +76,7 @@ export default function Navigation() {
               {/* Tools Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                     Tools
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
@@ -96,7 +98,7 @@ export default function Navigation() {
               {/* Explore Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                     Explore
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
@@ -127,7 +129,7 @@ export default function Navigation() {
               {/* Developers Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                     Developers
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
@@ -146,11 +148,23 @@ export default function Navigation() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
+              {/* Theme Toggle */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 transition-all duration-200"
+                data-testid="button-theme-toggle"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              </Button>
+
               {/* Account Dropdown (only if authenticated) */}
               {isAuthenticated && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="flex items-center text-gray-600 hover:text-purple-700 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                    <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
                       Account
                       <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                     </button>
@@ -185,7 +199,7 @@ export default function Navigation() {
             <div className="hidden md:flex items-center space-x-4">
               <Button
                 variant="ghost"
-                className="text-gray-600 hover:text-gray-900"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 onClick={() => window.location.href = '/api/login'}
                 data-testid="button-sign-in"
               >
@@ -207,7 +221,7 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               data-testid="button-mobile-menu"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -217,7 +231,7 @@ export default function Navigation() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100">
+          <div className="md:hidden py-4 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
             <div className="flex flex-col space-y-1">
               {/* Tools Section */}
               <div className="px-3 py-2">
@@ -226,7 +240,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
                     data-testid={`mobile-nav-tools-${item.id}`}
                   >
                     {item.name}
@@ -241,7 +255,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
                     data-testid={`mobile-nav-explore-${item.id}`}
                   >
                     {item.name}
@@ -267,7 +281,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
                     data-testid={`mobile-nav-developers-${item.id}`}
                   >
                     {item.name}
@@ -275,8 +289,21 @@ export default function Navigation() {
                 ))}
               </div>
 
+              {/* Theme Toggle Section */}
+              <div className="px-3 py-2">
+                <Button
+                  variant="ghost"
+                  onClick={toggleTheme}
+                  className="w-full text-gray-600 dark:text-gray-400 hover:text-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/20 justify-start"
+                  data-testid="mobile-button-theme-toggle"
+                >
+                  {theme === 'light' ? <Moon className="w-4 h-4 mr-2" /> : <Sun className="w-4 h-4 mr-2" />}
+                  {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+                </Button>
+              </div>
+
               {/* Account or Auth Section */}
-              <div className="px-3 py-2 pt-4 border-t border-gray-100 mt-4">
+              <div className="px-3 py-2 pt-4 border-t border-gray-100 dark:border-gray-700 mt-4">
                 {isAuthenticated ? (
                   <>
                     <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Account</h3>
@@ -291,7 +318,7 @@ export default function Navigation() {
                           }
                           setIsMobileMenuOpen(false);
                         }}
-                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'}`}
+                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-purple-50 text-purple-700 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 hover:bg-purple-50'}`}
                         data-testid={`mobile-nav-account-${item.id}`}
                       >
                         {item.name === 'Logout' && <LogOut className="w-4 h-4 mr-2" />}
