@@ -5,6 +5,7 @@
 
 :root {
   --background: hsl(0 0% 100%);
+  background-color: hsl(0 0% 100%);
   --foreground: hsl(210 25% 7.8431%);
   --card: hsl(180 6.6667% 97.0588%);
   --card-foreground: hsl(210 25% 7.8431%);
@@ -66,9 +67,10 @@
 }
 
 /* Ensure body and html adapt to dark mode */
-body {
+html, body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Fix gradient text in dark mode */
@@ -88,6 +90,7 @@ body {
 
 .dark {
   --background: hsl(210 11% 9%);
+  background-color: hsl(210 11% 9%) !important;
   --foreground: hsl(200 6.6667% 91.1765%);
   --card: hsl(228 9.8039% 10%);
   --card-foreground: hsl(0 0% 85.0980%);
