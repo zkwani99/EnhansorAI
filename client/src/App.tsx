@@ -42,10 +42,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </div>
       </ThemeProvider>
     </QueryClientProvider>
   );
