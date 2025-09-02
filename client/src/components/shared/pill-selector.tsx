@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useAuth } from "@/hooks/useAuth";
 import { Crown, Lock } from "lucide-react";
 
 interface PillOption {
@@ -34,7 +35,31 @@ export function PillSelector({
   className = "",
   allowMultiple = false
 }: PillSelectorProps) {
+  const { user } = useAuth();
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
+  const [adminMode, setAdminMode] = useState<string>("payg");
+  
+  // Listen for admin billing mode changes
+  useEffect(() => {
+    const handleAdminModeChange = (event: CustomEvent) => {
+      setAdminMode(event.detail.mode);
+    };
+
+    // Load initial admin settings
+    const savedMode = localStorage.getItem('admin-billing-mode');
+    if (savedMode) {
+      setAdminMode(savedMode);
+    }
+
+    window.addEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    return () => {
+      window.removeEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    };
+  }, []);
+  
+  // Check if user is admin and determine if credits should be shown
+  const isAdmin = (user as any)?.email === "zkwani99@gmail.com";
+  const shouldShowCredits = isAdmin ? adminMode === "payg" || adminMode === "hybrid" : true;
 
   const handleSelection = (value: string) => {
     if (allowMultiple) {
@@ -96,7 +121,7 @@ export function PillSelector({
                       <Lock className="w-3 h-3 ml-1" />
                     )}
                     
-                    {option.credits && (
+                    {option.credits && shouldShowCredits && (
                       <Badge 
                         variant="secondary" 
                         className={`ml-2 text-xs ${selected ? 'bg-white/20 text-white' : 'bg-purple-100 text-purple-700'}`}
@@ -112,7 +137,7 @@ export function PillSelector({
                     {option.description && (
                       <p className="text-sm text-gray-600">{option.description}</p>
                     )}
-                    {option.credits && (
+                    {option.credits && shouldShowCredits && (
                       <p className="text-sm text-purple-600">{option.credits} credits required</p>
                     )}
                     {isDisabled && option.planRequired && (

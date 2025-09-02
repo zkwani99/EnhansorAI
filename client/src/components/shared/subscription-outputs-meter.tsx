@@ -4,6 +4,8 @@ import { Progress } from "@/components/ui/progress";
 import { Calendar, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/hooks/useAuth";
+import { useState, useEffect } from "react";
 
 interface SubscriptionOutputsMeterProps {
   service: "image-enhancement" | "text-to-image" | "text-to-video" | "image-to-video";
@@ -16,13 +18,72 @@ export function SubscriptionOutputsMeter({
   className = "", 
   showDetails = true 
 }: SubscriptionOutputsMeterProps) {
+  const { user } = useAuth();
+  const [adminTestValues, setAdminTestValues] = useState<any>(null);
+  
   const { data: userOutputs, isLoading } = useQuery({
     queryKey: ['/api/subscription/outputs'],
     refetchInterval: 30000, // Refetch every 30 seconds
   });
 
+  // Listen for admin billing mode changes
+  useEffect(() => {
+    const handleAdminModeChange = (event: CustomEvent) => {
+      setAdminTestValues(event.detail.testValues);
+    };
+
+    // Load initial admin settings
+    const savedValues = localStorage.getItem('admin-test-values');
+    if (savedValues) {
+      setAdminTestValues(JSON.parse(savedValues));
+    }
+
+    window.addEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    return () => {
+      window.removeEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    };
+  }, []);
+
+  // Check if user is admin
+  const isAdmin = (user as any)?.email === "zkwani99@gmail.com";
+
   // Service-specific data mapping
   const getServiceData = () => {
+    // Use admin test values if admin, otherwise use real data
+    if (isAdmin && adminTestValues) {
+      const testValues = adminTestValues.subscription;
+      switch (service) {
+        case "image-enhancement":
+          return {
+            remaining: testValues.imageEnhancement,
+            total: 500, // Mock total for testing
+            percentage: Math.round(((500 - testValues.imageEnhancement) / 500) * 100),
+            label: "enhancements"
+          };
+        case "text-to-image":
+          return {
+            remaining: testValues.textToImage,
+            total: 500,
+            percentage: Math.round(((500 - testValues.textToImage) / 500) * 100),
+            label: "images"
+          };
+        case "text-to-video":
+          return {
+            remaining: testValues.textToVideo,
+            total: 200,
+            percentage: Math.round(((200 - testValues.textToVideo) / 200) * 100),
+            label: "videos"
+          };
+        case "image-to-video":
+          return {
+            remaining: testValues.imageToVideo,
+            total: 300,
+            percentage: Math.round(((300 - testValues.imageToVideo) / 300) * 100),
+            label: "videos"
+          };
+      }
+    }
+    
     if (!userOutputs || typeof userOutputs !== 'object') {
       return { remaining: 0, total: 0, percentage: 0, label: "outputs" };
     }

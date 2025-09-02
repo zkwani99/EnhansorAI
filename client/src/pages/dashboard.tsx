@@ -12,6 +12,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { BillingModeSimulator } from "@/components/admin/billing-mode-simulator";
 import { 
   ArrowLeft, 
   User, 
@@ -38,6 +39,9 @@ export default function DashboardPage() {
   const { isAuthenticated, isLoading, user } = useAuth();
   const [activeTab, setActiveTab] = useState("profile");
   const [showPassword, setShowPassword] = useState(false);
+  
+  // Check if user is admin
+  const isAdmin = (user as any)?.email === "zkwani99@gmail.com";
 
   // Redirect to home if not authenticated
   useEffect(() => {
@@ -126,6 +130,9 @@ export default function DashboardPage() {
               <span className="hidden sm:inline">Advanced</span>
             </TabsTrigger>
           </TabsList>
+
+          {/* Admin Testing Panel */}
+          <BillingModeSimulator isVisible={isAdmin} />
 
           {/* Profile Tab */}
           <TabsContent value="profile" className="space-y-6">

@@ -4,6 +4,8 @@ import { Progress } from "@/components/ui/progress";
 import { Zap, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/hooks/useAuth";
+import { useState, useEffect } from "react";
 
 interface CreditBalanceProps {
   className?: string;
@@ -11,13 +13,41 @@ interface CreditBalanceProps {
 }
 
 export default function CreditBalance({ className = "", showDetails = true }: CreditBalanceProps) {
+  const { user } = useAuth();
+  const [adminTestValues, setAdminTestValues] = useState<any>(null);
+  
   const { data: userCredits, isLoading } = useQuery({
     queryKey: ['/api/credits/balance'],
     refetchInterval: 30000, // Refetch every 30 seconds
   });
 
-  // Fallback to mock data while loading or if no data
-  const credits = userCredits && typeof userCredits === 'object' && 'totalCredits' in userCredits && 'usedCredits' in userCredits ? {
+  // Listen for admin billing mode changes
+  useEffect(() => {
+    const handleAdminModeChange = (event: CustomEvent) => {
+      setAdminTestValues(event.detail.testValues);
+    };
+
+    // Load initial admin settings
+    const savedValues = localStorage.getItem('admin-test-values');
+    if (savedValues) {
+      setAdminTestValues(JSON.parse(savedValues));
+    }
+
+    window.addEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    return () => {
+      window.removeEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    };
+  }, []);
+
+  // Check if user is admin
+  const isAdmin = (user as any)?.email === "zkwani99@gmail.com";
+  
+  // Use admin test values if admin, otherwise use real data
+  const credits = isAdmin && adminTestValues ? {
+    remaining: adminTestValues.payg.current,
+    total: adminTestValues.payg.total,
+    percentage: Math.round(((adminTestValues.payg.total - adminTestValues.payg.current) / adminTestValues.payg.total) * 100)
+  } : userCredits && typeof userCredits === 'object' && 'totalCredits' in userCredits && 'usedCredits' in userCredits ? {
     remaining: (userCredits as any).totalCredits - (userCredits as any).usedCredits,
     total: (userCredits as any).totalCredits,
     percentage: Math.round(((userCredits as any).usedCredits / (userCredits as any).totalCredits) * 100)

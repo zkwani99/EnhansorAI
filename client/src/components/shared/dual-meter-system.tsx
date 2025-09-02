@@ -1,4 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
+import { useState, useEffect } from "react";
 import CreditBalance from "./credit-balance";
 import { SubscriptionOutputsMeter } from "./subscription-outputs-meter";
 
@@ -10,14 +11,51 @@ interface DualMeterSystemProps {
 
 export function DualMeterSystem({ service, className = "", showDetails = true }: DualMeterSystemProps) {
   const { user } = useAuth();
+  const [adminMode, setAdminMode] = useState<string>("payg");
+  const [adminTestValues, setAdminTestValues] = useState<any>(null);
   
-  // Determine plan type from user data (with safe property access)
-  const planType = (user as any)?.planType || "payg";
-  const isPaygPlan = planType === "payg";
-  const isSubscriptionPlan = ["basic", "growth", "business"].includes(planType);
+  // Listen for admin billing mode changes
+  useEffect(() => {
+    const handleAdminModeChange = (event: CustomEvent) => {
+      setAdminMode(event.detail.mode);
+      setAdminTestValues(event.detail.testValues);
+    };
+
+    // Load initial admin settings
+    const savedMode = localStorage.getItem('admin-billing-mode');
+    const savedValues = localStorage.getItem('admin-test-values');
+    if (savedMode) {
+      setAdminMode(savedMode);
+    }
+    if (savedValues) {
+      setAdminTestValues(JSON.parse(savedValues));
+    }
+
+    window.addEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    return () => {
+      window.removeEventListener('admin-billing-mode-changed', handleAdminModeChange as EventListener);
+    };
+  }, []);
   
-  // For future hybrid mode support
-  const isHybridMode = false; // Set to true when hybrid mode is enabled
+  // Check if user is admin (for now, check by email - in production this would be a role)
+  const isAdmin = (user as any)?.email === "zkwani99@gmail.com";
+  
+  // Determine plan type - use admin override if admin is logged in, otherwise use user data
+  let planType, isPaygPlan, isSubscriptionPlan, isHybridMode;
+  
+  if (isAdmin && adminMode) {
+    // Admin override mode
+    planType = adminMode;
+    isPaygPlan = adminMode === "payg";
+    isSubscriptionPlan = adminMode === "subscription";
+    isHybridMode = adminMode === "hybrid";
+  } else {
+    // Normal user mode
+    planType = (user as any)?.planType || "payg";
+    isPaygPlan = planType === "payg";
+    isSubscriptionPlan = ["basic", "growth", "business"].includes(planType);
+    isHybridMode = false;
+  }
 
   if (isHybridMode) {
     // Hybrid mode: Show both meters side by side with labels
