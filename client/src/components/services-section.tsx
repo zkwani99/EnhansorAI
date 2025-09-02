@@ -97,7 +97,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="services" className="py-20 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -117,7 +117,7 @@ export default function ServicesSection() {
               <Card
                 key={service.id}
                 id={service.id}
-                className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border} h-full`}
+                className={`group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border} h-full`}
                 data-testid={`card-service-${service.id}`}
               >
                 <CardContent className="p-6 h-full flex flex-col">

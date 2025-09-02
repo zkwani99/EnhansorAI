@@ -182,7 +182,7 @@ export default function PricingSection() {
               <Card
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer h-full flex flex-col group ${
+                className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer h-full flex flex-col group ${
                   selectedPlan === plan.id 
                     ? `border-2 ${colors.border} ring-2 ring-offset-2 ${colors.border.replace('border-', 'ring-')} relative transform scale-105` 
                     : plan.isPopular 
@@ -320,7 +320,7 @@ export default function PricingSection() {
           </div>
           
           {/* Feature Comparison Table */}
-          <Card className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <Card className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
             <div className={`${colors.headerBg} text-white text-center py-4`}>
               <h4 className="text-lg font-semibold">{currentServiceData?.title} Feature Comparison</h4>
             </div>
@@ -336,7 +336,7 @@ export default function PricingSection() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                   {currentServiceData?.comparisonFeatures?.map((feature: any, index: number) => (
                     <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
