@@ -389,14 +389,6 @@ export default function VideoPage() {
 
                   </div>
 
-                  {/* Credit Cost Estimator */}
-                  <div className="mb-4">
-                    <CreditCostEstimator 
-                      service="text-to-video"
-                      selectedResolution={selectedResolution}
-                      selectedDuration={duration[0]}
-                    />
-                  </div>
 
                   {/* Generate Button */}
                   <Button

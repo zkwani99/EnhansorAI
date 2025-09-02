@@ -20,27 +20,37 @@ export function DualMeterSystem({ service, className = "", showDetails = true }:
   const isHybridMode = false; // Set to true when hybrid mode is enabled
 
   if (isHybridMode) {
-    // Hybrid mode: Show both meters side by side
+    // Hybrid mode: Show both meters side by side with labels
     return (
-      <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${className}`}>
-        <CreditBalance showDetails={showDetails} />
-        <SubscriptionOutputsMeter service={service} showDetails={showDetails} />
+      <div className={`space-y-4 ${className}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">PAYG Credits</h3>
+            <CreditBalance showDetails={showDetails} />
+          </div>
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Subscription Usage</h3>
+            <SubscriptionOutputsMeter service={service} showDetails={showDetails} />
+          </div>
+        </div>
       </div>
     );
   }
 
   if (isSubscriptionPlan) {
-    // Subscription plan: Show only subscription outputs meter (full width)
+    // Subscription plan: Show only subscription outputs meter (full width) with label
     return (
-      <div className={className}>
+      <div className={`space-y-2 ${className}`}>
+        <h3 className="text-sm font-medium text-gray-700">Subscription Usage</h3>
         <SubscriptionOutputsMeter service={service} showDetails={showDetails} />
       </div>
     );
   }
 
-  // PAYG plan (default): Show only credits meter (full width)
+  // PAYG plan (default): Show only credits meter (full width) with label
   return (
-    <div className={className}>
+    <div className={`space-y-2 ${className}`}>
+      <h3 className="text-sm font-medium text-gray-700">PAYG Credits</h3>
       <CreditBalance showDetails={showDetails} />
     </div>
   );

@@ -413,14 +413,6 @@ export default function ImageToVideoPage() {
                 </div>
 
 
-                {/* Credit Cost Estimator */}
-                <div className="mb-4">
-                  <CreditCostEstimator 
-                    service="image-to-video"
-                    selectedResolution={selectedResolution}
-                    selectedDuration={selectedDuration}
-                  />
-                </div>
 
                 {/* Generate Button */}
                 <Button

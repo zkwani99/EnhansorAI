@@ -283,14 +283,6 @@ export default function GeneratePage() {
                   />
                 </div>
 
-                {/* Credit Cost Estimator */}
-                <div className="mb-4">
-                  <CreditCostEstimator 
-                    service="text-to-image"
-                    selectedSize={selectedSize}
-                    selectedResolution={selectedResolution}
-                  />
-                </div>
 
                 <Button
                   onClick={handleGenerate}
