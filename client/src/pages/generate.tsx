@@ -261,10 +261,10 @@ export default function GeneratePage() {
                     title="Resolution Options"
                     icon={<Monitor className="w-4 h-4 text-purple-600" />}
                     options={[
-                      { id: "512px", label: "512px", value: "512px", credits: 3, description: "512×512 resolution", isAvailable: true },
-                      { id: "1k", label: "1K", value: "1k", credits: 5, description: "1024×1024 resolution", isAvailable: true },
-                      { id: "2k", label: "2K", value: "2k", credits: 10, description: "1536×1536 resolution", isAvailable: true },
-                      { id: "4k", label: "4K", value: "4k", credits: 20, description: "2048×2048 resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                      { id: "512px", label: "512px", value: "512px", credits: 1, description: "512×512 resolution", isAvailable: true },
+                      { id: "1k", label: "1K", value: "1k", credits: 2, description: "1024×1024 resolution", isAvailable: true },
+                      { id: "2k", label: "2K", value: "2k", credits: 3, description: "1536×1536 resolution", isAvailable: true },
+                      { id: "4k", label: "4K", value: "4k", credits: 4, description: "2048×2048 resolution", isAvailable: true }
                     ]}
                     selectedValue={selectedResolution}
                     onSelectionChange={setSelectedResolution}

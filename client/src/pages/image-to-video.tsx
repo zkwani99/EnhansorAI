@@ -337,9 +337,8 @@ export default function ImageToVideoPage() {
                     title="Duration Options"
                     icon={<Clock className="w-4 h-4 text-purple-600" />}
                     options={[
-                      { id: "3s", label: "3s", value: "3s", credits: 12, description: "3 second video", isAvailable: true },
-                      { id: "5s", label: "5s", value: "5s", credits: 15, description: "5 second video", isAvailable: true },
-                      { id: "8s", label: "8s", value: "8s", credits: 20, description: "8 second video", isAvailable: true }
+                      { id: "5s", label: "Short Clip (Up to 5s)", value: "5s", credits: 15, description: "Up to 5s, up to 720p resolution", isAvailable: true },
+                      { id: "8s", label: "Short Clip (Up to 8s)", value: "8s", credits: 20, description: "Up to 8s, up to 1080p resolution", isAvailable: true }
                     ]}
                     selectedValue={`${selectedDuration}s`}
                     onSelectionChange={(value) => setSelectedDuration(parseInt(value))}
@@ -352,9 +351,8 @@ export default function ImageToVideoPage() {
                     title="Resolution Options"
                     icon={<Monitor className="w-4 h-4 text-purple-600" />}
                     options={[
-                      { id: "480p", label: "480p (Standard)", value: "480p", credits: 15, description: "480p resolution", isAvailable: true },
-                      { id: "720p", label: "720p (HD)", value: "720p", credits: 20, description: "720p HD resolution", isAvailable: true },
-                      { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 25, description: "1080p Full HD resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                      { id: "720p", label: "720p (HD)", value: "720p", credits: 15, description: "720p HD resolution", isAvailable: true },
+                      { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 20, description: "1080p Full HD resolution", isAvailable: true }
                     ]}
                     selectedValue={selectedResolution}
                     onSelectionChange={setSelectedResolution}

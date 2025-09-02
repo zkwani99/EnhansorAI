@@ -370,9 +370,9 @@ export default function VideoPage() {
                       title="Resolution Options"
                       icon={<Monitor className="w-4 h-4 text-purple-600" />}
                       options={[
-                        { id: "480p", label: "480p", value: "480p", credits: 10, description: "480p resolution", isAvailable: true },
-                        { id: "720p", label: "720p (HD)", value: "720p", credits: 15, description: "720p HD resolution", isAvailable: true },
-                        { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 25, description: "1080p Full HD resolution", isAvailable: false, isPremium: true, planRequired: "Growth/Business" }
+                        { id: "480p", label: "480p", value: "480p", credits: 10, description: "5 seconds at 480p resolution", isAvailable: true },
+                        { id: "720p", label: "720p (HD)", value: "720p", credits: 15, description: "5 seconds at 720p resolution", isAvailable: true },
+                        { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 20, description: "5 seconds at 1080p resolution", isAvailable: true }
                       ]}
                       selectedValue={selectedResolution}
                       onSelectionChange={setSelectedResolution}
