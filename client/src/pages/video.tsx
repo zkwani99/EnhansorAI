@@ -327,28 +327,19 @@ export default function VideoPage() {
 
                   {/* Duration Selection */}
                   <div>
-                    <Label className="text-base font-medium text-gray-900 mb-3 block">
-                      Duration: {duration[0]} seconds
-                    </Label>
-                    <div className="grid grid-cols-4 gap-3">
-                      {[5, 10].map((seconds) => (
-                        <Button
-                          key={seconds}
-                          type="button"
-                          variant={duration[0] === seconds ? "default" : "outline"}
-                          className={`h-12 ${
-                            duration[0] === seconds 
-                              ? "bg-purple-600 hover:bg-purple-700 text-white border-purple-600" 
-                              : "border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-500"
-                          }`}
-                          onClick={() => setDuration([seconds])}
-                          disabled={isGenerating}
-                          data-testid={`button-duration-${seconds}s`}
-                        >
-                          {seconds}s
-                        </Button>
-                      ))}
-                    </div>
+                    <PillSelector
+                      title="Duration Options"
+                      icon={<Clock className="w-4 h-4 text-purple-600" />}
+                      options={[
+                        { id: "5s", label: "5s", value: "5s", credits: 10, description: "5 second video", isAvailable: true },
+                        { id: "10s", label: "10s", value: "10s", credits: 20, description: "10 second video", isAvailable: true }
+                      ]}
+                      selectedValue={selectedDuration}
+                      onSelectionChange={(value) => {
+                        setSelectedDuration(value);
+                        setDuration([parseInt(value)]);
+                      }}
+                    />
                   </div>
 
                   {/* Style Selection */}
