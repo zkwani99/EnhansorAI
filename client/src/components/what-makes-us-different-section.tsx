@@ -68,16 +68,16 @@ export default function WhatMakesUsDifferentSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-white"
+      className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300"
       data-testid="section-what-makes-us-different"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             What Makes Us Different
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Experience the power of integrated AI creativity with features designed for professionals who demand excellence.
           </p>
         </div>
@@ -108,10 +108,10 @@ export default function WhatMakesUsDifferentSection() {
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:via-purple-700 group-hover:to-purple-800 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:via-purple-700 group-hover:to-purple-800 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>

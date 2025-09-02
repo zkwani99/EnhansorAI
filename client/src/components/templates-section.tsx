@@ -107,7 +107,7 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
+    <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-32 right-20 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full blur-3xl opacity-30"></div>
@@ -117,10 +117,10 @@ export default function TemplatesSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             AI Templates Library
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             Jumpstart your creativity with ready-to-use templates for different AI workflows. 
             Perfect starting points for your next project.
           </p>
@@ -165,7 +165,7 @@ export default function TemplatesSection() {
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Button
                     size="sm"
-                    className="bg-white/90 text-gray-900 hover:bg-white"
+                    className="bg-white/90 text-gray-900 dark:text-white hover:bg-white"
                     data-testid={`button-preview-template-${template.id}`}
                   >
                     <Eye className="w-4 h-4 mr-2" />
@@ -184,10 +184,10 @@ export default function TemplatesSection() {
 
               <CardContent className="p-6">
                 <div className="mb-3">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">
+                  <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2 group-hover:text-purple-700 transition-colors">
                     {template.title}
                   </h3>
-                  <p className="text-sm text-gray-600 line-clamp-2">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
                     {template.description}
                   </p>
                 </div>

@@ -131,13 +131,13 @@ export default function PricingSection() {
   const colors = getServiceColors(activeService);
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
+    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-800 dark:to-purple-900/30 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Pricing Plans
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Choose a plan that fits your needs. Scale as you grow with flexible AI-powered services.
           </p>
         </div>
@@ -172,8 +172,8 @@ export default function PricingSection() {
             <div className={`inline-flex items-center justify-center w-16 h-16 ${colors.iconBg} rounded-xl mb-4`}>
               {getServiceIcon(activeService)}
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">{currentServiceData?.title}</h3>
-            <p className="text-gray-600">{currentServiceData?.description}</p>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{currentServiceData?.title}</h3>
+            <p className="text-gray-600 dark:text-gray-300">{currentServiceData?.description}</p>
           </div>
           
           {/* Pricing Plans Grid */}
@@ -201,10 +201,10 @@ export default function PricingSection() {
                 <CardContent className="p-6 h-full flex flex-col">
                   {/* Content area that grows */}
                   <div className="text-center flex-grow">
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">{plan.name}</h4>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h4>
                     <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent mb-2">
                       {plan.price}
-                      <span className="text-lg text-gray-600 font-normal">{plan.period}</span>
+                      <span className="text-lg text-gray-600 dark:text-gray-300 font-normal">{plan.period}</span>
                     </div>
                     {(plan as any).pricePerImage && (
                       <div className="text-sm text-gray-500 mb-6">
@@ -214,7 +214,7 @@ export default function PricingSection() {
                     
                     {/* Features List - moved lower with more spacing */}
                     <div className="mt-6">
-                      <ul className="space-y-3 text-sm text-gray-600 text-left">
+                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 text-left">
                         {plan.features?.map((feature: any, featureIndex: number) => {
                           
                           return (
@@ -339,7 +339,7 @@ export default function PricingSection() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {currentServiceData?.comparisonFeatures?.map((feature: any, index: number) => (
                     <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                         {feature.name}
                       </td>
                       {feature.values?.map((value: any, valueIndex: number) => (
@@ -391,7 +391,7 @@ export default function PricingSection() {
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Zap className="w-6 h-6 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Starter Pack</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Starter Pack</h3>
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-purple-600">$9</span>
                     <span className="text-gray-500 ml-1">one-time</span>
@@ -419,7 +419,7 @@ export default function PricingSection() {
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Sparkles className="w-6 h-6 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Creator Pack</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Creator Pack</h3>
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-purple-600">$25</span>
                     <span className="text-gray-500 ml-1">one-time</span>
@@ -442,7 +442,7 @@ export default function PricingSection() {
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Crown className="w-6 h-6 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Pro Pack</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Pro Pack</h3>
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-purple-600">$75</span>
                     <span className="text-gray-500 ml-1">one-time</span>
@@ -465,7 +465,7 @@ export default function PricingSection() {
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Building2 className="w-6 h-6 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Enterprise Pack</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Enterprise Pack</h3>
                   <div className="mb-4">
                     <span className="text-2xl font-bold text-purple-600">Custom</span>
                     <span className="text-gray-500 ml-1">pricing</span>
@@ -485,10 +485,10 @@ export default function PricingSection() {
           {/* How Credits Are Used Section - Moved directly under credit packs */}
           <div className="mt-16 mb-12">
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 How Credits Are Used
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 Transparent pricing for every service tier. Credits are deducted based on the quality and resolution you choose.
               </p>
             </div>
@@ -503,40 +503,40 @@ export default function PricingSection() {
                 <div className="flex items-start gap-3">
                   <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Use credits across all services</p>
-                    <p className="text-sm text-gray-600">(Enhance, Generate, Create)</p>
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Use credits across all services</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">(Enhance, Generate, Create)</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">No expiration for credits</p>
-                    <p className="text-sm text-gray-600">(lifetime until used)</p>
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">No expiration for credits</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">(lifetime until used)</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Access to premium features</p>
-                    <p className="text-sm text-gray-600">(4K outputs, batch processing, real-time preview, commercial licensing)</p>
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Access to premium features</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">(4K outputs, batch processing, real-time preview, commercial licensing)</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Scale up anytime</p>
-                    <p className="text-sm text-gray-600">by buying more packs</p>
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Scale up anytime</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">by buying more packs</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold text-gray-900 mb-1">Perfect add-on</p>
-                    <p className="text-sm text-gray-600">for subscription users who need extra runs</p>
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Perfect add-on</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">for subscription users who need extra runs</p>
                   </div>
                 </div>
               </div>
@@ -549,7 +549,7 @@ export default function PricingSection() {
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <HelpCircle className="w-6 h-6 text-purple-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Not sure what's right for you?</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Not sure what's right for you?</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -557,8 +557,8 @@ export default function PricingSection() {
                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Calendar className="w-6 h-6 text-blue-600" />
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Choose Subscriptions if...</h4>
-                    <p className="text-sm text-gray-600">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Choose Subscriptions if...</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       you need steady, monthly usage at a lower cost per credit.
                     </p>
                   </div>
@@ -567,8 +567,8 @@ export default function PricingSection() {
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Zap className="w-6 h-6 text-purple-600" />
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Choose PAYG if...</h4>
-                    <p className="text-sm text-gray-600">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Choose PAYG if...</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       you want total flexibility and only need occasional credits.
                     </p>
                   </div>
@@ -703,7 +703,7 @@ function CreditUsageDisplay() {
                 <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${config.color} rounded-2xl flex items-center justify-center shadow-lg`}>
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{config.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{config.title}</h3>
               </div>
 
               <div className="space-y-3">
