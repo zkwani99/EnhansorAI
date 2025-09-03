@@ -163,12 +163,7 @@ export default function GallerySection() {
   return (
     <>
       <section id="gallery" className="py-20 bg-gradient-to-br from-white via-purple-50/30 to-purple-50 dark:from-black dark:via-black dark:to-black relative transition-colors duration-300">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-transparent to-blue-100/20"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-purple-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200/30 rounded-full blur-3xl"></div>
-        </div>
+        {/* Background decoration - removed for dark theme */}
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
