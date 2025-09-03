@@ -99,7 +99,7 @@ export default function PricingSection() {
       border: "border-purple-600",
       popular: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
       tabActive: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white",
-      tabInactive: "bg-gray-200 text-gray-700 hover:bg-gray-300"
+      tabInactive: "bg-white text-gray-700 hover:bg-gray-100 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900"
     };
   };
 
@@ -131,7 +131,7 @@ export default function PricingSection() {
   const colors = getServiceColors(activeService);
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-800 dark:to-purple-900/30 transition-colors duration-300">
+    <section id="pricing" className="py-20 bg-gradient-to-br from-white to-purple-50 dark:from-black dark:to-purple-900/30 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -326,7 +326,7 @@ export default function PricingSection() {
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50">
+                <thead className="bg-white dark:bg-black">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Feature</th>
                     {currentServiceData?.plans?.map((plan: any) => (
@@ -497,7 +497,7 @@ export default function PricingSection() {
           </div>
 
           {/* Features List */}
-          <Card className="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-600 rounded-2xl mb-8">
+          <Card className="bg-white dark:bg-black dark:bg-black border border-gray-200 dark:border-gray-600 rounded-2xl mb-8">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-start gap-3">

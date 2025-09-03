@@ -117,7 +117,7 @@ export default function ServicesSection() {
               <Card
                 key={service.id}
                 id={service.id}
-                className={`group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border} h-full`}
+                className={`group bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border} h-full`}
                 data-testid={`card-service-${service.id}`}
               >
                 <CardContent className="p-6 h-full flex flex-col">

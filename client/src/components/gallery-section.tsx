@@ -162,7 +162,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="gallery" className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-black dark:via-gray-900 dark:to-purple-900/50 relative transition-colors duration-300">
+      <section id="gallery" className="py-20 bg-gradient-to-br from-white via-purple-50/30 to-purple-50 dark:from-black dark:via-gray-900 dark:to-purple-900/50 relative transition-colors duration-300">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-transparent to-blue-100/20"></div>
         <div className="absolute inset-0">
@@ -192,7 +192,7 @@ export default function GallerySection() {
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 shadow-lg hover:shadow-xl transform hover:scale-105 ${
                     isActive
                       ? `bg-gradient-to-r ${button.color} text-white border-transparent shadow-lg`
-                      : "bg-white/80 dark:bg-black/80 backdrop-blur-sm text-gray-700 dark:text-gray-200 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+                      : "bg-white/80 dark:bg-black backdrop-blur-sm text-gray-700 dark:text-gray-200 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
                   }`}
                   data-testid={`button-filter-${button.id}`}
                 >
@@ -312,7 +312,7 @@ export default function GallerySection() {
                 )}
                 
                 {/* Image/Video display */}
-                <div className="relative bg-gray-100 rounded-lg overflow-hidden mb-6">
+                <div className="relative bg-white dark:bg-black rounded-lg overflow-hidden mb-6">
                   {selectedItem.type === 'videos' ? (
                     <div className="relative aspect-video">
                       <img

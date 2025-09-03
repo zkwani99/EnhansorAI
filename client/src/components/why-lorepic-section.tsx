@@ -89,7 +89,7 @@ export default function WhyLorepicSection() {
             variant="outline"
             size="icon"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border-purple-300 dark:border-purple-600 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-black border-purple-300 dark:border-purple-600 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
             data-testid="button-carousel-prev"
           >
             <ChevronLeft size={20} className="text-purple-600 group-hover:text-white transition-colors duration-300" />
@@ -100,7 +100,7 @@ export default function WhyLorepicSection() {
             variant="outline"
             size="icon"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border-purple-300 dark:border-purple-600 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-black border-purple-300 dark:border-purple-600 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
             data-testid="button-carousel-next"
           >
             <ChevronRight size={20} className="text-purple-600 group-hover:text-white transition-colors duration-300" />
@@ -114,7 +114,7 @@ export default function WhyLorepicSection() {
                 return (
                   <div key={index} className="flex-none w-72 sm:w-80">
                     <Card
-                      className="bg-white dark:bg-gray-800 rounded-2xl border-2 border-purple-300 dark:border-purple-600 shadow-sm hover:shadow-lg hover:shadow-purple-100 hover:border-purple-600 hover:scale-105 transform transition-all duration-300 h-full group"
+                      className="bg-white dark:bg-black rounded-2xl border-2 border-purple-300 dark:border-purple-600 shadow-sm hover:shadow-lg hover:shadow-purple-100 hover:border-purple-600 hover:scale-105 transform transition-all duration-300 h-full group"
                       data-testid={`card-advantage-${index}`}
                     >
                       <CardContent className="p-6 sm:p-8 h-full flex flex-col">
