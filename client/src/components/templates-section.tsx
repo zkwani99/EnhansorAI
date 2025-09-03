@@ -123,9 +123,9 @@ export default function TemplatesSection() {
           
           {/* Filter dropdown */}
           <div className="flex items-center justify-center gap-4">
-            <span className="text-sm font-medium text-gray-700">Filter by type:</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by type:</span>
             <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-48 border-purple-200 focus:border-purple-400 focus:ring-purple-200">
+              <SelectTrigger className="w-48 border-purple-200 dark:border-purple-600 focus:border-purple-400 focus:ring-purple-200 bg-white dark:bg-black text-gray-900 dark:text-white">
                 <SelectValue placeholder="Select template type" />
               </SelectTrigger>
               <SelectContent>
