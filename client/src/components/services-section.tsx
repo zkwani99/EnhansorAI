@@ -7,20 +7,22 @@ export default function ServicesSection() {
     {
       id: "image-enhancement",
       title: "Image Enhancement",
-      description: "Enhance photos up to 6K in seconds.",
+      emoji: "🖼️",
+      description: "Enhance photos in high resolution in seconds.",
       icon: Image,
       color: "purple",
       features: [
-        { text: "Up to 8K resolution upscaling", icon: Monitor },
+        { text: "Up to 6K resolution upscaling", icon: Monitor },
         { text: "Noise reduction & sharpening", icon: Layers },
         { text: "Batch processing available", icon: Clock }
       ],
-      buttonText: "Try Enhancement",
+      buttonText: "Try Now For Free",
       buttonTestId: "button-try-image-enhancement"
     },
     {
       id: "ai-generator",
       title: "Text-to-Image AI",
+      emoji: "🎨",
       description: "Generate stunning visuals from any text.",
       icon: Palette,
       color: "purple",
@@ -29,36 +31,37 @@ export default function ServicesSection() {
         { text: "High-resolution outputs", icon: Monitor },
         { text: "Commercial usage rights", icon: Check }
       ],
-      buttonText: "Generate Images",
+      buttonText: "Try Now For Free",
       buttonTestId: "button-try-image-generation"
     },
     {
       id: "video-generator",
       title: "Text-to-Video AI",
+      emoji: "🎬",
       description: "Turn scripts into engaging short videos.",
       icon: Video,
       color: "purple",
       features: [
-        { text: "4K video generation", icon: Monitor },
-        { text: "Multiple duration options", icon: Clock },
-        { text: "Custom aspect ratios", icon: Layers }
+        { text: "Up to 1080p video generation", icon: Monitor },
+        { text: "AI Storyboard (advanced scene planning)", icon: Layers },
+        { text: "Custom aspect ratios", icon: Clock }
       ],
-      buttonText: "Create Videos",
+      buttonText: "Try Now For Free",
       buttonTestId: "button-try-video-generation"
     },
     {
       id: "image-to-video",
       title: "Image-to-Video AI",
+      emoji: "📹",
       description: "Animate your images into dynamic clips.",
       icon: Film,
       color: "purple",
       features: [
         { text: "720p & 1080p video generation", icon: Monitor },
-        { text: "Multiple motion styles", icon: Paintbrush },
-        { text: "Up to 10s clips or stitched longer videos", icon: Clock },
-        { text: "Batch processing supported", icon: Layers }
+        { text: "Stitch up to 10s clips into longer videos", icon: Clock },
+        { text: "AI Concierge Mode (guided video creation)", icon: Layers }
       ],
-      buttonText: "Create Video from Image",
+      buttonText: "Try Now For Free",
       buttonTestId: "button-try-image-to-video"
     }
   ];
@@ -108,7 +111,7 @@ export default function ServicesSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => {
             const colorClasses = getColorClasses(service.color);
             const IconComponent = service.icon;
@@ -122,11 +125,11 @@ export default function ServicesSection() {
               >
                 <CardContent className="p-6 h-full flex flex-col">
                   <div className={`w-16 h-16 ${colorClasses.icon} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="text-white text-2xl" size={32} />
+                    <span className="text-3xl">{service.emoji}</span>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   
