@@ -149,7 +149,7 @@ export default function GeneratePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
@@ -163,9 +163,9 @@ export default function GeneratePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center gap-4 mb-6">
             <Link href="/">
@@ -177,7 +177,7 @@ export default function GeneratePage() {
           </div>
           
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               AI Text-to-Image Generation
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -204,7 +204,7 @@ export default function GeneratePage() {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <Eye className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900">Real-time Preview</span>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">Real-time Preview</span>
                     </div>
                     <Switch 
                       checked={realTimePreview} 
@@ -223,9 +223,9 @@ export default function GeneratePage() {
                 </CardContent>
               </Card>
             </div>
-            <Card className="bg-white shadow-lg">
+            <Card className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/20">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Your Image</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Create Your Image</h2>
                 
                 {/* Prompt Input */}
                 <div className="space-y-4 mb-8">
@@ -307,7 +307,7 @@ export default function GeneratePage() {
                 {isGenerating && realTimePreview && (
                   <div className="mb-8 p-6 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-200">
                     <div className="text-center mb-4">
-                      <h3 className="font-semibold text-gray-900 mb-2">Real-time Preview</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">Real-time Preview</h3>
                       <p className="text-sm text-gray-600">Watch your image evolve as AI creates it</p>
                     </div>
                     
@@ -364,7 +364,7 @@ export default function GeneratePage() {
 
                 {/* AI Style Options */}
                 <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Style</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">AI Style</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {aiStyles.map((style) => {
                       const IconComponent = style.icon;
@@ -390,7 +390,7 @@ export default function GeneratePage() {
 
                 {/* Image Size Options */}
                 <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Image Size</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Image Size</h3>
                   <div className="flex flex-wrap gap-3">
                     {imageSizes.map((size) => (
                       <button
@@ -444,7 +444,7 @@ export default function GeneratePage() {
 
           {/* Right Section - Style Presets */}
           <div className="space-y-6">
-            <Card className="bg-white shadow-lg">
+            <Card className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Palette className="w-5 h-5 text-purple-600" />
@@ -457,7 +457,7 @@ export default function GeneratePage() {
                     <Card key={preset.id} className="border border-gray-200 hover:border-purple-600 transition-colors">
                       <CardContent className="p-4">
                         <div className="flex justify-between items-start mb-2">
-                          <h3 className="font-semibold text-gray-900">{preset.name}</h3>
+                          <h3 className="font-semibold text-gray-900 dark:text-gray-100">{preset.name}</h3>
                           <Button
                             onClick={() => usePreset(preset)}
                             size="sm"
@@ -532,7 +532,7 @@ export default function GeneratePage() {
               <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">Pro Tips</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Pro Tips</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -164,7 +164,7 @@ export default function VideoPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
@@ -178,7 +178,7 @@ export default function VideoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -198,7 +198,7 @@ export default function VideoPage() {
               </div>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
               Bring Your Words to Life
             </h1>
             
@@ -241,7 +241,7 @@ export default function VideoPage() {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <Grid3x3 className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900">AI Storyboard</span>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">AI Storyboard</span>
                     </div>
                     <Switch 
                       checked={aiStoryboard} 
@@ -265,7 +265,7 @@ export default function VideoPage() {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <Eye className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900">Real-time Preview</span>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">Real-time Preview</span>
                     </div>
                     <Switch 
                       checked={realTimePreview} 
@@ -284,9 +284,9 @@ export default function VideoPage() {
                 </CardContent>
               </Card>
             </div>
-            <Card className="bg-white shadow-lg border-0">
+            <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 dark:shadow-gray-900/20">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2">
                   <Video className="w-6 h-6 text-purple-600" />
                   Create Your Video
                 </h2>
@@ -294,7 +294,7 @@ export default function VideoPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Text Prompt */}
                   <div>
-                    <Label htmlFor="prompt" className="text-base font-medium text-gray-900 mb-3 block">
+                    <Label htmlFor="prompt" className="text-base font-medium text-gray-900 dark:text-gray-100 mb-3 block">
                       Describe your video
                     </Label>
                     <textarea
@@ -302,7 +302,7 @@ export default function VideoPage() {
                       value={prompt}
                       onChange={(e) => setPrompt(e.target.value)}
                       placeholder="A majestic eagle soaring through mountain clouds at sunset..."
-                      className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none text-gray-900 placeholder-gray-500"
+                      className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none text-gray-900 dark:text-gray-100 placeholder-gray-500"
                       data-testid="input-video-prompt"
                       disabled={isGenerating}
                     />
@@ -344,7 +344,7 @@ export default function VideoPage() {
 
                   {/* Style Selection */}
                   <div>
-                    <Label className="text-base font-medium text-gray-900 mb-3 block">
+                    <Label className="text-base font-medium text-gray-900 dark:text-gray-100 mb-3 block">
                       Video Style
                     </Label>
                     <Select value={style} onValueChange={setStyle} disabled={isGenerating}>
@@ -406,7 +406,7 @@ export default function VideoPage() {
                 {showStoryboard && storyboardFrames.length > 0 && (
                   <div className="mt-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
                     <div className="text-center mb-4">
-                      <h3 className="font-semibold text-gray-900 mb-2 flex items-center justify-center gap-2">
+                      <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center justify-center gap-2">
                         <Grid3x3 className="w-5 h-5 text-purple-600" />
                         AI Storyboard Preview
                       </h3>
@@ -440,7 +440,7 @@ export default function VideoPage() {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mb-4">
                       <Loader2 className="w-8 h-8 text-white animate-spin" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                       {showStoryboard ? 'Generating final video...' : 'Creating your video...'}
                     </h3>
                     <p className="text-gray-600">
@@ -461,9 +461,9 @@ export default function VideoPage() {
           {/* Result Section */}
           <div>
             {showResult && generatedVideo ? (
-              <Card className="bg-white shadow-lg border-0">
+              <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 dark:shadow-gray-900/20">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center gap-2">
                     <Sparkles className="w-6 h-6 text-purple-600" />
                     Your Generated Video
                   </h2>
@@ -525,7 +525,7 @@ export default function VideoPage() {
                   <div className="w-20 h-20 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Video className="w-10 h-10 text-purple-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Ready to Create</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Ready to Create</h3>
                   <p className="text-gray-600">
                     Enter your text prompt and click generate to create your AI video.
                   </p>
@@ -592,7 +592,7 @@ export default function VideoPage() {
               <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">Pro Tips for Better Videos</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Pro Tips for Better Videos</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

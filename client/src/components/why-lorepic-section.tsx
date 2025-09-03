@@ -74,7 +74,7 @@ export default function WhyLorepicSection() {
     <section className="py-20 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 dark:text-white mb-4">
             Why Lorepic?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl">
@@ -89,7 +89,7 @@ export default function WhyLorepicSection() {
             variant="outline"
             size="icon"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border-purple-300 dark:border-purple-600 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
             data-testid="button-carousel-prev"
           >
             <ChevronLeft size={20} className="text-purple-600 group-hover:text-white transition-colors duration-300" />
@@ -100,7 +100,7 @@ export default function WhyLorepicSection() {
             variant="outline"
             size="icon"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white border-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-gray-800 border-purple-300 dark:border-purple-600 hover:bg-gradient-to-r hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:border-purple-600 hover:scale-110 hover:shadow-lg hover:shadow-purple-200 z-10 shadow-sm hidden sm:flex items-center justify-center transition-all duration-300 group"
             data-testid="button-carousel-next"
           >
             <ChevronRight size={20} className="text-purple-600 group-hover:text-white transition-colors duration-300" />
@@ -114,7 +114,7 @@ export default function WhyLorepicSection() {
                 return (
                   <div key={index} className="flex-none w-72 sm:w-80">
                     <Card
-                      className="bg-white rounded-2xl border-2 border-purple-300 shadow-sm hover:shadow-lg hover:shadow-purple-100 hover:border-purple-600 hover:scale-105 transform transition-all duration-300 h-full group"
+                      className="bg-white dark:bg-gray-800 rounded-2xl border-2 border-purple-300 dark:border-purple-600 shadow-sm hover:shadow-lg hover:shadow-purple-100 hover:border-purple-600 hover:scale-105 transform transition-all duration-300 h-full group"
                       data-testid={`card-advantage-${index}`}
                     >
                       <CardContent className="p-6 sm:p-8 h-full flex flex-col">
@@ -122,7 +122,7 @@ export default function WhyLorepicSection() {
                           <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center group-hover:animate-pulse transition-all duration-300">
                             <IconComponent className="text-white transition-transform duration-300 group-hover:scale-110" size={18} />
                           </div>
-                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors duration-300">{advantage.title}</h3>
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-purple-700 transition-colors duration-300">{advantage.title}</h3>
                         </div>
                         <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 flex-1 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                           {advantage.description}
