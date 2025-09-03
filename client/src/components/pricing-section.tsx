@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Check, X, Image, Palette, Video, Info, Zap, Sparkles, Crown, Building2, HelpCircle, Calendar } from "lucide-react";
+import { Check, X, Image, Palette, Video, Info, Zap, Sparkles, Crown, Building2, HelpCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
@@ -16,6 +16,8 @@ export default function PricingSection() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [selectedCredit, setSelectedCredit] = useState<string | null>(null);
   const [imageVideoSelections, setImageVideoSelections] = useState<{[planId: string]: 'clips' | 'videos' | null}>({});
+  const [expandedFeatures, setExpandedFeatures] = useState<{[planId: string]: boolean}>({});
+  const [expandedComparison, setExpandedComparison] = useState(false);
   const { toast } = useToast();
   
   const handleSelectPlan = (planId: string) => {
@@ -55,6 +57,17 @@ export default function PricingSection() {
       ...prev,
       [planId]: prev[planId] === option ? null : option
     }));
+  };
+
+  const toggleFeatures = (planId: string) => {
+    setExpandedFeatures(prev => ({
+      ...prev,
+      [planId]: !prev[planId]
+    }));
+  };
+
+  const toggleComparison = () => {
+    setExpandedComparison(!expandedComparison);
   };
 
   const handleSelectCredit = (creditOption: any) => {
@@ -214,7 +227,19 @@ export default function PricingSection() {
                     
                     {/* Features List - moved lower with more spacing */}
                     <div className="mt-6">
-                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 text-left">
+                      <div className="mb-3">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => toggleFeatures(plan.id)}
+                          className="flex items-center gap-2 text-purple-600 hover:text-purple-700 p-0 h-auto font-medium"
+                        >
+                          {expandedFeatures[plan.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                          See all features
+                        </Button>
+                      </div>
+                      {expandedFeatures[plan.id] && (
+                        <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 text-left animate-in slide-in-from-top-2 duration-200">
                         {plan.features?.map((feature: any, featureIndex: number) => {
                           
                           return (
@@ -281,7 +306,8 @@ export default function PricingSection() {
                             </li>
                           );
                         })}
-                      </ul>
+                        </ul>
+                      )}
                     </div>
                   </div>
                   
@@ -320,7 +346,18 @@ export default function PricingSection() {
           </div>
           
           {/* Feature Comparison Table */}
-          <Card className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden">
+          <div className="mb-6 text-center">
+            <Button
+              variant="outline"
+              onClick={toggleComparison}
+              className="flex items-center gap-2 px-6 py-3 rounded-full border-purple-300 text-purple-600 hover:bg-purple-50 dark:border-purple-600 dark:text-purple-400 dark:hover:bg-purple-900/20"
+            >
+              {expandedComparison ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+              Expand full comparison
+            </Button>
+          </div>
+          {expandedComparison && (
+          <Card className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-top-4 duration-300">
             <div className={`${colors.headerBg} text-white text-center py-4`}>
               <h4 className="text-lg font-semibold">{currentServiceData?.title} Feature Comparison</h4>
             </div>
@@ -367,6 +404,7 @@ export default function PricingSection() {
               </table>
             </div>
           </Card>
+          )}
         </div>
 
         {/* Flexible Pay-As-You-Go Credits Section */}

@@ -32,14 +32,30 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-purple-50 to-purple-100 dark:from-black dark:via-black dark:to-black py-20 lg:py-32 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 lg:py-32 transition-colors duration-300">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+          poster="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-computer-tower-mother-board-being-assembled-5014-large.mp4" type="video/mp4" />
+        </video>
+        {/* Gradient Overlay for text visibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 dark:from-black/80 dark:via-black/60 dark:to-black/80"></div>
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
             Turn <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">Ideas</span> into Visual <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">Magic</span> — Instantly.
           </h1>
           
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
             Upscale low-res images, create stunning AI art, and transform text or photos into cinematic videos — all in one seamless platform powered by cutting-edge AI.
           </p>
           
@@ -92,15 +108,15 @@ export default function HeroSection() {
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-images-processed">2K+</div>
-              <div className="text-gray-600 dark:text-gray-300 mt-1">Images Enhanced</div>
+              <div className="text-white/80 mt-1 drop-shadow-sm">Images Enhanced</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-videos-generated">1K+</div>
-              <div className="text-gray-600 dark:text-gray-300 mt-1">Videos Generated</div>
+              <div className="text-white/80 mt-1 drop-shadow-sm">Videos Generated</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-happy-users">500+</div>
-              <div className="text-gray-600 dark:text-gray-300 mt-1">Happy Users</div>
+              <div className="text-white/80 mt-1 drop-shadow-sm">Happy Users</div>
             </div>
           </div>
         </div>

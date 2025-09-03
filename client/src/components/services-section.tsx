@@ -7,7 +7,7 @@ export default function ServicesSection() {
     {
       id: "image-enhancement",
       title: "Image Enhancement",
-      description: "Transform low-quality images into crystal-clear, professional photos with our advanced AI upscaling and enhancement technology.",
+      description: "Enhance photos up to 6K in seconds.",
       icon: Image,
       color: "purple",
       features: [
@@ -21,7 +21,7 @@ export default function ServicesSection() {
     {
       id: "ai-generator",
       title: "Text-to-Image AI",
-      description: "Create stunning, unique artwork from simple text descriptions using state-of-the-art generative AI models.",
+      description: "Generate stunning visuals from any text.",
       icon: Palette,
       color: "purple",
       features: [
@@ -35,7 +35,7 @@ export default function ServicesSection() {
     {
       id: "video-generator",
       title: "Text-to-Video AI",
-      description: "Generate professional video content from text prompts with our cutting-edge video synthesis technology.",
+      description: "Turn scripts into engaging short videos.",
       icon: Video,
       color: "purple",
       features: [
@@ -49,7 +49,7 @@ export default function ServicesSection() {
     {
       id: "image-to-video",
       title: "Image-to-Video AI",
-      description: "Bring still images to life with cinematic AI motion. Transform photos into dynamic short clips perfect for ads, reels, and creative projects.",
+      description: "Animate your images into dynamic clips.",
       icon: Film,
       color: "purple",
       features: [
@@ -108,7 +108,7 @@ export default function ServicesSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {services.map((service) => {
             const colorClasses = getColorClasses(service.color);
             const IconComponent = service.icon;
