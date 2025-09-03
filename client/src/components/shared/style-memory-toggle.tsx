@@ -122,7 +122,7 @@ export function StyleMemoryToggle({ service, onStyleApplied, className }: StyleM
   };
 
   return (
-    <Card className={`bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-200 dark:border-purple-700 ${className}`}>
+    <Card className={`bg-gradient-to-br from-purple-50 to-purple-100 dark:from-black dark:to-black border-purple-200 dark:border-purple-600 ${className}`}>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center justify-between text-purple-800 dark:text-purple-200">
           <div className="flex items-center space-x-2">
@@ -158,7 +158,7 @@ export function StyleMemoryToggle({ service, onStyleApplied, className }: StyleM
           </Button>
           
           {isExpanded && (
-            <div className="space-y-6 mt-4 p-4 bg-white/50 dark:bg-black/20 rounded-lg border border-purple-200 dark:border-purple-700">
+            <div className="space-y-6 mt-4 p-4 bg-white/50 dark:bg-black/50 rounded-lg border border-purple-200 dark:border-purple-600">
               {/* Brand Colors Section */}
               <div>
                 <Label className="text-sm font-medium text-purple-800 dark:text-purple-200 mb-2 block">

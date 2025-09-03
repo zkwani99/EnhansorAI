@@ -148,18 +148,18 @@ export function FileManager({ service, title, className = "" }: FileManagerProps
         </CardTitle>
         
         {/* Auto-deletion warning notice */}
-        <div className="relative bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200/60 rounded-xl p-4 shadow-sm">
+        <div className="relative bg-gradient-to-r from-orange-50 to-amber-50 dark:from-black dark:to-black border border-orange-200/60 dark:border-orange-600 rounded-xl p-4 shadow-sm">
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-9 h-9 bg-orange-100 rounded-full flex items-center justify-center">
-              <AlertTriangle className="h-5 w-5 text-orange-600" />
+            <div className="flex-shrink-0 w-9 h-9 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center">
+              <AlertTriangle className="h-5 w-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                 Auto-deletion Notice
               </h4>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 Your generated content will be automatically deleted after 30 days. 
-                <span className="font-medium text-orange-700 ml-1">Download files to keep them permanently.</span>
+                <span className="font-medium text-orange-700 dark:text-orange-400 ml-1">Download files to keep them permanently.</span>
               </p>
             </div>
           </div>

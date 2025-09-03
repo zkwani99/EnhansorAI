@@ -176,7 +176,7 @@ export function AIPromptAssistant({ service, onPromptSelect, className = "" }: A
         <Button 
           variant="outline" 
           size="sm"
-          className={`border-purple-300 text-purple-700 hover:bg-purple-50 hover:border-purple-400 transition-all duration-300 ${className}`}
+          className={`border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900 hover:border-purple-400 transition-all duration-300 ${className}`}
           data-testid="button-ai-prompt-assistant"
         >
           <Lightbulb className="w-4 h-4 mr-2" />
@@ -184,7 +184,7 @@ export function AIPromptAssistant({ service, onPromptSelect, className = "" }: A
         </Button>
       </SheetTrigger>
       
-      <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
+      <SheetContent className="w-full sm:max-w-lg overflow-y-auto bg-white dark:bg-black">
         <SheetHeader className="mb-6">
           <SheetTitle className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-purple-600" />
@@ -197,13 +197,13 @@ export function AIPromptAssistant({ service, onPromptSelect, className = "" }: A
 
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-gray-900">Suggested Prompts</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white">Suggested Prompts</h3>
             <Button
               variant="outline"
               size="sm"
               onClick={generateRandomSuggestions}
               disabled={isRefreshing}
-              className="border-purple-300 text-purple-700 hover:bg-purple-50"
+              className="border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900"
               data-testid="button-refresh-suggestions"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
@@ -224,7 +224,7 @@ export function AIPromptAssistant({ service, onPromptSelect, className = "" }: A
               {currentSuggestions.map((suggestion, index) => (
                 <Card 
                   key={index} 
-                  className="border-purple-200 hover:border-purple-400 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                  className="border-purple-200 dark:border-purple-600 hover:border-purple-400 dark:hover:border-purple-400 hover:shadow-md transition-all duration-300 cursor-pointer group bg-white dark:bg-black"
                   onClick={() => handlePromptSelect(suggestion.prompt)}
                   data-testid={`prompt-suggestion-${index}`}
                 >
@@ -239,7 +239,7 @@ export function AIPromptAssistant({ service, onPromptSelect, className = "" }: A
                       <ArrowRight className="w-4 h-4 text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     
-                    <p className="text-sm text-gray-700 leading-relaxed mb-3 group-hover:text-gray-900 transition-colors duration-300">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3 group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
                       {suggestion.prompt}
                     </p>
                     

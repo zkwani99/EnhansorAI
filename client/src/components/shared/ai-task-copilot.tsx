@@ -195,7 +195,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
 
   if (!isEnabled) {
     return (
-      <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-800/20 border-blue-200 dark:border-blue-700 ${className}`}>
+      <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-black border-blue-200 dark:border-blue-600 ${className}`}>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center justify-between text-blue-800 dark:text-blue-200">
             <div className="flex items-center space-x-2">
@@ -219,7 +219,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
   }
 
   return (
-    <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-800/20 border-blue-200 dark:border-blue-700 ${className}`}>
+    <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-black border-blue-200 dark:border-blue-600 ${className}`}>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center justify-between text-blue-800 dark:text-blue-200">
           <div className="flex items-center space-x-2">
@@ -295,7 +295,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
                       ? "bg-blue-100 dark:bg-blue-800/30 border-blue-300 dark:border-blue-600" 
                       : isCompleted
                         ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800"
-                        : "bg-white/50 dark:bg-black/20 border-blue-200 dark:border-blue-700"
+                        : "bg-white/50 dark:bg-black/50 border-blue-200 dark:border-blue-600"
                   }`}
                 >
                   <div className="flex items-start space-x-3">

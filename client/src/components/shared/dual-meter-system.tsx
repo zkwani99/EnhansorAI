@@ -63,11 +63,11 @@ export function DualMeterSystem({ service, className = "", showDetails = true }:
       <div className={`space-y-4 ${className}`}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-2">PAYG Credits</h3>
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">PAYG Credits</h3>
             <CreditBalance showDetails={showDetails} />
           </div>
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Subscription Usage</h3>
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subscription Usage</h3>
             <SubscriptionOutputsMeter service={service} showDetails={showDetails} />
           </div>
         </div>
@@ -79,7 +79,7 @@ export function DualMeterSystem({ service, className = "", showDetails = true }:
     // Subscription plan: Show only subscription outputs meter (full width) with label
     return (
       <div className={`space-y-2 ${className}`}>
-        <h3 className="text-sm font-medium text-gray-700">Subscription Usage</h3>
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Subscription Usage</h3>
         <SubscriptionOutputsMeter service={service} showDetails={showDetails} />
       </div>
     );
@@ -88,7 +88,7 @@ export function DualMeterSystem({ service, className = "", showDetails = true }:
   // PAYG plan (default): Show only credits meter (full width) with label
   return (
     <div className={`space-y-2 ${className}`}>
-      <h3 className="text-sm font-medium text-gray-700">PAYG Credits</h3>
+      <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">PAYG Credits</h3>
       <CreditBalance showDetails={showDetails} />
     </div>
   );
