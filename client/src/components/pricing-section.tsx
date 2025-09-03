@@ -544,7 +544,7 @@ export default function PricingSection() {
           </Card>
 
           {/* Decision Helper Box */}
-          <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-2xl">
+          <Card className="bg-white dark:bg-black border border-purple-200 rounded-2xl">
             <CardContent className="p-6">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-4">
@@ -635,7 +635,7 @@ function CreditUsageDisplay() {
       title: 'Image Enhancement',
       icon: Image,
       color: 'from-purple-400 to-purple-500', // Lighter purple
-      bgColor: 'bg-purple-50',
+      bgColor: 'bg-white dark:bg-black',
       borderColor: 'border-purple-200',
       badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
     },
@@ -643,7 +643,7 @@ function CreditUsageDisplay() {
       title: 'Text-to-Image AI',
       icon: Palette,
       color: 'from-purple-500 to-purple-600', // Medium purple
-      bgColor: 'bg-purple-50',
+      bgColor: 'bg-white dark:bg-black',
       borderColor: 'border-purple-300',
       badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
     },
@@ -651,7 +651,7 @@ function CreditUsageDisplay() {
       title: 'Text-to-Video AI',
       icon: Video,
       color: 'from-purple-600 to-purple-700', // Darker purple
-      bgColor: 'bg-purple-50',
+      bgColor: 'bg-white dark:bg-black',
       borderColor: 'border-purple-400',
       badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
     },
@@ -659,7 +659,7 @@ function CreditUsageDisplay() {
       title: 'Image-to-Video AI',
       icon: Video,
       color: 'from-purple-700 to-purple-800', // Darkest purple
-      bgColor: 'bg-purple-50',
+      bgColor: 'bg-white dark:bg-black',
       borderColor: 'border-purple-500',
       badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
     },
@@ -711,7 +711,7 @@ function CreditUsageDisplay() {
                   // Special handling for plan inclusions and notes
                   if (item.tier === 'plans-included' || item.tier === '1-plans-included' || item.tier === 'note') {
                     return (
-                      <div key={item.tier} className="py-3 px-3 rounded-lg bg-white/60 dark:bg-black/60 border border-purple-200 dark:border-purple-600">
+                      <div key={item.tier} className="py-3 px-3 rounded-lg bg-white dark:bg-black border border-purple-200 dark:border-purple-600">
                         <span className="text-sm font-medium text-gray-700 whitespace-pre-line">{item.displayName}</span>
                       </div>
                     );
@@ -722,7 +722,7 @@ function CreditUsageDisplay() {
                     return (
                       <Tooltip key={item.tier}>
                         <TooltipTrigger asChild>
-                          <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-white/80 transition-all duration-200 cursor-help">
+                          <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 cursor-help">
                             <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
                             <Badge className="bg-green-100 text-green-700 border-green-300 font-semibold shadow-sm">
                               Included
@@ -741,7 +741,7 @@ function CreditUsageDisplay() {
                   return (
                     <Tooltip key={item.tier}>
                       <TooltipTrigger asChild>
-                        <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-white/80 transition-all duration-200 cursor-help">
+                        <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 cursor-help">
                           <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
                           <Badge className={`${config.badgeColor} font-semibold shadow-sm`}>
                             {item.credits} credit{item.credits > 1 ? 's' : ''}
