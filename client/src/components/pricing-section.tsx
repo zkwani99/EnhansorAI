@@ -94,7 +94,7 @@ export default function PricingSection() {
     // All services now use dark gradient purple color scheme
     return {
       iconBg: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
-      headerBg: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
+      headerBg: "bg-black dark:bg-black",
       button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-gray-900",
       border: "border-purple-600",
       popular: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
@@ -207,7 +207,7 @@ export default function PricingSection() {
                       <span className="text-lg text-gray-600 dark:text-gray-300 font-normal">{plan.period}</span>
                     </div>
                     {(plan as any).pricePerImage && (
-                      <div className="text-sm text-gray-500 mb-6">
+                      <div className="text-sm text-gray-800 dark:text-gray-200 mb-6">
                         {(plan as any).pricePerImage}
                       </div>
                     )}
@@ -224,12 +224,12 @@ export default function PricingSection() {
                               ) : feature.included ? (
                                 <Check className="text-green-500 mr-2 mt-0.5 flex-shrink-0" size={16} />
                               ) : (
-                                <span className="text-gray-400 mr-2 text-sm mt-0.5">—</span>
+                                <span className="text-gray-600 dark:text-gray-400 mr-2 text-sm mt-0.5">—</span>
                               )}
                               <span className="flex items-center gap-1">
                                 {activeService === 'imageVideo' && (feature as any).options ? (
                                   <div className="w-full">
-                                    <div className="text-sm font-medium text-gray-700 mb-3">{feature.text}</div>
+                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">{feature.text}</div>
                                     <div className="grid grid-cols-1 gap-2">
                                       {(feature as any).options.map((option: any, optionIndex: number) => {
                                         const isSelected = imageVideoSelections[plan.id] === option.id;
@@ -269,7 +269,7 @@ export default function PricingSection() {
                                   <TooltipProvider>
                                     <Tooltip>
                                       <TooltipTrigger asChild>
-                                        <Info className="text-gray-400 cursor-help" size={14} />
+                                        <Info className="text-gray-600 dark:text-gray-400 cursor-help" size={14} />
                                       </TooltipTrigger>
                                       <TooltipContent>
                                         <p className="max-w-xs">{feature.tooltip}</p>
@@ -328,9 +328,9 @@ export default function PricingSection() {
               <table className="w-full">
                 <thead className="bg-white dark:bg-black">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Feature</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Feature</th>
                     {currentServiceData?.plans?.map((plan: any) => (
-                      <th key={plan.id} className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th key={plan.id} className="px-6 py-3 text-center text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">
                         {plan.name}
                       </th>
                     ))}
@@ -343,7 +343,7 @@ export default function PricingSection() {
                         {feature.name}
                       </td>
                       {feature.values?.map((value: any, valueIndex: number) => (
-                        <td key={valueIndex} className={`px-6 py-4 text-sm text-gray-500 text-center ${
+                        <td key={valueIndex} className={`px-6 py-4 text-sm text-gray-800 dark:text-gray-200 text-center ${
                           feature.name === 'Video Generation' && activeService === 'imageVideo' 
                             ? 'whitespace-pre-line min-h-[80px] align-top' 
                             : 'whitespace-nowrap'
@@ -352,7 +352,7 @@ export default function PricingSection() {
                             value ? (
                               <Check className="text-green-500 mx-auto" size={16} />
                             ) : (
-                              <span className="text-gray-400 mx-auto text-sm">—</span>
+                              <span className="text-gray-600 dark:text-gray-400 mx-auto text-sm">—</span>
                             )
                           ) : value === '✓' ? (
                             <Check className="text-green-500 mx-auto" size={16} />
@@ -394,10 +394,10 @@ export default function PricingSection() {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Starter Pack</h3>
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-purple-600">$9</span>
-                    <span className="text-gray-500 ml-1">one-time</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-2xl font-semibold text-gray-700 mb-4">100 credits</div>
-                  <p className="text-sm text-gray-500">$0.09 per credit</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">100 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.09 per credit</p>
                 </div>
                 <div className="mt-auto">
                   <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
@@ -422,10 +422,10 @@ export default function PricingSection() {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Creator Pack</h3>
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-purple-600">$25</span>
-                    <span className="text-gray-500 ml-1">one-time</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-2xl font-semibold text-gray-700 mb-4">300 credits</div>
-                  <p className="text-sm text-gray-500">$0.08 per credit</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">300 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.08 per credit</p>
                 </div>
                 <div className="mt-auto">
                   <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white font-medium py-2 rounded-lg">
@@ -445,10 +445,10 @@ export default function PricingSection() {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Pro Pack</h3>
                   <div className="mb-4">
                     <span className="text-3xl font-bold text-purple-600">$75</span>
-                    <span className="text-gray-500 ml-1">one-time</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-2xl font-semibold text-gray-700 mb-4">1,000 credits</div>
-                  <p className="text-sm text-gray-500">$0.075 per credit</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">1,000 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.075 per credit</p>
                 </div>
                 <div className="mt-auto">
                   <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
@@ -468,10 +468,10 @@ export default function PricingSection() {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Enterprise Pack</h3>
                   <div className="mb-4">
                     <span className="text-2xl font-bold text-purple-600">Custom</span>
-                    <span className="text-gray-500 ml-1">pricing</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">pricing</span>
                   </div>
-                  <div className="text-lg font-semibold text-gray-700 mb-4">Unlimited credits</div>
-                  <p className="text-sm text-gray-500">Volume discounts</p>
+                  <div className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Unlimited credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">Volume discounts</p>
                 </div>
                 <div className="mt-auto">
                   <Button variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 font-medium py-2 rounded-lg">
@@ -712,7 +712,7 @@ function CreditUsageDisplay() {
                   if (item.tier === 'plans-included' || item.tier === '1-plans-included' || item.tier === 'note') {
                     return (
                       <div key={item.tier} className="py-3 px-3 rounded-lg bg-white dark:bg-black border border-purple-200 dark:border-purple-600">
-                        <span className="text-sm font-medium text-gray-700 whitespace-pre-line">{item.displayName}</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100 whitespace-pre-line">{item.displayName}</span>
                       </div>
                     );
                   }
@@ -723,7 +723,7 @@ function CreditUsageDisplay() {
                       <Tooltip key={item.tier}>
                         <TooltipTrigger asChild>
                           <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 cursor-help">
-                            <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
+                            <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.displayName}</span>
                             <Badge className="bg-green-100 text-green-700 border-green-300 font-semibold shadow-sm">
                               Included
                             </Badge>
@@ -742,7 +742,7 @@ function CreditUsageDisplay() {
                     <Tooltip key={item.tier}>
                       <TooltipTrigger asChild>
                         <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 cursor-help">
-                          <span className="text-sm font-medium text-gray-700">{item.displayName}</span>
+                          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.displayName}</span>
                           <Badge className={`${config.badgeColor} font-semibold shadow-sm`}>
                             {item.credits} credit{item.credits > 1 ? 's' : ''}
                           </Badge>
