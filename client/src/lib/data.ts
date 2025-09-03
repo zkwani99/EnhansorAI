@@ -499,31 +499,31 @@ export const faqData = [
   {
     id: "credits",
     question: "How many credits do I need for each service?",
-    answer: "Image enhancement uses 1 credit per image, text-to-image generation uses 2-5 credits depending on resolution, and text-to-video uses 10-25 credits per video based on length and quality settings."
+    answer: "Credits vary by output type. For example, higher resolutions and longer video durations require more credits. A full breakdown is shown on each service page."
   },
   {
     id: "speed",
     question: "What is the processing speed for each service?",
-    answer: "Image enhancement takes 15-30 seconds, text-to-image generation takes 30-60 seconds, and text-to-video generation takes 2-5 minutes depending on video length and quality settings."
+    answer: "Most image enhancements complete in seconds, while video generations may take 1–3 minutes depending on length and resolution."
   },
   {
     id: "formats",
     question: "What file formats are supported?",
-    answer: "We support JPG, PNG, and WebP for images. Output videos are provided in MP4 format with H.264 encoding for maximum compatibility across all devices and platforms."
+    answer: "We support JPG, PNG, and WebP for image uploads. Video exports are available in MP4 format."
   },
   {
     id: "quality",
     question: "What quality options are available?",
-    answer: "Images can be enhanced up to 8K resolution (7680x4320). Generated images support up to 4096x4096. Videos are available in 720p, 1080p, 4K, and 8K resolutions depending on your plan."
+    answer: "You can choose from multiple resolutions (1K–4K for images, 720p–1080p for videos) and upscaling levels (1×–6×). Options depend on your subscription plan or PAYG credits."
   },
   {
     id: "commercial",
     question: "Can I use generated content for commercial purposes?",
-    answer: "Yes! All content generated through our platform comes with full commercial usage rights. You own the output and can use it for any purpose, including commercial projects, without attribution required."
+    answer: "Commercial usage rights are included only in our higher-tier subscription plans. Free and Starter plans are for personal or non-commercial use."
   },
   {
-    id: "refund",
-    question: "What is your refund policy?",
-    answer: "We offer a 30-day money-back guarantee for all subscription plans. For pay-as-you-go credits, unused credits can be refunded within 30 days of purchase if you're not satisfied with the service quality."
+    id: "payg",
+    question: "Do you offer both subscriptions and PAYG?",
+    answer: "Yes. You can subscribe to a monthly plan with fixed outputs or use flexible PAYG credits across all services."
   }
 ];
