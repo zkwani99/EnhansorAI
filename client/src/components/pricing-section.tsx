@@ -182,7 +182,7 @@ export default function PricingSection() {
               <Card
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan.id)}
-                className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer h-full flex flex-col group ${
+                className={`bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer h-full flex flex-col group ${
                   selectedPlan === plan.id 
                     ? `border-2 ${colors.border} ring-2 ring-offset-2 ${colors.border.replace('border-', 'ring-')} relative transform scale-105` 
                     : plan.isPopular 
@@ -320,7 +320,7 @@ export default function PricingSection() {
           </div>
           
           {/* Feature Comparison Table */}
-          <Card className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+          <Card className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden">
             <div className={`${colors.headerBg} text-white text-center py-4`}>
               <h4 className="text-lg font-semibold">{currentServiceData?.title} Feature Comparison</h4>
             </div>
@@ -336,7 +336,7 @@ export default function PricingSection() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-700">
                   {currentServiceData?.comparisonFeatures?.map((feature: any, index: number) => (
                     <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
@@ -385,7 +385,7 @@ export default function PricingSection() {
           {/* Credits Pricing Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {/* Starter Pack */}
-            <Card className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
+            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
               <CardContent className="p-6 text-center h-full flex flex-col">
                 <div className="mb-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -408,7 +408,7 @@ export default function PricingSection() {
             </Card>
 
             {/* Creator Pack */}
-            <Card className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-purple-300 ring-2 ring-purple-100 relative">
+            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-purple-300 ring-2 ring-purple-100 relative">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-4 py-1 rounded-full text-xs font-semibold">
                   BEST VALUE
@@ -436,7 +436,7 @@ export default function PricingSection() {
             </Card>
 
             {/* Pro Pack */}
-            <Card className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
+            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
               <CardContent className="p-6 text-center h-full flex flex-col">
                 <div className="mb-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -459,7 +459,7 @@ export default function PricingSection() {
             </Card>
 
             {/* Enterprise Pack */}
-            <Card className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
+            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
               <CardContent className="p-6 text-center h-full flex flex-col">
                 <div className="mb-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -497,7 +497,7 @@ export default function PricingSection() {
           </div>
 
           {/* Features List */}
-          <Card className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-2xl mb-8">
+          <Card className="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-600 rounded-2xl mb-8">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-start gap-3">
@@ -553,7 +553,7 @@ export default function PricingSection() {
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-purple-200 dark:border-purple-600">
+                  <div className="bg-white dark:bg-black rounded-xl p-6 border border-purple-200 dark:border-purple-600">
                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Calendar className="w-6 h-6 text-blue-600" />
                     </div>
@@ -563,7 +563,7 @@ export default function PricingSection() {
                     </p>
                   </div>
                   
-                  <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-purple-200 dark:border-purple-600">
+                  <div className="bg-white dark:bg-black rounded-xl p-6 border border-purple-200 dark:border-purple-600">
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Zap className="w-6 h-6 text-purple-600" />
                     </div>
@@ -711,7 +711,7 @@ function CreditUsageDisplay() {
                   // Special handling for plan inclusions and notes
                   if (item.tier === 'plans-included' || item.tier === '1-plans-included' || item.tier === 'note') {
                     return (
-                      <div key={item.tier} className="py-3 px-3 rounded-lg bg-white/60 dark:bg-gray-800/60 border border-purple-200 dark:border-purple-600">
+                      <div key={item.tier} className="py-3 px-3 rounded-lg bg-white/60 dark:bg-black/60 border border-purple-200 dark:border-purple-600">
                         <span className="text-sm font-medium text-gray-700 whitespace-pre-line">{item.displayName}</span>
                       </div>
                     );

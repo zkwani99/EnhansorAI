@@ -147,7 +147,7 @@ export default function TemplatesSection() {
           {getFilteredTemplates().map((template) => (
             <Card
               key={template.id}
-              className="group relative overflow-hidden bg-white dark:bg-gray-800 border-2 border-purple-200 dark:border-purple-600 hover:border-purple-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-200"
+              className="group relative overflow-hidden bg-white dark:bg-black border-2 border-purple-200 dark:border-purple-600 hover:border-purple-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-200"
               data-testid={`template-card-${template.id}`}
             >
               <div className="relative">
@@ -165,7 +165,7 @@ export default function TemplatesSection() {
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Button
                     size="sm"
-                    className="bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-800"
+                    className="bg-white/90 dark:bg-black/90 text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-800"
                     data-testid={`button-preview-template-${template.id}`}
                   >
                     <Eye className="w-4 h-4 mr-2" />

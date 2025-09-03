@@ -60,7 +60,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+    <nav className="bg-white dark:bg-black shadow-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-700 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -243,7 +243,7 @@ export default function Navigation() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
+          <div className="md:hidden py-4 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-black">
             <div className="flex flex-col space-y-1">
               {/* Tools Section */}
               <div className="px-3 py-2">

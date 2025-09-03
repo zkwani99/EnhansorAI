@@ -149,7 +149,7 @@ export default function GeneratePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-black dark:to-gray-900 transition-colors duration-300 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
@@ -163,7 +163,7 @@ export default function GeneratePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-black dark:to-gray-900 transition-colors duration-300">
       {/* Header */}
       <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -223,7 +223,7 @@ export default function GeneratePage() {
                 </CardContent>
               </Card>
             </div>
-            <Card className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/20">
+            <Card className="bg-white dark:bg-black shadow-lg dark:shadow-gray-900/20">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Create Your Image</h2>
                 
@@ -444,7 +444,7 @@ export default function GeneratePage() {
 
           {/* Right Section - Style Presets */}
           <div className="space-y-6">
-            <Card className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900/20">
+            <Card className="bg-white dark:bg-black shadow-lg dark:shadow-gray-900/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Palette className="w-5 h-5 text-purple-600" />
