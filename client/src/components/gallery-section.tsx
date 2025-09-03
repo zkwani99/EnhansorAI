@@ -172,10 +172,10 @@ export default function GallerySection() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Gallery Showcase
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Explore stunning examples of our AI-powered transformations across all service categories
             </p>
           </div>
@@ -192,7 +192,7 @@ export default function GallerySection() {
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 shadow-lg hover:shadow-xl transform hover:scale-105 ${
                     isActive
                       ? `bg-gradient-to-r ${button.color} text-white border-transparent shadow-lg`
-                      : "bg-white/80 backdrop-blur-sm text-gray-700 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+                      : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-200 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
                   }`}
                   data-testid={`button-filter-${button.id}`}
                 >
@@ -208,7 +208,7 @@ export default function GallerySection() {
             {getFilteredItems().map((item) => (
               <div
                 key={item.id}
-                className={`group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] cursor-pointer break-inside-avoid mb-6 ${item.height}`}
+                className={`group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] cursor-pointer break-inside-avoid mb-6 ${item.height}`}
                 onClick={() => openModal(item)}
                 data-testid={`card-gallery-item-${item.id}`}
               >
@@ -271,7 +271,7 @@ export default function GallerySection() {
                     <DialogTitle className="text-2xl font-bold text-gray-900">
                       {selectedItem.title}
                     </DialogTitle>
-                    <p className="text-gray-600 mt-1">{selectedItem.tool}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mt-1">{selectedItem.tool}</p>
                   </div>
                   <Button
                     variant="ghost"

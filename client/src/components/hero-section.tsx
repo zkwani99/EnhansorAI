@@ -59,7 +59,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('generate')}
-              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="border-3 border-gray-400 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-generate-image"
             >
               <Palette className="mr-3 h-5 w-5" />
@@ -70,7 +70,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('video')}
-              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="border-3 border-gray-400 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-create-video"
             >
               <Video className="mr-3 h-5 w-5" />
@@ -80,7 +80,7 @@ export default function HeroSection() {
               variant="outline"
               size="lg"
               onClick={() => handleServiceClick('image-to-video')}
-              className="border-3 border-gray-400 bg-white text-gray-800 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="border-3 border-gray-400 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-md hover:border-purple-600 hover:text-purple-600 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
               data-testid="button-create-video-from-image"
             >
               <Film className="mr-3 h-5 w-5" />
@@ -92,15 +92,15 @@ export default function HeroSection() {
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-images-processed">2K+</div>
-              <div className="text-gray-600 mt-1">Images Enhanced</div>
+              <div className="text-gray-600 dark:text-gray-300 mt-1">Images Enhanced</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-videos-generated">1K+</div>
-              <div className="text-gray-600 mt-1">Videos Generated</div>
+              <div className="text-gray-600 dark:text-gray-300 mt-1">Videos Generated</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-happy-users">500+</div>
-              <div className="text-gray-600 mt-1">Happy Users</div>
+              <div className="text-gray-600 dark:text-gray-300 mt-1">Happy Users</div>
             </div>
           </div>
         </div>
