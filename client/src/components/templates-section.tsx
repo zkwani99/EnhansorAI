@@ -107,7 +107,7 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden transition-colors duration-300">
+    <section className="py-20 relative overflow-hidden bg-white dark:bg-black transition-colors duration-300">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-32 right-20 w-64 h-64 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full blur-3xl opacity-30"></div>
