@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Check, X, Image, Palette, Video, Info, Zap, Sparkles, Crown, Building2, HelpCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
@@ -18,6 +19,7 @@ export default function PricingSection() {
   const [imageVideoSelections, setImageVideoSelections] = useState<{[planId: string]: 'clips' | 'videos' | null}>({});
   const [expandedFeatures, setExpandedFeatures] = useState<{[planId: string]: boolean}>({});
   const [expandedComparison, setExpandedComparison] = useState(false);
+  const [isYearly, setIsYearly] = useState(false);
   const { toast } = useToast();
   
   const handleSelectPlan = (planId: string) => {
@@ -68,6 +70,16 @@ export default function PricingSection() {
 
   const toggleComparison = () => {
     setExpandedComparison(!expandedComparison);
+  };
+
+  const calculatePrice = (monthlyPrice: string) => {
+    if (monthlyPrice === 'Free' || monthlyPrice === 'Custom') return monthlyPrice;
+    const price = parseFloat(monthlyPrice.replace('$', ''));
+    return isYearly ? `$${(price * 12 * 0.8).toFixed(0)}` : monthlyPrice;
+  };
+
+  const getPeriod = () => {
+    return isYearly ? '/year' : '/month';
   };
 
   const handleSelectCredit = (creditOption: any) => {
@@ -150,9 +162,25 @@ export default function PricingSection() {
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Pricing Plans
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             Choose a plan that fits your needs. Scale as you grow with flexible AI-powered services.
           </p>
+          
+          {/* Monthly/Yearly Toggle */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <span className={`text-lg font-medium ${!isYearly ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`}>Monthly</span>
+            <Switch 
+              checked={isYearly} 
+              onCheckedChange={setIsYearly}
+              className="data-[state=checked]:bg-purple-600"
+            />
+            <span className={`text-lg font-medium ${isYearly ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`}>Yearly</span>
+            {isYearly && (
+              <Badge className="bg-green-100 text-green-800 border-green-200 ml-2">
+                Save 20%
+              </Badge>
+            )}
+          </div>
         </div>
         
         {/* Service Tabs */}
@@ -204,10 +232,11 @@ export default function PricingSection() {
                 }`}
                 data-testid={`card-plan-${plan.id}`}
               >
-                {plan.isPopular && (
+                {(plan.isPopular || plan.name === 'Growth') && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className={`${colors.popular} text-white px-4 py-1 text-xs font-medium`}>
-                      Most Popular
+                    <Badge className={`${colors.popular} text-white px-4 py-1 text-xs font-medium flex items-center gap-1`}>
+                      <Check size={12} />
+                      {plan.name === 'Growth' ? '✅ Recommended' : 'Most Popular'}
                     </Badge>
                   </div>
                 )}
@@ -216,8 +245,8 @@ export default function PricingSection() {
                   <div className="text-center flex-grow">
                     <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h4>
                     <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent mb-2">
-                      {plan.price}
-                      <span className="text-lg text-gray-600 dark:text-gray-300 font-normal">{plan.period}</span>
+                      {calculatePrice(plan.price)}
+                      <span className="text-lg text-gray-600 dark:text-gray-300 font-normal">{getPeriod()}</span>
                     </div>
                     {(plan as any).pricePerImage && (
                       <div className="text-sm text-gray-800 dark:text-gray-200 mb-6">

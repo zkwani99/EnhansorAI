@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Image, Palette, Video, Check, Film } from "lucide-react";
+import { Image, Palette, Video, Check, Film, Monitor, Paintbrush, Clock, Layers } from "lucide-react";
 
 export default function ServicesSection() {
   const services = [
@@ -11,9 +11,9 @@ export default function ServicesSection() {
       icon: Image,
       color: "purple",
       features: [
-        "Up to 8K resolution upscaling",
-        "Noise reduction & sharpening",
-        "Batch processing available"
+        { text: "Up to 8K resolution upscaling", icon: Monitor },
+        { text: "Noise reduction & sharpening", icon: Layers },
+        { text: "Batch processing available", icon: Clock }
       ],
       buttonText: "Try Enhancement",
       buttonTestId: "button-try-image-enhancement"
@@ -25,9 +25,9 @@ export default function ServicesSection() {
       icon: Palette,
       color: "purple",
       features: [
-        "Multiple art styles available",
-        "High-resolution outputs",
-        "Commercial usage rights"
+        { text: "Multiple art styles available", icon: Paintbrush },
+        { text: "High-resolution outputs", icon: Monitor },
+        { text: "Commercial usage rights", icon: Check }
       ],
       buttonText: "Generate Images",
       buttonTestId: "button-try-image-generation"
@@ -39,9 +39,9 @@ export default function ServicesSection() {
       icon: Video,
       color: "purple",
       features: [
-        "4K video generation",
-        "Multiple duration options",
-        "Custom aspect ratios"
+        { text: "4K video generation", icon: Monitor },
+        { text: "Multiple duration options", icon: Clock },
+        { text: "Custom aspect ratios", icon: Layers }
       ],
       buttonText: "Create Videos",
       buttonTestId: "button-try-video-generation"
@@ -53,10 +53,10 @@ export default function ServicesSection() {
       icon: Film,
       color: "purple",
       features: [
-        "720p & 1080p video generation",
-        "Multiple motion styles",
-        "Up to 10s clips or stitched longer videos",
-        "Batch processing supported"
+        { text: "720p & 1080p video generation", icon: Monitor },
+        { text: "Multiple motion styles", icon: Paintbrush },
+        { text: "Up to 10s clips or stitched longer videos", icon: Clock },
+        { text: "Batch processing supported", icon: Layers }
       ],
       buttonText: "Create Video from Image",
       buttonTestId: "button-try-image-to-video"
@@ -117,7 +117,7 @@ export default function ServicesSection() {
               <Card
                 key={service.id}
                 id={service.id}
-                className={`group bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border ${colorClasses.border} h-full`}
+                className={`group bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02] border ${colorClasses.border} h-full`}
                 data-testid={`card-service-${service.id}`}
               >
                 <CardContent className="p-6 h-full flex flex-col">
@@ -131,12 +131,15 @@ export default function ServicesSection() {
                   </p>
                   
                   <div className="space-y-3 mb-6 flex-grow">
-                    {service.features.map((feature, index) => (
-                      <div key={index} className="flex items-center text-sm text-gray-600">
-                        <Check className={`${colorClasses.checkIcon} mr-3`} size={16} />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
+                    {service.features.map((feature, index) => {
+                      const FeatureIcon = feature.icon;
+                      return (
+                        <div key={index} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                          <FeatureIcon className={`${colorClasses.checkIcon} mr-3`} size={16} />
+                          <span>{feature.text}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                   
                   <div className="mt-auto">

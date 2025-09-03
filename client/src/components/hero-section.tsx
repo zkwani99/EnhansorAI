@@ -46,8 +46,8 @@ export default function HeroSection() {
           <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4" type="video/mp4" />
           <source src="https://assets.mixkit.co/videos/preview/mixkit-computer-tower-mother-board-being-assembled-5014-large.mp4" type="video/mp4" />
         </video>
-        {/* Gradient Overlay for text visibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 dark:from-black/80 dark:via-black/60 dark:to-black/80"></div>
+        {/* Gradient Overlay for text visibility - reduced opacity for better text visibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 dark:from-black/70 dark:via-black/50 dark:to-black/70"></div>
       </div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
@@ -102,6 +102,13 @@ export default function HeroSection() {
               <Film className="mr-3 h-5 w-5" />
               Image to Video
             </Button>
+          </div>
+          
+          {/* Tagline under buttons */}
+          <div className="mt-8">
+            <p className="text-white/90 text-lg font-medium drop-shadow-lg">
+              No watermark. Fast results. Commercial rights included.
+            </p>
           </div>
           
           {/* Hero Stats */}
