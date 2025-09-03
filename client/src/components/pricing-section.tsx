@@ -336,7 +336,7 @@ export default function PricingSection() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-600">
                   {currentServiceData?.comparisonFeatures?.map((feature: any, index: number) => (
                     <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
@@ -497,7 +497,7 @@ export default function PricingSection() {
           </div>
 
           {/* Features List */}
-          <Card className="bg-white dark:bg-black dark:bg-black border border-gray-200 dark:border-gray-600 rounded-2xl mb-8">
+          <Card className="bg-white dark:bg-black dark:bg-black border border-gray-200 dark:border-gray-500 rounded-2xl mb-8">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-start gap-3">
