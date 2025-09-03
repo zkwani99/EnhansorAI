@@ -124,7 +124,7 @@ export default function EnhancePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center gap-4 mb-6">
             <Link href="/">
@@ -259,7 +259,7 @@ export default function EnhancePage() {
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {uploadedFiles.map((file, index) => (
-                        <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+                        <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
                           <FileImage className="w-4 h-4 text-purple-600" />
                           <span className="text-sm text-gray-700 truncate">{file.name}</span>
                         </div>
@@ -504,7 +504,7 @@ export default function EnhancePage() {
                 </p>
                 <Button 
                   variant="secondary" 
-                  className="w-full bg-white text-purple-600 hover:bg-gray-100"
+                  className="w-full bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                   data-testid="button-ai-concierge"
                 >
                   Try AI Concierge

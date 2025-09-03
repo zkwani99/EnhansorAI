@@ -80,9 +80,9 @@ const result = await client.generate({
 console.log(result.imageUrl);`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       {/* Header */}
-      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 border-b border-gray-200">
+      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-gray-800 dark:via-gray-900 dark:to-purple-900/30 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-center gap-4 mb-8">
             <Link href="/">
@@ -100,11 +100,11 @@ console.log(result.imageUrl);`;
               </div>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
               Lorepic Developer API
             </h1>
             
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Integrate AI-powered image enhancement, generation, and video creation directly into your applications with our robust REST API.
             </p>
             
@@ -155,7 +155,7 @@ console.log(result.imageUrl);`;
                   </div>
                   
                   <div>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                       Get your API key from your dashboard and start making requests:
                     </p>
                     <Link href="/dashboard">
@@ -189,7 +189,7 @@ console.log(result.imageUrl);`;
                           </code>
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 mb-1">{endpoint.description}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">{endpoint.description}</p>
                       <p className="text-xs text-purple-600 font-medium">{endpoint.credits}</p>
                     </div>
                   ))}
@@ -211,8 +211,8 @@ console.log(result.imageUrl);`;
                         <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg w-fit mx-auto mb-3">
                           <IconComponent className="w-6 h-6 text-white" />
                         </div>
-                        <h3 className="font-semibold text-gray-900 mb-1">{feature.title}</h3>
-                        <p className="text-sm text-gray-600">{feature.description}</p>
+                        <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{feature.title}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">{feature.description}</p>
                       </div>
                     );
                   })}
@@ -260,7 +260,7 @@ console.log(result.imageUrl);`;
                     <div className="text-3xl font-bold text-purple-600 mb-2">
                       $0.01
                     </div>
-                    <div className="text-sm text-gray-600 mb-4">per credit used</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300 mb-4">per credit used</div>
                     <div className="space-y-2 text-sm text-gray-700">
                       <div>Image Enhancement: 1-3 credits</div>
                       <div>Image Generation: 2-5 credits</div>

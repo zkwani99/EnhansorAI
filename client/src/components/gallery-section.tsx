@@ -162,7 +162,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="gallery" className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-purple-900/30 relative transition-colors duration-300">
+      <section id="gallery" className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/50 relative transition-colors duration-300">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-100/20 via-transparent to-blue-100/20"></div>
         <div className="absolute inset-0">

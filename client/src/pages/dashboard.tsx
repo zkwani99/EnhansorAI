@@ -60,10 +60,10 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 dark:text-white transition-colors duration-300 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-300">Loading...</p>
         </div>
       </div>
     );
@@ -74,9 +74,9 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 dark:text-white transition-colors duration-300">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -92,15 +92,15 @@ export default function DashboardPage() {
                 <User className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-900">{(user as any)?.firstName || 'User'}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{(user as any)?.firstName || 'User'}</p>
                 <p className="text-xs text-gray-500">{(user as any)?.email}</p>
               </div>
             </div>
           </div>
           
           <div className="mt-6">
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-            <p className="text-gray-600 mt-2">Manage your account and view your usage</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">Manage your account and view your usage</p>
           </div>
         </div>
       </div>
@@ -266,19 +266,19 @@ export default function DashboardPage() {
                 <CardContent className="space-y-4">
                   <div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Today</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">Today</span>
                       <span className="font-medium">45 credits</span>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">This Month</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">This Month</span>
                       <span className="font-medium">620 credits</span>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Total All Time</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300">Total All Time</span>
                       <span className="font-medium">2,840 credits</span>
                     </div>
                   </div>
@@ -302,12 +302,12 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="font-semibold text-lg">Growth Plan</h3>
-                        <p className="text-sm text-gray-600">1,000 credits per month</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">1,000 credits per month</p>
                       </div>
                       <Badge className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white">Active</Badge>
                     </div>
                     <div className="text-2xl font-bold text-purple-600">$55/month</div>
-                    <p className="text-sm text-gray-600">Renews on January 15, 2025</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Renews on January 15, 2025</p>
                     <div className="flex gap-2">
                       <Button variant="outline" className="flex-1" data-testid="button-change-plan">
                         Change Plan
@@ -336,7 +336,7 @@ export default function DashboardPage() {
                         </div>
                         <div>
                           <p className="font-medium">•••• •••• •••• 4242</p>
-                          <p className="text-sm text-gray-600">Expires 12/27</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-300">Expires 12/27</p>
                         </div>
                       </div>
                       <Badge variant="outline">Default</Badge>
@@ -363,7 +363,7 @@ export default function DashboardPage() {
                     <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">{invoice.date}</p>
-                        <p className="text-sm text-gray-600">Growth Plan</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">Growth Plan</p>
                       </div>
                       <div className="text-right">
                         <p className="font-medium">{invoice.amount}</p>
@@ -391,7 +391,7 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">Usage Alerts</h3>
-                    <p className="text-sm text-gray-600">Get notified when you're running low on credits</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Get notified when you're running low on credits</p>
                   </div>
                   <Switch defaultChecked data-testid="switch-usage-alerts" />
                 </div>
@@ -399,7 +399,7 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">Payment Reminders</h3>
-                    <p className="text-sm text-gray-600">Receive reminders before your subscription renews</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Receive reminders before your subscription renews</p>
                   </div>
                   <Switch defaultChecked data-testid="switch-payment-reminders" />
                 </div>
@@ -407,7 +407,7 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">Account Updates</h3>
-                    <p className="text-sm text-gray-600">Security alerts and important account changes</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Security alerts and important account changes</p>
                   </div>
                   <Switch defaultChecked data-testid="switch-account-updates" />
                 </div>
@@ -415,7 +415,7 @@ export default function DashboardPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">Marketing Emails</h3>
-                    <p className="text-sm text-gray-600">Product updates, tips, and promotional offers</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Product updates, tips, and promotional offers</p>
                   </div>
                   <Switch data-testid="switch-marketing-emails" />
                 </div>
@@ -434,7 +434,7 @@ export default function DashboardPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     Use API keys to integrate Lorepic with your applications
                   </p>
                   
@@ -442,7 +442,7 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">Production Key</p>
-                        <p className="text-sm text-gray-600 font-mono">en_prod_••••••••••••4f2a</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 font-mono">en_prod_••••••••••••4f2a</p>
                       </div>
                       <Button variant="outline" size="sm" data-testid="button-copy-api-key">
                         Copy
@@ -463,7 +463,7 @@ export default function DashboardPage() {
                 <CardContent className="space-y-4">
                   <div>
                     <h3 className="font-medium mb-2">Export Data</h3>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                       Download all your account data and generated content
                     </p>
                     <Button variant="outline" className="w-full" data-testid="button-export-data">
@@ -474,7 +474,7 @@ export default function DashboardPage() {
                   
                   <div className="pt-4 border-t">
                     <h3 className="font-medium mb-2 text-red-600">Danger Zone</h3>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                       Permanently delete your account and all associated data
                     </p>
                     <Button variant="destructive" className="w-full" data-testid="button-delete-account">
@@ -551,7 +551,7 @@ function DynamicCreditUsage() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Current Usage for Flexible PAYG - Use Across All Services</span>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-gray-600 dark:text-gray-300">
             {userCredits.usedCredits} / {userCredits.totalCredits} credits
           </span>
         </div>
@@ -569,12 +569,12 @@ function DynamicCreditUsage() {
 
       {/* Service Breakdown */}
       <div className="space-y-4">
-        <h4 className="font-medium text-gray-900">Usage by Service - Subscription plan</h4>
+        <h4 className="font-medium text-gray-900 dark:text-gray-100">Usage by Service - Subscription plan</h4>
         
         {/* Image Enhancement */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 flex items-center gap-2">
+            <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
               <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Image Enhancement
             </span>
@@ -588,7 +588,7 @@ function DynamicCreditUsage() {
         {/* Text-to-Image */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 flex items-center gap-2">
+            <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
               <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Text-to-Image AI
             </span>
@@ -602,7 +602,7 @@ function DynamicCreditUsage() {
         {/* Text-to-Video */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 flex items-center gap-2">
+            <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
               <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Text-to-Video AI
             </span>
@@ -616,7 +616,7 @@ function DynamicCreditUsage() {
         {/* Image-to-Video */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600 flex items-center gap-2">
+            <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
               <div className="w-3 h-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full"></div>
               Image-to-Video AI
             </span>
