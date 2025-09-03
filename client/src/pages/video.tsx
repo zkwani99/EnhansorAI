@@ -180,7 +180,7 @@ export default function VideoPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-purple-50/30 dark:from-black dark:to-black transition-colors duration-300">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 border-b border-gray-200">
+      <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-black dark:via-black dark:to-black border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-center gap-4 mb-8">
             <Link href="/">
@@ -198,15 +198,15 @@ export default function VideoPage() {
               </div>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               Bring Your Words to Life
             </h1>
             
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Generate short AI-powered video clips from text in seconds. Transform your imagination into stunning visual stories.
             </p>
             
-            <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
+            <div className="flex items-center justify-center gap-8 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
                 <span>5 or 10 second clips</span>
@@ -236,12 +236,12 @@ export default function VideoPage() {
           <div>
             {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
+              <Card className="border-purple-200 dark:border-purple-600 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-black dark:to-black">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <Grid3x3 className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900 dark:text-gray-100">AI Storyboard</span>
+                      <span className="font-medium text-gray-900 dark:text-white">AI Storyboard</span>
                     </div>
                     <Switch 
                       checked={aiStoryboard} 
@@ -249,7 +249,7 @@ export default function VideoPage() {
                       data-testid="switch-ai-storyboard"
                     />
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     Preview scene frames before final video generation
                   </p>
                   {aiStoryboard && (
@@ -260,7 +260,7 @@ export default function VideoPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
+              <Card className="border-purple-200 dark:border-purple-600 bg-gradient-to-r from-purple-100 to-purple-50 dark:from-black dark:to-black">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -586,7 +586,7 @@ export default function VideoPage() {
         </div>
 
         {/* Tips Section */}
-        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200">
+        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-black dark:to-black border border-purple-200 dark:border-purple-600">
           <CardContent className="p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">

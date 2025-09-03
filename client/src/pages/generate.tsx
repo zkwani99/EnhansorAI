@@ -180,7 +180,7 @@ export default function GeneratePage() {
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               AI Text-to-Image Generation
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Describe an image you'd like to generate and explore different AI styles
             </p>
           </div>
@@ -199,7 +199,7 @@ export default function GeneratePage() {
             
             {/* Smart Features */}
             <div className="grid grid-cols-1 gap-4">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
+              <Card className="border-purple-200 dark:border-purple-600 bg-gradient-to-r from-purple-100 to-purple-50 dark:from-black dark:to-black">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -526,7 +526,7 @@ export default function GeneratePage() {
         </div>
 
         {/* Bottom Section - Pro Tips */}
-        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200">
+        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-black dark:to-black border border-purple-200 dark:border-purple-600">
           <CardContent className="p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">

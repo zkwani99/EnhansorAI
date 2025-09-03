@@ -142,10 +142,10 @@ export default function EnhancePage() {
               </div>
             </div>
             
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               AI Image Enhancement
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Transform your photos with advanced AI-powered enhancement and restoration tools
             </p>
           </div>
@@ -164,12 +164,12 @@ export default function EnhancePage() {
             
             {/* Smart Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-50 to-purple-100">
+              <Card className="border-purple-200 dark:border-purple-600 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-black dark:to-black">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <Clock className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900">Smart Restore</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Smart Restore</span>
                     </div>
                     <Switch 
                       checked={smartRestore} 
@@ -177,7 +177,7 @@ export default function EnhancePage() {
                       data-testid="switch-smart-restore"
                     />
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     AI-powered restoration for old, scratched, or blurred photos
                   </p>
                   {smartRestore && (
@@ -188,12 +188,12 @@ export default function EnhancePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-purple-200 bg-gradient-to-r from-purple-100 to-purple-50">
+              <Card className="border-purple-200 dark:border-purple-600 bg-gradient-to-r from-purple-100 to-purple-50 dark:from-black dark:to-black">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-purple-600" />
-                      <span className="font-medium text-gray-900">Batch Processing</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Batch Processing</span>
                     </div>
                     <Switch 
                       checked={batchMode} 
@@ -201,7 +201,7 @@ export default function EnhancePage() {
                       data-testid="switch-batch-mode"
                     />
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     Upload and enhance multiple images simultaneously
                   </p>
                   {batchMode && (
