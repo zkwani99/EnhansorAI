@@ -5,31 +5,43 @@ export default function WhyLorepicSection() {
   const advantages = [
     {
       icon: Zap,
+      emoji: "⚡",
       title: "Speed",
-      description: "Fast GPU-powered results",
-      color: "from-yellow-500 to-orange-500",
-      bgGradient: "from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20"
+      tagline: "Lightning-fast AI rendering powered by GPU acceleration.",
+      color: "from-purple-500 to-violet-500",
+      bgGradient: "from-purple-50/50 to-violet-50/50 dark:from-black dark:to-black",
+      borderColor: "border-purple-200 dark:border-purple-600 hover:border-purple-400 dark:hover:border-purple-500",
+      shadowColor: "hover:shadow-purple-500/20"
     },
     {
       icon: Palette,
-      title: "Quality", 
-      description: "Crisp images & smooth videos",
-      color: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
+      emoji: "🎨",
+      title: "Quality",
+      tagline: "Crystal-clear images & cinematic-quality videos every time.",
+      color: "from-purple-600 to-pink-500",
+      bgGradient: "from-purple-50/50 to-pink-50/50 dark:from-black dark:to-black",
+      borderColor: "border-purple-200 dark:border-purple-600 hover:border-pink-400 dark:hover:border-pink-500",
+      shadowColor: "hover:shadow-pink-500/20"
     },
     {
       icon: RotateCcw,
+      emoji: "🔄",
       title: "Flexibility",
-      description: "Subscriptions + PAYG credits",
-      color: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
+      tagline: "Choose between subscription plans or flexible PAYG credits.",
+      color: "from-purple-700 to-indigo-500",
+      bgGradient: "from-purple-50/50 to-indigo-50/50 dark:from-black dark:to-black",
+      borderColor: "border-purple-200 dark:border-purple-600 hover:border-indigo-400 dark:hover:border-indigo-500",
+      shadowColor: "hover:shadow-indigo-500/20"
     },
     {
       icon: Shield,
+      emoji: "🔒",
       title: "Security",
-      description: "Your data stays safe. Fully GDPR-ready with encrypted processing.",
-      color: "from-green-500 to-emerald-500",
-      bgGradient: "from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20"
+      tagline: "Your data stays encrypted, GDPR-ready, and safe with us.",
+      color: "from-purple-800 to-violet-600",
+      bgGradient: "from-purple-50/50 to-violet-50/50 dark:from-black dark:to-black",
+      borderColor: "border-purple-200 dark:border-purple-600 hover:border-violet-400 dark:hover:border-violet-500",
+      shadowColor: "hover:shadow-violet-500/20"
     }
   ];
 
@@ -45,28 +57,28 @@ export default function WhyLorepicSection() {
           </p>
         </div>
         
-        {/* Static Cards Grid - 4 cards side by side on desktop, 2x2 on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {/* Static Cards Grid - 4 cards on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {advantages.map((advantage, index) => {
             const IconComponent = advantage.icon;
             
             return (
               <Card
                 key={index}
-                className={`group bg-gradient-to-br ${advantage.bgGradient} border border-purple-200 dark:border-purple-600 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full`}
+                className={`group bg-gradient-to-br ${advantage.bgGradient} border ${advantage.borderColor} rounded-2xl shadow-lg ${advantage.shadowColor} hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 h-full cursor-pointer`}
                 data-testid={`card-advantage-${advantage.title.toLowerCase()}`}
               >
                 <CardContent className="p-6 text-center h-full flex flex-col">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${advantage.color} rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="text-white text-3xl" size={36} />
+                  <div className={`w-24 h-24 bg-gradient-to-br ${advantage.color} rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <span className="text-4xl">{advantage.emoji}</span>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                     {advantage.title}
                   </h3>
                   
-                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {advantage.description}
+                  <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {advantage.tagline}
                   </p>
                 </CardContent>
               </Card>
