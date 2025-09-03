@@ -32,7 +32,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-purple-50 to-purple-100 dark:from-black dark:via-purple-900/20 dark:to-purple-800/20 py-20 lg:py-32 transition-colors duration-300">
+    <section className="relative overflow-hidden bg-gradient-to-br from-white via-purple-50 to-purple-100 dark:from-black dark:via-black dark:to-black py-20 lg:py-32 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
