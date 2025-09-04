@@ -145,9 +145,24 @@ export default function EnhancePage() {
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               AI Image Enhancement
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
               Transform your photos with advanced AI-powered enhancement and restoration tools
             </p>
+            
+            <div className="flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4" />
+                <span>Auto enhancement</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <RotateCcw className="w-4 h-4" />
+                <span>Smart restoration</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FileImage className="w-4 h-4" />
+                <span>Batch processing</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

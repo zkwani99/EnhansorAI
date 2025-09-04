@@ -13,7 +13,7 @@ import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 import { SocialExport } from "@/components/shared/social-export";
 import { PillSelector } from "@/components/shared/pill-selector";
-import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2, Monitor, RectangleHorizontal } from "lucide-react";
+import { ArrowLeft, Info, Sparkles, Camera, Palette, Box, Paintbrush, Film, Image, Zap, Brain, Eye, Clock, Loader2, Monitor, RectangleHorizontal, Settings } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -177,12 +177,33 @@ export default function GeneratePage() {
           </div>
           
           <div className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-xl">
+                <Sparkles className="w-10 h-10 text-white" />
+              </div>
+            </div>
+            
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">
               AI Text-to-Image Generation
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
               Describe an image you'd like to generate and explore different AI styles
             </p>
+            
+            <div className="flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4" />
+                <span>High-quality results</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Palette className="w-4 h-4" />
+                <span>Multiple AI styles</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                <span>Custom parameters</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
