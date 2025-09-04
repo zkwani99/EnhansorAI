@@ -32,12 +32,12 @@ const pricingTiers = [
     name: "Starter",
     price: "$15",
     period: "/month",
-    description: "Choose: 240 clips per month (5s each) or 20 stitched videos per month (up to 1-minute each)",
+    description: "180 short clips per month (Up to 5s each) or 15 stitched videos per month (Up to 1-minute each)",
     subtitle: "Perfect for hobbyists & creators",
     isPopular: true,
     isFree: false,
     features: [
-      { text: "240 clips per month (5s) OR 20 stitched videos per month (1-min)", included: true },
+      { text: "180 short clips per month (5s) OR 15 stitched videos per month (1-min)", included: true },
       { text: "Up to 720p resolution", included: true },
       { text: "No watermark", included: true },
       { text: "AI Storyboard (basic)", included: true },
@@ -54,12 +54,12 @@ const pricingTiers = [
     name: "Growth",
     price: "$39",
     period: "/month",
-    description: "Choose: 600 clips per month (8s each) or 25 stitched videos per month (up to 2-minutes each)",
+    description: "375 short clips per month (Up to 8s each) or 25 stitched videos per month (Up to 2-minutes each)",
     subtitle: "Great for freelancers & small teams",
     isPopular: false,
     isFree: false,
     features: [
-      { text: "600 clips per month (8s) OR 25 stitched videos per month (2-min)", included: true },
+      { text: "375 short clips per month (8s) OR 25 stitched videos per month (2-min)", included: true },
       { text: "Up to 1080p resolution", included: true },
       { text: "No watermark", included: true },
       { text: "AI Storyboard (advanced)", included: true },
@@ -76,12 +76,12 @@ const pricingTiers = [
     name: "Business",
     price: "$99",
     period: "/month",
-    description: "Choose: 1800 clips per month (8s each) or 50 stitched videos per month (up to minutes each)",
+    description: "1125 short clips per month (Up to 8s each) or 50 stitched videos per month (Up to 3-minutes each)",
     subtitle: "Designed for agencies & pros",
     isPopular: false,
     isFree: false,
     features: [
-      { text: "1800 clips per month (8s) OR 50 stitched videos per month (min)", included: true },
+      { text: "1125 short clips per month (8s) OR 50 stitched videos per month (3-min)", included: true },
       { text: "Up to 1080p resolution", included: true },
       { text: "No watermark", included: true },
       { text: "AI Storyboard (full)", included: true },
@@ -96,7 +96,7 @@ const pricingTiers = [
 ];
 
 const comparisonFeatures = [
-  { name: "Video Generation", free: "5 clips per month (5s)", starter: "240 clips per month OR 20 stitched videos per month", growth: "600 clips per month (8s) OR 25 stitched videos per month", business: "1800 clips per month (8s) OR 50 stitched videos per month" },
+  { name: "Video Generation", free: "5 clips per month (5s)", starter: "180 short clips per month OR 15 stitched videos per month", growth: "375 short clips per month (8s) OR 25 stitched videos per month", business: "1125 short clips per month (8s) OR 50 stitched videos per month" },
   { name: "Max Resolution", free: "480p", starter: "720p", growth: "1080p", business: "1080p" },
   { name: "Watermark", free: "Yes", starter: "No", growth: "No", business: "No" },
   { name: "AI Storyboard", free: "×", starter: "Basic", growth: "Advanced", business: "Full" },
