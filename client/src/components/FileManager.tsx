@@ -148,7 +148,7 @@ export function FileManager({ service, title, className = "" }: FileManagerProps
         </CardTitle>
         
         {/* Auto-deletion warning notice */}
-        <div className="relative bg-gradient-to-r from-orange-50 to-amber-50 dark:from-black dark:to-black border border-orange-200/60 dark:border-orange-600 rounded-xl p-4 shadow-sm">
+        <div className="relative bg-orange-50 dark:bg-black border border-orange-200/60 dark:border-orange-600 rounded-xl p-4 shadow-sm">
           <div className="flex items-start gap-3">
             <div className="flex-shrink-0 w-9 h-9 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center">
               <AlertTriangle className="h-5 w-5 text-orange-600 dark:text-orange-400" />

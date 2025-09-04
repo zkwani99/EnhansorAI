@@ -447,11 +447,11 @@ export default function ImageToVideoPage() {
             />
             
             {/* Stitched Video Feature */}
-            <Card className="shadow-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+            <Card className="shadow-lg bg-purple-600 dark:bg-black text-white border-0 dark:border dark:border-purple-600">
               <CardContent className="p-6 text-center">
                 <Film className="w-12 h-12 mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-3">Create Stitched Videos</h3>
-                <p className="text-sm opacity-90 mb-4 leading-relaxed">
+                <h3 className="text-xl font-bold mb-3 dark:text-white">Create Stitched Videos</h3>
+                <p className="text-sm opacity-90 dark:text-gray-300 mb-4 leading-relaxed">
                   Combine multiple video clips into one seamless video. Perfect for storytelling, product showcases, and creative compilations.
                 </p>
                 <div className="space-y-3 mb-4">
@@ -471,7 +471,7 @@ export default function ImageToVideoPage() {
                 <Button 
                   onClick={() => setShowStitchingModal(true)}
                   variant="secondary" 
-                  className="w-full bg-white text-purple-600 hover:bg-gray-100 font-semibold py-3"
+                  className="w-full bg-white dark:bg-purple-600 text-purple-600 dark:text-white hover:bg-gray-100 dark:hover:bg-purple-700 font-semibold py-3"
                   data-testid="button-open-stitching-sidebar"
                 >
                   <Film className="mr-2 h-5 w-5" />

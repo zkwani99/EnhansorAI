@@ -495,7 +495,7 @@ export default function EnhancePage() {
 
 
             {/* AI Concierge Mode */}
-            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 dark:bg-black text-white border-0 dark:border dark:border-purple-600">
+            <Card className="bg-purple-600 dark:bg-black text-white border-0 dark:border dark:border-purple-600">
               <CardContent className="p-6 text-center">
                 <Sparkles className="w-8 h-8 mx-auto mb-3" />
                 <h3 className="font-bold text-lg mb-2 dark:text-white">AI Concierge Mode</h3>
