@@ -81,7 +81,7 @@ export function PillSelector({
     <div className={`space-y-3 ${className}`}>
       <div className="flex items-center gap-2">
         {icon}
-        <h3 className="text-sm font-medium text-gray-900">{title}</h3>
+        <h3 className="text-sm font-medium text-gray-900 dark:text-white">{title}</h3>
       </div>
       
       <div className="flex flex-wrap gap-2">
@@ -101,11 +101,11 @@ export function PillSelector({
                     className={`
                       relative rounded-full px-4 py-2 h-auto transition-all duration-200
                       ${selected 
-                        ? 'bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white border-purple-600 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900' 
-                        : 'bg-white hover:bg-purple-50 border-gray-200 text-gray-700 hover:border-purple-300'
+                        ? 'bg-purple-600 dark:bg-purple-600 text-white border-purple-600 hover:bg-purple-700 dark:hover:bg-purple-700' 
+                        : 'bg-white dark:bg-black hover:bg-purple-50 dark:hover:bg-gray-900 border-gray-200 dark:border-purple-600 text-gray-700 dark:text-white hover:border-purple-300 dark:hover:border-purple-500'
                       }
                       ${isDisabled 
-                        ? 'opacity-60 cursor-not-allowed bg-gray-100 text-gray-400' 
+                        ? 'opacity-60 cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500' 
                         : 'hover:scale-105 hover:shadow-md'
                       }
                     `}
