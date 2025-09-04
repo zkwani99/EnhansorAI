@@ -107,7 +107,7 @@ export default function HeroSection() {
           {/* Tagline under buttons */}
           <div className="mt-8">
             <p className="text-white/90 text-lg font-medium drop-shadow-lg">
-              No watermark. Fast results. Commercial rights included.
+              Start Creating for Free. No Credit Card Needed
             </p>
           </div>
           
