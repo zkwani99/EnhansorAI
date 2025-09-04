@@ -135,7 +135,7 @@ export function SubscriptionOutputsMeter({
   const serviceData = getServiceData();
 
   return (
-    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-purple-100 dark:bg-black dark:border-purple-600 ${className}`}>
+    <Card className={`border-purple-300 bg-purple-50 dark:bg-black dark:border-purple-600 ${className}`}>
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

@@ -122,7 +122,7 @@ export function StyleMemoryToggle({ service, onStyleApplied, className }: StyleM
   };
 
   return (
-    <Card className={`bg-gradient-to-br from-purple-50 to-purple-100 dark:bg-black border-purple-200 dark:border-purple-600 ${className}`}>
+    <Card className={`bg-purple-50 dark:bg-black border-purple-200 dark:border-purple-600 ${className}`}>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center justify-between text-purple-800 dark:text-white">
           <div className="flex items-center space-x-2">
