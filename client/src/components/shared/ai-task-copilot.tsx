@@ -195,9 +195,9 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
 
   if (!isEnabled) {
     return (
-      <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-black border-blue-200 dark:border-blue-600 ${className}`}>
+      <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:bg-black border-blue-200 dark:border-blue-600 ${className}`}>
         <CardHeader className="pb-3">
-          <CardTitle className="flex items-center justify-between text-blue-800 dark:text-blue-200">
+          <CardTitle className="flex items-center justify-between text-blue-800 dark:text-white">
             <div className="flex items-center space-x-2">
               <Bot className="h-5 w-5 text-blue-600" />
               <span className="text-lg font-semibold">AI Task Copilot</span>
@@ -210,7 +210,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-blue-700 dark:text-blue-300">
+          <p className="text-sm text-blue-700 dark:text-gray-300">
             Enable AI Task Copilot to get step-by-step guidance and tips for better results.
           </p>
         </CardContent>
@@ -219,9 +219,9 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
   }
 
   return (
-    <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-black dark:to-black border-blue-200 dark:border-blue-600 ${className}`}>
+    <Card className={`bg-gradient-to-br from-blue-50 to-indigo-100 dark:bg-black border-blue-200 dark:border-blue-600 ${className}`}>
       <CardHeader className="pb-3">
-        <CardTitle className="flex items-center justify-between text-blue-800 dark:text-blue-200">
+        <CardTitle className="flex items-center justify-between text-blue-800 dark:text-white">
           <div className="flex items-center space-x-2">
             <Bot className="h-5 w-5 text-blue-600" />
             <span className="text-lg font-semibold">AI Task Copilot</span>
@@ -253,8 +253,8 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
           {/* Progress Overview */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-blue-700 dark:text-blue-300">Progress</span>
-              <span className="text-blue-800 dark:text-blue-200 font-medium">
+              <span className="text-blue-700 dark:text-gray-300">Progress</span>
+              <span className="text-blue-800 dark:text-white font-medium">
                 {completedSteps.size} of {workflow.steps.length} steps
               </span>
             </div>
@@ -263,7 +263,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
 
           {/* Experience Level Selector */}
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-blue-700 dark:text-blue-300">Guidance Level:</span>
+            <span className="text-sm text-blue-700 dark:text-gray-300">Guidance Level:</span>
             <div className="flex space-x-1">
               {["beginner", "intermediate", "expert"].map((level) => (
                 <Button
@@ -309,7 +309,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
                     
                     <div className="flex-1 space-y-2">
                       <div className="flex items-center justify-between">
-                        <h4 className={`font-medium ${isCompleted ? "text-green-800 dark:text-green-200" : "text-blue-800 dark:text-blue-200"}`}>
+                        <h4 className={`font-medium ${isCompleted ? "text-green-800 dark:text-green-200" : "text-blue-800 dark:text-white"}`}>
                           {step.title}
                           {"optional" in step && step.optional && (
                             <Badge variant="outline" className="ml-2 text-xs">Optional</Badge>
@@ -331,7 +331,7 @@ export function AITaskCopilot({ service, currentStep = 0, onStepComplete, classN
                         )}
                       </div>
                       
-                      <p className={`text-sm ${isCompleted ? "text-green-700 dark:text-green-300" : "text-blue-700 dark:text-blue-300"}`}>
+                      <p className={`text-sm ${isCompleted ? "text-green-700 dark:text-green-300" : "text-blue-700 dark:text-gray-300"}`}>
                         {step.description}
                       </p>
                       

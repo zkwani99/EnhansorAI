@@ -122,9 +122,9 @@ export function StyleMemoryToggle({ service, onStyleApplied, className }: StyleM
   };
 
   return (
-    <Card className={`bg-gradient-to-br from-purple-50 to-purple-100 dark:from-black dark:to-black border-purple-200 dark:border-purple-600 ${className}`}>
+    <Card className={`bg-gradient-to-br from-purple-50 to-purple-100 dark:bg-black border-purple-200 dark:border-purple-600 ${className}`}>
       <CardHeader className="pb-3">
-        <CardTitle className="flex items-center justify-between text-purple-800 dark:text-purple-200">
+        <CardTitle className="flex items-center justify-between text-purple-800 dark:text-white">
           <div className="flex items-center space-x-2">
             <Brain className="h-5 w-5 text-purple-600" />
             <span className="text-lg font-semibold">Style Memory</span>
@@ -143,7 +143,7 @@ export function StyleMemoryToggle({ service, onStyleApplied, className }: StyleM
       
       {isEnabled && (
         <CardContent className="space-y-4">
-          <p className="text-sm text-purple-700 dark:text-purple-300">
+          <p className="text-sm text-purple-700 dark:text-gray-300">
             Remember your style preferences and brand colors for consistent results across sessions.
           </p>
           
@@ -151,7 +151,7 @@ export function StyleMemoryToggle({ service, onStyleApplied, className }: StyleM
             variant="outline"
             size="sm"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full border-purple-300 text-purple-700 hover:bg-purple-100 dark:border-purple-600 dark:text-purple-300 dark:hover:bg-purple-800"
+            className="w-full border-purple-300 text-purple-700 hover:bg-purple-100 dark:border-purple-600 dark:text-white dark:hover:bg-purple-800"
             data-testid="button-expand-style-memory"
           >
             {isExpanded ? "Hide Style Library" : "Manage Style Library"}

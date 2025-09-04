@@ -495,16 +495,16 @@ export default function EnhancePage() {
 
 
             {/* AI Concierge Mode */}
-            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0">
+            <Card className="bg-gradient-to-r from-purple-600 to-blue-600 dark:bg-black text-white border-0 dark:border dark:border-purple-600">
               <CardContent className="p-6 text-center">
                 <Sparkles className="w-8 h-8 mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-2">AI Concierge Mode</h3>
-                <p className="text-sm opacity-90 mb-4">
+                <h3 className="font-bold text-lg mb-2 dark:text-white">AI Concierge Mode</h3>
+                <p className="text-sm opacity-90 dark:text-gray-300 mb-4">
                   Let AI handle your entire workflow: enhance, generate, and create videos automatically
                 </p>
                 <Button 
                   variant="secondary" 
-                  className="w-full bg-white dark:bg-black text-purple-600 dark:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="w-full bg-white dark:bg-purple-600 text-purple-600 dark:text-white hover:bg-gray-100 dark:hover:bg-purple-700"
                   data-testid="button-ai-concierge"
                 >
                   Try AI Concierge
