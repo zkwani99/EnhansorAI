@@ -14,6 +14,7 @@ import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { isAuthenticated, user } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const [location] = useLocation();
@@ -74,14 +75,22 @@ export default function Navigation() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
               {/* Tools Dropdown */}
-              <DropdownMenu>
+              <DropdownMenu open={openDropdown === 'tools'} onOpenChange={(open) => setOpenDropdown(open ? 'tools' : null)}>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button 
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                    onMouseEnter={() => setOpenDropdown('tools')}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
                     Tools
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600">
+                <DropdownMenuContent 
+                  className="w-56 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600"
+                  onMouseEnter={() => setOpenDropdown('tools')}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
                   {navigationGroups.tools.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
@@ -96,14 +105,22 @@ export default function Navigation() {
               </DropdownMenu>
 
               {/* Explore Dropdown */}
-              <DropdownMenu>
+              <DropdownMenu open={openDropdown === 'explore'} onOpenChange={(open) => setOpenDropdown(open ? 'explore' : null)}>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button 
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                    onMouseEnter={() => setOpenDropdown('explore')}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
                     Explore
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600">
+                <DropdownMenuContent 
+                  className="w-48 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600"
+                  onMouseEnter={() => setOpenDropdown('explore')}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
                   {navigationGroups.explore.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
@@ -127,14 +144,22 @@ export default function Navigation() {
               </button>
 
               {/* Developers Dropdown */}
-              <DropdownMenu>
+              <DropdownMenu open={openDropdown === 'developers'} onOpenChange={(open) => setOpenDropdown(open ? 'developers' : null)}>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                  <button 
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                    onMouseEnter={() => setOpenDropdown('developers')}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
                     Developers
                     <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-48 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600">
+                <DropdownMenuContent 
+                  className="w-48 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600"
+                  onMouseEnter={() => setOpenDropdown('developers')}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
                   {navigationGroups.developers.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
@@ -150,14 +175,22 @@ export default function Navigation() {
 
               {/* Account Dropdown (only if authenticated) */}
               {isAuthenticated && (
-                <DropdownMenu>
+                <DropdownMenu open={openDropdown === 'account'} onOpenChange={(open) => setOpenDropdown(open ? 'account' : null)}>
                   <DropdownMenuTrigger asChild>
-                    <button className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group">
+                    <button 
+                      className="flex items-center text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                      onMouseEnter={() => setOpenDropdown('account')}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
                       Account
                       <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-48 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600">
+                  <DropdownMenuContent 
+                    className="w-48 bg-white dark:bg-black shadow-lg border border-gray-200 dark:border-gray-600"
+                    onMouseEnter={() => setOpenDropdown('account')}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
                     {navigationGroups.account.map((item) => (
                       <DropdownMenuItem
                         key={item.id}
