@@ -102,7 +102,7 @@ export function PillSelector({
                       relative rounded-full px-4 py-2 h-auto transition-all duration-200
                       ${selected 
                         ? 'bg-purple-600 dark:bg-purple-600 text-white border-purple-600 hover:bg-purple-700 dark:hover:bg-purple-700 shadow-lg' 
-                        : 'bg-white dark:bg-black hover:bg-purple-50 dark:hover:bg-gray-900 border-gray-200 dark:border-purple-600 text-gray-700 dark:text-white hover:border-purple-300 dark:hover:border-purple-500'
+                        : 'bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-900 border-gray-200 dark:border-purple-600 text-gray-700 dark:text-white hover:border-purple-300 dark:hover:border-purple-500'
                       }
                       ${isDisabled 
                         ? 'opacity-60 cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500' 
@@ -124,7 +124,7 @@ export function PillSelector({
                     {option.credits && shouldShowCredits && (
                       <Badge 
                         variant="secondary" 
-                        className={`ml-2 text-xs ${selected ? 'bg-white/20 text-white' : 'bg-purple-100 text-purple-700'}`}
+                        className={`ml-2 text-xs ${selected ? 'bg-white/20 text-white' : 'bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300'}`}
                       >
                         {option.credits}c
                       </Badge>
