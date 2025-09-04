@@ -58,7 +58,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
   };
 
   return (
-    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-purple-100 ${className}`}>
+    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-purple-100 dark:bg-black dark:border-purple-600 ${className}`}>
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -67,7 +67,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-900">Credits</span>
+                <span className="text-sm font-medium text-gray-900 dark:text-white">Credits</span>
                 <Tooltip>
                   <TooltipTrigger>
                     <Info className="w-3 h-3 text-gray-400 hover:text-gray-600" />
@@ -78,7 +78,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
                 </Tooltip>
               </div>
               {showDetails && (
-                <div className="text-xs text-gray-600">
+                <div className="text-xs text-gray-600 dark:text-gray-300">
                   {credits.remaining} of {credits.total} remaining
                 </div>
               )}
@@ -90,7 +90,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
               {credits.remaining}
             </div>
             {!showDetails && (
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 dark:text-gray-300">
                 /{credits.total}
               </div>
             )}
@@ -101,7 +101,7 @@ export default function CreditBalance({ className = "", showDetails = true }: Cr
           <div className="mt-3">
             <Progress value={credits.percentage} className="h-2" />
             <div className="flex justify-between items-center mt-1">
-              <span className="text-xs text-gray-500">Usage this month</span>
+              <span className="text-xs text-gray-500 dark:text-gray-300">Usage this month</span>
               <Badge variant="outline" className="text-xs">
                 {credits.percentage}%
               </Badge>

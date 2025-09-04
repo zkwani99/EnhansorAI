@@ -135,7 +135,7 @@ export function SubscriptionOutputsMeter({
   const serviceData = getServiceData();
 
   return (
-    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-purple-100 ${className}`}>
+    <Card className={`border-purple-300 bg-gradient-to-r from-purple-50 to-purple-100 dark:bg-black dark:border-purple-600 ${className}`}>
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -144,10 +144,10 @@ export function SubscriptionOutputsMeter({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-900">Subscription Outputs</span>
+                <span className="text-sm font-medium text-gray-900 dark:text-white">Subscription Outputs</span>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Info className="w-3 h-3 text-gray-400 hover:text-gray-600" />
+                    <Info className="w-3 h-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Monthly {serviceData.label} included in your subscription plan</p>
@@ -155,7 +155,7 @@ export function SubscriptionOutputsMeter({
                 </Tooltip>
               </div>
               {showDetails && (
-                <div className="text-xs text-gray-600">
+                <div className="text-xs text-gray-600 dark:text-gray-300">
                   {serviceData.remaining} of {serviceData.total} {serviceData.label} remaining this month
                 </div>
               )}
@@ -167,7 +167,7 @@ export function SubscriptionOutputsMeter({
               {serviceData.remaining}
             </div>
             {!showDetails && (
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 dark:text-gray-300">
                 /{serviceData.total}
               </div>
             )}
@@ -178,7 +178,7 @@ export function SubscriptionOutputsMeter({
           <div className="mt-3">
             <Progress value={serviceData.percentage} className="h-2" />
             <div className="flex justify-between items-center mt-1">
-              <span className="text-xs text-gray-500">Usage this month</span>
+              <span className="text-xs text-gray-500 dark:text-gray-300">Usage this month</span>
               <Badge variant="outline" className="text-xs">
                 {serviceData.percentage}%
               </Badge>
