@@ -444,7 +444,7 @@ export const pricingPlans = {
             included: true,
             options: [
               { id: 'clips', text: '1800 short clips per month (Up to 8s each)' },
-              { id: 'videos', text: '50 stitched videos per month (Up to 3-minutes each)' }
+              { id: 'videos', text: '50 stitched videos per month (Up to minutes each)' }
             ]
           },
           { text: "Up to 1080p resolution", included: true },
@@ -463,7 +463,7 @@ export const pricingPlans = {
           "5 clips per month (5s)", 
           "240 short clips per month (Up to 5s each)\nOR\n20 stitched videos per month (Up to 1-minute each)", 
           "600 short clips per month (Up to 8s each)\nOR\n25 stitched videos per month (Up to 2-minutes each)", 
-          "1800 short clips per month (Up to 8s each)\nOR\n50 stitched videos per month (Up to 3-minutes each)"
+          "1800 short clips per month (Up to 8s each)\nOR\n50 stitched videos per month (Up to minutes each)"
         ]
       },
       {

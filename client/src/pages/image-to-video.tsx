@@ -461,7 +461,7 @@ export default function ImageToVideoPage() {
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Clock className="w-4 h-4" />
-                    <span>Up to 3 minutes total duration</span>
+                    <span>Up to minutes total duration</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Play className="w-4 h-4" />
