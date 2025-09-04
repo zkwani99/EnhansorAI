@@ -374,14 +374,14 @@ export default function GeneratePage() {
                           onClick={() => setSelectedStyle(style.id)}
                           className={`p-4 rounded-lg border-2 transition-all duration-200 ${
                             selectedStyle === style.id
-                              ? 'border-purple-600 bg-purple-50 dark:bg-black dark:border-purple-600 text-purple-600 dark:text-white'
+                              ? 'border-purple-600 bg-purple-600 dark:bg-purple-600 text-white dark:text-white shadow-lg transform scale-105'
                               : 'border-gray-200 dark:border-purple-600 hover:border-gray-300 dark:hover:border-purple-500 bg-white dark:bg-black text-gray-900 dark:text-white'
                           }`}
                           data-testid={`style-${style.id}`}
                         >
                           <IconComponent className="w-6 h-6 mx-auto mb-2" />
                           <div className="text-sm font-medium">{style.name}</div>
-                          <div className="text-xs text-gray-500 dark:text-gray-300">{style.description}</div>
+                          <div className={`text-xs ${selectedStyle === style.id ? 'text-purple-100 dark:text-purple-100' : 'text-gray-500 dark:text-gray-300'}`}>{style.description}</div>
                         </button>
                       );
                     })}
@@ -398,13 +398,13 @@ export default function GeneratePage() {
                         onClick={() => setSelectedSize(size.id)}
                         className={`px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
                           selectedSize === size.id
-                            ? 'border-purple-600 bg-purple-50 dark:bg-black dark:border-purple-600 text-purple-600 dark:text-white'
+                            ? 'border-purple-600 bg-purple-600 dark:bg-purple-600 text-white dark:text-white shadow-lg transform scale-105'
                             : 'border-gray-200 dark:border-purple-600 hover:border-gray-300 dark:hover:border-purple-500 bg-white dark:bg-black text-gray-900 dark:text-white'
                         }`}
                         data-testid={`size-${size.id}`}
                       >
                         <div className="font-medium">{size.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-300">{size.dimensions}</div>
+                        <div className={`text-sm ${selectedSize === size.id ? 'text-purple-100 dark:text-purple-100' : 'text-gray-500 dark:text-gray-300'}`}>{size.dimensions}</div>
                       </button>
                     ))}
                   </div>
