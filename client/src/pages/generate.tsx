@@ -166,7 +166,7 @@ export default function GeneratePage() {
     <div className="min-h-screen bg-gradient-to-b from-white to-purple-50/30 dark:from-black dark:to-black transition-colors duration-300">
       {/* Header */}
       <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-4 mb-6">
             <Link href="/">
               <Button variant="ghost" size="sm" data-testid="button-back-home">
@@ -177,10 +177,10 @@ export default function GeneratePage() {
           </div>
           
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">
               AI Text-to-Image Generation
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Describe an image you'd like to generate and explore different AI styles
             </p>
           </div>

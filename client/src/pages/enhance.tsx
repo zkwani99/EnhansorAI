@@ -125,7 +125,7 @@ export default function EnhancePage() {
     <div className="min-h-screen bg-gradient-to-b from-white to-purple-50/30 dark:from-black dark:to-black transition-colors duration-300">
       {/* Header */}
       <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-4 mb-6">
             <Link href="/">
               <Button variant="ghost" size="sm" data-testid="button-back-home">
@@ -136,16 +136,16 @@ export default function EnhancePage() {
           </div>
           
           <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-2xl">
-                <Sparkles className="w-12 h-12 text-white" />
+            <div className="flex justify-center mb-4">
+              <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-xl">
+                <Sparkles className="w-10 h-10 text-white" />
               </div>
             </div>
             
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               AI Image Enhancement
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Transform your photos with advanced AI-powered enhancement and restoration tools
             </p>
           </div>
