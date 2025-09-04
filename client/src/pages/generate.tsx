@@ -526,7 +526,7 @@ export default function GeneratePage() {
         </div>
 
         {/* Bottom Section - Pro Tips */}
-        <Card className="mt-12 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-black dark:to-black border border-purple-200 dark:border-purple-600">
+        <Card className="mt-12 bg-purple-50 dark:bg-black border border-purple-200 dark:border-purple-600">
           <CardContent className="p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg">
@@ -539,21 +539,21 @@ export default function GeneratePage() {
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-700">Be specific in your descriptions</p>
+                  <p className="text-gray-700 dark:text-gray-300">Be specific in your descriptions</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-700">Include lighting and mood details</p>
+                  <p className="text-gray-700 dark:text-gray-300">Include lighting and mood details</p>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-700">Use negative prompts to avoid unwanted elements</p>
+                  <p className="text-gray-700 dark:text-gray-300">Use negative prompts to avoid unwanted elements</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-700">Try different styles for varied results</p>
+                  <p className="text-gray-700 dark:text-gray-300">Try different styles for varied results</p>
                 </div>
               </div>
             </div>

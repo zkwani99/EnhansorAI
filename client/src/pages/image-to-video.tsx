@@ -481,13 +481,13 @@ export default function ImageToVideoPage() {
             </Card>
             
             {/* Pro Tips */}
-            <Card className="shadow-lg bg-gradient-to-r from-purple-50 to-blue-50 dark:from-black dark:to-black border-purple-200 dark:border-purple-600">
+            <Card className="shadow-lg bg-purple-50 dark:bg-black border-purple-200 dark:border-purple-600">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Lightbulb className="h-5 w-5 text-purple-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Pro Tips for Better Results</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Pro Tips for Better Results</h3>
                 </div>
-                <ul className="space-y-2 text-sm text-gray-700">
+                <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-purple-600 font-bold">•</span>
                     <span>Keep prompts short & descriptive for best results</span>
