@@ -233,10 +233,10 @@ export default function PricingSection() {
                 data-testid={`card-plan-${plan.id}`}
               >
                 {(plan.isPopular || plan.name === 'Growth') && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className={`${colors.popular} text-white px-4 py-1 text-xs font-medium flex items-center gap-1`}>
-                      <Check size={12} />
-                      {plan.name === 'Growth' ? '✅ Recommended' : 'Most Popular'}
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                    <Badge className={`${colors.popular} text-white px-4 py-1 text-xs font-medium ${plan.name === 'Growth' ? '' : 'flex items-center gap-1'}`}>
+                      {plan.name !== 'Growth' && <Check size={12} />}
+                      {plan.name === 'Growth' ? 'Recommended' : 'Most Popular'}
                     </Badge>
                   </div>
                 )}
