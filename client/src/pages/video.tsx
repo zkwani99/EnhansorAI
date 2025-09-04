@@ -520,13 +520,13 @@ export default function VideoPage() {
                 </CardContent>
               </Card>
             ) : !isGenerating ? (
-              <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200">
+              <Card className="bg-purple-50 dark:bg-black border border-purple-200 dark:border-purple-600">
                 <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Video className="w-10 h-10 text-purple-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Ready to Create</h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-300">
                     Enter your text prompt and click generate to create your AI video.
                   </p>
                 </CardContent>
