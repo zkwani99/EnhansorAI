@@ -302,11 +302,11 @@ export default function VideoPage() {
                       value={prompt}
                       onChange={(e) => setPrompt(e.target.value)}
                       placeholder="A majestic eagle soaring through mountain clouds at sunset..."
-                      className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none text-gray-900 dark:text-gray-100 placeholder-gray-500"
+                      className="w-full h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent resize-none text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                       data-testid="input-video-prompt"
                       disabled={isGenerating}
                     />
-                    <p className="text-sm text-gray-500 mt-2">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
                       Be specific about actions, objects, and visual style for best results.
                     </p>
                     
