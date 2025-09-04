@@ -652,11 +652,8 @@ export default function PricingSection() {
 // Credit Usage Display Component
 function CreditUsageDisplay() {
   const { data: pricing, isLoading, error } = useQuery({
-    queryKey: ['/api/credits/pricing', Date.now()], // Force unique cache key
-    staleTime: 0, // Force refresh
-    cacheTime: 0, // Don't cache
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
+    queryKey: ['/api/credits/pricing'],
+    staleTime: 0, // Force fresh data
   });
 
   if (isLoading) {
