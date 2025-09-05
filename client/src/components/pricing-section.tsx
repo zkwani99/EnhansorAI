@@ -577,11 +577,11 @@ export default function PricingSection() {
           </div>
 
           {/* Features List */}
-          <Card className="bg-white dark:bg-black dark:bg-black border border-gray-200 dark:border-gray-500 rounded-2xl mb-8">
+          <Card className="bg-white dark:bg-black border border-gray-200 dark:border-purple-500 rounded-2xl mb-8">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white mb-1">Use credits across all services</p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">(Enhance, Generate, Create)</p>
@@ -589,7 +589,7 @@ export default function PricingSection() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white mb-1">No expiration for credits</p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">(lifetime until used)</p>
@@ -597,7 +597,7 @@ export default function PricingSection() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white mb-1">Access to premium features</p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">(4K outputs, batch processing, real-time preview, commercial licensing)</p>
@@ -605,7 +605,7 @@ export default function PricingSection() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white mb-1">Scale up anytime</p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">by buying more packs</p>
@@ -613,7 +613,7 @@ export default function PricingSection() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white mb-1">Perfect add-on</p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">for subscription users who need extra runs</p>
