@@ -463,8 +463,8 @@ export default function PricingSection() {
                     <span className="text-3xl font-bold text-purple-600">$9</span>
                     <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">100 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.09 per credit</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">200 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.045 per credit</p>
                 </div>
                 <div className="mt-auto">
                   <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
@@ -491,8 +491,8 @@ export default function PricingSection() {
                     <span className="text-3xl font-bold text-purple-600">$25</span>
                     <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">300 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.08 per credit</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">800 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.03125 per credit</p>
                 </div>
                 <div className="mt-auto">
                   <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white font-medium py-2 rounded-lg">
@@ -514,8 +514,8 @@ export default function PricingSection() {
                     <span className="text-3xl font-bold text-purple-600">$75</span>
                     <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">1,000 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.075 per credit</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">3,000 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.025 per credit</p>
                 </div>
                 <div className="mt-auto">
                   <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
@@ -534,15 +534,15 @@ export default function PricingSection() {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Enterprise Pack</h3>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-purple-600">Custom</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">pricing</span>
+                    <span className="text-3xl font-bold text-purple-600">$199</span>
+                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                   </div>
-                  <div className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Unlimited credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">Volume discounts</p>
+                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">10,000 credits</div>
+                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.0199 per credit</p>
                 </div>
                 <div className="mt-auto">
-                  <Button variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 font-medium py-2 rounded-lg">
-                    Contact Sales
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
+                    Buy Enterprise Pack
                   </Button>
                 </div>
               </CardContent>
