@@ -666,36 +666,40 @@ function CreditUsageDisplay() {
 
   const serviceConfig = {
     image: {
-      title: 'Image Enhancement',
+      title: '🖼️ Image Enhancement',
       icon: Image,
-      color: 'from-purple-400 to-purple-500', // Lighter purple
-      bgColor: 'bg-white dark:bg-black',
-      borderColor: 'border-purple-200',
-      badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
+      color: 'from-purple-400 to-purple-500',
+      bgColor: 'bg-white dark:bg-gray-900',
+      borderColor: 'border-purple-200 dark:border-purple-500',
+      badgeColor: 'bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 border-purple-200',
+      titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
     'text-to-image': {
-      title: 'Text-to-Image AI',
+      title: '🎨 Text-to-Image AI',
       icon: Palette,
-      color: 'from-purple-500 to-purple-600', // Medium purple
-      bgColor: 'bg-white dark:bg-black',
-      borderColor: 'border-purple-300',
-      badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
+      color: 'from-purple-500 to-purple-600',
+      bgColor: 'bg-white dark:bg-gray-900',
+      borderColor: 'border-purple-200 dark:border-purple-500',
+      badgeColor: 'bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 border-purple-200',
+      titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
     'text-to-video': {
-      title: 'Text-to-Video AI',
+      title: '🎥 Text-to-Video AI',
       icon: Video,
-      color: 'from-purple-600 to-purple-700', // Darker purple
-      bgColor: 'bg-white dark:bg-black',
-      borderColor: 'border-purple-400',
-      badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
+      color: 'from-purple-600 to-purple-700',
+      bgColor: 'bg-white dark:bg-gray-900',
+      borderColor: 'border-purple-200 dark:border-purple-500',
+      badgeColor: 'bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 border-purple-200',
+      titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
     'image-to-video': {
-      title: 'Image-to-Video AI',
+      title: '🎥 Image-to-Video AI',
       icon: Video,
-      color: 'from-purple-700 to-purple-800', // Darkest purple
-      bgColor: 'bg-white dark:bg-black',
-      borderColor: 'border-purple-500',
-      badgeColor: 'bg-purple-100 text-purple-700 border-purple-300',
+      color: 'from-purple-700 to-purple-800',
+      bgColor: 'bg-white dark:bg-gray-900',
+      borderColor: 'border-purple-200 dark:border-purple-500',
+      badgeColor: 'bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 border-purple-200',
+      titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
   };
 
@@ -703,8 +707,9 @@ function CreditUsageDisplay() {
   const serviceOrder = ['image', 'text-to-image', 'text-to-video', 'image-to-video'];
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-      {serviceOrder.map((service) => {
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {serviceOrder.map((service) => {
         const items = groupedPricing[service];
         if (!items) return null;
         
@@ -731,13 +736,13 @@ function CreditUsageDisplay() {
         const IconComponent = config.icon;
 
         return (
-          <Card key={service} className={`${config.bgColor} ${config.borderColor} border-2 hover:shadow-xl transition-all duration-300 hover:scale-105`}>
+          <Card key={service} className={`${config.bgColor} ${config.borderColor} border rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm`}>
             <CardContent className="p-6">
               <div className="text-center mb-6">
-                <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${config.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                  <IconComponent className="w-8 h-8 text-white" />
+                <div className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${config.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                  <IconComponent className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{config.title}</h3>
+                <h3 className={`text-lg font-bold ${config.titleColor} dark:text-white`}>{config.title}</h3>
               </div>
 
               <div className="space-y-3">
@@ -745,8 +750,8 @@ function CreditUsageDisplay() {
                   // Special handling for plan inclusions and notes
                   if (item.tier === 'plans-included' || item.tier === '1-plans-included' || item.tier === 'note') {
                     return (
-                      <div key={item.tier} className="py-3 px-3 rounded-lg bg-white dark:bg-black border border-purple-200 dark:border-purple-600">
-                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100 whitespace-pre-line">{item.displayName}</span>
+                      <div key={item.tier} className="py-3 px-4 rounded-xl bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border border-purple-200 dark:border-purple-600">
+                        <span className="text-sm font-medium text-purple-800 dark:text-purple-200 whitespace-pre-line">{item.displayName}</span>
                       </div>
                     );
                   }
@@ -775,9 +780,9 @@ function CreditUsageDisplay() {
                   return (
                     <Tooltip key={item.tier}>
                       <TooltipTrigger asChild>
-                        <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 cursor-help">
-                          <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.displayName}</span>
-                          <Badge className={`${config.badgeColor} font-semibold shadow-sm`}>
+                        <div className="flex items-center justify-between py-3 px-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-100 dark:hover:from-purple-900/20 dark:hover:to-purple-800/20 transition-all duration-200 cursor-help border border-transparent hover:border-purple-200 dark:hover:border-purple-600">
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{item.displayName}</span>
+                          <Badge className={`${config.badgeColor} font-semibold shadow-sm px-3 py-1 rounded-full`}>
                             {item.credits} credit{item.credits > 1 ? 's' : ''}
                           </Badge>
                         </div>
@@ -793,7 +798,15 @@ function CreditUsageDisplay() {
             </CardContent>
           </Card>
         );
-      })}
+        })}
+      </div>
+      
+      {/* Bottom Note */}
+      <div className="mt-8 text-center">
+        <p className="text-sm text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
+          💡 <strong>Credits can be used across all services.</strong> The higher the resolution or duration, the more credits required.
+        </p>
+      </div>
     </div>
   );
 }
