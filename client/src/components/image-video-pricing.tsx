@@ -170,7 +170,7 @@ export default function ImageVideoPricing() {
                       {tier.features.slice(0, 4).map((feature, index) => (
                         <li key={index} className="flex items-start">
                           {feature.included ? (
-                            <Check className="text-green-500 mr-3 mt-0.5 flex-shrink-0" size={16} />
+                            <Check className="text-purple-500 mr-3 mt-0.5 flex-shrink-0" size={16} />
                           ) : (
                             <X className="text-gray-400 mr-3 mt-0.5 flex-shrink-0" size={16} />
                           )}

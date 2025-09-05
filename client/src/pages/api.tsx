@@ -110,15 +110,15 @@ console.log(result.imageUrl);`;
             
             <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" />
+                <CheckCircle className="w-4 h-4 text-purple-500" />
                 <span>RESTful API</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" />
+                <CheckCircle className="w-4 h-4 text-purple-500" />
                 <span>OpenAPI Spec</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500" />
+                <CheckCircle className="w-4 h-4 text-purple-500" />
                 <span>SDKs Available</span>
               </div>
             </div>
@@ -270,15 +270,15 @@ console.log(result.imageUrl);`;
                   
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-4 h-4 text-purple-500" />
                       <span className="text-sm text-gray-700">No monthly fees</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-4 h-4 text-purple-500" />
                       <span className="text-sm text-gray-700">Pay only for what you use</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-4 h-4 text-purple-500" />
                       <span className="text-sm text-gray-700">Volume discounts available</span>
                     </div>
                   </div>

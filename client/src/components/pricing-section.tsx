@@ -176,7 +176,7 @@ export default function PricingSection() {
             />
             <span className={`text-lg font-medium ${isYearly ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`}>Yearly</span>
             {isYearly && (
-              <Badge className="bg-green-100 text-green-800 border-green-200 ml-2">
+              <Badge className="bg-purple-100 text-purple-800 border-purple-200 ml-2">
                 Save 20%
               </Badge>
             )}
@@ -276,7 +276,7 @@ export default function PricingSection() {
                               {activeService === 'imageVideo' && (feature as any).options ? (
                                 <span className="mr-2 mt-0.5"></span>
                               ) : feature.included ? (
-                                <Check className="text-green-500 mr-2 mt-0.5 flex-shrink-0" size={16} />
+                                <Check className="text-purple-500 mr-2 mt-0.5 flex-shrink-0" size={16} />
                               ) : (
                                 <span className="text-gray-600 dark:text-gray-400 mr-2 text-sm mt-0.5">—</span>
                               )}
@@ -416,12 +416,12 @@ export default function PricingSection() {
                         }`}>
                           {typeof value === 'boolean' ? (
                             value ? (
-                              <Check className="text-green-500 mx-auto" size={16} />
+                              <Check className="text-purple-500 mx-auto" size={16} />
                             ) : (
                               <span className="text-gray-600 dark:text-gray-400 mx-auto text-sm">—</span>
                             )
                           ) : value === '✓' ? (
-                            <Check className="text-green-500 mx-auto" size={16} />
+                            <Check className="text-purple-500 mx-auto" size={16} />
                           ) : (
                             value
                           )}
@@ -614,10 +614,6 @@ export default function PricingSection() {
           <Card className="bg-white dark:bg-black border border-purple-200 rounded-2xl">
             <CardContent className="p-6">
               <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <HelpCircle className="w-6 h-6 text-purple-600" />
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Not sure what's right for you?</h3>
-                </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                   <div className="bg-white dark:bg-black rounded-xl p-6 border border-purple-200 dark:border-purple-600">
