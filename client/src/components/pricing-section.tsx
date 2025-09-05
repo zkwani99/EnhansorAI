@@ -443,9 +443,22 @@ export default function PricingSection() {
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">
                 Flexible Pay-As-You-Go Credits
               </h2>
-              <p className="text-lg text-purple-100 max-w-4xl mx-auto leading-relaxed">
-                No commitments. Just buy credits when you need them—use them across all services: Image Enhancement, Text-to-Image, and Text-to-Video. Perfect for occasional creators or those testing the platform.
+              <p className="text-lg text-purple-100 max-w-4xl mx-auto leading-relaxed mb-6">
+                Buy credits once, use them anywhere. Enhance photos, generate art, or create videos—your creativity, your control.
               </p>
+              <a 
+                href="#credits-breakdown"
+                className="inline-flex items-center gap-2 text-lg font-medium bg-gradient-to-r from-purple-200 to-purple-300 bg-clip-text text-transparent hover:from-purple-100 hover:to-purple-200 transition-all duration-300 cursor-pointer group"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('credits-breakdown')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }}
+              >
+                👉 See how credits are used →
+              </a>
             </div>
           </div>
 
@@ -550,7 +563,7 @@ export default function PricingSection() {
           </div>
 
           {/* How Credits Are Used Section - Moved directly under credit packs */}
-          <div className="mt-16 mb-12">
+          <div id="credits-breakdown" className="mt-16 mb-12">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 How Credits Are Used
