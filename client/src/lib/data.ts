@@ -394,8 +394,8 @@ export const pricingPlans = {
             text: "Choose:", 
             included: true,
             options: [
-              { id: 'clips', text: '180 short clips per month (Up to 5s each)' },
-              { id: 'videos', text: '15 stitched videos per month (Up to 1-minute each)' }
+              { id: 'clips', text: '240 animations per month (up to 5s each)' },
+              { id: 'videos', text: '20 stitched videos per month (up to 1 minute each)' }
             ]
           },
           { text: "Up to 720p resolution", included: true },
@@ -419,8 +419,8 @@ export const pricingPlans = {
             text: "Choose:", 
             included: true,
             options: [
-              { id: 'clips', text: '375 short clips per month (Up to 8s each)' },
-              { id: 'videos', text: '25 stitched videos per month (Up to 2-minutes each)' }
+              { id: 'clips', text: '600 animations per month (up to 8s each)' },
+              { id: 'videos', text: '40 stitched videos per month (up to 2 minutes each)' }
             ]
           },
           { text: "Up to 1080p resolution", included: true },
@@ -444,8 +444,8 @@ export const pricingPlans = {
             text: "Choose:", 
             included: true,
             options: [
-              { id: 'clips', text: '1125 short clips per month (Up to 8s each)' },
-              { id: 'videos', text: '50 stitched videos per month (Up to 3-minutes each)' }
+              { id: 'clips', text: '1440 animations per month (up to 10s each)' },
+              { id: 'videos', text: '80 stitched videos per month (up to 3 minutes each)' }
             ]
           },
           { text: "Up to 1080p resolution", included: true },
@@ -462,9 +462,9 @@ export const pricingPlans = {
         name: "Video Generation",
         values: [
           "5 clips per month (5s)", 
-          "180 short clips per month (Up to 5s each)\nOR\n15 stitched videos per month (Up to 1-minute each)", 
-          "375 short clips per month (Up to 8s each)\nOR\n25 stitched videos per month (Up to 2-minutes each)", 
-          "1125 short clips per month (Up to 8s each)\nOR\n50 stitched videos per month (Up to 3-minutes each)"
+          "240 animations per month (up to 5s each)\nOR\n20 stitched videos per month (up to 1 minute each)", 
+          "600 animations per month (up to 8s each)\nOR\n40 stitched videos per month (up to 2 minutes each)", 
+          "1440 animations per month (up to 10s each)\nOR\n80 stitched videos per month (up to 3 minutes each)"
         ]
       },
       {
