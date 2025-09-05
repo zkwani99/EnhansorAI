@@ -666,7 +666,7 @@ function CreditUsageDisplay() {
 
   const serviceConfig = {
     image: {
-      title: '🖼️ Image Enhancement',
+      title: 'Image Enhancement',
       icon: Image,
       color: 'from-purple-400 to-purple-500',
       bgColor: 'bg-white dark:bg-gray-900',
@@ -675,7 +675,7 @@ function CreditUsageDisplay() {
       titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
     'text-to-image': {
-      title: '🎨 Text-to-Image AI',
+      title: 'Text-to-Image AI',
       icon: Palette,
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-white dark:bg-gray-900',
@@ -684,7 +684,7 @@ function CreditUsageDisplay() {
       titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
     'text-to-video': {
-      title: '🎥 Text-to-Video AI',
+      title: 'Text-to-Video AI',
       icon: Video,
       color: 'from-purple-600 to-purple-700',
       bgColor: 'bg-white dark:bg-gray-900',
@@ -693,7 +693,7 @@ function CreditUsageDisplay() {
       titleColor: 'bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent',
     },
     'image-to-video': {
-      title: '🎥 Image-to-Video AI',
+      title: 'Image-to-Video AI',
       icon: Video,
       color: 'from-purple-700 to-purple-800',
       bgColor: 'bg-white dark:bg-gray-900',
