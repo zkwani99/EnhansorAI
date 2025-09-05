@@ -146,13 +146,13 @@ export const pricingPlans = {
       {
         id: "starter-ai",
         name: "Starter",
-        price: "$10",
+        price: "$12",
         period: "/month",
         isFree: false,
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "Up to 2,000 images per month", included: true },
+          { text: "500 images per month", included: true },
           { text: "512px–1K resolution", included: true },
           { text: "No watermark", included: true },
           { text: "Email support", included: true },
@@ -170,7 +170,7 @@ export const pricingPlans = {
         isPopular: true,
         buttonText: "Choose Plan",
         features: [
-          { text: "Up to 10,000 images per month", included: true },
+          { text: "2000 images per month", included: true },
           { text: "Resolutions up to 4K", included: true },
           { text: "Batch generation (up to 20 at once)", included: true },
           { text: "Style presets & custom prompts", included: true },
@@ -190,7 +190,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "Unlimited images per month", included: true, bold: true },
+          { text: "6000 images per month", included: true, bold: true },
           { text: "HD + Ultra-HD rendering (up to 4K)", included: true },
           { text: "Unlimited batch processing", included: true },
           { text: "Team / multi-user accounts", included: true },
@@ -206,7 +206,7 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["25 images per month", "2,000 images per month", "10,000 images per month", "Unlimited"]
+        values: ["25 images per month", "500 images per month", "2,000 images per month", "6,000 images per month"]
       },
       {
         name: "Resolution",
