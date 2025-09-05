@@ -67,7 +67,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Choose Plan",
         features: [
-          { text: "Unlimited image enhancements per month", included: true, bold: true },
+          { text: "15000 images per month", included: true, bold: true },
           { text: "Up to 6K resolution", included: true },
           { text: "Full upscale range (2×, 4×, 6× Ultra HD)", included: true },
           { text: "Unlimited batch processing", included: true },
@@ -83,7 +83,7 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["50 images", "1,000 images", "5,000 images", "Unlimited"]
+        values: ["50 images", "1,000 images", "5,000 images", "15,000 images"]
       },
       {
         name: "Resolution",
