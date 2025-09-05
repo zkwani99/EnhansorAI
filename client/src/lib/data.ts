@@ -137,6 +137,7 @@ export const pricingPlans = {
         buttonText: "Start Free",
         features: [
           { text: "25 images per month", included: true },
+          { text: "Up to 512px resolution", included: true },
           { text: "Watermarked outputs", included: true },
           { text: "Basic styles only", included: true },
           { text: "Basic support", included: true },
@@ -153,7 +154,7 @@ export const pricingPlans = {
         buttonText: "Choose Plan",
         features: [
           { text: "1500 images per month", included: true },
-          { text: "512px–1K resolution", included: true },
+          { text: "Up to 1K resolution", included: true },
           { text: "No watermark", included: true },
           { text: "Email support", included: true },
           { text: "Custom aspect ratios", included: true },
@@ -171,7 +172,7 @@ export const pricingPlans = {
         buttonText: "Choose Plan",
         features: [
           { text: "6000 images per month", included: true },
-          { text: "Resolutions up to 4K", included: true },
+          { text: "Up to 2K resolution", included: true },
           { text: "Batch generation (up to 20 at once)", included: true },
           { text: "Style presets & custom prompts", included: true },
           { text: "All styles & effects", included: true },
@@ -191,7 +192,7 @@ export const pricingPlans = {
         buttonText: "Choose Plan",
         features: [
           { text: "15000 images per month", included: true, bold: true },
-          { text: "HD + Ultra-HD rendering (up to 4K)", included: true },
+          { text: "Up to 4K resolution", included: true },
           { text: "Unlimited batch processing", included: true },
           { text: "Team / multi-user accounts", included: true },
           { text: "API access", included: true },
@@ -210,7 +211,7 @@ export const pricingPlans = {
       },
       {
         name: "Resolution",
-        values: ["Basic", "512px–1K", "Up to 4K", "HD + Ultra-HD (up to 4K)"]
+        values: ["Up to 512px", "Up to 1K", "Up to 2K", "Up to 4K"]
       },
       {
         name: "Watermark",
