@@ -3,10 +3,10 @@ import { Rocket, BarChart3, Shield, Clock, RotateCcw, Award } from "lucide-react
 
 export default function FinalCTASection() {
   const trustIndicators = [
-    { icon: Shield, text: "Enterprise Security" },
-    { icon: Clock, text: "24/7 Support" },
-    { icon: RotateCcw, text: "30-Day Guarantee" },
-    { icon: Award, text: "SOC 2 Compliant" },
+    { emoji: "🔒", text: "Enterprise Security" },
+    { emoji: "⚡", text: "Fast AI Processing" },
+    { emoji: "🔄", text: "Cancel Anytime" },
+    { emoji: "☁️", text: "Cloud-based" },
   ];
 
   const handleTryFree = () => {
@@ -25,11 +25,10 @@ export default function FinalCTASection() {
     <section className="py-20 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 dark:bg-black dark:from-black dark:via-black dark:to-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-          Ready to Transform Your Content?
+          The Future of Content Starts Here
         </h2>
         <p className="text-xl text-white/90 mb-10 leading-relaxed">
-          Join thousands of creators, businesses, and artists who trust Lorepic for their AI-powered content needs. 
-          Start your free trial today and experience the future of content creation.
+          From stunning images to dynamic videos, Lorepic puts next-gen AI tools in your hands. Join free today and stay ahead of the curve.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -40,7 +39,7 @@ export default function FinalCTASection() {
             data-testid="button-final-try-free"
           >
             <Rocket className="mr-2" size={20} />
-            Try for Free
+            Try It Free Now
           </Button>
           <Button
             size="lg"
@@ -50,17 +49,16 @@ export default function FinalCTASection() {
             data-testid="button-final-compare-plans"
           >
             <BarChart3 className="mr-2" size={20} />
-            Compare Plans
+            Explore Plans
           </Button>
         </div>
         
         {/* Trust Indicators */}
         <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-white/80">
           {trustIndicators.map((indicator, index) => {
-            const IconComponent = indicator.icon;
             return (
               <div key={index} className="flex items-center" data-testid={`trust-indicator-${index}`}>
-                <IconComponent className="mr-2" size={20} />
+                <span className="mr-2 text-lg">{indicator.emoji}</span>
                 <span className="text-sm">{indicator.text}</span>
               </div>
             );
