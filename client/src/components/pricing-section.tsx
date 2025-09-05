@@ -756,7 +756,7 @@ function CreditUsageDisplay() {
                     return (
                       <Tooltip key={item.tier}>
                         <TooltipTrigger asChild>
-                          <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 cursor-help">
+                          <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 cursor-help">
                             <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.displayName}</span>
                             <Badge className="bg-green-100 text-green-700 border-green-300 font-semibold shadow-sm">
                               Included
@@ -775,7 +775,7 @@ function CreditUsageDisplay() {
                   return (
                     <Tooltip key={item.tier}>
                       <TooltipTrigger asChild>
-                        <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 cursor-help">
+                        <div className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 cursor-help">
                           <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.displayName}</span>
                           <Badge className={`${config.badgeColor} font-semibold shadow-sm`}>
                             {item.credits} credit{item.credits > 1 ? 's' : ''}
