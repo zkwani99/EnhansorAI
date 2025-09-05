@@ -261,7 +261,7 @@ export const pricingPlans = {
         buttonText: "Start Free",
         subtitle: "Perfect for testing the platform",
         features: [
-          { text: "15 clips per month (5s each)", included: true },
+          { text: "20 clips per month (up to 5s each)", included: true },
           { text: "480p resolution", included: true },
           { text: "Watermarked output", included: true },
           { text: "Basic support", included: true },
@@ -278,7 +278,7 @@ export const pricingPlans = {
         buttonText: "Choose Plan",
         subtitle: "Best for trying out AI video generation",
         features: [
-          { text: "150 clips per month (5s each)", included: true },
+          { text: "200 clips per month (up to 5s each)", included: true },
           { text: "720p resolution", included: true },
           { text: "Email support", included: true },
           { text: "No watermark", included: true },
@@ -296,7 +296,7 @@ export const pricingPlans = {
         buttonText: "Choose Plan",
         subtitle: "Great for freelancers & content creators",
         features: [
-          { text: "300 clips per month (5s each)", included: true },
+          { text: "500 clips per month (up to 8s each)", included: true },
           { text: "720p + 1080p resolution access", included: true },
           { text: "Priority processing", included: true },
           { text: "Standard support", included: true },
@@ -314,7 +314,7 @@ export const pricingPlans = {
         buttonText: "Choose Plan",
         subtitle: "Perfect for agencies & professional teams",
         features: [
-          { text: "700 clips per month (10s each)", included: true },
+          { text: "1500 clips per month (up to 10s each)", included: true },
           { text: "Full HD (1080p) resolution", included: true },
           { text: "AI Concierge Mode", included: true },
           { text: "AI Storyboard", included: true },
@@ -328,7 +328,7 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Monthly Clips",
-        values: ["15 clips per month (5s)", "150 clips per month (5s)", "300 clips per month (5s)", "700 clips per month (10s)"]
+        values: ["20 clips per month (up to 5s)", "200 clips per month (up to 5s)", "500 clips per month (up to 8s)", "1500 clips per month (up to 10s)"]
       },
       {
         name: "Max Resolution",
