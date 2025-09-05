@@ -123,8 +123,8 @@ export default function PricingSection() {
       button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-gray-900",
       border: "border-purple-600",
       popular: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
-      tabActive: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white",
-      tabInactive: "bg-white text-gray-700 hover:bg-gray-100 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900"
+      tabActive: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white border-2 border-purple-500",
+      tabInactive: "bg-white text-gray-700 hover:bg-gray-100 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900 border-2 border-purple-500 dark:border-purple-400"
     };
   };
 
