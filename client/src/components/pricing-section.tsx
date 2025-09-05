@@ -438,7 +438,7 @@ export default function PricingSection() {
 
         {/* Flexible Pay-As-You-Go Credits Section */}
         <div className="mt-20">
-          <div className="bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 dark:bg-black dark:from-black dark:via-black dark:to-black rounded-3xl p-8 mb-12">
+          <div className="bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 dark:bg-black dark:from-black dark:via-black dark:to-black dark:border dark:border-purple-500 rounded-3xl p-8 mb-12">
             <div className="text-center text-white">
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">
                 Flexible Pay-As-You-Go Credits
