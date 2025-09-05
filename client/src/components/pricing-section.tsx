@@ -225,7 +225,7 @@ export default function PricingSection() {
                 onClick={() => setSelectedPlan(plan.id)}
                 className={`bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer h-full flex flex-col group ${
                   selectedPlan === plan.id 
-                    ? `border-2 ${colors.border} ring-2 ring-offset-2 ${colors.border.replace('border-', 'ring-')} relative transform scale-105` 
+                    ? `border-2 ${colors.border} relative transform scale-105` 
                     : plan.isPopular 
                       ? `border-2 ${colors.border} relative hover:border-purple-400` 
                       : 'border border-gray-200 hover:border-purple-300'
