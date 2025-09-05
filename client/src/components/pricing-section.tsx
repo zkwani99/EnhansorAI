@@ -610,35 +610,6 @@ export default function PricingSection() {
             </CardContent>
           </Card>
 
-          {/* Decision Helper Box */}
-          <Card className="bg-white dark:bg-black border border-purple-200 rounded-2xl">
-            <CardContent className="p-6">
-              <div className="text-center">
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                  <div className="bg-white dark:bg-black rounded-xl p-6 border border-purple-200 dark:border-purple-600">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Calendar className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Choose Subscriptions if...</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      you need steady, monthly usage at a lower cost per credit.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white dark:bg-black rounded-xl p-6 border border-purple-200 dark:border-purple-600">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Zap className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Choose PAYG if...</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      you want total flexibility and only need occasional credits.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>
