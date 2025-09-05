@@ -136,7 +136,7 @@ export const pricingPlans = {
         isPopular: false,
         buttonText: "Start Free",
         features: [
-          { text: "25 images per month", included: true },
+          { text: "50 images per month", included: true },
           { text: "Up to 512px resolution", included: true },
           { text: "Watermarked outputs", included: true },
           { text: "Basic styles only", included: true },
@@ -207,7 +207,7 @@ export const pricingPlans = {
     comparisonFeatures: [
       {
         name: "Monthly Images",
-        values: ["25 images per month", "1,500 images per month", "6,000 images per month", "15,000 images per month"]
+        values: ["50 images per month", "1,500 images per month", "6,000 images per month", "15,000 images per month"]
       },
       {
         name: "Resolution",
