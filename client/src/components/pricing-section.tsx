@@ -569,7 +569,7 @@ export default function PricingSection() {
                 How Credits Are Used
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Transparent pricing for every service tier. Credits are deducted based on the quality and resolution you choose.
+                See exactly how your credits work—clear, simple, and flexible.
               </p>
             </div>
 
