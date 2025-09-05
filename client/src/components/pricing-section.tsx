@@ -438,17 +438,17 @@ export default function PricingSection() {
 
         {/* Flexible Pay-As-You-Go Credits Section */}
         <div className="mt-20">
-          <div className="bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 dark:bg-black dark:from-black dark:via-black dark:to-black dark:border dark:border-purple-500 rounded-3xl p-8 mb-12">
-            <div className="text-center text-white">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+          <div className="bg-white dark:bg-black border-2 border-purple-500 dark:border-purple-500 rounded-3xl p-8 mb-12">
+            <div className="text-center">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
                 Flexible Pay-As-You-Go Credits
               </h2>
-              <p className="text-lg text-purple-100 max-w-4xl mx-auto leading-relaxed mb-6">
+              <p className="text-lg text-gray-600 dark:text-purple-100 max-w-4xl mx-auto leading-relaxed mb-6">
                 Buy credits once, use them anywhere. Enhance photos, generate art, or create videos—your creativity, your control.
               </p>
               <a 
                 href="#credits-breakdown"
-                className="inline-flex items-center gap-2 text-lg font-medium bg-gradient-to-r from-purple-200 to-purple-300 bg-clip-text text-transparent hover:from-purple-100 hover:to-purple-200 transition-all duration-300 cursor-pointer group"
+                className="inline-flex items-center gap-2 text-lg font-medium bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent hover:from-purple-500 hover:to-purple-600 dark:from-purple-200 dark:to-purple-300 dark:hover:from-purple-100 dark:hover:to-purple-200 transition-all duration-300 cursor-pointer group"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById('credits-breakdown')?.scrollIntoView({
@@ -457,7 +457,7 @@ export default function PricingSection() {
                   });
                 }}
               >
-                👉 See how credits are used →
+                See how credits are used →
               </a>
             </div>
           </div>
