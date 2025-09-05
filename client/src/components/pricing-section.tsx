@@ -448,7 +448,7 @@ export default function PricingSection() {
               </p>
               <a 
                 href="#credits-breakdown"
-                className="inline-flex items-center gap-2 text-lg font-medium text-purple-200 hover:text-purple-100 transition-all duration-300 cursor-pointer group"
+                className="inline-flex items-center gap-2 text-lg font-medium text-purple-200 hover:text-white hover:bg-purple-500/20 px-4 py-2 rounded-lg transition-all duration-300 cursor-pointer group border border-purple-300/30 hover:border-purple-200/50"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById('credits-breakdown')?.scrollIntoView({
