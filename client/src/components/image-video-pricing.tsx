@@ -204,41 +204,41 @@ export default function ImageVideoPricing() {
         </div>
 
         {/* Comparison Table */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white dark:bg-black rounded-2xl shadow-xl overflow-hidden border dark:border-purple-600">
           <div className="px-8 py-6 bg-gradient-to-r from-purple-600 to-blue-600">
             <h3 className="text-2xl font-bold text-white text-center">Feature Comparison</h3>
           </div>
           
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-purple-50 dark:bg-black">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Feature</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Free</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Feature</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-gray-100">Free</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-gray-100">
                     Starter
                     <Badge className="ml-2 bg-purple-100 text-purple-800 text-xs">Popular</Badge>
                   </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Growth</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Business</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-gray-100">Growth</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-gray-100">Business</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-purple-200 dark:divide-purple-600">
                 {comparisonFeatures.map((feature, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{feature.name}</td>
-                    <td className="px-6 py-4 text-sm text-center text-gray-600">{feature.free}</td>
-                    <td className="px-6 py-4 text-sm text-center text-gray-600 bg-purple-50">{feature.starter}</td>
-                    <td className="px-6 py-4 text-sm text-center text-gray-600">{feature.growth}</td>
-                    <td className="px-6 py-4 text-sm text-center text-gray-600">{feature.business}</td>
+                  <tr key={index} className={index % 2 === 0 ? 'bg-purple-50 dark:bg-black' : 'bg-purple-100 dark:bg-black border-l-2 dark:border-l-purple-600'}>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">{feature.name}</td>
+                    <td className="px-6 py-4 text-sm text-center text-gray-600 dark:text-gray-300">{feature.free}</td>
+                    <td className="px-6 py-4 text-sm text-center text-gray-600 dark:text-gray-300 bg-purple-100 dark:bg-black dark:border-l-2 dark:border-l-purple-500">{feature.starter}</td>
+                    <td className="px-6 py-4 text-sm text-center text-gray-600 dark:text-gray-300">{feature.growth}</td>
+                    <td className="px-6 py-4 text-sm text-center text-gray-600 dark:text-gray-300">{feature.business}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           
-          <div className="px-8 py-6 bg-gray-50 text-center">
-            <p className="text-gray-600 mb-4">Ready to transform your images into stunning videos?</p>
+          <div className="px-8 py-6 bg-purple-50 dark:bg-black text-center border-t dark:border-t-purple-600">
+            <p className="text-gray-600 dark:text-gray-300 mb-4">Ready to transform your images into stunning videos?</p>
             <Button 
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 font-semibold rounded-lg"
               data-testid="button-get-started-comparison"
