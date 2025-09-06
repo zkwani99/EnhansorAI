@@ -121,14 +121,6 @@ export function PillSelector({
                       <Lock className="w-3 h-3 ml-1" />
                     )}
                     
-                    {option.credits && shouldShowCredits && (
-                      <Badge 
-                        variant="secondary" 
-                        className={`ml-2 text-xs ${selected ? 'bg-white/20 text-white' : 'bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300'}`}
-                      >
-                        {option.credits}c
-                      </Badge>
-                    )}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -136,9 +128,6 @@ export function PillSelector({
                     <p className="font-medium">{option.label}</p>
                     {option.description && (
                       <p className="text-sm text-gray-600">{option.description}</p>
-                    )}
-                    {option.credits && shouldShowCredits && (
-                      <p className="text-sm text-purple-600">{option.credits} credits required</p>
                     )}
                     {isDisabled && option.planRequired && (
                       <p className="text-sm text-amber-600">Available in {option.planRequired} plan or with PAYG credits</p>
