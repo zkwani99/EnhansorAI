@@ -22,7 +22,7 @@ export default function FinalCTASection() {
   };
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gradient-to-br dark:from-purple-600 dark:via-purple-700 dark:to-purple-800 dark:bg-black dark:from-black dark:via-black dark:to-black">
+    <section className="py-20 bg-gray-50 dark:bg-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
           The Future of Content Starts Here
