@@ -20,6 +20,7 @@ export default function Footer() {
     { name: "About Us", href: "/about" },
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
+    { name: "Refund Policy", href: "/refund" },
   ];
 
   const resourceLinks = [

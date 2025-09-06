@@ -1,0 +1,23 @@
+
+In the footer, under “Company” add a new policy page call it “Refund Policy” and insert the below terms inside it:
+
+
+Refund Policy
+
+
+1. No Refund Policy At Lorepic, all payments for subscriptions and credit packs are final. We do not offer refunds for any unused portion of your plan or credits.
+2. Free Plan Lorepic offers a free plan with no time limit. No payment details are required for free plan users, and no charges will ever be applied unless you upgrade to a paid subscription or purchase credits.
+3. Cancellation You may cancel your Lorepic subscription at any time directly in your account settings. Once canceled, you will continue to have access until the end of your current billing cycle.
+4. Service Issues In the event of a major outage or disruption that prevents you from using the platform, Lorepic may provide credits or extend your plan. These cases will be reviewed individually.
+5. Billing Mistakes If you identify a charge that appears incorrect, please contact us at support@lorepic.com. We will promptly investigate, and if an error is confirmed, your account will be corrected or a refund will be issued.
+6. Changes to This Policy Lorepic reserves the right to update this Refund Policy at any time. Any changes will take effect immediately upon being posted on our website.
+7. Contact Us For any questions about this Refund Policy, please reach out to us at support@lorepic.com.
+8. Subscription Renewals All paid subscriptions renew automatically unless canceled before the renewal date. By continuing your subscription, you authorize Lorepic to process recurring payments using your selected payment method.
+9. Eligibility for Refunds Refunds are only considered in rare cases, such as duplicate charges or confirmed billing errors. Lorepic does not provide refunds for unused subscription time, accidental purchases, or dissatisfaction with generated results.
+
+
+Last updated: 06/09/2025
+
+
+
+This policy page should match the design of other policies page such as About Us, privacy policy and terms of service. And at the top left of the new policy page “Refund Policy” add “<—Back to Home” button  

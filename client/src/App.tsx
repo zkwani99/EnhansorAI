@@ -15,6 +15,7 @@ import APIPage from "@/pages/api";
 import AboutPage from "@/pages/about";
 import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
+import RefundPage from "@/pages/refund";
 import DashboardPage from "@/pages/dashboard";
 import BlogPage from "@/pages/blog";
 import GuidesPage from "@/pages/guides";
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/privacy" component={PrivacyPage} />
       <Route path="/terms" component={TermsPage} />
+      <Route path="/refund" component={RefundPage} />
       <Route path="/dashboard" component={DashboardPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/guides" component={GuidesPage} />
