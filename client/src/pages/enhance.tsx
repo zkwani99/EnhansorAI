@@ -291,10 +291,10 @@ export default function EnhancePage() {
                         title="Upscaling Options"
                         icon={<Maximize2 className="w-4 h-4 text-purple-600" />}
                         options={[
-                          { id: "2x", label: "2×", value: "2x", credits: 1, description: "2x Upscale", isAvailable: true },
-                          { id: "4x-hd", label: "4× HD", value: "4x-hd", credits: 2, description: "Up to 4× HD Upscaling", isAvailable: true },
-                          { id: "6x", label: "6×", value: "6x", credits: 3, description: "Up to 6× Upscaling", isAvailable: true },
-                          { id: "6x-ultra", label: "6× Ultra-HD", value: "6x-ultra", credits: 4, description: "Up to 6× Ultra-HD Upscaling", isAvailable: true }
+                          { id: "1x", label: "1×", value: "1x", credits: 1, description: "1x Original Size", isAvailable: true },
+                          { id: "2x", label: "2×", value: "2x", credits: 2, description: "2x Upscale", isAvailable: true },
+                          { id: "4x", label: "4×", value: "4x", credits: 3, description: "4x Upscale", isAvailable: true },
+                          { id: "6x", label: "6×", value: "6x", credits: 4, description: "6x Upscale", isAvailable: true }
                         ]}
                         selectedValue={selectedUpscaling}
                         onSelectionChange={setSelectedUpscaling}
@@ -304,10 +304,10 @@ export default function EnhancePage() {
                         title="Resolution Options"
                         icon={<Monitor className="w-4 h-4 text-purple-600" />}
                         options={[
-                          { id: "512px", label: "512px", value: "512px", credits: 1, description: "512x512 resolution", isAvailable: true },
-                          { id: "1k", label: "1K", value: "1k", credits: 2, description: "1280x720 resolution", isAvailable: true },
-                          { id: "2k", label: "2K", value: "2k", credits: 3, description: "1920x1080 resolution", isAvailable: true },
-                          { id: "4k", label: "4K", value: "4k", credits: 4, description: "3840x2160 resolution", isAvailable: true }
+                          { id: "1k", label: "1K", value: "1k", credits: 1, description: "1280x720 resolution", isAvailable: true },
+                          { id: "2k", label: "2K", value: "2k", credits: 2, description: "1920x1080 resolution", isAvailable: true },
+                          { id: "4k", label: "4K", value: "4k", credits: 3, description: "3840x2160 resolution", isAvailable: true },
+                          { id: "6k", label: "6K", value: "6k", credits: 4, description: "6016x3384 resolution", isAvailable: true }
                         ]}
                         selectedValue={selectedResolution}
                         onSelectionChange={setSelectedResolution}
