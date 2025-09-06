@@ -16,6 +16,9 @@ import AboutPage from "@/pages/about";
 import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
 import DashboardPage from "@/pages/dashboard";
+import BlogPage from "@/pages/blog";
+import GuidesPage from "@/pages/guides";
+import ApiDocsPage from "@/pages/api-docs";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -32,6 +35,9 @@ function Router() {
       <Route path="/privacy" component={PrivacyPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/dashboard" component={DashboardPage} />
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/guides" component={GuidesPage} />
+      <Route path="/api-docs" component={ApiDocsPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

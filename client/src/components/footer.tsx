@@ -1,4 +1,4 @@
-import { Sparkles, CreditCard, HelpCircle, MessageCircle, FileText } from "lucide-react";
+import { Sparkles, CreditCard, HelpCircle, MessageCircle, FileText, BookOpen, Code, FileText as GuideIcon } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Footer() {
@@ -20,6 +20,12 @@ export default function Footer() {
     { name: "About Us", href: "/about" },
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
+  ];
+
+  const resourceLinks = [
+    { name: "Blog / Updates", icon: BookOpen, href: "/blog" },
+    { name: "Guides & Tutorials", icon: GuideIcon, href: "/guides" },
+    { name: "API Documentation", icon: Code, href: "/api-docs" },
   ];
 
 
@@ -85,12 +91,29 @@ export default function Footer() {
             </ul>
           </div>
           
-          {/* Contact & Support */}
+          {/* Resources */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">Contact & Support</h4>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              support@lorepic.com
+            <div className="flex items-center mb-4">
+              <div className="w-5 h-5 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center mr-2">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Resources</h4>
             </div>
+            <ul className="space-y-2">
+              {resourceLinks.map((link) => {
+                const IconComponent = link.icon;
+                return (
+                  <li key={link.name}>
+                    <Link href={link.href}>
+                      <div className="flex items-center cursor-pointer">
+                        <IconComponent className="text-purple-700 mr-2" size={14} />
+                        <span className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">{link.name}</span>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
         
