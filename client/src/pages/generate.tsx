@@ -179,7 +179,7 @@ export default function GeneratePage() {
           <div className="text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-xl">
-                <Sparkles className="w-10 h-10 text-white" />
+                <Palette className="w-10 h-10 text-white" />
               </div>
             </div>
             

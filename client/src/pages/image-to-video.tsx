@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid3x3, Eye, Sparkles, Film, Scissors } from "lucide-react";
+import { Upload, Play, Download, Share, Lightbulb, Clock, Monitor, Palette, Grid3x3, Eye, Sparkles, Film, Scissors, Zap } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { DualMeterSystem } from "@/components/shared/dual-meter-system";
@@ -170,16 +170,16 @@ export default function ImageToVideoPage() {
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-xl">
-                <Film className="w-10 h-10 text-white" />
+                <Zap className="w-10 h-10 text-white" />
               </div>
             </div>
             
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-              Turn Images Into Motion
+              Bring Your Images to Life with AI Animations
             </h1>
             
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-              Upload an image and transform it into stunning AI-powered video clips. Perfect for product demos, social media, and creative projects.
+              Upload an image and instantly generate smooth, professional-grade animations. Perfect for ads, reels, and creative projects.
             </p>
             
             <div className="flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">

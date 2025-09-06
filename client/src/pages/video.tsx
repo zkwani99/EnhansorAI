@@ -31,7 +31,8 @@ import {
   Eye,
   Grid3x3,
   Zap,
-  Monitor
+  Monitor,
+  Wand2
 } from "lucide-react";
 
 export default function VideoPage() {
@@ -194,7 +195,7 @@ export default function VideoPage() {
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-xl">
-                <Video className="w-10 h-10 text-white" />
+                <Wand2 className="w-10 h-10 text-white" />
               </div>
             </div>
             
