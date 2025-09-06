@@ -209,7 +209,7 @@ export default function VideoPage() {
             <div className="flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>5 or 10 second clips</span>
+                <span>5, 8, 10 second clips</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -332,6 +332,7 @@ export default function VideoPage() {
                       icon={<Clock className="w-4 h-4 text-purple-600" />}
                       options={[
                         { id: "5s", label: "5s", value: "5s", credits: 10, description: "5 second video", isAvailable: true },
+                        { id: "8s", label: "8s", value: "8s", credits: 16, description: "8 second video", isAvailable: true },
                         { id: "10s", label: "10s", value: "10s", credits: 20, description: "10 second video", isAvailable: true }
                       ]}
                       selectedValue={selectedDuration}
