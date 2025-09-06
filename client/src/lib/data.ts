@@ -374,7 +374,7 @@ export const pricingPlans = {
         buttonText: "Start Free",
         subtitle: "Perfect for testing the platform",
         features: [
-          { text: "5 clips per month (5s each)", included: true },
+          { text: "10 animations per month (5s each)", included: true },
           { text: "480p resolution", included: true },
           { text: "Watermarked output", included: true },
           { text: "Basic support", included: true }
@@ -461,7 +461,7 @@ export const pricingPlans = {
       {
         name: "Video Generation",
         values: [
-          "5 clips per month (5s)", 
+          "10 animations per month (5s)", 
           "240 animations per month (up to 5s each)\nOR\n20 stitched videos per month (up to 1 minute each)", 
           "600 animations per month (up to 8s each)\nOR\n40 stitched videos per month (up to 2 minutes each)", 
           "1440 animations per month (up to 10s each)\nOR\n80 stitched videos per month (up to 3 minutes each)"
