@@ -56,7 +56,7 @@ export default function HeroSection() {
           </h1>
           
           <p className="text-xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
-            Upscale low-res images, create stunning AI art, and transform text or photos into cinematic videos — all in one seamless platform powered by cutting-edge AI.
+            Enhance images, generate AI art, and create cinematic animations—all in one seamless platform.
           </p>
           
           {/* Service Buttons - 2x2 Grid */}
