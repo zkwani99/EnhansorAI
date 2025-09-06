@@ -185,7 +185,7 @@ export default function ImageToVideoPage() {
             <div className="flex items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>3-8 second clips</span>
+                <span>5, 8, 10 second animations</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -337,8 +337,9 @@ export default function ImageToVideoPage() {
                     title="Duration Options"
                     icon={<Clock className="w-4 h-4 text-purple-600" />}
                     options={[
-                      { id: "5s", label: "Short Clip (Up to 5s)", value: "5s", credits: 15, description: "Up to 5s, up to 720p resolution", isAvailable: true },
-                      { id: "8s", label: "Short Clip (Up to 8s)", value: "8s", credits: 20, description: "Up to 8s, up to 1080p resolution", isAvailable: true }
+                      { id: "5s", label: "5s", value: "5s", credits: 15, description: "5 second animation", isAvailable: true },
+                      { id: "8s", label: "8s", value: "8s", credits: 20, description: "8 second animation", isAvailable: true },
+                      { id: "10s", label: "10s", value: "10s", credits: 25, description: "10 second animation", isAvailable: true }
                     ]}
                     selectedValue={`${selectedDuration}s`}
                     onSelectionChange={(value) => setSelectedDuration(parseInt(value))}
@@ -351,6 +352,7 @@ export default function ImageToVideoPage() {
                     title="Resolution Options"
                     icon={<Monitor className="w-4 h-4 text-purple-600" />}
                     options={[
+                      { id: "480p", label: "480p", value: "480p", credits: 10, description: "480p resolution", isAvailable: true },
                       { id: "720p", label: "720p (HD)", value: "720p", credits: 15, description: "720p HD resolution", isAvailable: true },
                       { id: "1080p", label: "1080p (Full HD)", value: "1080p", credits: 20, description: "1080p Full HD resolution", isAvailable: true }
                     ]}
