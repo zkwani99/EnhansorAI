@@ -386,13 +386,13 @@ export default function PricingSection() {
             </Button>
           </div>
           {expandedComparison && (
-          <Card className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-top-4 duration-300">
+          <Card className="bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden animate-in slide-in-from-top-4 duration-300 border dark:border-purple-600">
             <div className={`${colors.headerBg} text-white text-center py-4`}>
               <h4 className="text-lg font-semibold">{currentServiceData?.title} Feature Comparison</h4>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-white dark:bg-black">
+                <thead className="bg-purple-50 dark:bg-black">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-gray-200 uppercase tracking-wider">Feature</th>
                     {currentServiceData?.plans?.map((plan: any) => (
@@ -402,9 +402,9 @@ export default function PricingSection() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="bg-white dark:bg-black divide-y divide-gray-200 dark:divide-gray-600">
+                <tbody className="bg-purple-50 dark:bg-black divide-y divide-purple-200 dark:divide-purple-600">
                   {currentServiceData?.comparisonFeatures?.map((feature: any, index: number) => (
-                    <tr key={index}>
+                    <tr key={index} className={index % 2 === 0 ? 'bg-purple-50 dark:bg-black' : 'bg-purple-100 dark:bg-black border-l-2 dark:border-l-purple-600'}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                         {feature.name}
                       </td>
