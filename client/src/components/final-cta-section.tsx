@@ -35,7 +35,7 @@ export default function FinalCTASection() {
           <Button
             size="lg"
             onClick={handleTryFree}
-            className="bg-purple-600 text-white hover:bg-purple-700 dark:bg-white dark:text-purple-700 px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl dark:hover:bg-purple-50 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 min-w-[200px]"
+            className="bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 min-w-[200px]"
             data-testid="button-final-try-free"
           >
             <Rocket className="mr-2" size={20} />
@@ -45,7 +45,7 @@ export default function FinalCTASection() {
             size="lg"
             variant="outline"
             onClick={handleComparePlans}
-            className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white dark:border-white dark:text-white px-8 py-4 rounded-xl text-lg font-semibold dark:hover:bg-white dark:hover:text-purple-700 transition-all duration-300 min-w-[200px] bg-transparent"
+            className="bg-purple-100 text-purple-700 hover:bg-purple-200 border-2 border-purple-300 hover:border-purple-400 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 min-w-[200px]"
             data-testid="button-final-compare-plans"
           >
             <BarChart3 className="mr-2" size={20} />
