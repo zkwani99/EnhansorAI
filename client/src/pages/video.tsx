@@ -346,24 +346,18 @@ export default function VideoPage() {
 
                   {/* Style Selection */}
                   <div>
-                    <Label className="text-base font-medium text-gray-900 dark:text-gray-100 mb-3 block">
-                      Video Style
-                    </Label>
-                    <Select value={style} onValueChange={setStyle} disabled={isGenerating}>
-                      <SelectTrigger className="w-full border-purple-300 focus:border-purple-500" data-testid="select-style">
-                        <SelectValue placeholder="Choose a style" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {videoStyles.map((styleOption) => (
-                          <SelectItem key={styleOption.value} value={styleOption.value}>
-                            <div>
-                              <div className="font-medium">{styleOption.label}</div>
-                              <div className="text-sm text-gray-500">{styleOption.description}</div>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <PillSelector
+                      title="Video Style"
+                      icon={<Palette className="w-4 h-4 text-purple-600" />}
+                      options={[
+                        { id: "cinematic", label: "Cinematic", value: "cinematic", credits: 0, description: "Movie-like quality with professional lighting", isAvailable: true },
+                        { id: "anime", label: "Anime", value: "anime", credits: 0, description: "Japanese animation style", isAvailable: true },
+                        { id: "3d", label: "3D Render", value: "3d", credits: 0, description: "3D computer graphics", isAvailable: true },
+                        { id: "abstract", label: "Abstract", value: "abstract", credits: 0, description: "Artistic and creative interpretation", isAvailable: true }
+                      ]}
+                      selectedValue={style}
+                      onSelectionChange={setStyle}
+                    />
                   </div>
 
                   {/* Resolution & Duration Options */}
