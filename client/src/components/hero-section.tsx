@@ -65,7 +65,7 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={() => handleServiceClick('enhance')}
-              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-300 dark:border-purple-500"
+              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-enhance-image"
             >
               <Sparkles className="mr-3 h-5 w-5 text-purple-600" />
@@ -74,7 +74,7 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={() => handleServiceClick('generate')}
-              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-300 dark:border-purple-500"
+              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-generate-image"
             >
               <Palette className="mr-3 h-5 w-5 text-purple-600" />
@@ -84,7 +84,7 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={() => handleServiceClick('video')}
-              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-300 dark:border-purple-500"
+              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-create-video"
             >
               <Video className="mr-3 h-5 w-5 text-purple-600" />
@@ -93,7 +93,7 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={() => handleServiceClick('image-to-video')}
-              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border border-gray-300 dark:border-purple-500"
+              className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-create-video-from-image"
             >
               <Film className="mr-3 h-5 w-5 text-purple-600" />
