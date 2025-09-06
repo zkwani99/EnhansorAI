@@ -119,7 +119,7 @@ export default function PricingSection() {
     // All services now use dark gradient purple color scheme
     return {
       iconBg: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
-      headerBg: "bg-black dark:bg-black",
+      headerBg: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 dark:bg-black",
       button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-gray-900",
       border: "border-purple-600",
       popular: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800",
