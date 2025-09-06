@@ -1,13 +1,20 @@
-import { Sparkles, Image as ImageIcon, Zap, Sun } from "lucide-react";
+import { Sparkles, CreditCard, HelpCircle, MessageCircle, FileText } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Footer() {
-  const enhancementTools = [
-    { name: "Auto Enhance", icon: Sparkles },
-    { name: "Old Photo Restore", icon: ImageIcon },
-    { name: "AI Upscaling", icon: Zap },
-    { name: "Low Light Boost", icon: Sun },
+  const helpfulLinks = [
+    { name: "Pricing Plans", icon: CreditCard, action: () => scrollToSection("pricing") },
+    { name: "How Credits Work", icon: FileText, action: () => scrollToSection("how-credits-work") },
+    { name: "FAQ", icon: HelpCircle, action: () => scrollToSection("faq") },
+    { name: "Contact Support", icon: MessageCircle, action: () => window.location.href = "mailto:support@lorepic.com" },
   ];
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const companyLinks = [
     { name: "About Us", href: "/about" },
@@ -33,21 +40,21 @@ export default function Footer() {
             </p>
           </div>
           
-          {/* Enhancement Tools */}
+          {/* Helpful Links */}
           <div>
             <div className="flex items-center mb-4">
               <div className="w-5 h-5 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-full flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={12} />
               </div>
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Enhancement Tools</h4>
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Helpful Links</h4>
             </div>
             <ul className="space-y-2">
-              {enhancementTools.map((tool) => {
-                const IconComponent = tool.icon;
+              {helpfulLinks.map((link) => {
+                const IconComponent = link.icon;
                 return (
-                  <li key={tool.name} className="flex items-center">
+                  <li key={link.name} className="flex items-center cursor-pointer" onClick={link.action}>
                     <IconComponent className="text-purple-700 mr-2" size={14} />
-                    <span className="text-sm text-gray-600 dark:text-gray-300">{tool.name}</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">{link.name}</span>
                   </li>
                 );
               })}
