@@ -10,21 +10,21 @@ export default function HeroSection() {
 
   const services = [
     {
-      id: "enhance",
+      id: "image-enhancement",
       title: "Enhance My Image",
       subtitle: "Upscale & restore photos",
       icon: Sparkles,
       color: "bg-green-500"
     },
     {
-      id: "generate",
+      id: "text-to-image",
       title: "Generate Image from Text",
       subtitle: "AI art & visuals",
       icon: Palette,
       color: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800"
     },
     {
-      id: "video",
+      id: "text-to-video",
       title: "Create Video from Text or Image",
       subtitle: "AI-powered short clips",
       icon: Video,

@@ -42,9 +42,9 @@ export default function Navigation() {
   // Navigation structure with dropdowns
   const navigationGroups = {
     tools: [
-      { name: "Image Enhancement", route: "enhance", id: "image-enhancement" },
-      { name: "AI Image Generator", route: "generate", id: "ai-generator" },
-      { name: "AI Video Generator", route: "video", id: "video-generator" },
+      { name: "Image Enhancement", route: "image-enhancement", id: "image-enhancement" },
+      { name: "AI Image Generator", route: "text-to-image", id: "ai-generator" },
+      { name: "AI Video Generator", route: "text-to-video", id: "video-generator" },
       { name: "AI Image-to-Video", route: "image-to-video", id: "image-to-video" },
     ],
     explore: [

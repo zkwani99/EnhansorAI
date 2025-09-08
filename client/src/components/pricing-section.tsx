@@ -49,9 +49,9 @@ export default function PricingSection() {
     
     // Redirect based on service type
     const serviceRoutes = {
-      'image': 'enhance',
-      'ai': 'generate', 
-      'video': 'video',
+      'image': 'image-enhancement',
+      'ai': 'text-to-image', 
+      'video': 'text-to-video',
       'imageVideo': 'image-to-video'
     } as const;
     
@@ -102,9 +102,9 @@ export default function PricingSection() {
     
     // Redirect based on service type
     const serviceRoutes = {
-      'image': 'enhance',
-      'ai': 'generate', 
-      'video': 'video',
+      'image': 'image-enhancement',
+      'ai': 'text-to-image', 
+      'video': 'text-to-video',
       'imageVideo': 'image-to-video'
     } as const;
     
