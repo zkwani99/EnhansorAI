@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Palette, Video, Film } from "lucide-react";
 import { redirectToService } from "@/lib/authRedirect";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocation } from "wouter";
 
 export default function HeroSection() {
+  const { isAuthenticated } = useAuth();
+  const [, navigate] = useLocation();
+
   const services = [
     {
       id: "enhance",
@@ -28,7 +33,14 @@ export default function HeroSection() {
   ];
 
   const handleServiceClick = (serviceId: string) => {
-    redirectToService(serviceId);
+    // Check authentication status before navigating
+    if (isAuthenticated) {
+      // User is logged in, navigate directly to the service page
+      navigate(`/${serviceId}`);
+    } else {
+      // User not logged in, redirect to auth flow
+      redirectToService(serviceId);
+    }
   };
 
   return (

@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Rocket, BarChart3, Shield, Clock, RotateCcw, Award } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocation } from "wouter";
 
 export default function FinalCTASection() {
+  const { isAuthenticated } = useAuth();
+  const [, navigate] = useLocation();
+
   const trustIndicators = [
     { emoji: "🔒", text: "Enterprise Security" },
     { emoji: "⚡", text: "Fast AI Processing" },
@@ -10,8 +15,14 @@ export default function FinalCTASection() {
   ];
 
   const handleTryFree = () => {
-    // Redirect to login/signup
-    window.location.href = '/api/login';
+    // Check authentication status before navigating
+    if (isAuthenticated) {
+      // User is logged in, navigate to dashboard
+      navigate('/dashboard');
+    } else {
+      // User not logged in, redirect to auth flow
+      window.location.href = '/api/login';
+    }
   };
 
   const handleComparePlans = () => {

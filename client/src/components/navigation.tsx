@@ -17,12 +17,18 @@ export default function Navigation() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { isAuthenticated, user } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
 
   const handleNavClick = (link: any) => {
     if (link.route) {
-      // Navigate to service page with auth
-      redirectToService(link.route);
+      // Check if user is authenticated before navigating to service pages
+      if (isAuthenticated) {
+        // User is logged in, navigate directly to the service page
+        navigate(`/${link.route}`);
+      } else {
+        // User not logged in, redirect to auth flow
+        redirectToService(link.route);
+      }
     } else {
       // Scroll to section on current page
       const element = document.getElementById(link.id);

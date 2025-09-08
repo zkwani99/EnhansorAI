@@ -9,6 +9,8 @@ import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@/hooks/useAuth";
+import { useLocation } from "wouter";
 
 type ServiceKey = 'image' | 'ai' | 'video' | 'imageVideo';
 
@@ -21,6 +23,8 @@ export default function PricingSection() {
   const [expandedComparison, setExpandedComparison] = useState(false);
   const [isYearly, setIsYearly] = useState(false);
   const { toast } = useToast();
+  const { isAuthenticated } = useAuth();
+  const [, navigate] = useLocation();
   
   const handleSelectPlan = (planId: string) => {
     // For imageVideo service, check if user has selected an option first (except for free plan)
@@ -51,7 +55,14 @@ export default function PricingSection() {
       'imageVideo': 'image-to-video'
     } as const;
     
-    redirectToService(serviceRoutes[activeService]);
+    // Check authentication status before navigating
+    if (isAuthenticated) {
+      // User is logged in, navigate directly to the service page
+      navigate(`/${serviceRoutes[activeService]}`);
+    } else {
+      // User not logged in, redirect to auth flow
+      redirectToService(serviceRoutes[activeService]);
+    }
   };
 
   const handleImageVideoSelection = (planId: string, option: 'clips' | 'videos') => {
