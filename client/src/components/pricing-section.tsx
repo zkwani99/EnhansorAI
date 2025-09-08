@@ -138,8 +138,8 @@ export default function PricingSection() {
       
       // Navigate to the service page
       navigate(`/${serviceRoutes[activeService]}`);
-      // Scroll to top of the new page
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Jump directly to top of the new page (no animation)
+      window.scrollTo(0, 0);
     } else {
       // User not logged in, redirect to auth flow
       redirectToService(serviceRoutes[activeService]);
