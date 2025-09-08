@@ -76,7 +76,7 @@ export default function HeroSection() {
             {/* Top row */}
             <Button 
               size="lg"
-              onClick={() => handleServiceClick('enhance')}
+              onClick={() => handleServiceClick('image-enhancement')}
               className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-enhance-image"
             >
@@ -85,7 +85,7 @@ export default function HeroSection() {
             </Button>
             <Button 
               size="lg"
-              onClick={() => handleServiceClick('generate')}
+              onClick={() => handleServiceClick('text-to-image')}
               className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-generate-image"
             >
@@ -95,7 +95,7 @@ export default function HeroSection() {
             {/* Bottom row */}
             <Button 
               size="lg"
-              onClick={() => handleServiceClick('video')}
+              onClick={() => handleServiceClick('text-to-video')}
               className="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-8 py-5 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-2 hover:scale-105 active:scale-95 active:shadow-inner active:bg-purple-200 dark:active:bg-purple-700 border border-gray-300 dark:border-purple-500"
               data-testid="button-create-video"
             >
