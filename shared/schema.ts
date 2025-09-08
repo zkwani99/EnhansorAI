@@ -258,6 +258,36 @@ export const insertUserPreferencesSchema = createInsertSchema(userPreferences).o
 });
 
 // User subscription outputs table - tracks monthly usage for subscription plans
+// User subscriptions table to track active subscription plans
+export const userSubscriptions = pgTable("user_subscriptions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id).notNull(),
+  
+  // Subscription plan details
+  planType: varchar("plan_type").notNull(), // 'payg', 'basic', 'growth', 'business'
+  planId: varchar("plan_id").notNull(), // specific plan identifier
+  service: varchar("service").notNull(), // 'image', 'ai', 'video', 'imageVideo'
+  
+  // Billing details
+  billingPeriod: varchar("billing_period").default("monthly"), // 'monthly' or 'yearly'
+  status: varchar("status").default("active").notNull(), // 'active', 'cancelled', 'expired'
+  
+  // Timestamps
+  activatedAt: timestamp("activated_at").defaultNow(),
+  expiresAt: timestamp("expires_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type UserSubscription = typeof userSubscriptions.$inferSelect;
+export type InsertUserSubscription = typeof userSubscriptions.$inferInsert;
+
+export const insertUserSubscriptionSchema = createInsertSchema(userSubscriptions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export const userSubscriptionOutputs = pgTable("user_subscription_outputs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: varchar("user_id").references(() => users.id).notNull(),
