@@ -25,6 +25,8 @@ export default function Navigation() {
       if (isAuthenticated) {
         // User is logged in, navigate directly to the service page
         navigate(`/${link.route}`);
+        // Scroll to top of the new page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         // User not logged in, redirect to auth flow
         redirectToService(link.route);

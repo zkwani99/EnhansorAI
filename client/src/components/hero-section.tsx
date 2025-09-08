@@ -37,6 +37,8 @@ export default function HeroSection() {
     if (isAuthenticated) {
       // User is logged in, navigate directly to the service page
       navigate(`/${serviceId}`);
+      // Scroll to top of the new page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // User not logged in, redirect to auth flow
       redirectToService(serviceId);
