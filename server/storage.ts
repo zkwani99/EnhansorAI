@@ -8,6 +8,7 @@ import {
   generatedFiles,
   videoStitchingProjects,
   userPreferences,
+  userSubscriptions,
   userSubscriptionOutputs,
   type User,
   type UpsertUser,
@@ -27,6 +28,8 @@ import {
   type InsertVideoStitchingProject,
   type UserPreferences,
   type InsertUserPreferences,
+  type UserSubscription,
+  type InsertUserSubscription,
   type UserSubscriptionOutputs,
   type InsertUserSubscriptionOutputs,
 } from "@shared/schema";
@@ -63,6 +66,12 @@ export interface IStorage {
   getVideoStitchingProject(id: string): Promise<VideoStitchingProject | null>;
   updateVideoStitchingProject(id: string, updates: Partial<VideoStitchingProject>): Promise<VideoStitchingProject>;
   
+  // Subscription management operations
+  getUserSubscription(userId: string, service?: string): Promise<UserSubscription | null>;
+  activateSubscription(subscription: InsertUserSubscription): Promise<UserSubscription>;
+  cancelSubscription(userId: string, service: string): Promise<void>;
+  updateSubscriptionStatus(userId: string, service: string, status: string): Promise<UserSubscription>;
+
   // Subscription outputs operations
   getUserSubscriptionOutputs(userId: string): Promise<UserSubscriptionOutputs | null>;
   initializeUserSubscriptionOutputs(userId: string, planType: string): Promise<UserSubscriptionOutputs>;
@@ -409,6 +418,87 @@ export class DatabaseStorage implements IStorage {
         ...prefsData,
       } as InsertUserPreferences);
     }
+  }
+
+  // Subscription management operations
+  async getUserSubscription(userId: string, service?: string): Promise<UserSubscription | null> {
+    const query = db
+      .select()
+      .from(userSubscriptions)
+      .where(eq(userSubscriptions.userId, userId));
+    
+    if (service) {
+      query.where(eq(userSubscriptions.service, service));
+    }
+    
+    const [subscription] = await query;
+    return subscription || null;
+  }
+
+  async activateSubscription(subscription: InsertUserSubscription): Promise<UserSubscription> {
+    // Calculate expiration date (1 month from now for monthly, 1 year for yearly)
+    const expiresAt = new Date();
+    if (subscription.billingPeriod === 'yearly') {
+      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+    } else {
+      expiresAt.setMonth(expiresAt.getMonth() + 1);
+    }
+
+    // First, cancel any existing subscription for the same service
+    await this.cancelSubscription(subscription.userId, subscription.service);
+
+    // Create new subscription
+    const [result] = await db
+      .insert(userSubscriptions)
+      .values({
+        ...subscription,
+        expiresAt,
+        status: 'active',
+      })
+      .returning();
+
+    // Initialize subscription outputs for the user
+    await this.initializeUserSubscriptionOutputs(subscription.userId, subscription.planType);
+
+    return result;
+  }
+
+  async cancelSubscription(userId: string, service: string): Promise<void> {
+    await db
+      .update(userSubscriptions)
+      .set({
+        status: 'cancelled',
+        updatedAt: new Date(),
+      })
+      .where(
+        and(
+          eq(userSubscriptions.userId, userId),
+          eq(userSubscriptions.service, service),
+          eq(userSubscriptions.status, 'active')
+        )
+      );
+  }
+
+  async updateSubscriptionStatus(userId: string, service: string, status: string): Promise<UserSubscription> {
+    const [result] = await db
+      .update(userSubscriptions)
+      .set({
+        status,
+        updatedAt: new Date(),
+      })
+      .where(
+        and(
+          eq(userSubscriptions.userId, userId),
+          eq(userSubscriptions.service, service)
+        )
+      )
+      .returning();
+
+    if (!result) {
+      throw new Error('Subscription not found');
+    }
+
+    return result;
   }
 
   // Subscription outputs operations
