@@ -17,6 +17,8 @@ import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { AIPromptAssistant } from "@/components/shared/ai-prompt-assistant";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
 import { PillSelector } from "@/components/shared/pill-selector";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 import { 
   ArrowLeft, 
   Play, 
@@ -180,6 +182,7 @@ export default function VideoPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-purple-50/30 dark:from-black dark:to-black transition-colors duration-300">
+      <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-black dark:via-black dark:to-black border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -616,6 +619,7 @@ export default function VideoPage() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 }

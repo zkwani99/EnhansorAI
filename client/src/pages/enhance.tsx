@@ -14,6 +14,8 @@ import { StyleMemoryToggle } from "@/components/shared/style-memory-toggle";
 import { AITaskCopilot } from "@/components/shared/ai-task-copilot";
 import { PillSelector } from "@/components/shared/pill-selector";
 import { CreditCostEstimator } from "@/components/shared/credit-cost-estimator";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 import { 
   ArrowLeft, 
   Upload, 
@@ -123,6 +125,7 @@ export default function EnhancePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-purple-50/30 dark:from-black dark:to-black transition-colors duration-300">
+      <Navigation />
       {/* Header */}
       <div className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -536,6 +539,7 @@ export default function EnhancePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
