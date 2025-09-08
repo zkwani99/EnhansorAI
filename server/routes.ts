@@ -223,6 +223,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // User subscription outputs endpoint
+  // Subscription activation endpoint
+  app.post('/api/subscription/activate', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { planType, planId, service, billingPeriod } = req.body;
+
+      if (!planType || !planId || !service) {
+        return res.status(400).json({ error: "Missing required fields: planType, planId, service" });
+      }
+
+      // Validate service type
+      const validServices = ['image', 'ai', 'video', 'imageVideo'];
+      if (!validServices.includes(service)) {
+        return res.status(400).json({ error: "Invalid service type" });
+      }
+
+      // Validate plan type  
+      const validPlanTypes = ['payg', 'basic', 'growth', 'business'];
+      if (!validPlanTypes.includes(planType)) {
+        return res.status(400).json({ error: "Invalid plan type" });
+      }
+
+      // Activate the subscription
+      const subscription = await storage.activateSubscription({
+        userId,
+        planType,
+        planId,
+        service,
+        billingPeriod: billingPeriod || 'monthly',
+      });
+
+      console.log(`Subscription activated for user ${userId}: ${planType} plan for ${service} service`);
+
+      res.json({
+        message: "Subscription activated successfully",
+        subscription: {
+          id: subscription.id,
+          planType: subscription.planType,
+          service: subscription.service,
+          status: subscription.status,
+          activatedAt: subscription.activatedAt,
+          expiresAt: subscription.expiresAt,
+        }
+      });
+    } catch (error) {
+      console.error("Error activating subscription:", error);
+      res.status(500).json({ error: "Failed to activate subscription" });
+    }
+  });
+
   app.get('/api/subscription/outputs', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
@@ -231,6 +281,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching subscription outputs:", error);
       res.status(500).json({ error: "Failed to fetch subscription outputs" });
+    }
+  });
+
+  // Get user's active subscription
+  app.get('/api/subscription/current', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { service } = req.query;
+      
+      const subscription = await storage.getUserSubscription(userId, service as string);
+      res.json(subscription);
+    } catch (error) {
+      console.error("Error fetching current subscription:", error);
+      res.status(500).json({ error: "Failed to fetch current subscription" });
     }
   });
 

@@ -422,16 +422,20 @@ export class DatabaseStorage implements IStorage {
 
   // Subscription management operations
   async getUserSubscription(userId: string, service?: string): Promise<UserSubscription | null> {
-    const query = db
-      .select()
-      .from(userSubscriptions)
-      .where(eq(userSubscriptions.userId, userId));
+    let whereCondition = eq(userSubscriptions.userId, userId);
     
     if (service) {
-      query.where(eq(userSubscriptions.service, service));
+      whereCondition = and(
+        eq(userSubscriptions.userId, userId),
+        eq(userSubscriptions.service, service)
+      );
     }
     
-    const [subscription] = await query;
+    const [subscription] = await db
+      .select()
+      .from(userSubscriptions)
+      .where(whereCondition);
+      
     return subscription || null;
   }
 
