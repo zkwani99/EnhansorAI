@@ -36,8 +36,11 @@ export default function PricingSection() {
       service: string;
       billingPeriod?: string;
     }) => {
-      return await apiRequest('/api/subscription/activate', {
+      const response = await fetch('/api/subscription/activate', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           planType,
           planId,
@@ -45,8 +48,15 @@ export default function PricingSection() {
           billingPeriod: billingPeriod || 'monthly'
         })
       });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       toast({
         title: "Subscription Activated!",
         description: `Your ${data.subscription.planType} plan has been successfully activated.`,

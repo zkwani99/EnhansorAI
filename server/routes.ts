@@ -770,6 +770,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       setTimeout(async () => {
         try {
           // Simulate stitching process and create output file
+          const scheduledDeletion = new Date();
+          scheduledDeletion.setDate(scheduledDeletion.getDate() + 30); // Delete after 30 days
+
           const outputFile = await storage.createGeneratedFile({
             userId,
             service: 'video-stitching',
@@ -784,6 +787,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               stitchingMethod: 'ffmpeg'
             }),
             creditsUsed: Math.ceil(totalDuration / 10), // 1 credit per 10 seconds
+            scheduledDeletion,
           });
           
           await storage.updateVideoStitchingProject(project.id, {
