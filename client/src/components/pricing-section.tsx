@@ -8,9 +8,10 @@ import { Switch } from "@/components/ui/switch";
 import { pricingPlans } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { redirectToService } from "@/lib/authRedirect";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
+import { apiRequest } from "@/lib/queryClient";
 
 type ServiceKey = 'image' | 'ai' | 'video' | 'imageVideo';
 
@@ -25,8 +26,46 @@ export default function PricingSection() {
   const { toast } = useToast();
   const { isAuthenticated } = useAuth();
   const [, navigate] = useLocation();
+  const queryClient = useQueryClient();
+
+  // Subscription activation mutation
+  const activateSubscriptionMutation = useMutation({
+    mutationFn: async ({ planType, planId, service, billingPeriod }: {
+      planType: string;
+      planId: string;
+      service: string;
+      billingPeriod?: string;
+    }) => {
+      return await apiRequest('/api/subscription/activate', {
+        method: 'POST',
+        body: JSON.stringify({
+          planType,
+          planId,
+          service,
+          billingPeriod: billingPeriod || 'monthly'
+        })
+      });
+    },
+    onSuccess: (data) => {
+      toast({
+        title: "Subscription Activated!",
+        description: `Your ${data.subscription.planType} plan has been successfully activated.`,
+      });
+      
+      // Invalidate subscription-related queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ['/api/subscription/current'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/subscription/outputs'] });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Subscription Failed",
+        description: error.message || "Failed to activate subscription. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
   
-  const handleSelectPlan = (planId: string) => {
+  const handleSelectPlan = async (planId: string) => {
     // For imageVideo service, check if user has selected an option first (except for free plan)
     if (activeService === 'imageVideo' && !planId.includes('free') && !imageVideoSelections[planId]) {
       toast({
@@ -38,6 +77,21 @@ export default function PricingSection() {
     }
 
     setSelectedPlan(planId);
+    
+    // Extract plan type from planId and map to backend types
+    let planType = 'payg';
+    if (planId.includes('free')) {
+      planType = 'payg';
+    } else {
+      const planSuffix = planId.split('-').pop() || '';
+      const planTypeMap: Record<string, string> = {
+        'starter': 'basic',
+        'growth': 'growth',
+        'business': 'business'
+      };
+      planType = planTypeMap[planSuffix] || 'basic';
+    }
+    
     // Store plan selection for post-auth processing
     localStorage.setItem('selected_plan', planId);
     localStorage.setItem('selected_service', activeService);
@@ -57,7 +111,22 @@ export default function PricingSection() {
     
     // Check authentication status before navigating
     if (isAuthenticated) {
-      // User is logged in, navigate directly to the service page
+      // If not a free plan, activate the subscription first
+      if (!planId.includes('free')) {
+        try {
+          await activateSubscriptionMutation.mutateAsync({
+            planType,
+            planId,
+            service: activeService,
+            billingPeriod: isYearly ? 'yearly' : 'monthly'
+          });
+        } catch (error) {
+          // Error is already handled in the mutation's onError
+          return; // Don't navigate if subscription activation fails
+        }
+      }
+      
+      // Navigate to the service page
       navigate(`/${serviceRoutes[activeService]}`);
     } else {
       // User not logged in, redirect to auth flow
