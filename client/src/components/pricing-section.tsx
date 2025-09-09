@@ -42,10 +42,15 @@ export default function PricingSection() {
   const queryClient = useQueryClient();
 
   // Fetch credit packs from API
-  const { data: creditPacks = [] } = useQuery<CreditPack[]>({
+  const { data: creditPacks = [], isLoading: creditPacksLoading, error: creditPacksError } = useQuery<CreditPack[]>({
     queryKey: ['/api/credit-packs'],
     retry: false,
   });
+
+  // Debug logging
+  console.log('Credit packs data:', creditPacks);
+  console.log('Credit packs loading:', creditPacksLoading);
+  console.log('Credit packs error:', creditPacksError);
 
   // Subscription activation mutation
   const activateSubscriptionMutation = useMutation({
@@ -596,7 +601,21 @@ export default function PricingSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {creditPacks.map((pack, index) => {
+            {creditPacksLoading ? (
+              <div className="col-span-full text-center py-8">
+                <div className="animate-spin w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full mx-auto mb-2"></div>
+                <p className="text-gray-600 dark:text-gray-300">Loading credit packs...</p>
+              </div>
+            ) : creditPacksError ? (
+              <div className="col-span-full text-center py-8">
+                <p className="text-red-600 dark:text-red-400">Error loading credit packs: {creditPacksError.message}</p>
+              </div>
+            ) : creditPacks.length === 0 ? (
+              <div className="col-span-full text-center py-8">
+                <p className="text-gray-600 dark:text-gray-300">No credit packs available</p>
+              </div>
+            ) : (
+              creditPacks.map((pack, index) => {
               const getPackIcon = () => {
                 if (pack.name.toLowerCase().includes('starter')) return <Zap className="w-6 h-6 text-purple-600" />;
                 if (pack.name.toLowerCase().includes('creator')) return <Sparkles className="w-6 h-6 text-purple-600" />;
@@ -662,7 +681,8 @@ export default function PricingSection() {
                   </CardContent>
                 </Card>
               );
-            })}
+            })
+            )}
           </div>
 
           {/* How Credits Are Used Section - Moved directly under credit packs */}
