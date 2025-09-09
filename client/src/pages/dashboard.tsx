@@ -34,6 +34,68 @@ import {
   Info
 } from "lucide-react";
 
+// Current Plan Section Component
+function CurrentPlanSection() {
+  const { data: currentSubscription } = useQuery({
+    queryKey: ['/api/subscription/current'],
+    retry: false,
+  });
+
+  // Map plan type to display names and pricing
+  const planInfo: Record<string, { name: string; price: string; credits: string }> = {
+    'payg': { name: 'Free Plan', price: '$0/month', credits: 'Pay-as-you-go' },
+    'basic': { name: 'Starter Plan', price: '$12/month', credits: '1,000 credits per month' },
+    'growth': { name: 'Growth Plan', price: '$39/month', credits: '5,000 credits per month' },
+    'business': { name: 'Business Plan', price: '$99/month', credits: '15,000 credits per month' }
+  };
+
+  const planType = currentSubscription?.planType || 'payg';
+  const plan = planInfo[planType] || planInfo['payg'];
+  const isActive = currentSubscription?.status === 'active';
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'N/A';
+    return new Date(dateString).toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="font-semibold text-lg">{plan.name}</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-300">{plan.credits}</p>
+        </div>
+        <Badge className={isActive 
+          ? "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white"
+          : "bg-gray-100 text-gray-600"
+        }>
+          {isActive ? 'Active' : 'Inactive'}
+        </Badge>
+      </div>
+      <div className="text-2xl font-bold text-purple-600">{plan.price}</div>
+      {currentSubscription?.expiresAt && (
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          {planType === 'payg' ? 'Pay-as-you-go billing' : `Renews on ${formatDate(currentSubscription.expiresAt)}`}
+        </p>
+      )}
+      <div className="flex gap-2">
+        <Button variant="outline" className="flex-1" data-testid="button-change-plan">
+          Change Plan
+        </Button>
+        {planType !== 'payg' && (
+          <Button variant="outline" className="flex-1" data-testid="button-cancel-subscription">
+            Cancel
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function DashboardPage() {
   const { toast } = useToast();
   const { isAuthenticated, isLoading, user } = useAuth();
@@ -298,25 +360,7 @@ export default function DashboardPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="font-semibold text-lg">Growth Plan</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">1,000 credits per month</p>
-                      </div>
-                      <Badge className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white">Active</Badge>
-                    </div>
-                    <div className="text-2xl font-bold text-purple-600">$55/month</div>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Renews on January 15, 2025</p>
-                    <div className="flex gap-2">
-                      <Button variant="outline" className="flex-1" data-testid="button-change-plan">
-                        Change Plan
-                      </Button>
-                      <Button variant="outline" className="flex-1" data-testid="button-cancel-subscription">
-                        Cancel
-                      </Button>
-                    </div>
-                  </div>
+                  <CurrentPlanSection />
                 </CardContent>
               </Card>
 
