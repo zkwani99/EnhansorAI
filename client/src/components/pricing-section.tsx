@@ -35,6 +35,7 @@ export default function PricingSection() {
   const [expandedComparison, setExpandedComparison] = useState(false);
   const [isYearly, setIsYearly] = useState(false);
   const [selectedCreditPack, setSelectedCreditPack] = useState<CreditPack | null>(null);
+  const [showCheckout, setShowCheckout] = useState(false);
   const { toast } = useToast();
   const { isAuthenticated } = useAuth();
   const [, navigate] = useLocation();
@@ -42,7 +43,7 @@ export default function PricingSection() {
 
   // Fetch credit packs from API
   const { data: creditPacks = [] } = useQuery<CreditPack[]>({
-    queryKey: ['/api/credits/packs'],
+    queryKey: ['/api/credit-packs'],
     retry: false,
   });
 
@@ -219,6 +220,32 @@ export default function PricingSection() {
     } as const;
     
     redirectToService(serviceRoutes[activeService]);
+  };
+
+  const handleCreditPackClick = (pack: CreditPack) => {
+    console.log('Credit pack clicked:', pack);
+    toast({
+      title: "Credit Pack Selected",
+      description: `Selected ${pack.name} (${pack.credits} credits for $${pack.price})`,
+    });
+    setSelectedCreditPack(pack);
+    setShowCheckout(true);
+  };
+
+  const handleCheckoutClose = () => {
+    setShowCheckout(false);
+    setSelectedCreditPack(null);
+  };
+
+  const handleCheckoutSuccess = (result: any) => {
+    toast({
+      title: "Purchase Successful!",
+      description: `Added ${result.creditsAdded} credits to your account.`,
+    });
+    setShowCheckout(false);
+    setSelectedCreditPack(null);
+    // Refresh credit balance
+    queryClient.invalidateQueries({ queryKey: ['/api/credits/balance'] });
   };
 
   const getServiceIcon = (service: string) => {
@@ -569,102 +596,73 @@ export default function PricingSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {/* Starter Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Zap className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Starter Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$9</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">200 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.045 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
-                    Buy Starter Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            {creditPacks.map((pack, index) => {
+              const getPackIcon = () => {
+                if (pack.name.toLowerCase().includes('starter')) return <Zap className="w-6 h-6 text-purple-600" />;
+                if (pack.name.toLowerCase().includes('creator')) return <Sparkles className="w-6 h-6 text-purple-600" />;
+                if (pack.name.toLowerCase().includes('pro')) return <Crown className="w-6 h-6 text-purple-600" />;
+                if (pack.name.toLowerCase().includes('enterprise')) return <Building2 className="w-6 h-6 text-purple-600" />;
+                return <Zap className="w-6 h-6 text-purple-600" />;
+              };
 
-            {/* Creator Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-purple-300 ring-2 ring-purple-100 relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-4 py-1 rounded-full text-xs font-semibold">
-                  BEST VALUE
-                </span>
-              </div>
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Sparkles className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Creator Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$25</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">800 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.03125 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white font-medium py-2 rounded-lg">
-                    Buy Creator Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              const isBestValue = pack.name.toLowerCase().includes('creator');
+              const isPopular = pack.isPopular || isBestValue;
 
-            {/* Pro Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Crown className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Pro Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$75</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">3,000 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.025 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
-                    Buy Pro Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Building2 className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Enterprise Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$199</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">10,000 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.0199 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
-                    Buy Enterprise Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              return (
+                <Card 
+                  key={pack.id} 
+                  onClick={() => handleCreditPackClick(pack)}
+                  className={`bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 relative ${
+                    isPopular
+                      ? 'border-2 border-purple-300 ring-2 ring-purple-100'
+                      : 'border border-gray-200 hover:border-purple-300'
+                  }`}
+                  data-testid={`credit-pack-${pack.id}`}
+                >
+                  {isPopular && (
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-4 py-1 rounded-full text-xs font-semibold">
+                        BEST VALUE
+                      </span>
+                    </div>
+                  )}
+                  <CardContent className="p-6 text-center h-full flex flex-col">
+                    <div className="mb-4">
+                      <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        {getPackIcon()}
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{pack.name}</h3>
+                      <div className="mb-4">
+                        <span className="text-3xl font-bold text-purple-600">${pack.price}</span>
+                        <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
+                      </div>
+                      <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                        {pack.credits.toLocaleString()} credits
+                      </div>
+                      <p className="text-sm text-gray-800 dark:text-gray-200">
+                        ${(pack.price / pack.credits).toFixed(4)} per credit
+                      </p>
+                    </div>
+                    <div className="mt-auto">
+                      <Button 
+                        className={`w-full text-white font-medium py-2 rounded-lg ${
+                          isPopular
+                            ? 'bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900'
+                            : 'bg-purple-600 hover:bg-purple-700'
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCreditPackClick(pack);
+                        }}
+                        data-testid={`buy-${pack.id}`}
+                      >
+                        Buy {pack.name}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           {/* How Credits Are Used Section - Moved directly under credit packs */}
@@ -729,6 +727,42 @@ export default function PricingSection() {
           </Card>
         </div>
       </div>
+
+      {/* Credit Pack Checkout Modal */}
+      {showCheckout && selectedCreditPack && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-black rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Buy {selectedCreditPack.name}
+                </h3>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleCheckoutClose}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </Button>
+              </div>
+              <div className="mb-6 text-center">
+                <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
+                  {selectedCreditPack.credits.toLocaleString()} credits for ${selectedCreditPack.price}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  ${(selectedCreditPack.price / selectedCreditPack.credits).toFixed(4)} per credit
+                </p>
+              </div>
+              <CreditPackCheckout
+                creditPack={selectedCreditPack}
+                onClose={handleCheckoutClose}
+                onSuccess={handleCheckoutSuccess}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
