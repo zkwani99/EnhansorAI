@@ -57,9 +57,19 @@ export default function PricingSection() {
       return await response.json();
     },
     onSuccess: (data: any) => {
+      // Map plan type to display name
+      const planDisplayNames: Record<string, string> = {
+        'payg': 'Free',
+        'basic': 'Starter',
+        'growth': 'Growth',
+        'business': 'Business'
+      };
+      
+      const displayName = planDisplayNames[data.subscription.planType] || data.subscription.planType;
+      
       toast({
         title: "Subscription Activated!",
-        description: `Your ${data.subscription.planType} plan has been successfully activated.`,
+        description: `Your ${displayName} plan has been successfully activated.`,
       });
       
       // Invalidate subscription-related queries to refresh data
