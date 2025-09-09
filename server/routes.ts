@@ -6,6 +6,15 @@ import { gpuService, GPUJobRequest } from "./gpuService";
 import { initializeWebSocketService, getWebSocketService } from "./websocketService";
 import { insertVideoJobSchema } from "@shared/schema";
 import { randomUUID } from 'crypto';
+import Stripe from "stripe";
+
+// Initialize Stripe
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+}
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2025-08-27.basil",
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -53,6 +62,104 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching credit pricing:", error);
       res.status(500).json({ message: "Failed to fetch credit pricing" });
+    }
+  });
+
+  // Credit Packs Routes
+  app.get('/api/credits/packs', async (req, res) => {
+    try {
+      const packs = await storage.getCreditPacks();
+      res.json(packs);
+    } catch (error) {
+      console.error("Error fetching credit packs:", error);
+      res.status(500).json({ message: "Failed to fetch credit packs" });
+    }
+  });
+
+  // Create Stripe payment intent for credit pack purchase
+  app.post('/api/credits/purchase', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { creditPackId } = req.body;
+
+      if (!creditPackId) {
+        return res.status(400).json({ message: "Credit pack ID is required" });
+      }
+
+      // Get credit pack details
+      const creditPack = await storage.getCreditPack(creditPackId);
+      if (!creditPack) {
+        return res.status(404).json({ message: "Credit pack not found" });
+      }
+
+      // Create Stripe payment intent
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: creditPack.price, // Price is already in cents
+        currency: "usd",
+        metadata: {
+          userId,
+          creditPackId,
+          credits: creditPack.credits.toString(),
+          packName: creditPack.name,
+        },
+      });
+
+      res.json({ 
+        clientSecret: paymentIntent.client_secret,
+        creditPack: {
+          name: creditPack.name,
+          credits: creditPack.credits,
+          price: creditPack.displayPrice,
+        }
+      });
+    } catch (error) {
+      console.error("Error creating payment intent:", error);
+      res.status(500).json({ message: "Failed to create payment intent" });
+    }
+  });
+
+  // Confirm credit pack purchase and add credits to user account
+  app.post('/api/credits/confirm-purchase', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { paymentIntentId } = req.body;
+
+      if (!paymentIntentId) {
+        return res.status(400).json({ message: "Payment intent ID is required" });
+      }
+
+      // Retrieve payment intent from Stripe to verify payment
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+      if (paymentIntent.status !== 'succeeded') {
+        return res.status(400).json({ message: "Payment not completed" });
+      }
+
+      // Verify user owns this payment
+      if (paymentIntent.metadata.userId !== userId) {
+        return res.status(403).json({ message: "Unauthorized payment" });
+      }
+
+      const credits = parseInt(paymentIntent.metadata.credits);
+      const packName = paymentIntent.metadata.packName;
+
+      // Add credits to user account
+      const updatedCredits = await storage.addCredits(
+        userId, 
+        credits, 
+        `Purchased ${packName} (${credits} credits)`
+      );
+
+      res.json({
+        message: "Credits added successfully",
+        creditsAdded: credits,
+        totalCredits: updatedCredits.totalCredits,
+        remainingCredits: updatedCredits.totalCredits - updatedCredits.usedCredits,
+        packName,
+      });
+    } catch (error) {
+      console.error("Error confirming purchase:", error);
+      res.status(500).json({ message: "Failed to confirm purchase" });
     }
   });
 
