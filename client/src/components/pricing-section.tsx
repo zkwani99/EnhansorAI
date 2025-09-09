@@ -103,13 +103,13 @@ export default function PricingSection() {
     if (planId.includes('free')) {
       planType = 'payg';
     } else {
-      const planSuffix = planId.split('-').pop() || '';
+      const planPrefix = planId.split('-')[0] || '';
       const planTypeMap: Record<string, string> = {
         'starter': 'basic',
         'growth': 'growth',
         'business': 'business'
       };
-      planType = planTypeMap[planSuffix] || 'basic';
+      planType = planTypeMap[planPrefix] || 'basic';
     }
     
     // Store plan selection for post-auth processing
