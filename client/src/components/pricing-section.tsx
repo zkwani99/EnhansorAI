@@ -231,7 +231,7 @@ export default function PricingSection() {
     console.log('Credit pack clicked:', pack);
     toast({
       title: "Credit Pack Selected",
-      description: `Selected ${pack.name} (${pack.credits} credits for $${pack.price})`,
+      description: `Selected ${pack.name} (${pack.credits} credits for $${(pack.price / 100).toFixed(0)})`,
     });
     setSelectedCreditPack(pack);
     setShowCheckout(true);
@@ -768,10 +768,10 @@ export default function PricingSection() {
               </div>
               <div className="mb-6 text-center">
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
-                  {selectedCreditPack.credits.toLocaleString()} credits for ${selectedCreditPack.price}
+                  {selectedCreditPack.credits.toLocaleString()} credits for ${(selectedCreditPack.price / 100).toFixed(0)}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  ${(selectedCreditPack.price / selectedCreditPack.credits).toFixed(4)} per credit
+                  ${(selectedCreditPack.price / 100 / selectedCreditPack.credits).toFixed(4)} per credit
                 </p>
               </div>
               <CreditPackCheckout
