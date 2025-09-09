@@ -41,7 +41,7 @@ export default function PricingSection() {
   const queryClient = useQueryClient();
 
   // Fetch credit packs from API
-  const { data: creditPacks = [] } = useQuery({
+  const { data: creditPacks = [] } = useQuery<CreditPack[]>({
     queryKey: ['/api/credits/packs'],
     retry: false,
   });
@@ -651,102 +651,6 @@ export default function PricingSection() {
               );
             })}
           </div>
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Zap className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Starter Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$9</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">200 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.045 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
-                    Buy Starter Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Creator Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border-2 border-purple-300 ring-2 ring-purple-100 relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 text-white px-4 py-1 rounded-full text-xs font-semibold">
-                  BEST VALUE
-                </span>
-              </div>
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Sparkles className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Creator Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$25</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">800 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.03125 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white font-medium py-2 rounded-lg">
-                    Buy Creator Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Pro Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Crown className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Pro Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$75</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">3,000 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.025 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
-                    Buy Pro Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Enterprise Pack */}
-            <Card className="bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 border border-gray-200 hover:border-purple-300">
-              <CardContent className="p-6 text-center h-full flex flex-col">
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Building2 className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Enterprise Pack</h3>
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold text-purple-600">$199</span>
-                    <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
-                  </div>
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">10,000 credits</div>
-                  <p className="text-sm text-gray-800 dark:text-gray-200">$0.0199 per credit</p>
-                </div>
-                <div className="mt-auto">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg">
-                    Buy Enterprise Pack
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
 
           {/* How Credits Are Used Section - Moved directly under credit packs */}
           <div id="credits-breakdown" className="mt-16 mb-12">
@@ -1007,5 +911,24 @@ function CreditUsageDisplay() {
         </p>
       </div>
     </div>
+
+    {/* Credit Pack Checkout Modal */}
+    {selectedCreditPack && (
+      <CreditPackCheckout
+        creditPack={selectedCreditPack}
+        onClose={() => setSelectedCreditPack(null)}
+        onSuccess={() => {
+          setSelectedCreditPack(null);
+          toast({
+            title: "Credits Added Successfully!",
+            description: `${selectedCreditPack.credits} credits have been added to your account.`,
+            duration: 5000,
+          });
+          // Refresh user data to update credit balance
+          queryClient.invalidateQueries({ queryKey: ['/api/auth/user'] });
+        }}
+      />
+    )}
+  </section>
   );
 }
