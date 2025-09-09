@@ -64,6 +64,20 @@ export const creditPricing = pgTable("credit_pricing", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// Credit packs table - stores purchasable credit pack products
+export const creditPacks = pgTable("credit_packs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name").notNull(), // 'Starter Pack', 'Creator Pack', etc.
+  credits: integer("credits").notNull(), // Number of credits in the pack
+  price: integer("price").notNull(), // Price in cents (e.g., 900 for $9.00)
+  displayPrice: varchar("display_price").notNull(), // '$9', '$25', etc.
+  description: varchar("description"), // Optional description
+  isPopular: integer("is_popular").default(0), // 0 or 1 (boolean)
+  sortOrder: integer("sort_order").default(0), // For display ordering
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // User credit balance and usage tracking
 export const userCredits = pgTable("user_credits", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -91,6 +105,8 @@ export const creditTransactions = pgTable("credit_transactions", {
 
 export type CreditPricing = typeof creditPricing.$inferSelect;
 export type InsertCreditPricing = typeof creditPricing.$inferInsert;
+export type CreditPack = typeof creditPacks.$inferSelect;
+export type InsertCreditPack = typeof creditPacks.$inferInsert;
 export type UserCredits = typeof userCredits.$inferSelect;
 export type InsertUserCredits = typeof userCredits.$inferInsert;
 export type CreditTransaction = typeof creditTransactions.$inferSelect;
@@ -98,6 +114,12 @@ export type InsertCreditTransaction = typeof creditTransactions.$inferInsert;
 
 // Insert schemas
 export const insertCreditPricingSchema = createInsertSchema(creditPricing).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCreditPackSchema = createInsertSchema(creditPacks).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
