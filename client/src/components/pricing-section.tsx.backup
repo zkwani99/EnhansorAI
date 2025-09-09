@@ -41,7 +41,7 @@ export default function PricingSection() {
   const queryClient = useQueryClient();
 
   // Fetch credit packs from API
-  const { data: creditPacks = [] } = useQuery({
+  const { data: creditPacks = [] } = useQuery<CreditPack[]>({
     queryKey: ['/api/credits/packs'],
     retry: false,
   });
@@ -808,7 +808,6 @@ export default function PricingSection() {
               </div>
             </CardContent>
           </Card>
-
         </div>
       </div>
     </section>
