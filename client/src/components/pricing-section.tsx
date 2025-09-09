@@ -23,44 +23,64 @@ export default function PricingSection() {
   const { user, isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
 
-  // Get colors for current service
-  function getServiceColors(service: string) {
-    const colors = {
-      image: {
-        primary: 'text-purple-600 dark:text-purple-400',
-        bg: 'bg-purple-50 dark:bg-purple-900/20',
-        border: 'border-purple-200 dark:border-purple-600',
-        gradient: 'from-purple-400 to-purple-500',
-        ring: 'ring-purple-500',
-      },
-      'text-to-image': {
-        primary: 'text-purple-600 dark:text-purple-400',
-        bg: 'bg-purple-50 dark:bg-purple-900/20',
-        border: 'border-purple-200 dark:border-purple-600',
-        gradient: 'from-purple-500 to-purple-600',
-        ring: 'ring-purple-500',
-      },
-      'text-to-video': {
-        primary: 'text-purple-600 dark:text-purple-400',
-        bg: 'bg-purple-50 dark:bg-purple-900/20',
-        border: 'border-purple-200 dark:border-purple-600',
-        gradient: 'from-purple-600 to-purple-700',
-        ring: 'ring-purple-500',
-      },
-      'image-to-video': {
-        primary: 'text-purple-600 dark:text-purple-400',
-        bg: 'bg-purple-50 dark:bg-purple-900/20',
-        border: 'border-purple-200 dark:border-purple-600',
-        gradient: 'from-purple-700 to-purple-800',
-        ring: 'ring-purple-500',
-      },
-    };
-    return colors[service as keyof typeof colors] || colors.image;
-  }
-
-  // Get the current service data
-  const currentServiceData = (pricingPlans as any)[activeService];
-  const colors = getServiceColors(activeService);
+  // Define subscription plans with proper structure
+  const subscriptionPlans = {
+    starter: {
+      name: "Starter",
+      description: "Perfect for individuals and small projects",
+      monthlyPrice: 12,
+      yearlyPrice: 96, // 20% off
+      popular: false,
+      features: [
+        "1,000 images per month",
+        "Up to 2K resolution", 
+        "All AI services included",
+        "Standard processing speed",
+        "Email support",
+        "No watermarks"
+      ],
+      cta: "Start Creating",
+      ctaLink: "/dashboard"
+    },
+    creator: {
+      name: "Creator", 
+      description: "Ideal for content creators and professionals",
+      monthlyPrice: 39,
+      yearlyPrice: 312, // 20% off
+      popular: true,
+      features: [
+        "5,000 images per month",
+        "Up to 4K resolution",
+        "Priority processing",
+        "Advanced AI models",
+        "Batch processing",
+        "Priority support",
+        "Commercial license",
+        "Early access to features"
+      ],
+      cta: "Go Pro",
+      ctaLink: "/dashboard"
+    },
+    pro: {
+      name: "Pro",
+      description: "For agencies and high-volume users",
+      monthlyPrice: 99,
+      yearlyPrice: 792, // 20% off
+      popular: false,
+      features: [
+        "15,000 images per month",
+        "Up to 6K resolution",
+        "Fastest processing",
+        "API access",
+        "Team collaboration",
+        "White-label options",
+        "Dedicated support",
+        "Custom integrations"
+      ],
+      cta: "Scale Up",
+      ctaLink: "/dashboard"
+    }
+  };
 
   return (
     <section id="pricing" className="py-20 bg-gradient-to-br from-white to-purple-50 dark:from-black dark:to-black transition-colors duration-300">
@@ -96,7 +116,7 @@ export default function PricingSection() {
 
         {/* Subscription Plans */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {Object.entries(pricingPlans.image.plans).slice(1).map(([key, plan]: [string, any]) => {
+          {Object.entries(subscriptionPlans).map(([key, plan]: [string, any]) => {
             const isPopular = plan.popular;
             const currentPrice = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
             const originalPrice = isYearly ? plan.monthlyPrice * 12 : plan.monthlyPrice;
@@ -116,7 +136,11 @@ export default function PricingSection() {
                 
                 <CardContent className={`p-8 ${isPopular ? 'pt-16' : ''}`}>
                   <div className="text-center mb-8">
-                    <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${colors.gradient} rounded-2xl flex items-center justify-center shadow-lg`}>
+                    <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${
+                      key === 'starter' ? 'from-purple-400 to-purple-500' :
+                      key === 'creator' ? 'from-purple-500 to-purple-600' :
+                      'from-purple-600 to-purple-700'
+                    } rounded-2xl flex items-center justify-center shadow-lg`}>
                       {key === 'starter' && <Zap className="w-8 h-8 text-white" />}
                       {key === 'creator' && <Sparkles className="w-8 h-8 text-white" />}
                       {key === 'pro' && <Crown className="w-8 h-8 text-white" />}
