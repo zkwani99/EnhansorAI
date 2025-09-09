@@ -49,9 +49,9 @@ function CurrentPlanSection() {
     'business': { name: 'Business Plan', price: '$99/month', credits: '15,000 credits per month' }
   };
 
-  const planType = currentSubscription?.planType || 'payg';
+  const planType = (currentSubscription as any)?.planType || 'payg';
   const plan = planInfo[planType] || planInfo['payg'];
-  const isActive = currentSubscription?.status === 'active';
+  const isActive = (currentSubscription as any)?.status === 'active';
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return 'N/A';
@@ -77,9 +77,9 @@ function CurrentPlanSection() {
         </Badge>
       </div>
       <div className="text-2xl font-bold text-purple-600">{plan.price}</div>
-      {currentSubscription?.expiresAt && (
+      {(currentSubscription as any)?.expiresAt && (
         <p className="text-sm text-gray-600 dark:text-gray-300">
-          {planType === 'payg' ? 'Pay-as-you-go billing' : `Renews on ${formatDate(currentSubscription.expiresAt)}`}
+          {planType === 'payg' ? 'Pay-as-you-go billing' : `Renews on ${formatDate((currentSubscription as any).expiresAt)}`}
         </p>
       )}
       <div className="flex gap-2">
@@ -572,21 +572,22 @@ function DynamicCreditUsage() {
     );
   }
 
-  const remainingCredits = userCredits.totalCredits - userCredits.usedCredits;
-  const usagePercentage = Math.round((userCredits.usedCredits / userCredits.totalCredits) * 100);
+  const credits = userCredits as any;
+  const remainingCredits = credits.totalCredits - credits.usedCredits;
+  const usagePercentage = Math.round((credits.usedCredits / credits.totalCredits) * 100);
 
   // Calculate individual service percentages
-  const imageEnhancePercentage = userCredits.totalCredits > 0 
-    ? Math.round((userCredits.imageEnhanceUsed / userCredits.totalCredits) * 100) 
+  const imageEnhancePercentage = credits.totalCredits > 0 
+    ? Math.round((credits.imageEnhanceUsed / credits.totalCredits) * 100) 
     : 0;
-  const textToImagePercentage = userCredits.totalCredits > 0 
-    ? Math.round((userCredits.textToImageUsed / userCredits.totalCredits) * 100) 
+  const textToImagePercentage = credits.totalCredits > 0 
+    ? Math.round((credits.textToImageUsed / credits.totalCredits) * 100) 
     : 0;
-  const textToVideoPercentage = userCredits.totalCredits > 0 
-    ? Math.round((userCredits.textToVideoUsed / userCredits.totalCredits) * 100) 
+  const textToVideoPercentage = credits.totalCredits > 0 
+    ? Math.round((credits.textToVideoUsed / credits.totalCredits) * 100) 
     : 0;
-  const imageToVideoPercentage = userCredits.totalCredits > 0 
-    ? Math.round((userCredits.imageToVideoUsed / userCredits.totalCredits) * 100) 
+  const imageToVideoPercentage = credits.totalCredits > 0 
+    ? Math.round((credits.imageToVideoUsed / credits.totalCredits) * 100) 
     : 0;
 
   return (
@@ -594,9 +595,9 @@ function DynamicCreditUsage() {
       {/* Overall Usage */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium">Current Usage for Flexible PAYG - Use Across All Services</span>
+          <span className="text-sm font-medium">Current Usage - Pay-as-you-go Credits</span>
           <span className="text-sm text-gray-600 dark:text-gray-300">
-            {userCredits.usedCredits} / {userCredits.totalCredits} credits
+            {credits.usedCredits} / {credits.totalCredits} credits
           </span>
         </div>
         <div className="space-y-2">
@@ -613,7 +614,7 @@ function DynamicCreditUsage() {
 
       {/* Service Breakdown */}
       <div className="space-y-4">
-        <h4 className="font-medium text-gray-900 dark:text-gray-100">Usage by Service - Subscription plan</h4>
+        <h4 className="font-medium text-gray-900 dark:text-gray-100">Usage by Service</h4>
         
         {/* Image Enhancement */}
         <div className="space-y-2">
@@ -623,7 +624,7 @@ function DynamicCreditUsage() {
               Image Enhancement
             </span>
             <span className="text-sm font-medium">
-              {userCredits.imageEnhanceUsed} credits ({imageEnhancePercentage}%)
+              {credits.imageEnhanceUsed} credits ({imageEnhancePercentage}%)
             </span>
           </div>
           <Progress value={imageEnhancePercentage} className="h-2" />
@@ -637,7 +638,7 @@ function DynamicCreditUsage() {
               Text-to-Image AI
             </span>
             <span className="text-sm font-medium">
-              {userCredits.textToImageUsed} credits ({textToImagePercentage}%)
+              {credits.textToImageUsed} credits ({textToImagePercentage}%)
             </span>
           </div>
           <Progress value={textToImagePercentage} className="h-2" />
@@ -651,7 +652,7 @@ function DynamicCreditUsage() {
               Text-to-Video AI
             </span>
             <span className="text-sm font-medium">
-              {userCredits.textToVideoUsed} credits ({textToVideoPercentage}%)
+              {credits.textToVideoUsed} credits ({textToVideoPercentage}%)
             </span>
           </div>
           <Progress value={textToVideoPercentage} className="h-2" />
@@ -665,7 +666,7 @@ function DynamicCreditUsage() {
               Image-to-Video AI
             </span>
             <span className="text-sm font-medium">
-              {userCredits.imageToVideoUsed || 0} credits ({imageToVideoPercentage}%)
+              {credits.imageToVideoUsed || 0} credits ({imageToVideoPercentage}%)
             </span>
           </div>
           <Progress value={imageToVideoPercentage} className="h-2" />
