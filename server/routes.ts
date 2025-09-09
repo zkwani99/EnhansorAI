@@ -582,6 +582,118 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Stripe webhook endpoint for handling subscription events
+  app.post('/webhooks/stripe', express.raw({ type: 'application/json' }), async (req, res) => {
+    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    
+    if (!endpointSecret) {
+      console.error('STRIPE_WEBHOOK_SECRET not configured');
+      return res.status(400).send('Webhook secret not configured');
+    }
+
+    let event;
+
+    try {
+      const sig = req.headers['stripe-signature'];
+      event = stripe.webhooks.constructEvent(req.body, sig as string, endpointSecret);
+    } catch (err: any) {
+      console.error('Webhook signature verification failed:', err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    try {
+      // Handle different Stripe events
+      switch (event.type) {
+        case 'customer.subscription.created':
+        case 'customer.subscription.updated':
+          const subscription = event.data.object;
+          await handleSubscriptionUpdate(subscription);
+          break;
+
+        case 'customer.subscription.deleted':
+          const deletedSubscription = event.data.object;
+          await handleSubscriptionCancellation(deletedSubscription);
+          break;
+
+        case 'invoice.payment_succeeded':
+          const invoice = event.data.object;
+          await handlePaymentSucceeded(invoice);
+          break;
+
+        case 'invoice.payment_failed':
+          const failedInvoice = event.data.object;
+          await handlePaymentFailed(failedInvoice);
+          break;
+
+        default:
+          console.log(`Unhandled event type: ${event.type}`);
+      }
+
+      res.json({ received: true });
+    } catch (error) {
+      console.error('Error processing webhook:', error);
+      res.status(500).send('Webhook processing failed');
+    }
+  });
+
+  // Helper functions for webhook handling
+  async function handleSubscriptionUpdate(subscription: any) {
+    const userId = subscription.metadata.userId;
+    if (!userId) {
+      console.error('No userId in subscription metadata');
+      return;
+    }
+
+    try {
+      // Update user with subscription ID if not already set
+      await storage.updateUserStripeSubscription(userId, subscription.id);
+
+      if (subscription.status === 'active') {
+        // Activate subscription in our database
+        const metadata = subscription.metadata;
+        await storage.activateSubscription({
+          userId,
+          planType: metadata.planType,
+          planId: `${metadata.planType}-${metadata.service}`,
+          service: metadata.service,
+          billingPeriod: metadata.billingPeriod || 'monthly',
+        });
+        console.log(`Subscription activated via webhook for user ${userId}`);
+      } else if (subscription.status === 'canceled' || subscription.status === 'unpaid') {
+        // Cancel subscription in our database
+        await storage.cancelSubscription(userId, subscription.metadata.service);
+        console.log(`Subscription cancelled via webhook for user ${userId}`);
+      }
+    } catch (error) {
+      console.error('Error handling subscription update:', error);
+    }
+  }
+
+  async function handleSubscriptionCancellation(subscription: any) {
+    const userId = subscription.metadata.userId;
+    if (!userId) {
+      console.error('No userId in subscription metadata');
+      return;
+    }
+
+    try {
+      await storage.cancelSubscription(userId, subscription.metadata.service);
+      console.log(`Subscription cancelled via webhook for user ${userId}`);
+    } catch (error) {
+      console.error('Error handling subscription cancellation:', error);
+    }
+  }
+
+  async function handlePaymentSucceeded(invoice: any) {
+    // Handle successful payment - could be used for logging or notifications
+    console.log(`Payment succeeded for invoice ${invoice.id}`);
+  }
+
+  async function handlePaymentFailed(invoice: any) {
+    // Handle failed payment - could be used for notifications or grace period management
+    console.log(`Payment failed for invoice ${invoice.id}`);
+  }
+
   // Video Generation Routes
   
   // Text-to-Video Generation
