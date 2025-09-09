@@ -43,7 +43,7 @@ export default function PricingSection() {
 
   // Fetch credit packs from API
   const { data: creditPacks = [], isLoading: creditPacksLoading, error: creditPacksError } = useQuery<CreditPack[]>({
-    queryKey: ['/api/credit-packs'],
+    queryKey: ['/api/credits/packs'],
     retry: false,
   });
 
