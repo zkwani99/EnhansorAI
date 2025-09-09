@@ -75,6 +75,7 @@ export default function PricingSection() {
       // Invalidate subscription-related queries to refresh data
       queryClient.invalidateQueries({ queryKey: ['/api/subscription/current'] });
       queryClient.invalidateQueries({ queryKey: ['/api/subscription/outputs'] });
+      queryClient.refetchQueries({ queryKey: ['/api/subscription/current'] });
     },
     onError: (error: Error) => {
       toast({

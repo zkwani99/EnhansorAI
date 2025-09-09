@@ -36,9 +36,11 @@ import {
 
 // Current Plan Section Component
 function CurrentPlanSection() {
-  const { data: currentSubscription } = useQuery({
+  const { data: currentSubscription, refetch } = useQuery({
     queryKey: ['/api/subscription/current'],
     retry: false,
+    refetchOnWindowFocus: true,
+    staleTime: 0, // Always consider data stale so it refetches
   });
 
   // Map plan type to display names and pricing
