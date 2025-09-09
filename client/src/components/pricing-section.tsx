@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
 import CreditPackCheckout from "@/components/CreditPackCheckout";
+import SubscriptionCheckout from "@/components/SubscriptionCheckout";
 
 type ServiceKey = 'image' | 'ai' | 'video' | 'imageVideo';
 
@@ -501,6 +502,62 @@ export default function PricingSection() {
                       const hasSelection = imageVideoSelections[plan.id];
                       const isDisabled = isImageVideoService && isPaidPlan && !hasSelection;
                       
+                      // For paid plans, use Stripe subscription checkout
+                      if (isPaidPlan && !isDisabled) {
+                        // Map plan name to plan type
+                        const planTypeMap: Record<string, 'basic' | 'growth' | 'business'> = {
+                          'Starter': 'basic',
+                          'Growth': 'growth', 
+                          'Business': 'business'
+                        };
+                        
+                        const planType = planTypeMap[plan.name] || 'basic';
+                        
+                        // Create subscription plan object
+                        const subscriptionPlan = {
+                          planType,
+                          service: activeService,
+                          name: plan.name,
+                          monthlyPrice: parseFloat(plan.price.replace('$', '')) || 0,
+                          yearlyPrice: Math.round((parseFloat(plan.price.replace('$', '')) || 0) * 12 * 0.8),
+                          features: plan.features?.map((f: any) => f.text || f) || [],
+                          limits: {
+                            imageEnhance: plan.limits?.imageEnhance,
+                            textToImage: plan.limits?.textToImage,
+                            textToVideo: plan.limits?.textToVideo,
+                            imageToVideo: plan.limits?.imageToVideo,
+                          },
+                          isPopular: plan.isPopular
+                        };
+                        
+                        return (
+                          <SubscriptionCheckout
+                            plan={subscriptionPlan}
+                            billingPeriod={isYearly ? 'yearly' : 'monthly'}
+                            onSuccess={() => {
+                              // Navigate to the service page after successful subscription
+                              const serviceRoutes = {
+                                'image': 'image-enhancement',
+                                'ai': 'text-to-image', 
+                                'video': 'text-to-video',
+                                'imageVideo': 'image-to-video'
+                              } as const;
+                              navigate(`/${serviceRoutes[activeService]}`);
+                              window.scrollTo(0, 0);
+                            }}
+                            triggerButton={
+                              <Button
+                                className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`}
+                                data-testid={`button-select-plan-${plan.id}`}
+                              >
+                                {plan.buttonText}
+                              </Button>
+                            }
+                          />
+                        );
+                      }
+                      
+                      // For free plans or disabled buttons, use original handling
                       return (
                         <Button
                           className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
