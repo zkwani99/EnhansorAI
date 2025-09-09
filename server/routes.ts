@@ -405,6 +405,183 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Stripe subscription management endpoints
+  
+  // Price mapping for Stripe products (you'll need to set these up in your Stripe dashboard)
+  const stripePriceMapping = {
+    'basic-monthly': process.env.STRIPE_BASIC_MONTHLY_PRICE_ID || 'price_basic_monthly_placeholder',
+    'basic-yearly': process.env.STRIPE_BASIC_YEARLY_PRICE_ID || 'price_basic_yearly_placeholder',
+    'growth-monthly': process.env.STRIPE_GROWTH_MONTHLY_PRICE_ID || 'price_growth_monthly_placeholder',
+    'growth-yearly': process.env.STRIPE_GROWTH_YEARLY_PRICE_ID || 'price_growth_yearly_placeholder',
+    'business-monthly': process.env.STRIPE_BUSINESS_MONTHLY_PRICE_ID || 'price_business_monthly_placeholder',
+    'business-yearly': process.env.STRIPE_BUSINESS_YEARLY_PRICE_ID || 'price_business_yearly_placeholder',
+  };
+
+  // Create Stripe subscription
+  app.post('/api/subscription/create-stripe-subscription', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { planType, billingPeriod = 'monthly', service } = req.body;
+
+      if (!planType || !service) {
+        return res.status(400).json({ error: "Missing required fields: planType, service" });
+      }
+
+      // Validate plan type (no payg for subscriptions)
+      const validPlanTypes = ['basic', 'growth', 'business'];
+      if (!validPlanTypes.includes(planType)) {
+        return res.status(400).json({ error: "Invalid plan type for subscription" });
+      }
+
+      // Get user information
+      const user = await storage.getUser(userId);
+      if (!user || !user.email) {
+        return res.status(400).json({ error: "User not found or email missing" });
+      }
+
+      // Create or get Stripe customer
+      let stripeCustomerId = user.stripeCustomerId;
+      if (!stripeCustomerId) {
+        const customer = await stripe.customers.create({
+          email: user.email,
+          name: `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email,
+          metadata: {
+            userId: userId,
+          },
+        });
+        stripeCustomerId = customer.id;
+        // Update user with Stripe customer ID
+        await storage.updateUserStripeCustomer(userId, stripeCustomerId);
+      }
+
+      // Get the correct price ID
+      const priceKey = `${planType}-${billingPeriod}` as keyof typeof stripePriceMapping;
+      const priceId = stripePriceMapping[priceKey];
+
+      if (!priceId || priceId.includes('placeholder')) {
+        return res.status(400).json({ 
+          error: "Stripe price ID not configured. Please set up your Stripe products and price IDs in environment variables.",
+          requiredEnvVar: `STRIPE_${planType.toUpperCase()}_${billingPeriod.toUpperCase()}_PRICE_ID`
+        });
+      }
+
+      // Create Stripe subscription
+      const subscription = await stripe.subscriptions.create({
+        customer: stripeCustomerId,
+        items: [{ price: priceId }],
+        payment_behavior: 'default_incomplete',
+        expand: ['latest_invoice.payment_intent'],
+        metadata: {
+          userId: userId,
+          planType: planType,
+          service: service,
+          billingPeriod: billingPeriod,
+        },
+      });
+
+      // Update user with Stripe subscription ID
+      await storage.updateUserStripeSubscription(userId, subscription.id);
+
+      const invoice = subscription.latest_invoice as any;
+      const paymentIntent = invoice.payment_intent;
+
+      res.json({
+        subscriptionId: subscription.id,
+        clientSecret: paymentIntent.client_secret,
+        status: subscription.status,
+      });
+
+    } catch (error: any) {
+      console.error("Error creating Stripe subscription:", error);
+      res.status(500).json({ error: "Failed to create subscription: " + error.message });
+    }
+  });
+
+  // Confirm subscription payment and activate
+  app.post('/api/subscription/confirm-stripe-subscription', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { subscriptionId } = req.body;
+
+      if (!subscriptionId) {
+        return res.status(400).json({ error: "Subscription ID is required" });
+      }
+
+      // Retrieve subscription from Stripe
+      const stripeSubscription = await stripe.subscriptions.retrieve(subscriptionId);
+
+      if (stripeSubscription.status !== 'active') {
+        return res.status(400).json({ error: "Subscription is not active yet" });
+      }
+
+      // Verify this subscription belongs to the user
+      const user = await storage.getUser(userId);
+      if (user?.stripeSubscriptionId !== subscriptionId) {
+        return res.status(403).json({ error: "Unauthorized subscription" });
+      }
+
+      const metadata = stripeSubscription.metadata;
+      
+      // Activate the subscription in our database
+      const subscription = await storage.activateSubscription({
+        userId,
+        planType: metadata.planType,
+        planId: `${metadata.planType}-${metadata.service}`,
+        service: metadata.service,
+        billingPeriod: metadata.billingPeriod || 'monthly',
+      });
+
+      console.log(`Stripe subscription activated for user ${userId}: ${metadata.planType} plan for ${metadata.service} service`);
+
+      res.json({
+        message: "Subscription activated successfully",
+        subscription: {
+          id: subscription.id,
+          stripeSubscriptionId: stripeSubscription.id,
+          planType: subscription.planType,
+          service: subscription.service,
+          status: subscription.status,
+          activatedAt: subscription.activatedAt,
+          expiresAt: subscription.expiresAt,
+        }
+      });
+
+    } catch (error: any) {
+      console.error("Error confirming Stripe subscription:", error);
+      res.status(500).json({ error: "Failed to confirm subscription: " + error.message });
+    }
+  });
+
+  // Cancel Stripe subscription
+  app.post('/api/subscription/cancel-stripe-subscription', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { service } = req.body;
+
+      const user = await storage.getUser(userId);
+      if (!user?.stripeSubscriptionId) {
+        return res.status(400).json({ error: "No active Stripe subscription found" });
+      }
+
+      // Cancel the subscription in Stripe (at period end)
+      const stripeSubscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
+        cancel_at_period_end: true,
+      });
+
+      // Update our database
+      await storage.cancelSubscription(userId, service);
+
+      res.json({
+        message: "Subscription will be cancelled at the end of the current billing period",
+        cancelAt: new Date((stripeSubscription as any).current_period_end * 1000),
+      });
+
+    } catch (error: any) {
+      console.error("Error cancelling Stripe subscription:", error);
+      res.status(500).json({ error: "Failed to cancel subscription: " + error.message });
+    }
+  });
+
   // Video Generation Routes
   
   // Text-to-Video Generation

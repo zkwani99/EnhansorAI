@@ -47,6 +47,9 @@ export interface IStorage {
   // Legacy operations for backward compatibility
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  // Stripe customer management
+  updateUserStripeCustomer(userId: string, stripeCustomerId: string): Promise<User>;
+  updateUserStripeSubscription(userId: string, stripeSubscriptionId: string): Promise<User>;
   
   // Credit operations
   getCreditPricing(): Promise<CreditPricing[]>;
@@ -104,6 +107,41 @@ export class DatabaseStorage implements IStorage {
         },
       })
       .returning();
+    return user;
+  }
+
+  // Stripe customer management
+  async updateUserStripeCustomer(userId: string, stripeCustomerId: string): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set({
+        stripeCustomerId,
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, userId))
+      .returning();
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user;
+  }
+
+  async updateUserStripeSubscription(userId: string, stripeSubscriptionId: string): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set({
+        stripeSubscriptionId,
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, userId))
+      .returning();
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
     return user;
   }
 

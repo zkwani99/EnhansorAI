@@ -38,6 +38,9 @@ export const users = pgTable("users", {
   // Plan and subscription information
   planType: varchar("plan_type").default("payg"), // 'payg', 'basic', 'growth', 'business'
   subscriptionStatus: varchar("subscription_status").default("active"), // 'active', 'expired', 'cancelled'
+  // Stripe integration fields
+  stripeCustomerId: varchar("stripe_customer_id").unique(),
+  stripeSubscriptionId: varchar("stripe_subscription_id")
 });
 
 export type UpsertUser = typeof users.$inferInsert;
