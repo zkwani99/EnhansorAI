@@ -1,6 +1,7 @@
 import {
   users,
   creditPricing,
+  creditPacks,
   userCredits,
   creditTransactions,
   videoJobs,
@@ -14,6 +15,7 @@ import {
   type UpsertUser,
   type InsertUser,
   type CreditPricing,
+  type CreditPack,
   type UserCredits,
   type CreditTransaction,
   type InsertUserCredits,
@@ -48,7 +50,10 @@ export interface IStorage {
   
   // Credit operations
   getCreditPricing(): Promise<CreditPricing[]>;
+  getCreditPacks(): Promise<CreditPack[]>;
+  getCreditPack(id: string): Promise<CreditPack | null>;
   getUserCredits(userId: string): Promise<UserCredits | null>;
+  addCredits(userId: string, credits: number, description?: string): Promise<UserCredits>;
   useCredits(userId: string, service: string, tier: string, creditsUsed: number, description?: string): Promise<CreditTransaction>;
   initializeUserCredits(userId: string, initialCredits?: number): Promise<UserCredits>;
   
@@ -122,6 +127,15 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(creditPricing);
   }
 
+  async getCreditPacks(): Promise<CreditPack[]> {
+    return await db.select().from(creditPacks).orderBy(creditPacks.sortOrder);
+  }
+
+  async getCreditPack(id: string): Promise<CreditPack | null> {
+    const [pack] = await db.select().from(creditPacks).where(eq(creditPacks.id, id));
+    return pack || null;
+  }
+
   async getUserCredits(userId: string): Promise<UserCredits | null> {
     const [credits] = await db.select().from(userCredits).where(eq(userCredits.userId, userId));
     return credits || null;
@@ -182,6 +196,41 @@ export class DatabaseStorage implements IStorage {
         .returning();
 
       return transaction;
+    });
+  }
+
+  async addCredits(userId: string, credits: number, description?: string): Promise<UserCredits> {
+    return await db.transaction(async (tx) => {
+      // Get current user credits or create if not exists
+      let [currentCredits] = await tx.select().from(userCredits).where(eq(userCredits.userId, userId));
+      
+      if (!currentCredits) {
+        // Initialize user credits first
+        currentCredits = await this.initializeUserCredits(userId, 0);
+      }
+
+      // Add credits to total
+      const [updatedCredits] = await tx
+        .update(userCredits)
+        .set({
+          totalCredits: currentCredits.totalCredits + credits,
+          updatedAt: new Date(),
+        })
+        .where(eq(userCredits.userId, userId))
+        .returning();
+
+      // Create transaction record for credit purchase
+      await tx
+        .insert(creditTransactions)
+        .values({
+          userId,
+          service: 'credit-purchase',
+          tier: 'pack',
+          creditsUsed: -credits, // Negative value indicates credits added
+          description: description || `Added ${credits} credits`,
+        });
+
+      return updatedCredits;
     });
   }
 
