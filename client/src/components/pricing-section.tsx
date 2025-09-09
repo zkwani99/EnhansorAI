@@ -652,14 +652,14 @@ export default function PricingSection() {
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{pack.name}</h3>
                       <div className="mb-4">
-                        <span className="text-3xl font-bold text-purple-600">${pack.price}</span>
+                        <span className="text-3xl font-bold text-purple-600">${(pack.price / 100).toFixed(0)}</span>
                         <span className="text-gray-700 dark:text-gray-300 ml-1">one-time</span>
                       </div>
                       <div className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                         {pack.credits.toLocaleString()} credits
                       </div>
                       <p className="text-sm text-gray-800 dark:text-gray-200">
-                        ${(pack.price / pack.credits).toFixed(4)} per credit
+                        ${(pack.price / 100 / pack.credits).toFixed(4)} per credit
                       </p>
                     </div>
                     <div className="mt-auto">
