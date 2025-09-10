@@ -9,23 +9,39 @@ import { insertVideoJobSchema } from "@shared/schema";
 import { randomUUID } from 'crypto';
 import Stripe from "stripe";
 
-// Initialize Stripe
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
-}
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-08-27.basil",
-});
-
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Health check endpoint (before auth middleware)
+  // Health check endpoint (FIRST - before any potential crashes)
   app.get('/health', (req, res) => {
     res.status(200).json({ 
       status: 'healthy', 
       timestamp: new Date().toISOString(),
-      env: process.env.NODE_ENV || 'development'
+      env: process.env.NODE_ENV || 'development',
+      port: process.env.PORT || 'not set'
     });
   });
+
+  // Initialize Stripe (lazy initialization with error handling)
+  let stripe: Stripe | null = null;
+  try {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.warn('Warning: STRIPE_SECRET_KEY not found. Stripe functionality will be disabled.');
+    } else {
+      stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+        apiVersion: "2025-08-27.basil",
+      });
+      console.log('Stripe initialized successfully');
+    }
+  } catch (error) {
+    console.error('Failed to initialize Stripe:', error);
+  }
+
+  // Helper function to check Stripe availability
+  const requireStripe = () => {
+    if (!stripe) {
+      throw new Error('Stripe is not initialized. Please check STRIPE_SECRET_KEY environment variable.');
+    }
+    return stripe;
+  };
 
   // Auth middleware
   await setupAuth(app);
@@ -103,7 +119,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Create Stripe payment intent
-      const paymentIntent = await stripe.paymentIntents.create({
+      const paymentIntent = await requireStripe().paymentIntents.create({
         amount: creditPack.price, // Price is already in cents
         currency: "usd",
         metadata: {
@@ -139,7 +155,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Retrieve payment intent from Stripe to verify payment
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      const paymentIntent = await requireStripe().paymentIntents.retrieve(paymentIntentId);
 
       if (paymentIntent.status !== 'succeeded') {
         return res.status(400).json({ message: "Payment not completed" });
@@ -452,7 +468,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create or get Stripe customer
       let stripeCustomerId = user.stripeCustomerId;
       if (!stripeCustomerId) {
-        const customer = await stripe.customers.create({
+        const customer = await requireStripe().customers.create({
           email: user.email,
           name: `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email,
           metadata: {
@@ -476,7 +492,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Create Stripe subscription
-      const subscription = await stripe.subscriptions.create({
+      const subscription = await requireStripe().subscriptions.create({
         customer: stripeCustomerId,
         items: [{ price: priceId }],
         payment_behavior: 'default_incomplete',
@@ -518,7 +534,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Retrieve subscription from Stripe
-      const stripeSubscription = await stripe.subscriptions.retrieve(subscriptionId);
+      const stripeSubscription = await requireStripe().subscriptions.retrieve(subscriptionId);
 
       if (stripeSubscription.status !== 'active') {
         return res.status(400).json({ error: "Subscription is not active yet" });
@@ -574,7 +590,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Cancel the subscription in Stripe (at period end)
-      const stripeSubscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
+      const stripeSubscription = await requireStripe().subscriptions.update(user.stripeSubscriptionId, {
         cancel_at_period_end: true,
       });
 
@@ -605,7 +621,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     try {
       const sig = req.headers['stripe-signature'];
-      event = stripe.webhooks.constructEvent(req.body, sig as string, endpointSecret);
+      event = requireStripe().webhooks.constructEvent(req.body, sig as string, endpointSecret);
     } catch (err: any) {
       console.error('Webhook signature verification failed:', err.message);
       return res.status(400).send(`Webhook Error: ${err.message}`);
