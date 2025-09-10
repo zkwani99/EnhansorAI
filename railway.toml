@@ -1,14 +1,8 @@
 [build]
 builder = "nixpacks"
 
-[build.buildCommand]
-value = "npm run build"
-
 [deploy]
-startCommand = "npm start"
+startCommand = "NODE_ENV=production node dist/index.js"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "always"
-
-[variables]
-NODE_ENV = "production"
