@@ -43,8 +43,16 @@ app.use((req, res, next) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    throw err;
+    console.error('Express error handler:', err);
+    
+    if (!res.headersSent) {
+      res.status(status).json({ message });
+    }
+    
+    // Don't throw in production - this crashes the server
+    if (process.env.NODE_ENV !== 'production') {
+      throw err;
+    }
   });
 
   // importantly only setup vite in development and after
@@ -54,17 +62,33 @@ app.use((req, res, next) => {
     await setupVite(app, server);
   } else {
     try {
+      console.log('Setting up static file serving for production...');
       serveStatic(app);
+      console.log('✅ Static file serving configured');
     } catch (error: any) {
-      console.error("Warning: Could not serve static files:", error.message);
+      console.error("❌ Static file serving failed:", error.message);
+      console.error("Setting up fallback routes...");
+      
       // Add fallback route for root path if static serving fails
-      app.get('*', (req, res) => {
-        if (req.path === '/') {
-          res.json({ message: 'EnhansorAI API Server', status: 'running' });
-        } else {
-          res.status(404).json({ error: 'Not found' });
-        }
+      app.get('/', (req, res) => {
+        res.json({ 
+          message: 'EnhansorAI API Server', 
+          status: 'running',
+          timestamp: new Date().toISOString(),
+          note: 'Static files not available - API only mode'
+        });
       });
+      
+      app.get('*', (req, res) => {
+        console.log(`404: ${req.method} ${req.path}`);
+        res.status(404).json({ 
+          error: 'Not found',
+          path: req.path,
+          available: ['/health', '/api/*']
+        });
+      });
+      
+      console.log('✅ Fallback routes configured');
     }
   }
 
@@ -87,5 +111,9 @@ app.use((req, res, next) => {
     log(`serving on port ${port}`);
     console.log(`✅ Server successfully started and listening on http://0.0.0.0:${port}`);
     console.log(`✅ Health check available at http://0.0.0.0:${port}/health`);
+    console.log(`🚀 Railway deployment should now be healthy!`);
+  }).on('error', (err) => {
+    console.error('❌ Server failed to start:', err);
+    process.exit(1);
   });
 })();
