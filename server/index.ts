@@ -53,7 +53,19 @@ app.use((req, res, next) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    serveStatic(app);
+    try {
+      serveStatic(app);
+    } catch (error: any) {
+      console.error("Warning: Could not serve static files:", error.message);
+      // Add fallback route for root path if static serving fails
+      app.get('*', (req, res) => {
+        if (req.path === '/') {
+          res.json({ message: 'EnhansorAI API Server', status: 'running' });
+        } else {
+          res.status(404).json({ error: 'Not found' });
+        }
+      });
+    }
   }
 
   // ALWAYS serve the app on the port specified in the environment variable PORT

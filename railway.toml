@@ -3,6 +3,6 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "NODE_ENV=production node dist/index.js"
-healthcheckPath = "/"
+healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "always"
