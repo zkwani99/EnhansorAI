@@ -17,10 +17,10 @@ export default function Footer() {
   };
 
   const companyLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Refund Policy", href: "/refund" },
+    { name: "About Us", href: "/About-Us" },
+    { name: "Privacy Policy", href: "/Privacy-Policy" },
+    { name: "Terms of Service", href: "/Terms-of-Service" },
+    { name: "Refund Policy", href: "/Refund-Policy" },
   ];
 
   const resourceLinks = [

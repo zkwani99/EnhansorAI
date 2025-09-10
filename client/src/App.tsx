@@ -32,10 +32,10 @@ function Router() {
       <Route path="/text-to-video" component={VideoPage} />
       <Route path="/image-to-video" component={ImageToVideoPage} />
       <Route path="/api" component={APIPage} />
-      <Route path="/about" component={AboutPage} />
-      <Route path="/privacy" component={PrivacyPage} />
-      <Route path="/terms" component={TermsPage} />
-      <Route path="/refund" component={RefundPage} />
+      <Route path="/About-Us" component={AboutPage} />
+      <Route path="/Privacy-Policy" component={PrivacyPage} />
+      <Route path="/Terms-of-Service" component={TermsPage} />
+      <Route path="/Refund-Policy" component={RefundPage} />
       <Route path="/dashboard" component={DashboardPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/guides" component={GuidesPage} />
