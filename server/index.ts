@@ -1,11 +1,14 @@
-import express, {
-  type Request,
-  type Response,
-  type NextFunction,
-} from "express";
-import http from "http";
+import express, { type Request, Response, NextFunction } from "express";
+import { createServer } from "http";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { Pool } from "pg";
+
+// Railway-compatible database connection for Railway deployment
+const railwayPool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
 
 const app = express();
 
@@ -20,7 +23,7 @@ app.use((req, res, next) => {
   let capturedJsonResponse: Record<string, any> | undefined;
 
   const originalResJson = res.json;
-  res.json = function (bodyJson: any, ...args: any[]) {
+  res.json = function (bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
@@ -44,7 +47,28 @@ app.use((req, res, next) => {
 
 // Register routes
 (async () => {
-  await registerRoutes(app);
+  const server = await registerRoutes(app);
+  
+  // Railway-compatible credit routes (for Railway deployment)
+  app.get('/api/credits/packs-railway', async (req, res) => {
+    try {
+      const result = await railwayPool.query("SELECT * FROM credit_packs ORDER BY sort_order ASC");
+      res.json(result.rows);
+    } catch (err) {
+      console.error("Railway: Error fetching credit packs:", err);
+      res.status(500).json({ message: "Failed to fetch credit packs" });
+    }
+  });
+
+  app.get('/api/credits/pricing-railway', async (req, res) => {
+    try {
+      const result = await railwayPool.query("SELECT * FROM credit_pricing ORDER BY service ASC");
+      res.json(result.rows);
+    } catch (err) {
+      console.error("Railway: Error fetching credit pricing:", err);
+      res.status(500).json({ message: "Failed to fetch credit pricing" });
+    }
+  });
 
   // Error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -63,7 +87,7 @@ app.use((req, res, next) => {
 
   // Static serving (production only)
   if (app.get("env") === "development") {
-    await setupVite(app);
+    await setupVite(app, server);
   } else {
     try {
       console.log("Setting up static file serving for production...");
@@ -107,14 +131,13 @@ app.use((req, res, next) => {
 
   // Start server
   const port = parseInt(process.env.PORT || "5000", 10);
-  const httpServer = http.createServer(app);
 
-  httpServer.listen(port, "0.0.0.0", () => {
+  server.listen({ port, host: "0.0.0.0" }, () => {
     console.log(`✅ Server listening on http://0.0.0.0:${port}`);
     console.log(`✅ Healthcheck available at http://0.0.0.0:${port}/health`);
   });
 
-  httpServer.on("error", (err) => {
+  server.on("error", (err: any) => {
     console.error("❌ Server failed to start:", err);
     process.exit(1);
   });
