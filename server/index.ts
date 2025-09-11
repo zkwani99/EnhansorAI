@@ -36,6 +36,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/health", (req: Request, res: Response) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Server is healthy",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 (async () => {
   const server = await registerRoutes(app);
 
