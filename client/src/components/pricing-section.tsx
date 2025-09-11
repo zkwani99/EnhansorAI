@@ -12,8 +12,6 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
-import CreditPackCheckout from "@/components/CreditPackCheckout";
-import SubscriptionCheckout from "@/components/SubscriptionCheckout";
 
 type ServiceKey = 'image' | 'ai' | 'video' | 'imageVideo';
 
@@ -531,29 +529,20 @@ export default function PricingSection() {
                         };
                         
                         return (
-                          <SubscriptionCheckout
-                            plan={subscriptionPlan}
-                            billingPeriod={isYearly ? 'yearly' : 'monthly'}
-                            onSuccess={() => {
-                              // Navigate to the service page after successful subscription
-                              const serviceRoutes = {
-                                'image': 'image-enhancement',
-                                'ai': 'text-to-image', 
-                                'video': 'text-to-video',
-                                'imageVideo': 'image-to-video'
-                              } as const;
-                              navigate(`/${serviceRoutes[activeService]}`);
-                              window.scrollTo(0, 0);
+                          <Button
+                            className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 bg-gray-400 text-white cursor-not-allowed opacity-75`}
+                            disabled
+                            data-testid={`button-select-plan-${plan.id}`}
+                            onClick={() => {
+                              toast({
+                                title: "Payments Temporarily Unavailable",
+                                description: "We're updating our payment system. Please check back soon!",
+                                variant: "destructive",
+                              });
                             }}
-                            triggerButton={
-                              <Button
-                                className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${colors.button} text-white group-hover:scale-105 group-hover:shadow-lg`}
-                                data-testid={`button-select-plan-${plan.id}`}
-                              >
-                                {plan.buttonText}
-                              </Button>
-                            }
-                          />
+                          >
+                            Coming Soon
+                          </Button>
                         );
                       }
                       
@@ -831,11 +820,17 @@ export default function PricingSection() {
                   ${(selectedCreditPack.price / 100 / selectedCreditPack.credits).toFixed(4)} per credit
                 </p>
               </div>
-              <CreditPackCheckout
-                creditPack={selectedCreditPack}
-                onClose={handleCheckoutClose}
-                onSuccess={handleCheckoutSuccess}
-              />
+              <div className="text-center">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Payments are temporarily unavailable while we integrate with Paddle.
+                </p>
+                <Button
+                  onClick={handleCheckoutClose}
+                  className="w-full bg-gray-400 text-white hover:bg-gray-500"
+                >
+                  Close
+                </Button>
+              </div>
             </div>
           </div>
         </div>
