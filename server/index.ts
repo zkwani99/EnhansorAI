@@ -2,13 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { createServer } from "http";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { Pool } from "pg";
-
-// Railway-compatible database connection for Railway deployment
-const railwayPool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
-});
+import creditsRouter from "./routes/credits";
 
 const app = express();
 
@@ -49,26 +43,8 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
   
-  // Railway-compatible credit routes (for Railway deployment)
-  app.get('/api/credits/packs-railway', async (req, res) => {
-    try {
-      const result = await railwayPool.query("SELECT * FROM credit_packs ORDER BY sort_order ASC");
-      res.json(result.rows);
-    } catch (err) {
-      console.error("Railway: Error fetching credit packs:", err);
-      res.status(500).json({ message: "Failed to fetch credit packs" });
-    }
-  });
-
-  app.get('/api/credits/pricing-railway', async (req, res) => {
-    try {
-      const result = await railwayPool.query("SELECT * FROM credit_pricing ORDER BY service ASC");
-      res.json(result.rows);
-    } catch (err) {
-      console.error("Railway: Error fetching credit pricing:", err);
-      res.status(500).json({ message: "Failed to fetch credit pricing" });
-    }
-  });
+  // Register credit routes
+  app.use("/api/credits", creditsRouter);
 
   // Error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
