@@ -7,7 +7,6 @@ import { gpuService, GPUJobRequest } from "./gpuService";
 import { initializeWebSocketService, getWebSocketService } from "./websocketService";
 import { insertVideoJobSchema } from "@shared/schema";
 import { randomUUID } from 'crypto';
-import Stripe from "stripe";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Health check endpoint (FIRST - before any potential crashes)
@@ -20,28 +19,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Initialize Stripe (lazy initialization with error handling)
-  let stripe: Stripe | null = null;
-  try {
-    if (!process.env.STRIPE_SECRET_KEY) {
-      console.warn('Warning: STRIPE_SECRET_KEY not found. Stripe functionality will be disabled.');
-    } else {
-      stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-        apiVersion: "2025-08-27.basil",
-      });
-      console.log('Stripe initialized successfully');
-    }
-  } catch (error) {
-    console.error('Failed to initialize Stripe:', error);
-  }
-
-  // Helper function to check Stripe availability
-  const requireStripe = () => {
-    if (!stripe) {
-      throw new Error('Stripe is not initialized. Please check STRIPE_SECRET_KEY environment variable.');
-    }
-    return stripe;
-  };
 
   // Auth middleware
   await setupAuth(app);
