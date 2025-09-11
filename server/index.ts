@@ -3,6 +3,7 @@ import express, {
   type Response,
   type NextFunction,
 } from "express";
+import http from "http";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -16,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+  let capturedJsonResponse: Record<string, any> | undefined;
 
   const originalResJson = res.json;
   res.json = function (bodyJson: any, ...args: any[]) {
@@ -43,7 +44,7 @@ app.use((req, res, next) => {
 
 // Register routes
 (async () => {
-  const server = await registerRoutes(app);
+  await registerRoutes(app);
 
   // Error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -62,7 +63,7 @@ app.use((req, res, next) => {
 
   // Static serving (production only)
   if (app.get("env") === "development") {
-    await setupVite(app, server);
+    await setupVite(app);
   } else {
     try {
       console.log("Setting up static file serving for production...");
@@ -73,7 +74,7 @@ app.use((req, res, next) => {
     }
   }
 
-  // Healthcheck route (for Railway)
+  // Healthcheck route (Railway requires this)
   app.get("/health", (_req: Request, res: Response) => {
     res.status(200).json({
       status: "ok",
@@ -106,14 +107,15 @@ app.use((req, res, next) => {
 
   // Start server
   const port = parseInt(process.env.PORT || "5000", 10);
+  const httpServer = http.createServer(app);
 
-  try {
-    server.listen({ port, host: "0.0.0.0", reusePort: true }, () => {
-      console.log(`✅ Server listening on http://0.0.0.0:${port}`);
-      console.log(`✅ Healthcheck available at http://0.0.0.0:${port}/health`);
-    });
-  } catch (err) {
+  httpServer.listen(port, "0.0.0.0", () => {
+    console.log(`✅ Server listening on http://0.0.0.0:${port}`);
+    console.log(`✅ Healthcheck available at http://0.0.0.0:${port}/health`);
+  });
+
+  httpServer.on("error", (err) => {
     console.error("❌ Server failed to start:", err);
     process.exit(1);
-  }
+  });
 })();
