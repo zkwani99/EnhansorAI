@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { redirectToService } from "@/lib/authRedirect";
 import { useAuth } from "@/hooks/useAuth";
+import { signOut } from "@/lib/supabaseAuth";
 import { useTheme } from "@/components/theme-provider";
 import { Link, useLocation } from "wouter";
 
@@ -202,9 +203,10 @@ export default function Navigation() {
                     {navigationGroups.account.map((item) => (
                       <DropdownMenuItem
                         key={item.id}
-                        onClick={() => {
+                        onClick={async () => {
                           if (item.action === 'logout') {
-                            window.location.href = '/api/logout';
+                            await signOut();
+                            window.location.href = '/';
                           } else {
                             handleNavClick(item);
                           }
@@ -241,14 +243,14 @@ export default function Navigation() {
               <Button
                 variant="ghost"
                 className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                onClick={() => window.location.href = '/api/login'}
+                onClick={() => import('@/lib/authRedirect').then(({ startGoogleSignIn }) => startGoogleSignIn())}
                 data-testid="button-sign-in"
               >
                 Sign In
               </Button>
               <Button
                 className="bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
-                onClick={() => window.location.href = '/api/login'}
+                onClick={() => import('@/lib/authRedirect').then(({ startGoogleSignIn }) => startGoogleSignIn())}
                 data-testid="button-sign-up"
               >
                 Sign Up

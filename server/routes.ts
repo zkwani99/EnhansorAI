@@ -2,7 +2,7 @@ import type { Express } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { verifySupabaseAuth } from "./supabaseAuth";
 import { gpuService, GPUJobRequest } from "./gpuService";
 import { initializeWebSocketService, getWebSocketService } from "./websocketService";
 import { insertVideoJobSchema } from "@shared/schema";
@@ -21,12 +21,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
   // Auth middleware
-  await setupAuth(app);
 
-  // Auth routes
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+  // Auth routes - Supabase version
+  app.get('/api/auth/user', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const user = await storage.getUser(userId);
       res.json(user);
     } catch (error) {
@@ -35,9 +34,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+
+  // Logout endpoint for Supabase (simple 200 response since client handles logout)
+  app.post('/api/auth/logout', (req, res) => {
+    res.json({ message: "Logout successful" });
+  });
+
   // Protected route example
-  app.get("/api/protected", isAuthenticated, async (req: any, res) => {
-    const userId = req.user?.claims?.sub;
+  app.get("/api/protected", verifySupabaseAuth, async (req: any, res) => {
+    const userId = req.user?.id;
     res.json({ 
       message: "Hello from the protected route!", 
       userId 
@@ -45,15 +50,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Service-specific routes for post-auth redirection
-  app.get("/api/services/enhance", isAuthenticated, (req, res) => {
+  app.get("/api/services/enhance", verifySupabaseAuth, (req, res) => {
     res.json({ service: "enhance", message: "Welcome to Image Enhancement!" });
   });
 
-  app.get("/api/services/generate", isAuthenticated, (req, res) => {
+  app.get("/api/services/generate", verifySupabaseAuth, (req, res) => {
     res.json({ service: "generate", message: "Welcome to Text-to-Image Generation!" });
   });
 
-  app.get("/api/services/video", isAuthenticated, (req, res) => {
+  app.get("/api/services/video", verifySupabaseAuth, (req, res) => {
     res.json({ service: "video", message: "Welcome to Text-to-Video Creation!" });
   });
 
@@ -154,9 +159,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // User Credits Routes  
-  app.get('/api/credits/balance', isAuthenticated, async (req: any, res) => {
+  app.get('/api/credits/balance', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const credits = await storage.getUserCredits(userId);
       res.json(credits);
     } catch (error) {
@@ -165,9 +170,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/credits/use', isAuthenticated, async (req: any, res) => {
+  app.post('/api/credits/use', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { service, tier, creditsUsed, description } = req.body;
       
       const transaction = await storage.useCredits(userId, service, tier, creditsUsed, description);
@@ -179,9 +184,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // User Preferences Routes
-  app.get('/api/preferences', isAuthenticated, async (req: any, res) => {
+  app.get('/api/preferences', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const preferences = await storage.getUserPreferences(userId);
       
       // If no preferences exist, create default ones
@@ -206,9 +211,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put('/api/preferences', isAuthenticated, async (req: any, res) => {
+  app.put('/api/preferences', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const updates = req.body;
       
       const preferences = await storage.upsertUserPreferences(userId, updates);
@@ -219,9 +224,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/preferences/reset', isAuthenticated, async (req: any, res) => {
+  app.post('/api/preferences/reset', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       
       const defaultPrefs = {
         styleMemoryEnabled: 0,
@@ -249,9 +254,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // User subscription outputs endpoint
   // Subscription activation endpoint
-  app.post('/api/subscription/activate', isAuthenticated, async (req: any, res) => {
+  app.post('/api/subscription/activate', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { planType, planId, service, billingPeriod } = req.body;
 
       if (!planType || !planId || !service) {
@@ -298,9 +303,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/subscription/outputs', isAuthenticated, async (req: any, res) => {
+  app.get('/api/subscription/outputs', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const outputs = await storage.getUserSubscriptionOutputs(userId);
       res.json(outputs);
     } catch (error) {
@@ -310,9 +315,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get user's active subscription
-  app.get('/api/subscription/current', isAuthenticated, async (req: any, res) => {
+  app.get('/api/subscription/current', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { service } = req.query;
       
       const subscription = await storage.getUserSubscription(userId, service as string);
@@ -328,9 +333,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Video Generation Routes
   
   // Text-to-Video Generation
-  app.post('/api/video/text-to-video', isAuthenticated, async (req: any, res) => {
+  app.post('/api/video/text-to-video', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { prompt, duration, resolution, style, aiStoryboard, realTimePreview } = req.body;
       
       if (!prompt) {
@@ -411,9 +416,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Image-to-Video Generation
-  app.post('/api/video/image-to-video', isAuthenticated, async (req: any, res) => {
+  app.post('/api/video/image-to-video', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { prompt, imageUrl, duration, resolution, style, aiStoryboard, realTimePreview } = req.body;
       
       if (!imageUrl) {
@@ -496,9 +501,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get Job Status
-  app.get('/api/video/jobs/:jobId', isAuthenticated, async (req: any, res) => {
+  app.get('/api/video/jobs/:jobId', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { jobId } = req.params;
 
       const job = await storage.getVideoJob(jobId);
@@ -548,9 +553,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get User's Video Jobs
-  app.get('/api/video/jobs', isAuthenticated, async (req: any, res) => {
+  app.get('/api/video/jobs', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const limit = parseInt(req.query.limit as string) || 10;
 
       const jobs = await storage.getUserVideoJobs(userId, limit);
@@ -570,9 +575,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Storyboard Generation
-  app.post('/api/ai/storyboard', isAuthenticated, async (req: any, res) => {
+  app.post('/api/ai/storyboard', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { prompt, imageUrl } = req.body;
       
       if (!prompt) {
@@ -608,9 +613,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Concierge Suggestions
-  app.post('/api/ai/suggestions', isAuthenticated, async (req: any, res) => {
+  app.post('/api/ai/suggestions', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { context, type } = req.body;
       
       if (!context || !type) {
@@ -669,9 +674,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // File Management Routes
   
   // Get user's generated files
-  app.get('/api/files', isAuthenticated, async (req: any, res) => {
+  app.get('/api/files', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { service } = req.query;
       
       const files = await storage.getUserFiles(userId, service);
@@ -683,9 +688,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Download a specific file
-  app.get('/api/files/:id/download', isAuthenticated, async (req: any, res) => {
+  app.get('/api/files/:id/download', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { id } = req.params;
       
       const file = await storage.getFileById(id);
@@ -714,9 +719,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create a new generated file record
-  app.post('/api/files', isAuthenticated, async (req: any, res) => {
+  app.post('/api/files', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const fileData = {
         ...req.body,
         userId,
@@ -730,8 +735,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete expired files (admin/cron job endpoint)
-  app.post('/api/files/cleanup', async (req, res) => {
+  // Delete expired files (admin/cron job endpoint) - Protected admin endpoint
+  app.post('/api/files/cleanup', verifySupabaseAuth, async (req, res) => {
     try {
       const deletedCount = await storage.deleteExpiredFiles();
       res.json({ 
@@ -747,9 +752,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Video Stitching Routes
   
   // Create a new video stitching project
-  app.post('/api/video-stitching/create', isAuthenticated, async (req: any, res) => {
+  app.post('/api/video-stitching/create', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { name, clipIds, totalDuration } = req.body;
       
       // Validate input
@@ -839,9 +844,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get user's video stitching projects
-  app.get('/api/video-stitching/projects', isAuthenticated, async (req: any, res) => {
+  app.get('/api/video-stitching/projects', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const projects = await storage.getUserVideoStitchingProjects(userId);
       res.json(projects);
     } catch (error) {
@@ -851,9 +856,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get a specific stitching project
-  app.get('/api/video-stitching/:id', isAuthenticated, async (req: any, res) => {
+  app.get('/api/video-stitching/:id', verifySupabaseAuth, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.id;
       const { id } = req.params;
       
       const project = await storage.getVideoStitchingProject(id);
