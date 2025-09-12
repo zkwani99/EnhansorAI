@@ -1,7 +1,9 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { createServer } from "http";
+import path from "path";
+import fs from "fs";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { setupVite, log } from "./vite";
 
 const app = express();
 
@@ -64,14 +66,24 @@ app.use((req, res, next) => {
   } else {
     try {
       console.log("Setting up static file serving for production...");
-      serveStatic(app);
-      console.log("✅ Static file serving configured");
+      
+      // ✅ Serve frontend static files from dist/public
+      const distPath = path.resolve(process.cwd(), "dist/public");
+      
+      if (!fs.existsSync(distPath)) {
+        throw new Error(
+          `Could not find the build directory: ${distPath}, make sure to build the client first`
+        );
+      }
+      
+      app.use(express.static(distPath));
+      console.log("✅ Static file serving configured from:", distPath);
     } catch (error: any) {
       console.error("❌ Static file serving failed:", error.message);
     }
   }
 
-  // Healthcheck route (Railway requires this)
+  // Healthcheck route (Railway/Render requires this)
   app.get("/health", (_req: Request, res: Response) => {
     res.status(200).json({
       status: "ok",
@@ -80,25 +92,22 @@ app.use((req, res, next) => {
     });
   });
 
-  // Root route
-  app.get("/", (_req, res) => {
-    res.json({
-      message: "EnhansorAI API Server",
-      status: "running",
-      timestamp: new Date().toISOString(),
-      note: "Static files not available - API only mode",
+  // ✅ Fallback route to index.html for client-side routing (production only)
+  if (app.get("env") !== "development") {
+    app.get("*", (req, res) => {
+      // Skip API routes
+      if (req.path.startsWith("/api") || req.path.startsWith("/health")) {
+        return res.status(404).json({
+          error: "Not found",
+          path: req.path,
+        });
+      }
+      
+      // Serve index.html for all other routes (client-side routing)
+      const indexPath = path.resolve(process.cwd(), "dist/public/index.html");
+      res.sendFile(indexPath);
     });
-  });
-
-  // Fallback route
-  app.get("*", (req, res) => {
-    console.log(`404: ${req.method} ${req.path}`);
-    res.status(404).json({
-      error: "Not found",
-      path: req.path,
-      available: ["/health", "/api/*"],
-    });
-  });
+  }
 
   console.log("✅ Fallback routes configured");
 
