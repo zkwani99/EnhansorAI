@@ -2,8 +2,13 @@ import express, { type Request, Response, NextFunction } from "express";
 import { createServer } from "http";
 import path from "path";
 import fs from "fs";
+import { fileURLToPath } from "url";
 import { registerRoutes } from "./routes";
 import { setupVite, log } from "./vite";
+
+// ESM-compatible __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -68,8 +73,9 @@ app.use((req, res, next) => {
       console.log("Setting up static file serving for production...");
       
       // ✅ Serve frontend static files from dist/public
-      const distPath = path.resolve(process.cwd(), "dist/public");
+      const distPath = path.join(__dirname, "../dist/public");
       
+      console.log("Checking for build directory at:", distPath);
       if (!fs.existsSync(distPath)) {
         throw new Error(
           `Could not find the build directory: ${distPath}, make sure to build the client first`
@@ -104,7 +110,8 @@ app.use((req, res, next) => {
       }
       
       // Serve index.html for all other routes (client-side routing)
-      const indexPath = path.resolve(process.cwd(), "dist/public/index.html");
+      const indexPath = path.join(__dirname, "../dist/public/index.html");
+      console.log("Serving index.html for", req.url, "from", indexPath);
       res.sendFile(indexPath);
     });
   }
