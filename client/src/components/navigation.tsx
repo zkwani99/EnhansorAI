@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { redirectToService } from "@/lib/authRedirect";
+import { isReviewMode } from "@/lib/reviewMode";
 import { useAuth } from "@/hooks/useAuth";
 import { signOut } from "@/lib/supabaseAuth";
 import { useTheme } from "@/components/theme-provider";
@@ -20,8 +21,17 @@ export default function Navigation() {
   const { theme, toggleTheme } = useTheme();
   const [location, navigate] = useLocation();
 
+
   const handleNavClick = (link: any) => {
     if (link.route) {
+      // During review mode, allow navigation to service pages without authentication
+      if (isReviewMode()) {
+        navigate(`/${link.route}`);
+        window.scrollTo(0, 0);
+        setIsMobileMenuOpen(false);
+        return;
+      }
+      
       // Check if user is authenticated before navigating to service pages
       if (isAuthenticated) {
         // User is logged in, navigate directly to the service page

@@ -1,7 +1,14 @@
 import { signInWithGoogle } from './supabaseAuth';
+import { isReviewMode } from './reviewMode';
 
 // Helper function to handle authentication redirects for service buttons
 export function redirectToService(serviceId: string) {
+  // During review mode, don't redirect to login
+  if (isReviewMode()) {
+    console.log('Review mode active - authentication disabled for public access');
+    return;
+  }
+  
   // Store the intended destination for post-login redirect
   localStorage.setItem('auth_redirect', `/${serviceId}`);
   // Use the helper to start Google sign-in with proper redirect

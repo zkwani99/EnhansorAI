@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Palette, Video, Film } from "lucide-react";
 import { redirectToService } from "@/lib/authRedirect";
+import { isReviewMode } from "@/lib/reviewMode";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 
@@ -32,7 +33,15 @@ export default function HeroSection() {
     }
   ];
 
+
   const handleServiceClick = (serviceId: string) => {
+    // During review mode, allow navigation to service pages without authentication
+    if (isReviewMode()) {
+      navigate(`/${serviceId}`);
+      window.scrollTo(0, 0);
+      return;
+    }
+    
     // Check authentication status before navigating
     if (isAuthenticated) {
       // User is logged in, navigate directly to the service page
