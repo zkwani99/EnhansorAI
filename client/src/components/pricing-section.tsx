@@ -311,6 +311,14 @@ export default function PricingSection() {
     <section id="pricing" className="py-20 bg-gradient-to-br from-white to-purple-50 dark:from-black dark:to-black transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Scalable Plans for Every User
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+              Whether you're a beginner or a studio, we've got a plan built for you.
+            </p>
+          </div>
           
           {/* Monthly/Yearly Toggle */}
           <div className="flex items-center justify-center gap-4 mb-8">

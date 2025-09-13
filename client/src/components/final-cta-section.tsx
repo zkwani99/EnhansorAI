@@ -26,10 +26,7 @@ export default function FinalCTASection() {
   };
 
   const handleComparePlans = () => {
-    const pricingSection = document.getElementById("pricing");
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    navigate('/pricing');
   };
 
   return (

@@ -3,8 +3,8 @@ import { Link } from "wouter";
 
 export default function Footer() {
   const helpfulLinks = [
-    { name: "Pricing Plans", icon: CreditCard, action: () => scrollToSection("pricing") },
-    { name: "How Credits Work", icon: FileText, action: () => scrollToSection("how-credits-work") },
+    { name: "Pricing Plans", icon: CreditCard, action: () => window.location.href = "/pricing" },
+    { name: "How Credits Work", icon: FileText, action: () => window.location.href = "/pricing#credits-breakdown" },
     { name: "FAQ", icon: HelpCircle, action: () => scrollToSection("faq") },
     { name: "Contact Support", icon: MessageCircle, action: () => window.location.href = "mailto:support@lorepic.com" },
   ];

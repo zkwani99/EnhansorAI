@@ -31,7 +31,7 @@ export default function PricingPage() {
               Subscription Plans & Credit Packs (PAYG)
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Flexible pricing — scale with monthly plans or pay only for what you use.
+              Flexible pricing — scale with plans or pay only for what you use.
             </p>
           </div>
         </div>
