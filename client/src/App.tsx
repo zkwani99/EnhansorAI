@@ -16,6 +16,7 @@ import AboutPage from "@/pages/about";
 import PrivacyPage from "@/pages/privacy";
 import TermsPage from "@/pages/terms";
 import RefundPage from "@/pages/refund";
+import PricingPage from "@/pages/pricing";
 import DashboardPage from "@/pages/dashboard";
 import BlogPage from "@/pages/blog";
 import GuidesPage from "@/pages/guides";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/Privacy-Policy" component={PrivacyPage} />
       <Route path="/Terms-of-Service" component={TermsPage} />
       <Route path="/Refund-Policy" component={RefundPage} />
+      <Route path="/pricing" component={PricingPage} />
       <Route path="/dashboard" component={DashboardPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/guides" component={GuidesPage} />

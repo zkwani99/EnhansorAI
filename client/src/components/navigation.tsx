@@ -144,13 +144,14 @@ export default function Navigation() {
               </DropdownMenu>
 
               {/* Pricing - CTA Button */}
-              <button
-                onClick={() => handleNavClick({ id: 'pricing' })}
-                className={`bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:from-purple-700 hover:to-purple-800 hover:shadow-lg transform hover:-translate-y-0.5 ${location.includes('pricing') ? 'ring-2 ring-purple-300' : ''}`}
-                data-testid="nav-pricing-cta"
-              >
-                Pricing
-              </button>
+              <Link href="/pricing">
+                <button
+                  className={`bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:from-purple-700 hover:to-purple-800 hover:shadow-lg transform hover:-translate-y-0.5 ${location.includes('pricing') ? 'ring-2 ring-purple-300' : ''}`}
+                  data-testid="nav-pricing-cta"
+                >
+                  Pricing
+                </button>
+              </Link>
 
               {/* Developers Dropdown */}
               <DropdownMenu open={openDropdown === 'developers'} onOpenChange={(open) => setOpenDropdown(open ? 'developers' : null)}>
@@ -309,13 +310,15 @@ export default function Navigation() {
 
               {/* Pricing */}
               <div className="px-3 py-2">
-                <button
-                  onClick={() => handleNavClick({ id: 'pricing' })}
-                  className={`w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:from-purple-700 hover:to-purple-800 ${location.includes('pricing') ? 'ring-2 ring-purple-300' : ''}`}
-                  data-testid="mobile-nav-pricing-cta"
-                >
-                  Pricing
-                </button>
+                <Link href="/pricing">
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:from-purple-700 hover:to-purple-800 ${location.includes('pricing') ? 'ring-2 ring-purple-300' : ''}`}
+                    data-testid="mobile-nav-pricing-cta"
+                  >
+                    Pricing
+                  </button>
+                </Link>
               </div>
 
               {/* Developers Section */}
