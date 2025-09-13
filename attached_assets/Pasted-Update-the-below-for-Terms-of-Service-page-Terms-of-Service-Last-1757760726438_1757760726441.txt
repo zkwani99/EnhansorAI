@@ -1,0 +1,59 @@
+Update the below for Terms of Service page:
+
+
+                                Terms of Service
+
+Last Updated: September 13, 2025
+
+Welcome to Lorepic (“we,” “our,” “us”). These Terms of Service (“Terms”) govern your access and use of our website, products, and services, including subscriptions and credit packs (the “Service”). By using Lorepic, you agree to these Terms.
+
+1. Eligibility & Account Creation
+* You must be at least 18 years old (or the legal age in your jurisdiction) to create an account.
+* You are responsible for maintaining the confidentiality of your account credentials.
+* You agree to provide accurate, current, and complete information during registration.
+
+2. Service Description
+* Lorepic provides AI-powered tools for image enhancement, text-to-image, image-to-video, and text-to-video generation.
+* Features and usage limits depend on your chosen subscription plan or credit pack.
+
+3. Subscriptions & Billing
+* Paid subscriptions are billed on a recurring basis (monthly or annually) unless canceled.
+* Free plans are offered with limited features and may be changed or discontinued at any time.
+* Pricing details are available on our Pricing Page.
+
+4. Refunds & Cancellations
+* All payments are final. Refunds are only issued in rare cases as described in our Refund Policy.
+* You may cancel your subscription at any time from your account settings. Cancellations take effect at the end of the current billing cycle.
+
+5. Intellectual Property
+* All software, designs, and branding remain the property of Lorepic (ZAKWANI LLC).
+* You may use generated content for personal and commercial purposes, subject to your subscription plan.
+* You may not reproduce, resell, or exploit the Service without prior written consent.
+
+6. User Conduct
+You agree not to:
+* Upload, generate, or share unlawful, harmful, abusive, or infringing content.
+* Attempt to hack, disrupt, or reverse-engineer the Service.
+* Misuse the Service for fraudulent or illegal activities.
+
+7. Data & Privacy
+* We collect and process personal data in accordance with our Privacy Policy.
+* By using Lorepic, you consent to this data processing.
+
+8. Limitation of Liability
+* The Service is provided “as is” without warranties of any kind.
+* We are not liable for indirect, incidental, or consequential damages.
+* Our total liability for any claim shall not exceed the amount paid by you in the last 3 months.
+
+9. Termination & Suspension
+* We reserve the right to suspend or terminate your account if you violate these Terms.
+* You may stop using the Service at any time.
+
+10. Changes to Terms
+* We may update these Terms at any time. Changes will be effective when posted on our website.
+* Continued use of the Service after changes means you accept the updated Terms.
+
+
+11. Contact Information
+Lorepic is operated by:
+ZAKWANI LLC 15442 Ventura Blvd., Ste 201-1430 Sherman Oaks, California 91403, USA 📧 Email: support@lorepic.com
