@@ -85,6 +85,25 @@ export default function PrivacyPage() {
               </div>
             </div>
 
+            {/* Section 6 */}
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">6. Contact Information</h2>
+              <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                <p><strong>Lorepic is operated by:</strong></p>
+                <p>ZAKWANI LLC<br />
+                15442 Ventura Blvd., Ste 201-1430<br />
+                Sherman Oaks, California 91403, USA</p>
+                <p>📧 Email: <a href="mailto:support@lorepic.com" className="text-purple-600 dark:text-purple-400 hover:underline">support@lorepic.com</a></p>
+              </div>
+            </div>
+
+            {/* Last Updated */}
+            <div className="pt-8 border-t border-gray-200 dark:border-gray-600">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Last Updated: September 13, 2025
+              </p>
+            </div>
+
           </div>
         </div>
       </div>
