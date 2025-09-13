@@ -28,10 +28,10 @@ export default function PricingPage() {
           
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Pricing Plans
+              Subscription Plans & Credit Packs (PAYG)
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Choose a plan that fits your needs. Scale as you grow with flexible AI-powered services.
+              Flexible pricing — scale with monthly plans or pay only for what you use.
             </p>
           </div>
         </div>

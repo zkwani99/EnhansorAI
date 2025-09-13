@@ -310,13 +310,7 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-20 bg-gradient-to-br from-white to-purple-50 dark:from-black dark:to-black transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Pricing Plans
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-            Choose a plan that fits your needs. Scale as you grow with flexible AI-powered services.
-          </p>
+        <div className="mb-16">
           
           {/* Monthly/Yearly Toggle */}
           <div className="flex items-center justify-center gap-4 mb-8">
@@ -408,19 +402,7 @@ export default function PricingSection() {
                     
                     {/* Features List - moved lower with more spacing */}
                     <div className="mt-6">
-                      <div className="mb-3">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => toggleFeatures(plan.id)}
-                          className="flex items-center gap-2 text-purple-600 hover:text-purple-700 p-0 h-auto font-medium"
-                        >
-                          {expandedFeatures[plan.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                          See all features
-                        </Button>
-                      </div>
-                      {expandedFeatures[plan.id] && (
-                        <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 text-left animate-in slide-in-from-top-2 duration-200">
+                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 text-left">
                         {plan.features?.map((feature: any, featureIndex: number) => {
                           
                           return (
@@ -487,8 +469,7 @@ export default function PricingSection() {
                             </li>
                           );
                         })}
-                        </ul>
-                      )}
+                      </ul>
                     </div>
                   </div>
                   
