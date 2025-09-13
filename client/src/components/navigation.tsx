@@ -223,17 +223,6 @@ export default function Navigation() {
                 </DropdownMenu>
               )}
 
-              {/* Theme Toggle - Rightmost position */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="text-gray-600 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-400 transition-all duration-200"
-                data-testid="button-theme-toggle"
-                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              >
-                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-              </Button>
             </div>
           </div>
           
