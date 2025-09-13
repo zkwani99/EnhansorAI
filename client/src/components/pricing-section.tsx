@@ -408,8 +408,14 @@ export default function PricingSection() {
                       </div>
                     )}
                     
+                    {/* Separator line and "Includes:" text */}
+                    <div className="mt-6 mb-4">
+                      <hr className="border-gray-200 dark:border-gray-600 mb-3" />
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 text-left">Includes:</p>
+                    </div>
+                    
                     {/* Features List - moved lower with more spacing */}
-                    <div className="mt-6">
+                    <div className="mt-0">
                       <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 text-left">
                         {plan.features?.map((feature: any, featureIndex: number) => {
                           

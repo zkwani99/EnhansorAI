@@ -28,7 +28,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: false,
-        buttonText: "Choose Plan",
+        buttonText: "Upgrade to Starter",
         features: [
           { text: "1,000 images per month", included: true },
           { text: "Up to 2K resolution", included: true },
@@ -46,7 +46,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: true,
-        buttonText: "Choose Plan",
+        buttonText: "Go Growth",
         features: [
           { text: "5,000 images per month", included: true },
           { text: "Up to 4K resolution", included: true },
@@ -65,7 +65,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: false,
-        buttonText: "Choose Plan",
+        buttonText: "Scale with Business",
         features: [
           { text: "15000 images per month", included: true, bold: true },
           { text: "Up to 6K resolution", included: true },
@@ -151,7 +151,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: false,
-        buttonText: "Choose Plan",
+        buttonText: "Upgrade to Starter",
         features: [
           { text: "1500 images per month", included: true },
           { text: "Up to 1K resolution", included: true },
@@ -169,7 +169,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: true,
-        buttonText: "Choose Plan",
+        buttonText: "Go Growth",
         features: [
           { text: "6000 images per month", included: true },
           { text: "Up to 2K resolution", included: true },
@@ -189,7 +189,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: false,
-        buttonText: "Choose Plan",
+        buttonText: "Scale with Business",
         features: [
           { text: "15000 images per month", included: true, bold: true },
           { text: "Up to 4K resolution", included: true },
@@ -275,7 +275,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: false,
-        buttonText: "Choose Plan",
+        buttonText: "Upgrade to Starter",
         subtitle: "Best for trying out AI video generation",
         features: [
           { text: "200 clips per month (up to 5s each)", included: true },
@@ -293,7 +293,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: true,
-        buttonText: "Choose Plan",
+        buttonText: "Go Growth",
         subtitle: "Great for freelancers & content creators",
         features: [
           { text: "500 clips per month (up to 8s each)", included: true },
@@ -311,7 +311,7 @@ export const pricingPlans = {
         period: "/month",
         isFree: false,
         isPopular: false,
-        buttonText: "Choose Plan",
+        buttonText: "Scale with Business",
         subtitle: "Perfect for agencies & professional teams",
         features: [
           { text: "1500 clips per month (up to 10s each)", included: true },
