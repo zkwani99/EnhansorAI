@@ -27,7 +27,8 @@ export default function GallerySection() {
       subtitle: "Before → After",
       tool: "AI Image Enhancer",
       height: "h-64",
-      duration: undefined
+      duration: undefined,
+      videoSrc: undefined
     },
     {
       id: 2,
@@ -39,7 +40,8 @@ export default function GallerySection() {
       subtitle: "8K Upscaling",
       tool: "AI Image Enhancer",
       height: "h-80",
-      duration: undefined
+      duration: undefined,
+      videoSrc: undefined
     },
     {
       id: 3,
@@ -51,7 +53,8 @@ export default function GallerySection() {
       subtitle: "Commercial Ready",
       tool: "AI Image Enhancer",
       height: "h-72",
-      duration: undefined
+      duration: undefined,
+      videoSrc: undefined
     }
   ];
 
@@ -65,7 +68,8 @@ export default function GallerySection() {
       subtitle: "AI Generated",
       tool: "AI Image Generator",
       height: "h-96",
-      duration: undefined
+      duration: undefined,
+      videoSrc: undefined
     },
     {
       id: 5,
@@ -76,7 +80,8 @@ export default function GallerySection() {
       subtitle: "Magical Scene",
       tool: "AI Image Generator",
       height: "h-64",
-      duration: undefined
+      duration: undefined,
+      videoSrc: undefined
     },
     {
       id: 6,
@@ -87,7 +92,8 @@ export default function GallerySection() {
       subtitle: "Text-to-Image AI",
       tool: "AI Image Generator",
       height: "h-80",
-      duration: undefined
+      duration: undefined,
+      videoSrc: undefined
     }
   ];
 
@@ -95,8 +101,9 @@ export default function GallerySection() {
     {
       id: 7,
       type: "videos",
+      videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4",
       src: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450",
-      alt: "AI generated ocean waves video thumbnail",
+      alt: "AI generated ocean waves video",
       title: "Ocean Waves",
       subtitle: "Ocean Simulation",
       duration: "4K • 30s",
@@ -106,9 +113,10 @@ export default function GallerySection() {
     {
       id: 8,
       type: "videos",
+      videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-going-down-a-curved-highway-down-a-mountain-range-41576-large.mp4",
       src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450",
-      alt: "AI generated city timelapse video thumbnail",
-      title: "City Timelapse",
+      alt: "AI generated city motion video",
+      title: "City Motion",
       subtitle: "Urban Movement",
       duration: "4K • 45s",
       tool: "AI Video Generator",
@@ -117,10 +125,11 @@ export default function GallerySection() {
     {
       id: 9,
       type: "videos",
+      videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-shining-sun-in-the-sky-surrounded-by-moving-clouds-31793-large.mp4",
       src: "https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450",
-      alt: "AI generated abstract motion video thumbnail",
-      title: "Abstract Motion",
-      subtitle: "Digital Art",
+      alt: "AI generated sky motion video",
+      title: "Sky Motion",
+      subtitle: "Time-lapse",
       duration: "HD • 20s",
       tool: "AI Video Generator",
       height: "h-80"
@@ -128,8 +137,9 @@ export default function GallerySection() {
     {
       id: 10,
       type: "videos",
+      videoSrc: "https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4",
       src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=450",
-      alt: "AI generated nature forest scene video thumbnail",
+      alt: "AI generated forest scene video",
       title: "Forest Scene",
       subtitle: "Nature Scene",
       duration: "4K • 60s",
@@ -162,20 +172,18 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="gallery" className="py-20 bg-gradient-to-br from-white via-purple-50/30 to-purple-50 dark:from-black dark:via-black dark:to-black relative transition-colors duration-300">
-        {/* Background decoration - removed for dark theme */}
-        
+      <section id="gallery" className="py-20 bg-gray-900 dark:bg-black relative" data-testid="gallery-section">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Gallery Showcase
+            <h2 className="text-4xl lg:text-5xl text-white mb-6">
+              Gallery & <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Examples</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore stunning examples of our AI-powered transformations across all service categories
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Discover stunning examples of what's possible with our AI-powered creative tools
             </p>
           </div>
           
-          {/* Stylish pill tabs with icons */}
+          {/* Dark theme filter buttons */}
           <div className="flex flex-wrap justify-center gap-3 mb-16">
             {filterButtons.map((button) => {
               const IconComponent = button.icon;
@@ -186,8 +194,8 @@ export default function GallerySection() {
                   onClick={() => handleFilterChange(button.id)}
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 shadow-lg hover:shadow-xl transform hover:scale-105 ${
                     isActive
-                      ? `bg-gradient-to-r ${button.color} text-white border-transparent shadow-lg`
-                      : "bg-white/80 dark:bg-black backdrop-blur-sm text-gray-700 dark:text-gray-200 border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+                      ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white border-transparent shadow-purple-500/50"
+                      : "bg-gray-800 border-gray-700 text-gray-300 hover:border-purple-500 hover:bg-gray-700 hover:text-white"
                   }`}
                   data-testid={`button-filter-${button.id}`}
                 >
@@ -198,31 +206,45 @@ export default function GallerySection() {
             })}
           </div>
           
-          {/* Masonry Gallery Grid */}
+          {/* Dynamic Masonry Gallery Grid */}
           <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
             {getFilteredItems().map((item) => (
               <div
                 key={item.id}
-                className={`group relative bg-white dark:bg-black rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] cursor-pointer break-inside-avoid mb-6 ${item.height}`}
+                className={`group relative bg-gray-800 border border-gray-700 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02] cursor-pointer break-inside-avoid mb-6 ${item.height}`}
                 onClick={() => openModal(item)}
                 data-testid={`card-gallery-item-${item.id}`}
               >
                 <div className="relative overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
+                  {/* Auto-play videos for video items */}
+                  {item.type === 'videos' && item.videoSrc ? (
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      poster={item.src}
+                    >
+                      <source src={item.videoSrc} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  )}
                   
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Dark overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
                   
-                  {/* Video play button */}
+                  {/* Video indicator (even for auto-play videos) */}
                   {item.type === 'videos' && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                        <Play className="text-white ml-1" size={24} />
+                    <div className="absolute top-4 right-4">
+                      <div className="bg-black/60 backdrop-blur-sm rounded-full p-2">
+                        <Play className="text-white w-4 h-4" />
                       </div>
                     </div>
                   )}
@@ -234,20 +256,22 @@ export default function GallerySection() {
                       <Maximize2 className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     <p className="text-sm text-gray-200 mb-2">{item.subtitle}</p>
-                    {item.duration && (
-                      <Badge className="bg-white/20 text-white text-xs">
-                        {item.duration}
-                      </Badge>
-                    )}
-                    {item.type === 'enhanced' && (
-                      <Badge className="bg-purple-600/80 text-white text-xs">
-                        Before/After
-                      </Badge>
-                    )}
+                    <div className="flex gap-2 flex-wrap">
+                      {item.duration && (
+                        <Badge className="bg-purple-600/80 text-white text-xs">
+                          {item.duration}
+                        </Badge>
+                      )}
+                      {item.type === 'enhanced' && (
+                        <Badge className="bg-blue-600/80 text-white text-xs">
+                          Before/After
+                        </Badge>
+                      )}
+                    </div>
                   </div>
                   
-                  {/* Hover effect border */}
-                  <div className="absolute inset-0 rounded-2xl ring-2 ring-purple-400/0 group-hover:ring-purple-400/50 transition-all duration-300"></div>
+                  {/* Hover effect border glow */}
+                  <div className="absolute inset-0 rounded-2xl ring-2 ring-purple-500/0 group-hover:ring-purple-500/60 transition-all duration-300"></div>
                 </div>
               </div>
             ))}
