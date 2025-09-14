@@ -162,20 +162,20 @@ html, body {
   /* Optimized heading styles for Montserrat */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: -0.5px;
     line-height: 1.25;
   }
   
   /* Specific adjustments for larger headings */
   h1 {
-    font-weight: 700;
+    font-weight: 450;
     letter-spacing: -0.5px;
     line-height: 1.2;
   }
   
   h2 {
-    font-weight: 650;
+    font-weight: 425;
     letter-spacing: -0.3px;
     line-height: 1.25;
   }
