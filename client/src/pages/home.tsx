@@ -1,25 +1,33 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import ServicesSection from "@/components/services-section";
 import WhyLorepicSection from "@/components/why-lorepic-section";
-import WhatMakesUsDifferentSection from "@/components/what-makes-us-different-section";
+import DiscoverServicesSection from "@/components/discover-services-section";
 import GallerySection from "@/components/gallery-section";
 import TemplatesSection from "@/components/templates-section";
-import FAQSection from "@/components/faq-section";
+import WhyChooseUsSection from "@/components/why-choose-us-section";
+import PricingCTASection from "@/components/pricing-cta-section";
 import FinalCTASection from "@/components/final-cta-section";
 import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen transition-colors duration-300">
+    <div className="min-h-screen">
       <Navigation />
+      {/* 1. Hero Section (Light) */}
       <HeroSection />
-      <ServicesSection />
+      {/* 2. Why Lorepic? (Dark) */}
       <WhyLorepicSection />
-      <WhatMakesUsDifferentSection />
+      {/* 3. Discover Services (Light) */}
+      <DiscoverServicesSection />
+      {/* 4. Gallery & Examples (Dark, Dynamic) */}
       <GallerySection />
+      {/* 5. AI Template Library (Light) */}
       <TemplatesSection />
-      <FAQSection />
+      {/* 6. Why Choose Us (Dark) */}
+      <WhyChooseUsSection />
+      {/* 7. Pricing & Credits (Light) */}
+      <PricingCTASection />
+      {/* 8. Final CTA (Dark Gradient) */}
       <FinalCTASection />
       <Footer />
     </div>

@@ -1,0 +1,49 @@
+Hi team 👋
+
+I’d like to redesign the Lorepic homepage to meet SaaS design standards. Please update the homepage according to the following structure and design rules:
+
+Lorepic Homepage Redesign Spec
+🔹 Design Rules
+* Alternate section backgrounds: Light → Dark → Light → Dark
+* Add scroll-triggered animations (fade-in, slide-up, counters)
+* Gallery should be dynamic (mix static images + short auto-play video loops)
+* Final CTA should use a dark gradient background
+
+New Homepage Structure
+1. Hero Section (Light)
+    * Headline: “Bring Your Ideas to Life with AI-Powered Creativity”
+    * Subheadline: short tagline (max 2 lines).
+    * CTAs: Start Free (primary) and See Examples (secondary).
+    * Show 4 service buttons (Image Enhancement, Text-to-Image, Image-to-Video, Text-to-Video) below hero CTAs as icon-based quick links.
+2. Why Lorepic? (Dark)
+    * Combined version of “What Makes Us Different” + USPs.
+    * Title: “Why Lorepic?”
+    * 3–4 columns with icons + text (AI-powered, Fast, Affordable, Flexible).
+    * Animation: slide-up cards.
+3. Discover Services (Light)
+    * 4 service cards with hover effects.
+    * Each card includes small CTA: “Try Now”.
+4. Gallery & Examples (Dark, Dynamic)
+    * Grid of images + auto-play video loops.
+    * Hover expands preview.
+    * Animation: fade-in staggered grid.
+5. AI Template Library (Light)
+    * Title: “AI Templates for Every Need”.
+    * Tags + filters (Social Media, Marketing, YouTube, etc.).
+    * Hover preview + “Use Template” button.
+6. Why Choose Us (Dark)
+    * Use black design like the screenshot reference I shared.
+    * Show 3–4 big stats/counters (e.g., Templates, Speed, Uptime).
+7. Pricing & Credits (Light)
+    * Homepage only has a short CTA block → “See Plans & Credit Packs”
+    * Button: View Pricing → /pricing
+    * Full pricing details remain on /pricing.
+8. Final CTA (Dark Gradient)
+    * Headline: “Ready to Create Smarter?”
+    * Subheadline: “Join thousands already using Lorepic to turn ideas into stunning visuals and videos.”
+    * CTA: Start Free Today
+
+
+This should make the homepage more engaging, SaaS-standard, and conversion-focused.
+
+Thanks 🚀
