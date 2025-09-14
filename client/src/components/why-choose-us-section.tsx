@@ -56,9 +56,13 @@ export default function WhyChooseUsSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.3 }
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
     );
 
     if (sectionRef.current) {
@@ -110,30 +114,35 @@ export default function WhyChooseUsSection() {
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-6xl text-white mb-6">
+          <h2 className={`text-4xl lg:text-6xl text-white mb-6 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
+          }`}>
             Why Choose <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Lorepic</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
+          }`}>
             Join hundreds of thousands of creators worldwide who trust Lorepic for professional AI-powered content creation
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {stats.map((stat, index) => (
-            <div
-              key={stat.id}
-              className="text-center transform transition-all duration-1000 hover:scale-105"
-              data-testid={`stat-${stat.id}`}
-            >
-              {/* Enhanced card with glassmorphism and slide-up animation */}
-              <div 
-                className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-500 group"
-                style={{ 
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
-                  transitionDelay: `${index * 150}ms`
-                }}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 ${
+          isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
+        }`}>
+          {stats.map((stat, index) => {
+            const delayClasses = ["delay-0", "delay-150", "delay-300", "delay-450"];
+            return (
+              <div
+                key={stat.id}
+                className="text-center transform transition-all duration-1000 hover:scale-105"
+                data-testid={`stat-${stat.id}`}
               >
+                {/* Enhanced card with glassmorphism and slide-up animation */}
+                <div 
+                  className={`relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-500 group ${
+                    isVisible ? `animate-in fade-in slide-in-from-bottom-4 duration-700 ${delayClasses[index]}` : 'opacity-0 translate-y-4'
+                  }`}
+                >
                 {/* Icon with gradient background */}
                 <div className="flex justify-center mb-6">
                   <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-2xl`}>
@@ -169,7 +178,8 @@ export default function WhyChooseUsSection() {
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-600/0 to-blue-600/0 group-hover:from-purple-600/5 group-hover:to-blue-600/5 transition-all duration-500"></div>
               </div>
             </div>
-          ))}
+          );
+        })}
         </div>
 
         {/* Enhanced bottom section with awards/certifications */}

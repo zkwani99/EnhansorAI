@@ -42,9 +42,13 @@ export default function WhyLorepicSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.2 }
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
     );
 
     if (sectionRef.current) {
@@ -62,17 +66,23 @@ export default function WhyLorepicSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl text-white mb-6">
+          <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
+          }`}>
             Why <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Lorepic</span>?
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+          <p className={`text-xl text-gray-300 max-w-4xl mx-auto ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
+          }`}>
             From content creators to enterprise businesses, successful professionals across industries 
             grow and scale with Lorepic's AI-powered creative technology.
           </p>
         </div>
         
         {/* Animated Cards Grid with slide-up effect */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto ${
+          isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
+        }`}>
           {advantages.map((advantage, index) => {
             const IconComponent = advantage.icon;
             const delayClasses = ["delay-0", "delay-150", "delay-300", "delay-450"];
@@ -80,12 +90,9 @@ export default function WhyLorepicSection() {
             return (
               <Card
                 key={index}
-                className={`group bg-gray-800 dark:bg-gray-900 border border-gray-700 hover:border-purple-500 rounded-2xl shadow-xl hover:shadow-purple-500/20 hover:shadow-2xl transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 h-full cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:outline-none ${delayClasses[index] || ""}`}
-                style={{ 
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms'
-                }}
+                className={`group bg-gray-800 dark:bg-gray-900 border border-gray-700 hover:border-purple-500 rounded-2xl shadow-xl hover:shadow-purple-500/20 hover:shadow-2xl transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 h-full cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:outline-none ${
+                  isVisible ? `animate-in fade-in slide-in-from-bottom-4 duration-700 ${delayClasses[index]}` : 'opacity-0 translate-y-4'
+                }`}
                 data-testid={`card-advantage-${advantage.title.toLowerCase()}`}
               >
                 <CardContent className="p-8 text-center h-full flex flex-col">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -8,6 +8,29 @@ export default function GallerySection() {
   const [activeFilter, setActiveFilter] = useState("enhanced");
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [showBeforeAfter, setShowBeforeAfter] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const filterButtons = [
     { id: "enhanced", label: "Enhanced", icon: ImageIcon, color: "from-purple-600 via-purple-700 to-purple-800" },
@@ -172,19 +195,25 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="gallery" className="py-20 bg-gray-900 dark:bg-black relative" data-testid="gallery-section">
+      <section ref={sectionRef} id="gallery" className="py-20 bg-gray-900 dark:bg-black relative" data-testid="gallery-section">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl text-white mb-6">
+            <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
+              isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
+            }`}>
               Gallery & <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Examples</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className={`text-xl text-gray-300 max-w-3xl mx-auto ${
+              isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
+            }`}>
               Discover stunning examples of what's possible with our AI-powered creative tools
             </p>
           </div>
           
           {/* Dark theme filter buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
+          <div className={`flex flex-wrap justify-center gap-3 mb-16 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
+          }`}>
             {filterButtons.map((button) => {
               const IconComponent = button.icon;
               const isActive = activeFilter === button.id;
@@ -207,7 +236,9 @@ export default function GallerySection() {
           </div>
           
           {/* Dynamic Masonry Gallery Grid */}
-          <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+          <div className={`columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-450' : 'opacity-0 translate-y-4'
+          }`}>
             {getFilteredItems().map((item) => (
               <div
                 key={item.id}

@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Eye, Sparkles, Palette, Video, Film } from "lucide-react";
 import { redirectToService } from "@/lib/authRedirect";
@@ -8,6 +9,29 @@ import { useLocation } from "wouter";
 export default function HeroSection() {
   const { isAuthenticated } = useAuth();
   const [, navigate] = useLocation();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const services = [
     {
@@ -78,11 +102,13 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="py-20 lg:py-32 bg-white dark:bg-gray-900">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {/* New Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-8 leading-tight">
+          <h1 className={`text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-8 leading-tight ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
+          }`}>
             Bring Your Ideas to Life with{" "}
             <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">
               AI-Powered Creativity
@@ -90,13 +116,17 @@ export default function HeroSection() {
           </h1>
           
           {/* New Subheadline */}
-          <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className={`text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
+          }`}>
             Transform text into stunning visuals, enhance images with professional quality, 
             and create captivating videos—all powered by cutting-edge AI technology.
           </p>
           
           {/* Primary CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
+          }`}>
             <Button 
               size="lg"
               onClick={handleStartFree}
@@ -120,7 +150,9 @@ export default function HeroSection() {
           </div>
 
           {/* Service Icon Buttons - Quick Links */}
-          <div className="mb-12">
+          <div className={`mb-12 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-450' : 'opacity-0 translate-y-4'
+          }`}>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wide">
               Quick Start with Our AI Tools
             </p>

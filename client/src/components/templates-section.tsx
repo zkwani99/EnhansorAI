@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +6,29 @@ import { ArrowRight, Image as ImageIcon, Video, Sparkles, Zap, Eye, Star, Layers
 
 export default function TemplatesSection() {
   const [filterType, setFilterType] = useState("all");
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const filterButtons = [
     { id: "all", label: "All Templates", icon: Layers },
@@ -129,21 +152,27 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-900">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6">
+          <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
+          }`}>
             AI Template <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Library</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto ${
+            isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
+          }`}>
             Jumpstart your creativity with professionally crafted templates. 
             Perfect starting points for every AI workflow and project type.
           </p>
         </div>
 
         {/* Filter buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div className={`flex flex-wrap justify-center gap-3 mb-16 ${
+          isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
+        }`}>
           {filterButtons.map((button) => {
             const IconComponent = button.icon;
             const isActive = filterType === button.id;
@@ -166,7 +195,9 @@ export default function TemplatesSection() {
         </div>
 
         {/* Templates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16 ${
+          isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-450' : 'opacity-0 translate-y-4'
+        }`}>
           {getFilteredTemplates().map((template) => (
             <Card
               key={template.id}
