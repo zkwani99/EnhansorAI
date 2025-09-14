@@ -1,89 +1,134 @@
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Zap, Palette, RotateCcw, Shield } from "lucide-react";
 
 export default function WhyLorepicSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
   const advantages = [
     {
       icon: Zap,
       emoji: "⚡",
       title: "Speed",
-      tagline: "Lightning-fast AI rendering powered by GPU acceleration.",
+      tagline: "Lightning-fast AI rendering powered by GPU acceleration and optimized models.",
       color: "from-purple-500 to-violet-500",
-      bgGradient: "from-purple-50/50 to-violet-50/50 dark:from-black dark:to-black",
-      borderColor: "border-purple-200 dark:border-purple-600 hover:border-purple-400 dark:hover:border-purple-500",
-      shadowColor: "hover:shadow-purple-500/20"
     },
     {
       icon: Palette,
       emoji: "🎨",
       title: "Quality",
-      tagline: "Crystal-clear images & cinematic-quality videos every time.",
+      tagline: "Crystal-clear images & cinematic-quality videos every time you create.",
       color: "from-purple-600 to-pink-500",
-      bgGradient: "from-purple-50/50 to-pink-50/50 dark:from-black dark:to-black",
-      borderColor: "border-purple-200 dark:border-purple-600 hover:border-pink-400 dark:hover:border-pink-500",
-      shadowColor: "hover:shadow-pink-500/20"
     },
     {
       icon: RotateCcw,
       emoji: "🔄",
       title: "Flexibility",
-      tagline: "Choose between subscription plans or flexible PAYG credits.",
+      tagline: "Choose between subscription plans or flexible pay-as-you-go credits.",
       color: "from-purple-700 to-indigo-500",
-      bgGradient: "from-purple-50/50 to-indigo-50/50 dark:from-black dark:to-black",
-      borderColor: "border-purple-200 dark:border-purple-600 hover:border-indigo-400 dark:hover:border-indigo-500",
-      shadowColor: "hover:shadow-indigo-500/20"
     },
     {
       icon: Shield,
       emoji: "🔒",
       title: "Security",
-      tagline: "Your data stays encrypted, GDPR-ready, and safe with us.",
+      tagline: "Your data stays encrypted, GDPR-compliant, and completely secure with us.",
       color: "from-purple-800 to-violet-600",
-      bgGradient: "from-purple-50/50 to-violet-50/50 dark:from-black dark:to-black",
-      borderColor: "border-purple-200 dark:border-purple-600 hover:border-violet-400 dark:hover:border-violet-500",
-      shadowColor: "hover:shadow-violet-500/20"
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-20 bg-white dark:bg-black transition-colors duration-300">
+    <section 
+      ref={sectionRef}
+      className="py-20 bg-gray-900 dark:bg-black text-white"
+      data-testid="why-lorepic-section"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Why Lorepic?
+          <h2 className="text-4xl lg:text-5xl text-white mb-6">
+            Why <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Lorepic</span>?
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-            From content creators to enterprise businesses, successful professionals across industries grow and scale with Lorepic's AI-powered technology.
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+            From content creators to enterprise businesses, successful professionals across industries 
+            grow and scale with Lorepic's AI-powered creative technology.
           </p>
         </div>
         
-        {/* Static Cards Grid - 4 cards on desktop, 2 on tablet, 1 on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {/* Animated Cards Grid with slide-up effect */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {advantages.map((advantage, index) => {
             const IconComponent = advantage.icon;
+            const delayClasses = ["delay-0", "delay-150", "delay-300", "delay-450"];
             
             return (
               <Card
                 key={index}
-                className={`group bg-gradient-to-br ${advantage.bgGradient} border ${advantage.borderColor} rounded-2xl shadow-lg ${advantage.shadowColor} hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 h-full cursor-pointer`}
+                className={`group bg-gray-800 dark:bg-gray-900 border border-gray-700 hover:border-purple-500 rounded-2xl shadow-xl hover:shadow-purple-500/20 hover:shadow-2xl transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 h-full cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:outline-none ${delayClasses[index] || ""}`}
+                style={{ 
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+                  transitionDelay: isVisible ? `${index * 150}ms` : '0ms'
+                }}
                 data-testid={`card-advantage-${advantage.title.toLowerCase()}`}
               >
-                <CardContent className="p-6 text-center h-full flex flex-col">
-                  <div className={`w-24 h-24 bg-gradient-to-br ${advantage.color} rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <span className="text-4xl">{advantage.emoji}</span>
+                <CardContent className="p-8 text-center h-full flex flex-col">
+                  <div className={`relative w-20 h-20 bg-gradient-to-br ${advantage.color} rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <IconComponent className="w-8 h-8 text-white" />
+                    <span className="absolute -top-2 -right-2 text-xl bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center border-2 border-gray-700">
+                      {advantage.emoji}
+                    </span>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-2xl text-white mb-4 group-hover:text-purple-300 transition-colors">
                     {advantage.title}
                   </h3>
                   
-                  <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
                     {advantage.tagline}
                   </p>
                 </CardContent>
               </Card>
             );
           })}
+        </div>
+
+        {/* Social Proof Section */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center space-x-6 bg-gray-800 dark:bg-gray-900 rounded-xl px-8 py-6 border border-gray-700">
+            <div className="flex -space-x-3">
+              <div className="w-10 h-10 bg-purple-600 rounded-full border-2 border-gray-800"></div>
+              <div className="w-10 h-10 bg-blue-600 rounded-full border-2 border-gray-800"></div>
+              <div className="w-10 h-10 bg-green-600 rounded-full border-2 border-gray-800"></div>
+              <div className="w-10 h-10 bg-yellow-600 rounded-full border-2 border-gray-800"></div>
+              <div className="w-10 h-10 bg-pink-600 rounded-full border-2 border-gray-800"></div>
+            </div>
+            <div className="text-left">
+              <div className="text-lg text-white font-semibold">50,000+ Creators</div>
+              <div className="text-sm text-gray-400">Growing every day</div>
+            </div>
+            <div className="h-8 w-px bg-gray-700"></div>
+            <div className="text-left">
+              <div className="text-lg text-white font-semibold">99.9% Uptime</div>
+              <div className="text-sm text-gray-400">Always available</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
