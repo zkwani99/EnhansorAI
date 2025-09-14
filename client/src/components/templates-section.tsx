@@ -2,11 +2,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight, Image as ImageIcon, Video, Sparkles, Zap, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { ArrowRight, Image as ImageIcon, Video, Sparkles, Zap, Eye, Star, Layers } from "lucide-react";
 
 export default function TemplatesSection() {
   const [filterType, setFilterType] = useState("all");
+
+  const filterButtons = [
+    { id: "all", label: "All Templates", icon: Layers },
+    { id: "image", label: "Image Gen", icon: ImageIcon },
+    { id: "enhancement", label: "Enhancement", icon: Sparkles },
+    { id: "video", label: "Video", icon: Video }
+  ];
 
   const templates = [
     {
@@ -16,7 +22,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "image",
       tags: ["Image Gen", "HD", "Nature", "Realistic"],
-      category: "Photography"
+      category: "Photography",
+      popular: true,
+      rating: 4.8
     },
     {
       id: 2,
@@ -25,7 +33,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "enhancement",
       tags: ["Enhancement", "Portrait", "Professional", "Retouching"],
-      category: "Photography"
+      category: "Photography",
+      popular: false,
+      rating: 4.6
     },
     {
       id: 3,
@@ -34,7 +44,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1617791160588-241658c0f566?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "image",
       tags: ["Abstract", "Art", "Creative", "Vibrant"],
-      category: "Art & Design"
+      category: "Art & Design",
+      popular: true,
+      rating: 4.9
     },
     {
       id: 4,
@@ -43,7 +55,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "video",
       tags: ["Video", "Cinematic", "HD", "Professional"],
-      category: "Film & Video"
+      category: "Film & Video",
+      popular: true,
+      rating: 4.7
     },
     {
       id: 5,
@@ -52,7 +66,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "enhancement",
       tags: ["Product", "Studio", "E-commerce", "Professional"],
-      category: "Business"
+      category: "Business",
+      popular: false,
+      rating: 4.5
     },
     {
       id: 6,
@@ -61,7 +77,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "image",
       tags: ["Fantasy", "Character", "Gaming", "Creative"],
-      category: "Gaming & Entertainment"
+      category: "Gaming & Entertainment",
+      popular: false,
+      rating: 4.4
     },
     {
       id: 7,
@@ -70,7 +88,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "image",
       tags: ["Architecture", "3D", "Realistic", "Design"],
-      category: "Architecture"
+      category: "Architecture",
+      popular: false,
+      rating: 4.6
     },
     {
       id: 8,
@@ -79,7 +99,9 @@ export default function TemplatesSection() {
       thumbnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300",
       type: "image",
       tags: ["Social Media", "Marketing", "Branding", "Templates"],
-      category: "Marketing"
+      category: "Marketing",
+      popular: true,
+      rating: 4.8
     }
   ];
 
@@ -107,113 +129,147 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden bg-white dark:bg-black transition-colors duration-300">
-      {/* Background decoration - removed for dark theme */}
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            AI Templates Library
+          <h2 className="text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6">
+            AI Template <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Library</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            Jumpstart your creativity with ready-to-use templates for different AI workflows. 
-            Perfect starting points for your next project.
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Jumpstart your creativity with professionally crafted templates. 
+            Perfect starting points for every AI workflow and project type.
           </p>
-          
-          {/* Filter dropdown */}
-          <div className="flex items-center justify-center gap-4">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by type:</span>
-            <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-48 border-purple-200 dark:border-purple-600 focus:border-purple-400 focus:ring-purple-200 bg-white dark:bg-black text-gray-900 dark:text-white">
-                <SelectValue placeholder="Select template type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Templates</SelectItem>
-                <SelectItem value="image">Image Generation</SelectItem>
-                <SelectItem value="video">Video Creation</SelectItem>
-                <SelectItem value="enhancement">Image Enhancement</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+        </div>
+
+        {/* Filter buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {filterButtons.map((button) => {
+            const IconComponent = button.icon;
+            const isActive = filterType === button.id;
+            return (
+              <Button
+                key={button.id}
+                onClick={() => setFilterType(button.id)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 shadow-lg hover:shadow-xl transform hover:scale-105 ${
+                  isActive
+                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white border-transparent shadow-purple-500/30"
+                    : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-purple-300 dark:hover:border-purple-600 hover:bg-purple-50 dark:hover:bg-gray-700"
+                }`}
+                data-testid={`filter-${button.id}`}
+              >
+                <IconComponent className="w-4 h-4 mr-2" />
+                {button.label}
+              </Button>
+            );
+          })}
         </div>
 
         {/* Templates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
           {getFilteredTemplates().map((template) => (
             <Card
               key={template.id}
-              className="group relative overflow-hidden bg-white dark:bg-black border-2 border-purple-200 dark:border-purple-600 hover:border-purple-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-purple-200"
+              className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
               data-testid={`template-card-${template.id}`}
             >
               <div className="relative">
                 <img
                   src={template.thumbnail}
                   alt={template.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
                 
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Enhanced overlay with multiple gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                 
-                {/* Preview button */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button
-                    size="sm"
-                    className="bg-white/90 dark:bg-black/90 text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-800"
-                    data-testid={`button-preview-template-${template.id}`}
-                  >
-                    <Eye className="w-4 h-4 mr-2" />
-                    Preview
-                  </Button>
-                </div>
+                {/* Popular badge */}
+                {template.popular && (
+                  <div className="absolute top-3 left-3">
+                    <Badge className="bg-yellow-500 text-black font-medium">
+                      <Star className="w-3 h-3 mr-1" />
+                      Popular
+                    </Badge>
+                  </div>
+                )}
 
                 {/* Type badge */}
-                <div className="absolute top-3 left-3">
-                  <Badge className={`flex items-center gap-1 ${getTypeColor(template.type)}`}>
+                <div className="absolute top-3 right-3">
+                  <Badge className="bg-white/90 dark:bg-black/90 text-gray-700 dark:text-gray-300">
                     {getTypeIcon(template.type)}
-                    {template.type === "enhancement" ? "Enhance" : template.type}
+                    <span className="ml-1 capitalize">
+                      {template.type === "enhancement" ? "Enhance" : template.type}
+                    </span>
                   </Badge>
+                </div>
+
+                {/* Enhanced preview overlay */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-100 scale-95">
+                  <Button
+                    size="lg"
+                    className="bg-white/95 dark:bg-gray-900/95 text-gray-900 dark:text-white hover:bg-white dark:hover:bg-gray-800 shadow-xl mb-3"
+                    data-testid={`button-preview-template-${template.id}`}
+                  >
+                    <Eye className="w-5 h-5 mr-2" />
+                    Preview Template
+                  </Button>
+                  
+                  {/* Rating stars */}
+                  <div className="flex items-center text-white">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`w-4 h-4 ${i < Math.floor(template.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
+                      />
+                    ))}
+                    <span className="ml-2 text-sm font-medium">{template.rating}</span>
+                  </div>
                 </div>
               </div>
 
               <CardContent className="p-6">
-                <div className="mb-3">
-                  <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2 group-hover:text-purple-700 transition-colors">
+                <div className="mb-4">
+                  <h3 className="font-semibold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                     {template.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2">
                     {template.description}
                   </p>
                 </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1 mb-4">
+                {/* Enhanced tags with better styling */}
+                <div className="flex flex-wrap gap-2 mb-4">
                   {template.tags.slice(0, 3).map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-xs px-2 py-1">
+                    <Badge 
+                      key={tag} 
+                      variant="outline" 
+                      className="text-xs px-3 py-1 border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                    >
                       {tag}
                     </Badge>
                   ))}
                   {template.tags.length > 3 && (
-                    <Badge variant="outline" className="text-xs px-2 py-1">
-                      +{template.tags.length - 3}
+                    <Badge variant="outline" className="text-xs px-3 py-1 text-gray-500">
+                      +{template.tags.length - 3} more
                     </Badge>
                   )}
                 </div>
 
-                {/* Category and Use Template button */}
+                {/* Bottom section with category and CTA */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500 font-medium">
-                    {template.category}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">
+                      {template.category}
+                    </span>
+                  </div>
                   <Button
-                    size="sm"
-                    className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-700 hover:via-purple-800 hover:to-purple-900 text-white shadow-md hover:shadow-lg"
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                     data-testid={`button-use-template-${template.id}`}
                   >
                     Use Template
-                    <ArrowRight className="w-4 h-4 ml-1" />
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
               </CardContent>
@@ -221,17 +277,37 @@ export default function TemplatesSection() {
           ))}
         </div>
 
-        {/* View All Templates Button */}
+        {/* Bottom CTA section */}
         <div className="text-center">
-          <Button
-            variant="outline"
-            size="lg"
-            className="px-8 py-3 text-purple-700 border-2 border-purple-300 hover:bg-purple-50 hover:border-purple-400 hover:text-purple-800 transition-all duration-200"
-            data-testid="button-view-all-templates"
-          >
-            <ArrowRight className="w-5 h-5 mr-2" />
-            View All Templates
-          </Button>
+          <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-2xl p-8 border border-purple-100 dark:border-purple-800">
+            <h3 className="text-2xl text-gray-900 dark:text-white mb-4">
+              🎨 Ready to Create Something Amazing?
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+              Browse our full collection of templates and start creating professional-quality content in minutes.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                data-testid="button-browse-all-templates"
+              >
+                <Layers className="w-5 h-5 mr-2" />
+                Browse All Templates
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-6 py-4 rounded-xl transition-all duration-300"
+                data-testid="button-create-custom"
+              >
+                Create From Scratch
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
