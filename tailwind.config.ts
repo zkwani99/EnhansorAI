@@ -70,10 +70,10 @@ export default {
         "gray-600": "var(--gray-600)",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
         serif: ["Georgia", "serif"],
         mono: ["Menlo", "monospace"],
-        inter: ["Inter", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
