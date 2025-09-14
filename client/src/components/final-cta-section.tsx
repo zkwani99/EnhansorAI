@@ -1,18 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Rocket, BarChart3, Shield, Clock, RotateCcw, Award } from "lucide-react";
+import { Rocket, ArrowRight, Shield, Zap, Users, CheckCircle, Star } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 
 export default function FinalCTASection() {
   const { isAuthenticated } = useAuth();
   const [, navigate] = useLocation();
-
-  const trustIndicators = [
-    { emoji: "🔒", text: "Enterprise Security" },
-    { emoji: "⚡", text: "Fast AI Processing" },
-    { emoji: "🔄", text: "Cancel Anytime" },
-    { emoji: "☁️", text: "Cloud-based" },
-  ];
 
   const handleTryFree = () => {
     // Check authentication status before navigating
@@ -29,48 +22,106 @@ export default function FinalCTASection() {
     navigate('/pricing');
   };
 
+  const stats = [
+    { icon: Users, number: "50K+", label: "Active Creators" },
+    { icon: Zap, number: "1M+", label: "AI Generations" },
+    { icon: Star, number: "4.8/5", label: "User Rating" }
+  ];
+
+  const trustPoints = [
+    { icon: Shield, text: "Enterprise-grade security" },
+    { icon: Zap, text: "Lightning-fast AI processing" },
+    { icon: CheckCircle, text: "30-day money-back guarantee" }
+  ];
+
   return (
-    <section className="py-20 bg-gray-50 dark:bg-black">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-          The Future of Content Starts Here
-        </h2>
-        <p className="text-xl text-gray-600 dark:text-white/90 mb-10 leading-relaxed">
-          From stunning images to dynamic videos, Lorepic puts next-gen AI tools in your hands. Join free today and stay ahead of the curve.
-        </p>
+    <section className="relative py-24 overflow-hidden">
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/50 to-blue-900/50"></div>
+      
+      {/* Background decorations */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <Button
-            size="lg"
-            onClick={handleTryFree}
-            className="bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 min-w-[200px]"
-            data-testid="button-final-try-free"
-          >
-            <Rocket className="mr-2" size={20} />
-            Try It Free Now
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={handleComparePlans}
-            className="bg-purple-100 text-purple-700 hover:bg-purple-200 border-2 border-purple-300 hover:border-purple-400 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 min-w-[200px]"
-            data-testid="button-final-compare-plans"
-          >
-            <BarChart3 className="mr-2" size={20} />
-            Explore Plans
-          </Button>
+        {/* Main CTA Content */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl lg:text-7xl font-semibold text-white mb-8 leading-tight tracking-tight">
+            Ready to Transform Your
+            <br />
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+              Creative Process?
+            </span>
+          </h2>
+          <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
+            Join thousands of creators who are already using AI to produce stunning content faster than ever before. Start your journey today with <span className="text-white font-semibold">free credits</span>.
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl blur opacity-60 group-hover:opacity-100 transition duration-500"></div>
+              <Button
+                size="lg"
+                onClick={handleTryFree}
+                className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 px-10 py-6 rounded-2xl text-xl font-bold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 min-w-[280px]"
+                data-testid="button-final-try-free"
+              >
+                <Rocket className="mr-3" size={24} />
+                Start Creating for Free
+              </Button>
+            </div>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={handleComparePlans}
+              className="bg-white/10 text-white hover:bg-white/20 border-2 border-white/30 hover:border-white/50 px-10 py-6 rounded-2xl text-xl font-semibold backdrop-blur-sm transition-all duration-300 min-w-[280px]"
+              data-testid="button-final-compare-plans"
+            >
+              View All Plans
+              <ArrowRight className="ml-3" size={24} />
+            </Button>
+          </div>
         </div>
-        
-        {/* Trust Indicators */}
-        <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-gray-600 dark:text-white/80">
-          {trustIndicators.map((indicator, index) => {
-            return (
-              <div key={index} className="flex items-center" data-testid={`trust-indicator-${index}`}>
-                <span className="mr-2 text-lg">{indicator.emoji}</span>
-                <span className="text-sm">{indicator.text}</span>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center" data-testid={`stat-${index}`}>
+              <div className="inline-flex items-center justify-center p-4 bg-white/10 rounded-2xl mb-4 backdrop-blur-sm">
+                <stat.icon className="w-8 h-8 text-purple-400" />
               </div>
-            );
-          })}
+              <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
+              <div className="text-gray-300">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Trust Points */}
+        <div className="relative">
+          <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+              {trustPoints.map((point, index) => (
+                <div key={index} className="flex items-center justify-center md:justify-start" data-testid={`trust-point-${index}`}>
+                  <div className="flex items-center justify-center p-3 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl mr-4">
+                    <point.icon className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <span className="text-white font-medium">{point.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Final message */}
+        <div className="text-center mt-12">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            No credit card required • Cancel anytime • Join 50,000+ creators worldwide
+          </p>
         </div>
       </div>
     </section>
