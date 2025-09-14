@@ -43,7 +43,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme, mounted]);
 
   const toggleTheme = () => {
+    // Disable transitions temporarily for instant theme switching
+    document.documentElement.classList.add('theme-changing');
+    
     setTheme(prev => prev === "light" ? "dark" : "light");
+    
+    // Re-enable transitions after the theme class is applied
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('theme-changing');
+    });
   };
 
   // Don't render until mounted to avoid hydration issues
