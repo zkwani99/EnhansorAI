@@ -193,6 +193,23 @@ html, body {
   h3.font-medium, h4.font-medium, h5.font-medium, h6.font-medium {
     font-weight: 500 !important;
   }
+  
+  /* Remove blue border/outline from navigation menu items */
+  nav button:focus,
+  nav button:focus-visible,
+  nav button:active,
+  [data-radix-popper-content-wrapper] button:focus,
+  [data-radix-popper-content-wrapper] button:focus-visible,
+  [data-radix-collection-item]:focus,
+  [data-radix-collection-item]:focus-visible,
+  button[data-state="open"]:focus,
+  button[data-state="open"]:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    --tw-ring-shadow: none !important;
+    --tw-ring-color: transparent !important;
+  }
 }
 
 /* Custom gradient utilities */
