@@ -31,7 +31,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="bg-gray-50 dark:bg-black py-8 transition-colors duration-300">
+    <footer className="bg-gradient-to-b from-pink-400 via-purple-500 to-blue-600 py-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -40,9 +40,9 @@ export default function Footer() {
               <div className="w-8 h-8 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 rounded-lg flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={18} />
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-gray-100">Lorepic</span>
+              <span className="text-xl font-bold text-white">Lorepic</span>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-white/90 text-sm leading-relaxed">
               Lorepic — AI tools to enhance, generate, and create. Smarter visuals, faster.
             </p>
           </div>
