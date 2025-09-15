@@ -148,10 +148,9 @@ export default function HeroSection() {
             </Button>
             
             <Button 
-              variant="outline" 
               size="lg"
               onClick={scrollToGallery}
-              className="border-2 border-white text-white hover:bg-white/10 hover:border-white/90 px-8 py-4 text-lg rounded-xl transition-all duration-200 backdrop-blur-sm"
+              className="bg-transparent border-2 border-white text-white hover:bg-white/10 hover:border-white hover:text-white px-8 py-4 text-lg rounded-xl transition-all duration-200 backdrop-blur-sm font-medium"
               data-testid="button-see-examples"
             >
               <Eye className="mr-2 h-5 w-5" />
