@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Zap, Image, Video, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, Image, Video, Sparkles, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
@@ -38,41 +38,53 @@ export default function DiscoverServicesSection() {
       id: "image-enhancement",
       icon: Sparkles,
       title: "Image Enhancement",
-      description: "Transform your images with AI-powered upscaling, noise reduction, and quality enhancement.",
-      features: ["4K Upscaling", "Noise Reduction", "Detail Enhancement"],
+      description: "Enhance photos in high resolution in seconds.",
+      features: [
+        { text: "Up to 6K resolution upscaling", icon: Monitor },
+        { text: "Noise reduction & sharpening", icon: Layers },
+        { text: "Batch processing available", icon: Clock }
+      ],
       href: "/enhance",
-      color: "from-green-500 to-emerald-600",
-      credits: "1 Credit"
+      color: "from-purple-600 to-purple-800"
     },
     {
       id: "text-to-image", 
       icon: Image,
-      title: "Text-to-Image",
-      description: "Create stunning visuals from simple text descriptions using advanced AI models.",
-      features: ["Multiple Art Styles", "High Resolution", "Custom Prompts"],
+      title: "Text-to-Image AI",
+      description: "Generate stunning visuals from any text.",
+      features: [
+        { text: "Multiple art styles available", icon: Paintbrush },
+        { text: "High-resolution outputs", icon: Monitor },
+        { text: "Commercial usage rights", icon: Check }
+      ],
       href: "/generate",
-      color: "from-purple-600 to-pink-600",
-      credits: "3 Credits"
-    },
-    {
-      id: "image-to-video",
-      icon: Video,
-      title: "Image-to-Video", 
-      description: "Bring static images to life with AI-generated animations and motion effects.",
-      features: ["Smooth Animation", "Multiple Styles", "HD Output"],
-      href: "/image-to-video",
-      color: "from-blue-600 to-cyan-600",
-      credits: "5 Credits"
+      color: "from-purple-600 to-purple-800"
     },
     {
       id: "text-to-video",
-      icon: Zap,
-      title: "Text-to-Video",
-      description: "Generate complete videos from text descriptions with AI-powered scene creation.",
-      features: ["Full HD Videos", "Scene Generation", "Custom Duration"],
+      icon: Video,
+      title: "Text-to-Video AI",
+      description: "Turn scripts into engaging short videos.",
+      features: [
+        { text: "Up to 1080p video generation", icon: Monitor },
+        { text: "AI Storyboard (advanced scene planning)", icon: Layers },
+        { text: "Custom aspect ratios", icon: Clock }
+      ],
       href: "/video",
-      color: "from-orange-500 to-red-600",
-      credits: "8 Credits"
+      color: "from-purple-600 to-purple-800"
+    },
+    {
+      id: "image-to-video",
+      icon: Film,
+      title: "Image-to-Video AI", 
+      description: "Animate your images into dynamic clips.",
+      features: [
+        { text: "720p & 1080p video generation", icon: Monitor },
+        { text: "Stitch up to 10s clips into longer videos", icon: Clock },
+        { text: "AI Concierge Mode (guided video creation)", icon: Layers }
+      ],
+      href: "/image-to-video",
+      color: "from-purple-600 to-purple-800"
     }
   ];
 
@@ -103,7 +115,7 @@ export default function DiscoverServicesSection() {
           <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
-            Explore our comprehensive suite of AI-powered creative tools designed to transform your ideas into reality
+            Choose from our powerful suite of AI-driven tools designed to elevate your creative projects
           </p>
         </div>
 
@@ -120,11 +132,6 @@ export default function DiscoverServicesSection() {
                 data-testid={`service-card-${service.id}`}
                 onClick={() => handleServiceClick(service.id, service.href)}
               >
-                {/* Credit badge */}
-                <div className="absolute top-4 right-4 bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 text-xs font-medium px-2 py-1 rounded-full">
-                  {service.credits}
-                </div>
-
                 {/* Icon with gradient background */}
                 <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                   <IconComponent className="w-8 h-8 text-white" />
@@ -139,23 +146,24 @@ export default function DiscoverServicesSection() {
                 </p>
 
                 {/* Features list */}
-                <ul className="space-y-2 mb-8">
-                  {service.features.map((feature, index) => (
-                    <li key={index} className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-                      <div className="w-1.5 h-1.5 bg-purple-600 dark:bg-purple-400 rounded-full mr-3 group-hover:scale-125 transition-transform" />
-                      {feature}
-                    </li>
-                  ))}
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, index) => {
+                    const FeatureIcon = feature.icon;
+                    return (
+                      <li key={index} className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
+                        <FeatureIcon className="text-purple-600 dark:text-purple-400 mr-3 w-4 h-4" />
+                        {feature.text}
+                      </li>
+                    );
+                  })}
                 </ul>
 
                 {/* CTA Button */}
                 <Button
-                  variant="outline"
-                  className="w-full group-hover:bg-purple-50 dark:group-hover:bg-purple-900/20 group-hover:border-purple-300 dark:group-hover:border-purple-600 group-hover:text-purple-700 dark:group-hover:text-purple-400 transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200"
                   data-testid={`service-cta-${service.id}`}
                 >
-                  Try Now
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  Try Now For Free
                 </Button>
 
                 {/* Hover overlay effect */}
