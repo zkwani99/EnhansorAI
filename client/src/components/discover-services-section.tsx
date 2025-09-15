@@ -94,7 +94,7 @@ export default function DiscoverServicesSection() {
       demo: {
         type: "text-to-video",
         prompt: "Astronaut walking on Mars with Earth visible in the sky",
-        videoUrl: "https://videos.pexels.com/video-files/4631568/4631568-uhd_2560_1440_24fps.mp4",
+        videoUrl: "https://videos.pexels.com/video-files/8474638/8474638-hd_1920_1080_24fps.mp4",
         caption: "From text → to video."
       }
     },
