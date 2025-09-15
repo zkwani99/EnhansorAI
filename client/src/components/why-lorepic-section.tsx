@@ -1,39 +1,67 @@
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Zap, Palette, RotateCcw, Shield } from "lucide-react";
+import { Zap, Star, Shield, RotateCcw, DollarSign, Ticket, BookOpen, Palette } from "lucide-react";
 
 export default function WhyLorepicSection() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const advantages = [
+  const features = [
     {
       icon: Zap,
-      emoji: "⚡",
+      emoji: "🚀",
       title: "Speed",
-      tagline: "Lightning-fast AI rendering powered by GPU acceleration and optimized models.",
+      description: "Fast AI processing with smooth results.",
       color: "from-purple-500 to-violet-500",
     },
     {
-      icon: Palette,
-      emoji: "🎨",
+      icon: Star,
+      emoji: "⭐",
       title: "Quality",
-      tagline: "Crystal-clear images & cinematic-quality videos every time you create.",
+      description: "High-resolution outputs tailored for professionals.",
       color: "from-purple-600 to-pink-500",
-    },
-    {
-      icon: RotateCcw,
-      emoji: "🔄",
-      title: "Flexibility",
-      tagline: "Choose between subscription plans or flexible pay-as-you-go credits.",
-      color: "from-purple-700 to-indigo-500",
     },
     {
       icon: Shield,
       emoji: "🔒",
       title: "Security",
-      tagline: "Your data stays encrypted, GDPR-compliant, and completely secure with us.",
+      description: "Safe, encrypted, and privacy-focused.",
+      color: "from-purple-700 to-indigo-500",
+    },
+    {
+      icon: RotateCcw,
+      emoji: "🔄",
+      title: "Flexibility",
+      description: "Adaptable to different creative workflows.",
       color: "from-purple-800 to-violet-600",
+    },
+    {
+      icon: DollarSign,
+      emoji: "💰",
+      title: "Affordable & Transparent Pricing",
+      description: "Lower cost than competitors, with flexible subscriptions + PAYG.",
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      icon: Ticket,
+      emoji: "🎟",
+      title: "Unified Credit System",
+      description: "One pool of credits works across all services.",
+      color: "from-green-500 to-emerald-500",
+    },
+    {
+      icon: BookOpen,
+      emoji: "📚",
+      title: "AI Template Library",
+      description: "Pre-built workflows and creative starting points.",
+      color: "from-orange-500 to-red-500",
+    },
+    {
+      icon: Palette,
+      emoji: "🎨",
+      title: "Multi-Format Creativity",
+      description: "Images, text-to-image, text-to-video, and image-to-video in one place.",
+      color: "from-pink-500 to-purple-500",
     }
   ];
 
@@ -61,79 +89,81 @@ export default function WhyLorepicSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-gray-900 dark:bg-black text-white"
-      data-testid="why-lorepic-section"
+      className="py-20 bg-white dark:bg-gray-50"
+      data-testid="built-to-stand-out-section"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
+          <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-gray-800 mb-6 font-semibold ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            Why <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Lorepic</span>?
+            Built to <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Stand Out</span>
           </h2>
-          <p className={`text-xl text-gray-300 max-w-4xl mx-auto ${
+          <p className={`text-xl text-gray-600 dark:text-gray-700 max-w-4xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
-            From content creators to enterprise businesses, successful professionals across industries 
-            grow and scale with Lorepic's AI-powered creative technology.
+            Discover what makes Lorepic the preferred choice for professionals and businesses worldwide
           </p>
         </div>
         
-        {/* Animated Cards Grid with slide-up effect */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto ${
+        {/* Modern SaaS Features Grid - 2 rows of 4 items */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto ${
           isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
         }`}>
-          {advantages.map((advantage, index) => {
-            const IconComponent = advantage.icon;
-            const delayClasses = ["delay-0", "delay-150", "delay-300", "delay-450"];
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon;
+            const delayClasses = ["delay-0", "delay-75", "delay-150", "delay-225", "delay-300", "delay-375", "delay-450", "delay-500"];
             
             return (
-              <Card
+              <div
                 key={index}
-                className={`group bg-gray-800 dark:bg-gray-900 border border-gray-700 hover:border-purple-500 rounded-2xl shadow-xl hover:shadow-purple-500/20 hover:shadow-2xl transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 h-full cursor-pointer focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:outline-none ${
+                className={`group bg-white dark:bg-gray-50 border border-gray-100 dark:border-gray-200 hover:border-purple-200 dark:hover:border-purple-300 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 ${
                   isVisible ? `animate-in fade-in slide-in-from-bottom-4 duration-700 ${delayClasses[index]}` : 'opacity-0 translate-y-4'
                 }`}
-                data-testid={`card-advantage-${advantage.title.toLowerCase()}`}
+                data-testid={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <CardContent className="p-8 text-center h-full flex flex-col">
-                  <div className={`relative w-20 h-20 bg-gradient-to-br ${advantage.color} rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <IconComponent className="w-8 h-8 text-white" />
-                    <span className="absolute -top-2 -right-2 text-xl bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center border-2 border-gray-700">
-                      {advantage.emoji}
-                    </span>
+                <div className="flex items-start space-x-4">
+                  {/* Icon Container */}
+                  <div className={`flex-shrink-0 w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200`}>
+                    <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   
-                  <h3 className="text-2xl text-white mb-4 group-hover:text-purple-300 transition-colors">
-                    {advantage.title}
-                  </h3>
-                  
-                  <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
-                    {advantage.tagline}
-                  </p>
-                </CardContent>
-              </Card>
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <span className="text-lg">{feature.emoji}</span>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-800 group-hover:text-purple-700 transition-colors">
+                        {feature.title}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-700 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
 
-        {/* Social Proof Section */}
+        {/* Trust Indicators */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center space-x-6 bg-gray-800 dark:bg-gray-900 rounded-xl px-8 py-6 border border-gray-700">
+          <div className="inline-flex items-center justify-center space-x-8 bg-gray-50 dark:bg-white rounded-xl px-8 py-6 border border-gray-100 shadow-sm">
             <div className="flex -space-x-3">
-              <div className="w-10 h-10 bg-purple-600 rounded-full border-2 border-gray-800"></div>
-              <div className="w-10 h-10 bg-blue-600 rounded-full border-2 border-gray-800"></div>
-              <div className="w-10 h-10 bg-green-600 rounded-full border-2 border-gray-800"></div>
-              <div className="w-10 h-10 bg-yellow-600 rounded-full border-2 border-gray-800"></div>
-              <div className="w-10 h-10 bg-pink-600 rounded-full border-2 border-gray-800"></div>
+              <div className="w-10 h-10 bg-purple-600 rounded-full border-2 border-white shadow-sm"></div>
+              <div className="w-10 h-10 bg-blue-600 rounded-full border-2 border-white shadow-sm"></div>
+              <div className="w-10 h-10 bg-green-600 rounded-full border-2 border-white shadow-sm"></div>
+              <div className="w-10 h-10 bg-orange-600 rounded-full border-2 border-white shadow-sm"></div>
+              <div className="w-10 h-10 bg-pink-600 rounded-full border-2 border-white shadow-sm"></div>
             </div>
             <div className="text-left">
-              <div className="text-lg text-white font-semibold">50,000+ Creators</div>
-              <div className="text-sm text-gray-400">Growing every day</div>
+              <div className="text-lg text-gray-900 font-semibold">50,000+ Creators</div>
+              <div className="text-sm text-gray-600">Growing every day</div>
             </div>
-            <div className="h-8 w-px bg-gray-700"></div>
+            <div className="h-8 w-px bg-gray-200"></div>
             <div className="text-left">
-              <div className="text-lg text-white font-semibold">99.9% Uptime</div>
-              <div className="text-sm text-gray-400">Always available</div>
+              <div className="text-lg text-gray-900 font-semibold">99.9% Uptime</div>
+              <div className="text-sm text-gray-600">Always available</div>
             </div>
           </div>
         </div>
