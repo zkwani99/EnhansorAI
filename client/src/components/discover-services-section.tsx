@@ -74,7 +74,7 @@ export default function DiscoverServicesSection() {
       href: "/generate",
       demo: {
         type: "generated-image",
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop&auto=format&q=95",
+        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop&auto=format&q=95",
         prompt: "A futuristic city at sunset",
         caption: "From text → to art."
       }
@@ -205,11 +205,18 @@ export default function DiscoverServicesSection() {
     
     if (demo.type === "generated-image") {
       return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group bg-gray-100 dark:bg-gray-800">
           <img 
             src={demo.image} 
             alt={demo.prompt}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="eager"
+            draggable={false}
+            onDragStart={(e) => e.preventDefault()}
+            onError={(e) => {
+              console.error('Failed to load Text-to-Image demo image:', e);
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="absolute bottom-3 left-3 text-white">
