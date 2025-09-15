@@ -122,24 +122,17 @@ export default function WhyLorepicSection() {
                 }`}
                 data-testid={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <div className="flex items-start space-x-4">
-                  {/* Icon Container */}
-                  <div className={`flex-shrink-0 w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200`}>
-                    <IconComponent className="w-6 h-6 text-white" />
+                <div>
+                  {/* Content with just emoji icon */}
+                  <div className="flex items-center space-x-2 mb-3">
+                    <span className="text-lg">{feature.emoji}</span>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
+                      {feature.title}
+                    </h3>
                   </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-lg">{feature.emoji}</span>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
-                        {feature.title}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             );
