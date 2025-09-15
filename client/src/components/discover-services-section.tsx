@@ -18,6 +18,7 @@ export default function DiscoverServicesSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeService, setActiveService] = useState(0);
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [isAutoMoving, setIsAutoMoving] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -40,6 +41,21 @@ export default function DiscoverServicesSection() {
 
     return () => observer.disconnect();
   }, []);
+
+  // Auto-moving slider animation
+  useEffect(() => {
+    if (!isAutoMoving) return;
+    
+    const interval = setInterval(() => {
+      setSliderPosition(prev => {
+        if (prev >= 90) return 10;
+        if (prev <= 10) return 90;
+        return prev > 50 ? prev + 20 : prev - 20;
+      });
+    }, 1500);
+    
+    return () => clearInterval(interval);
+  }, [isAutoMoving]);
 
   const services = [
     {
@@ -134,7 +150,11 @@ export default function DiscoverServicesSection() {
     
     if (demo.type === "before-after") {
       return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+        <div 
+          className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group"
+          onMouseEnter={() => setIsAutoMoving(false)}
+          onMouseLeave={() => setIsAutoMoving(true)}
+        >
           <div className="relative w-full h-full">
             {/* Before image */}
             <img 
@@ -150,11 +170,25 @@ export default function DiscoverServicesSection() {
               className="absolute inset-0 w-full h-full object-cover"
               style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
             />
+            
+            {/* Before/After Labels */}
+            <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
+              Before
+            </div>
+            <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
+              After
+            </div>
+            
             {/* Slider control */}
             <div 
               className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize z-10 group-hover:w-2 transition-all duration-200"
-              style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+              style={{ 
+                left: `${sliderPosition}%`, 
+                transform: 'translateX(-50%)',
+                transition: isAutoMoving ? 'left 1.5s ease-in-out' : 'none'
+              }}
               onMouseDown={(e) => {
+                setIsAutoMoving(false);
                 const rect = e.currentTarget.parentElement?.getBoundingClientRect();
                 const handleMouseMove = (moveEvent: MouseEvent) => {
                   if (rect) {
@@ -165,6 +199,7 @@ export default function DiscoverServicesSection() {
                 const handleMouseUp = () => {
                   document.removeEventListener('mousemove', handleMouseMove);
                   document.removeEventListener('mouseup', handleMouseUp);
+                  setTimeout(() => setIsAutoMoving(true), 2000); // Resume auto-moving after 2 seconds
                 };
                 document.addEventListener('mousemove', handleMouseMove);
                 document.addEventListener('mouseup', handleMouseUp);
