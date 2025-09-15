@@ -12,8 +12,7 @@ import { isReviewMode } from "@/lib/reviewMode";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 import cityDemo from "@assets/generated_images/futuristic_city_sunset_cyberpunk_e000e9a7.png";
-import astronautSprite from "@assets/generated_images/Astronaut_walking_sprite_sheet_dc929dbf.png";
-import marsBackground from "@assets/generated_images/Mars_landscape_background_0f1bf2c4.png";
+import astronautDemo from "@assets/generated_images/Astronaut_walking_on_Mars_5bd8331f.png";
 
 export default function DiscoverServicesSection() {
   const { isAuthenticated } = useAuth();
@@ -96,11 +95,7 @@ export default function DiscoverServicesSection() {
       demo: {
         type: "text-to-video",
         prompt: "Astronaut walking on Mars with Earth visible in the sky",
-        spriteSrc: astronautSprite,
-        backgroundSrc: marsBackground,
-        spriteFrames: 8,
-        spriteWidth: 128,
-        spriteHeight: 128,
+        imageUrl: astronautDemo,
         caption: "From text → to video."
       }
     },
@@ -322,7 +317,7 @@ export default function DiscoverServicesSection() {
                     backgroundImage: `url(${demo.spriteSrc})`,
                     backgroundSize: `${demo.spriteWidth * demo.spriteFrames}px ${demo.spriteHeight}px`,
                     backgroundRepeat: 'no-repeat',
-                    animation: 'astronautWalk 12s infinite linear, astronautMove 12s infinite linear'
+                    animation: 'astronautWalk 1s steps(8) infinite, astronautMove 12s linear infinite'
                   }}
                 />
               </div>

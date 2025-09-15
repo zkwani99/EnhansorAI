@@ -294,21 +294,21 @@ html, body {
   }
 
   /* Astronaut Walking Animation */
+  .astronaut-walk {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    image-rendering: auto;
+  }
+
   @keyframes astronautWalk {
-    0% { background-position: 0 0; }
-    12.5% { background-position: -128px 0; }
-    25% { background-position: -256px 0; }
-    37.5% { background-position: -384px 0; }
-    50% { background-position: -512px 0; }
-    62.5% { background-position: -640px 0; }
-    75% { background-position: -768px 0; }
-    87.5% { background-position: -896px 0; }
-    100% { background-position: 0 0; }
+    from { background-position-x: 0; }
+    to { background-position-x: -896px; } /* -(128px * (8-1)) */
   }
 
   @keyframes astronautMove {
-    0% { transform: translateX(-50px); }
-    100% { transform: translateX(300px); }
+    from { transform: translateX(-10%); }
+    to { transform: translateX(110%); }
   }
 
   /* Reduced motion support */
