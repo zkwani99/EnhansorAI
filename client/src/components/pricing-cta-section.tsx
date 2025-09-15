@@ -82,34 +82,6 @@ export default function PricingCTASection() {
           </div>
         </div>
 
-        {/* Credit costs breakdown */}
-        <div className="mt-16">
-          <h4 className="text-center text-2xl text-gray-900 dark:text-white mb-8">
-            Credit Usage Guide
-          </h4>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">1</div>
-              <div className="text-lg font-medium text-gray-900 dark:text-white mb-1">Credit</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Image Enhancement</div>
-            </div>
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">3</div>
-              <div className="text-lg font-medium text-gray-900 dark:text-white mb-1">Credits</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Text-to-Image AI</div>
-            </div>
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">5</div>
-              <div className="text-lg font-medium text-gray-900 dark:text-white mb-1">Credits</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Image-to-Video AI</div>
-            </div>
-            <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">8</div>
-              <div className="text-lg font-medium text-gray-900 dark:text-white mb-1">Credits</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Text-to-Video AI</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
