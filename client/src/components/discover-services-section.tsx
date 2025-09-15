@@ -109,9 +109,9 @@ export default function DiscoverServicesSection() {
       ],
       href: "/image-to-video",
       demo: {
-        type: "animated-image",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=300&fit=crop&auto=format",
-        caption: "Bring photos to life."
+        type: "video",
+        videoUrl: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+        caption: "From photo → to video."
       }
     }
   ];
@@ -243,43 +243,6 @@ export default function DiscoverServicesSection() {
       );
     }
     
-    if (demo.type === "animated-image") {
-      return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group bg-gray-100 dark:bg-gray-800">
-          <img 
-            src={demo.image} 
-            alt="Portrait photo"
-            className="w-full h-full object-cover"
-            style={{
-              animation: 'breathe 4s ease-in-out infinite, subtle-pulse 2s ease-in-out infinite alternate'
-            }}
-            loading="eager"
-            draggable={false}
-            onDragStart={(e) => e.preventDefault()}
-          />
-          
-          {/* Multiple animated overlays for stronger effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-300/30 to-transparent animate-shimmer" />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-300/20 to-transparent" style={{ animation: 'shimmer 3s linear infinite reverse' }} />
-          
-          {/* Larger floating particles */}
-          <div className="absolute inset-0">
-            <div className="absolute top-[20%] left-[25%] w-2 h-2 bg-purple-400/80 rounded-full animate-float-1" />
-            <div className="absolute top-[40%] right-[30%] w-3 h-3 bg-blue-400/70 rounded-full animate-float-2" />
-            <div className="absolute bottom-[35%] left-[60%] w-2 h-2 bg-pink-400/80 rounded-full animate-float-3" />
-            <div className="absolute top-[60%] left-[15%] w-1.5 h-1.5 bg-cyan-400/90 rounded-full animate-float-1" style={{ animationDelay: '1.5s' }} />
-            <div className="absolute bottom-[50%] right-[20%] w-2.5 h-2.5 bg-indigo-400/70 rounded-full animate-float-2" style={{ animationDelay: '2s' }} />
-          </div>
-          
-          {/* Pulsing border effect */}
-          <div className="absolute inset-0 border-2 border-purple-400/50 rounded-xl" style={{ animation: 'pulse-border 3s ease-in-out infinite' }} />
-          
-          <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
-            {demo.caption}
-          </div>
-        </div>
-      );
-    }
     
     return null;
   };
