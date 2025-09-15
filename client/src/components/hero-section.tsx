@@ -102,25 +102,35 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-black text-white relative overflow-hidden">
+      {/* Video Background Placeholder - Ready for future video implementation */}
+      <div className="absolute inset-0 bg-black">
+        {/* Future video element will go here: */}
+        {/* <video className="w-full h-full object-cover" autoPlay muted loop playsInline>
+          <source src="/hero-background-video.mp4" type="video/mp4" />
+        </video> */}
+      </div>
+      
+      {/* Black Gradient Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="text-center">
           {/* New Headline */}
-          <h1 className={`text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-8 leading-tight ${
+          <h1 className={`text-5xl sm:text-6xl lg:text-7xl text-white mb-8 leading-tight ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
             Bring Your Ideas to Life with{" "}
-            <span className="bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent">
               AI-Powered Creativity
             </span>
           </h1>
           
           {/* New Subheadline */}
-          <p className={`text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed ${
+          <p className={`text-xl lg:text-2xl text-gray-200 mb-12 max-w-4xl mx-auto leading-relaxed ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
-            Transform text into stunning visuals, enhance images with professional quality, 
-            and create captivating videos—all powered by cutting-edge AI technology.
+            Enhance photos, generate art, and create cinematic videos—instantly, with AI.
           </p>
           
           {/* Primary CTAs */}
@@ -141,7 +151,7 @@ export default function HeroSection() {
               variant="outline" 
               size="lg"
               onClick={scrollToGallery}
-              className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 text-lg rounded-xl transition-all duration-200"
+              className="border-2 border-white/70 text-white hover:bg-white/10 hover:border-white px-8 py-4 text-lg rounded-xl transition-all duration-200 backdrop-blur-sm"
               data-testid="button-see-examples"
             >
               <Eye className="mr-2 h-5 w-5" />
@@ -153,7 +163,7 @@ export default function HeroSection() {
           <div className={`mb-12 ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-450' : 'opacity-0 translate-y-4'
           }`}>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wide">
+            <p className="text-sm text-gray-300 mb-6 uppercase tracking-wide">
               Quick Start with Our AI Tools
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
@@ -163,13 +173,13 @@ export default function HeroSection() {
                   <button
                     key={service.id}
                     onClick={() => handleServiceClick(service.id, service.route)}
-                    className="group flex flex-col items-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                    className="group flex flex-col items-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
                     data-testid={`service-quick-${service.id}`}
                   >
-                    <div className="p-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg mb-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 transition-colors">
-                      <IconComponent className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    <div className="p-3 bg-purple-600/20 backdrop-blur-sm rounded-lg mb-3 group-hover:bg-purple-600/30 transition-colors">
+                      <IconComponent className="w-6 h-6 text-purple-300" />
                     </div>
-                    <span className="text-sm text-gray-700 dark:text-gray-300 font-medium text-center leading-tight">
+                    <span className="text-sm text-gray-200 font-medium text-center leading-tight">
                       {service.title}
                     </span>
                   </button>
@@ -180,29 +190,29 @@ export default function HeroSection() {
 
           {/* Trust Indicators */}
           <div className="text-center">
-            <p className="text-gray-500 dark:text-gray-400 text-lg mb-8">
+            <p className="text-gray-300 text-lg mb-8">
               ✨ Start Creating for Free • No Credit Card Required • 50 Free Credits
             </p>
             
             {/* Hero Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-images-processed">
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent" data-testid="stat-images-processed">
                   10K+
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 mt-1">Images Enhanced</div>
+                <div className="text-gray-300 mt-1">Images Enhanced</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-videos-generated">
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent" data-testid="stat-videos-generated">
                   5K+
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 mt-1">Videos Created</div>
+                <div className="text-gray-300 mt-1">Videos Created</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent" data-testid="stat-happy-users">
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent" data-testid="stat-happy-users">
                   50K+
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 mt-1">Happy Users</div>
+                <div className="text-gray-300 mt-1">Happy Users</div>
               </div>
             </div>
           </div>
