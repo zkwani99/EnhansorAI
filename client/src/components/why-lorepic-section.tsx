@@ -143,11 +143,11 @@ export default function WhyLorepicSection() {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center justify-center space-x-8 bg-gray-50 dark:bg-gray-800 rounded-xl px-8 py-6 border border-gray-100 dark:border-gray-700 shadow-sm">
             <div className="flex -space-x-3">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
-              <img src="https://images.unsplash.com/photo-1494790108755-2616b86d1b92?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
-              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
             </div>
             <div className="text-left">
               <div className="text-lg text-gray-900 dark:text-white font-semibold">1000+ Creators</div>
