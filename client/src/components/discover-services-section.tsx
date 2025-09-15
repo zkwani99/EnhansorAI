@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Zap, Image, Video, Sparkles, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
+import { ArrowRight, Wand2, ImageIcon, VideoIcon, Clapperboard, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
@@ -36,7 +36,7 @@ export default function DiscoverServicesSection() {
   const services = [
     {
       id: "image-enhancement",
-      icon: Sparkles,
+      icon: Wand2,
       title: "Image Enhancement",
       description: "Enhance photos in high resolution in seconds.",
       features: [
@@ -49,7 +49,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "text-to-image", 
-      icon: Image,
+      icon: ImageIcon,
       title: "Text-to-Image AI",
       description: "Generate stunning visuals from any text.",
       features: [
@@ -62,7 +62,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "text-to-video",
-      icon: Video,
+      icon: VideoIcon,
       title: "Text-to-Video AI",
       description: "Turn scripts into engaging short videos.",
       features: [
@@ -75,7 +75,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "image-to-video",
-      icon: Film,
+      icon: Clapperboard,
       title: "Image-to-Video AI", 
       description: "Animate your images into dynamic clips.",
       features: [
@@ -128,7 +128,7 @@ export default function DiscoverServicesSection() {
             return (
               <div
                 key={service.id}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full flex flex-col"
                 data-testid={`service-card-${service.id}`}
                 onClick={() => handleServiceClick(service.id, service.href)}
               >
@@ -137,7 +137,7 @@ export default function DiscoverServicesSection() {
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 
-                <h3 className="text-2xl text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors whitespace-nowrap">
                   {service.title}
                 </h3>
                 
@@ -146,25 +146,27 @@ export default function DiscoverServicesSection() {
                 </p>
 
                 {/* Features list */}
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 flex-grow">
                   {service.features.map((feature, index) => {
                     const FeatureIcon = feature.icon;
                     return (
                       <li key={index} className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
-                        <FeatureIcon className="text-purple-600 dark:text-purple-400 mr-3 w-4 h-4" />
-                        {feature.text}
+                        <FeatureIcon className="text-purple-600 dark:text-purple-400 mr-3 w-4 h-4 flex-shrink-0" />
+                        <span>{feature.text}</span>
                       </li>
                     );
                   })}
                 </ul>
 
                 {/* CTA Button */}
-                <Button
-                  className="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200"
-                  data-testid={`service-cta-${service.id}`}
-                >
-                  Try Now For Free
-                </Button>
+                <div className="mt-auto">
+                  <Button
+                    className="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 whitespace-nowrap"
+                    data-testid={`service-cta-${service.id}`}
+                  >
+                    Try Now For Free
+                  </Button>
+                </div>
 
                 {/* Hover overlay effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -184,7 +186,7 @@ export default function DiscoverServicesSection() {
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             data-testid="popular-service-cta"
           >
-            <Image className="mr-2 w-5 h-5" />
+            <ImageIcon className="mr-2 w-5 h-5" />
             Generate Your First AI Image
           </Button>
         </div>
