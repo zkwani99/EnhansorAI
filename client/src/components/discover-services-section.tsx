@@ -57,8 +57,8 @@ export default function DiscoverServicesSection() {
       href: "/enhance",
       demo: {
         type: "before-after",
-        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&q=60",
-        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&q=95",
+        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=75&fit=crop&auto=format&q=10",
+        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=750&fit=crop&auto=format&q=95",
         caption: "Upscale & restore in seconds."
       }
     },
@@ -135,67 +135,72 @@ export default function DiscoverServicesSection() {
     const { demo } = service;
     
     if (demo.type === "before-after") {
+      const handlePointerDown = (e: React.PointerEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+        const rect = e.currentTarget.getBoundingClientRect();
+        
+        const handlePointerMove = (moveEvent: PointerEvent) => {
+          const newPosition = ((moveEvent.clientX - rect.left) / rect.width) * 100;
+          setSliderPosition(Math.max(0, Math.min(100, newPosition)));
+        };
+        
+        const handlePointerUp = () => {
+          document.removeEventListener('pointermove', handlePointerMove);
+          document.removeEventListener('pointerup', handlePointerUp);
+          setIsDragging(false);
+        };
+        
+        document.addEventListener('pointermove', handlePointerMove);
+        document.addEventListener('pointerup', handlePointerUp);
+      };
+
       return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group bg-gray-100 dark:bg-gray-800">
-          <div className="relative w-full h-full">
-            {/* After image - base layer */}
+        <div 
+          className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg cursor-ew-resize select-none"
+          onPointerDown={handlePointerDown}
+        >
+          {/* High-resolution "After" image - base layer */}
+          <img 
+            src={demo.afterImage} 
+            alt="After enhancement"
+            className="absolute inset-0 w-full h-full object-cover"
+            draggable={false}
+            onDragStart={(e) => e.preventDefault()}
+            loading="eager"
+          />
+          
+          {/* Low-resolution "Before" image - overlay */}
+          <div 
+            className="absolute inset-0 overflow-hidden"
+            style={{ width: `${sliderPosition}%` }}
+          >
             <img 
-              src={demo.afterImage} 
-              alt="After enhancement"
+              src={demo.beforeImage} 
+              alt="Before enhancement"
               className="absolute inset-0 w-full h-full object-cover"
+              style={{ imageRendering: 'pixelated' }}
+              draggable={false}
+              onDragStart={(e) => e.preventDefault()}
               loading="eager"
             />
-            {/* Before image - overlay with clipping */}
-            <div 
-              className="absolute inset-0 overflow-hidden"
-              style={{ width: `${sliderPosition}%` }}
-            >
-              <img 
-                src={demo.beforeImage} 
-                alt="Before enhancement"
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            
-            {/* Before/After Labels */}
-            <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
-              Before
-            </div>
-            <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
-              After
-            </div>
-            
-            {/* Manual slider control */}
-            <div 
-              className="absolute top-0 bottom-0 w-8 cursor-ew-resize z-10 opacity-0 hover:opacity-100 transition-all duration-200"
-              style={{ 
-                left: `${sliderPosition}%`, 
-                transform: 'translateX(-50%)'
-              }}
-              onMouseDown={(e) => {
-                setIsDragging(true);
-                const rect = e.currentTarget.parentElement?.getBoundingClientRect();
-                const handleMouseMove = (moveEvent: MouseEvent) => {
-                  if (rect) {
-                    const newPosition = ((moveEvent.clientX - rect.left) / rect.width) * 100;
-                    setSliderPosition(Math.max(0, Math.min(100, newPosition)));
-                  }
-                };
-                const handleMouseUp = () => {
-                  document.removeEventListener('mousemove', handleMouseMove);
-                  document.removeEventListener('mouseup', handleMouseUp);
-                  setIsDragging(false);
-                };
-                document.addEventListener('mousemove', handleMouseMove);
-                document.addEventListener('mouseup', handleMouseUp);
-              }}
-            >
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 hover:bg-white/30 hover:scale-110">
-                <Sliders className="w-4 h-4 text-white" />
-              </div>
-            </div>
           </div>
+          
+          {/* Vertical divider line */}
+          <div 
+            className="absolute top-0 bottom-0 w-px bg-white/80 shadow-[0_0_0_1px_rgba(0,0,0,0.2)]"
+            style={{ left: `${sliderPosition}%`, transform: 'translateX(-0.5px)' }}
+          />
+          
+          {/* Before/After Labels */}
+          <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
+            Before
+          </div>
+          <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
+            After
+          </div>
+          
+          {/* Caption */}
           <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
             {demo.caption}
           </div>
