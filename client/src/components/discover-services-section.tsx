@@ -94,7 +94,7 @@ export default function DiscoverServicesSection() {
       demo: {
         type: "text-to-video",
         prompt: "Astronaut walking on Mars with Earth visible in the sky",
-        videoUrl: "https://videos.pexels.com/video-files/4427324/4427324-hd_1920_1080_24fps.mp4",
+        videoUrl: "https://videos.pexels.com/video-files/4631568/4631568-uhd_2560_1440_24fps.mp4",
         caption: "From text → to video."
       }
     },
@@ -257,15 +257,15 @@ export default function DiscoverServicesSection() {
       }, []);
       
       return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg bg-gray-900">
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-900">
           {/* Text Prompt Display */}
           <div className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-0' : 'opacity-100'} flex items-center justify-center p-6`}>
             <div className="text-center">
-              <div className="text-sm text-white/60 mb-3 font-medium">✨ Text Prompt</div>
-              <div className="text-white text-lg font-semibold leading-relaxed max-w-sm">
+              <div className="text-sm text-gray-600 dark:text-white/60 mb-3 font-medium">✨ Text Prompt</div>
+              <div className="text-gray-900 dark:text-white text-lg font-semibold leading-relaxed max-w-sm">
                 "{demo.prompt}"
               </div>
-              <div className="mt-4 flex items-center justify-center text-white/40 text-xs">
+              <div className="mt-4 flex items-center justify-center text-gray-500 dark:text-white/40 text-xs">
                 <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse mr-2"></div>
                 Generating video...
               </div>
