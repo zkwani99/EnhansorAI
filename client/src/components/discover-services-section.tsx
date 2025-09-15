@@ -57,8 +57,8 @@ export default function DiscoverServicesSection() {
       href: "/enhance",
       demo: {
         type: "before-after",
-        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format&q=40&blur=1",
-        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=95&sharp=1",
+        beforeImage: "https://images.unsplash.com/photo-1464822759844-d150955b0336?w=400&h=300&fit=crop&auto=format&q=50",
+        afterImage: "https://images.unsplash.com/photo-1464822759844-d150955b0336?w=400&h=300&fit=crop&auto=format&q=95&sharp=10",
         caption: "Upscale & restore in seconds."
       }
     },
@@ -136,22 +136,27 @@ export default function DiscoverServicesSection() {
     
     if (demo.type === "before-after") {
       return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group bg-gray-100 dark:bg-gray-800">
           <div className="relative w-full h-full">
-            {/* Before image */}
-            <img 
-              src={demo.beforeImage} 
-              alt="Before enhancement"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-            />
-            {/* After image */}
+            {/* After image - base layer */}
             <img 
               src={demo.afterImage} 
               alt="After enhancement"
               className="absolute inset-0 w-full h-full object-cover"
-              style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
+              loading="eager"
             />
+            {/* Before image - overlay with clipping */}
+            <div 
+              className="absolute inset-0 overflow-hidden"
+              style={{ width: `${sliderPosition}%` }}
+            >
+              <img 
+                src={demo.beforeImage} 
+                alt="Before enhancement"
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
             
             {/* Before/After Labels */}
             <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-sm font-medium">
