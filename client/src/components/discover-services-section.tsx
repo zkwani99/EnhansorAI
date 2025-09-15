@@ -57,8 +57,8 @@ export default function DiscoverServicesSection() {
       href: "/enhance",
       demo: {
         type: "before-after",
-        beforeImage: "https://images.unsplash.com/photo-1464822759844-d150955b0336?w=400&h=300&fit=crop&auto=format&q=50",
-        afterImage: "https://images.unsplash.com/photo-1464822759844-d150955b0336?w=400&h=300&fit=crop&auto=format&q=95&sharp=10",
+        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&q=60",
+        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&q=95",
         caption: "Upscale & restore in seconds."
       }
     },
@@ -75,7 +75,7 @@ export default function DiscoverServicesSection() {
       href: "/generate",
       demo: {
         type: "generated-image",
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop&auto=format",
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop&auto=format&q=95",
         prompt: "A futuristic city at sunset",
         caption: "From text → to art."
       }
@@ -153,7 +153,7 @@ export default function DiscoverServicesSection() {
               <img 
                 src={demo.beforeImage} 
                 alt="Before enhancement"
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
                 loading="eager"
               />
             </div>
