@@ -139,7 +139,7 @@ export default function DiscoverServicesSection() {
                   </div>
                 </div>
                 
-                <h3 className="text-lg xl:text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors whitespace-nowrap">
+                <h3 className="text-lg xl:text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors whitespace-nowrap text-center">
                   {service.title}
                 </h3>
                 
