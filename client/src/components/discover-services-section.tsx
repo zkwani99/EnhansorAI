@@ -110,8 +110,8 @@ export default function DiscoverServicesSection() {
       href: "/image-to-video",
       demo: {
         type: "photo-to-video",
-        staticImage: "https://images.unsplash.com/photo-1432889490240-84df33d47091?w=800&h=600&fit=crop&auto=format&q=95",
-        animatedVideo: "https://videos.pexels.com/video-files/2253472/2253472-uhd_2560_1440_24fps.mp4",
+        staticImage: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&fit=crop&auto=format&q=95",
+        animatedVideo: "https://videos.pexels.com/video-files/4631568/4631568-uhd_2560_1440_24fps.mp4",
         caption: "From photo → to video."
       }
     }
