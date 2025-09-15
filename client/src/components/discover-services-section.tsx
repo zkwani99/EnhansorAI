@@ -52,7 +52,7 @@ export default function DiscoverServicesSection() {
         if (prev <= 10) return 90;
         return prev > 50 ? prev + 20 : prev - 20;
       });
-    }, 1500);
+    }, 3000);
     
     return () => clearInterval(interval);
   }, [isAutoMoving]);
@@ -71,8 +71,8 @@ export default function DiscoverServicesSection() {
       href: "/enhance",
       demo: {
         type: "before-after",
-        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&blur=2",
-        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop&auto=format&q=30",
+        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=95",
         caption: "Upscale & restore in seconds."
       }
     },
@@ -185,7 +185,7 @@ export default function DiscoverServicesSection() {
               style={{ 
                 left: `${sliderPosition}%`, 
                 transform: 'translateX(-50%)',
-                transition: isAutoMoving ? 'left 1.5s ease-in-out' : 'none'
+                transition: isAutoMoving ? 'left 3s ease-in-out' : 'none'
               }}
               onMouseDown={(e) => {
                 setIsAutoMoving(false);
