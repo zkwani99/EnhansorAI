@@ -89,7 +89,7 @@ export default function WhyLorepicSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-white dark:bg-gray-900"
+      className="py-20 bg-white dark:bg-black"
       data-testid="built-to-stand-out-section"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
