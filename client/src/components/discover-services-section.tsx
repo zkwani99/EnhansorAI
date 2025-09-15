@@ -111,7 +111,7 @@ export default function DiscoverServicesSection() {
       demo: {
         type: "photo-to-video",
         staticImage: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&h=600&fit=crop&auto=format&q=95",
-        animatedVideo: "https://videos.pexels.com/video-files/4825382/4825382-hd_1920_1080_30fps.mp4",
+        animatedVideo: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         caption: "From photo → to video."
       }
     }
@@ -280,8 +280,19 @@ export default function DiscoverServicesSection() {
               muted 
               playsInline
               className="w-full h-full object-cover"
+              onError={(e) => {
+                console.error('Video failed to load:', e);
+                console.error('Video source:', demo.animatedVideo);
+              }}
+              onLoadStart={() => {
+                console.log('Video loading started:', demo.animatedVideo);
+              }}
+              onCanPlay={() => {
+                console.log('Video can play:', demo.animatedVideo);
+              }}
             >
               <source src={demo.animatedVideo} type="video/mp4" />
+              Your browser does not support the video tag.
             </video>
             <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-medium">
               Video
