@@ -12,6 +12,7 @@ import { isReviewMode } from "@/lib/reviewMode";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 import cityDemo from "@assets/generated_images/futuristic_city_sunset_cyberpunk_e000e9a7.png";
+import astronautDemo from "@assets/generated_images/Astronaut_walking_on_Mars_5bd8331f.png";
 
 export default function DiscoverServicesSection() {
   const { isAuthenticated } = useAuth();
@@ -93,8 +94,8 @@ export default function DiscoverServicesSection() {
       href: "/video",
       demo: {
         type: "text-to-video",
-        prompt: "Aerial view of ocean waves crashing on a pristine beach",
-        videoUrl: "https://videos.pexels.com/video-files/4631568/4631568-uhd_2560_1440_24fps.mp4",
+        prompt: "Astronaut walking on Mars with Earth visible in the sky",
+        imageUrl: astronautDemo,
         caption: "From text → to video."
       }
     },
@@ -272,28 +273,39 @@ export default function DiscoverServicesSection() {
             </div>
           </div>
           
-          {/* Generated Video */}
+          {/* Generated Content */}
           <div className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-100' : 'opacity-0'}`}>
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                console.error('Text-to-Video failed to load:', e);
-                console.error('Video source:', demo.videoUrl);
-              }}
-              onLoadStart={() => {
-                console.log('Text-to-Video loading started:', demo.videoUrl);
-              }}
-              onCanPlay={() => {
-                console.log('Text-to-Video can play:', demo.videoUrl);
-              }}
-            >
-              <source src={demo.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {demo.videoUrl ? (
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.error('Text-to-Video failed to load:', e);
+                  console.error('Video source:', demo.videoUrl);
+                }}
+                onLoadStart={() => {
+                  console.log('Text-to-Video loading started:', demo.videoUrl);
+                }}
+                onCanPlay={() => {
+                  console.log('Text-to-Video can play:', demo.videoUrl);
+                }}
+              >
+                <source src={demo.videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : demo.imageUrl ? (
+              <img 
+                src={demo.imageUrl} 
+                alt={demo.prompt}
+                className="w-full h-full object-cover"
+                loading="eager"
+                draggable={false}
+                onDragStart={(e) => e.preventDefault()}
+              />
+            ) : null}
             <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-medium">
               Generated Video
             </div>
