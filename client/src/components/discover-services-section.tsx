@@ -71,8 +71,8 @@ export default function DiscoverServicesSection() {
       href: "/enhance",
       demo: {
         type: "before-after",
-        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop&auto=format&q=30",
-        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=95",
+        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&auto=format&q=40&blur=1",
+        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=95&sharp=1",
         caption: "Upscale & restore in seconds."
       }
     },
@@ -179,9 +179,9 @@ export default function DiscoverServicesSection() {
               After
             </div>
             
-            {/* Slider control */}
+            {/* Invisible slider control - no visible line */}
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize z-10 group-hover:w-2 transition-all duration-200"
+              className="absolute top-0 bottom-0 w-8 cursor-ew-resize z-10 opacity-0 hover:opacity-100 transition-opacity duration-300"
               style={{ 
                 left: `${sliderPosition}%`, 
                 transform: 'translateX(-50%)',
@@ -199,14 +199,14 @@ export default function DiscoverServicesSection() {
                 const handleMouseUp = () => {
                   document.removeEventListener('mousemove', handleMouseMove);
                   document.removeEventListener('mouseup', handleMouseUp);
-                  setTimeout(() => setIsAutoMoving(true), 2000); // Resume auto-moving after 2 seconds
+                  setTimeout(() => setIsAutoMoving(true), 2000);
                 };
                 document.addEventListener('mousemove', handleMouseMove);
                 document.addEventListener('mouseup', handleMouseUp);
               }}
             >
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center">
-                <Sliders className="w-3 h-3 text-gray-600" />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Sliders className="w-4 h-4 text-white" />
               </div>
             </div>
           </div>
