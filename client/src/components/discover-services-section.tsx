@@ -249,9 +249,19 @@ export default function DiscoverServicesSection() {
           <img 
             src={demo.image} 
             alt="Portrait photo"
-            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110"
+            className="w-full h-full object-cover animate-pulse"
+            style={{
+              animation: 'breathe 3s ease-in-out infinite'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+          {/* Continuous shimmer effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+          {/* Floating particles effect */}
+          <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white/60 rounded-full animate-float-1" />
+            <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white/60 rounded-full animate-float-2" />
+            <div className="absolute bottom-1/3 left-1/2 w-1 h-1 bg-white/60 rounded-full animate-float-3" />
+          </div>
           <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
             {demo.caption}
           </div>
