@@ -1,17 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
+import { Monitor, Layers, Clock, Paintbrush, Check, Film, ArrowRight, Sliders } from "lucide-react";
 import { 
   ImageSquare, 
   PaintBrushBroad, 
   FilmSlate, 
   VideoCamera 
 } from "@phosphor-icons/react";
-import { 
-  PhotoIcon,
-  SparklesIcon,
-  FilmIcon,
-  VideoCameraIcon
-} from "@heroicons/react/24/solid";
 import { Button } from "@/components/ui/button";
 import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
@@ -22,6 +16,8 @@ export default function DiscoverServicesSection() {
   const { isAuthenticated } = useAuth();
   const [, navigate] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
+  const [activeService, setActiveService] = useState(0);
+  const [sliderPosition, setSliderPosition] = useState(50);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -48,55 +44,73 @@ export default function DiscoverServicesSection() {
   const services = [
     {
       id: "image-enhancement",
-      icon: ImageSquare || PhotoIcon,
+      icon: ImageSquare,
       title: "Image Enhancement",
-      description: "Enhance photos in high resolution in seconds.",
+      description: "Transform blurry photos into crystal-clear masterpieces",
       features: [
-        { text: "Up to 6K resolution upscaling", icon: Monitor },
-        { text: "Noise reduction & sharpening", icon: Layers },
-        { text: "Batch processing available", icon: Clock }
+        "Up to 6K resolution upscaling",
+        "Noise reduction & sharpening", 
+        "Batch processing available"
       ],
       href: "/enhance",
-      color: "from-purple-600 to-purple-800"
+      demo: {
+        type: "before-after",
+        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&blur=2",
+        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+        caption: "Upscale & restore in seconds."
+      }
     },
     {
       id: "text-to-image", 
-      icon: PaintBrushBroad || SparklesIcon,
-      title: "Text-to-Image AI",
-      description: "Generate stunning visuals from any text.",
+      icon: PaintBrushBroad,
+      title: "Text-to-Image",
+      description: "Generate stunning artwork from simple text descriptions",
       features: [
-        { text: "Multiple art styles available", icon: Paintbrush },
-        { text: "High-resolution outputs", icon: Monitor },
-        { text: "Commercial usage rights", icon: Check }
+        "Multiple art styles available",
+        "High-resolution outputs",
+        "Commercial usage rights"
       ],
       href: "/generate",
-      color: "from-purple-600 to-purple-800"
+      demo: {
+        type: "generated-image",
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop&auto=format",
+        prompt: "A futuristic city at sunset",
+        caption: "From text → to art."
+      }
     },
     {
       id: "text-to-video",
-      icon: FilmSlate || FilmIcon,
-      title: "Text-to-Video AI",
-      description: "Turn scripts into engaging short videos.",
+      icon: FilmSlate,
+      title: "Text-to-Video",
+      description: "Transform ideas into cinematic video clips",
       features: [
-        { text: "Up to 1080p video generation", icon: Monitor },
-        { text: "AI Storyboard (advanced scene planning)", icon: Layers },
-        { text: "Custom aspect ratios", icon: Clock }
+        "Up to 1080p video generation",
+        "AI Storyboard (advanced scene planning)",
+        "Custom aspect ratios"
       ],
       href: "/video",
-      color: "from-purple-600 to-purple-800"
+      demo: {
+        type: "video",
+        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        caption: "Turn your ideas into cinematic clips."
+      }
     },
     {
       id: "image-to-video",
-      icon: VideoCamera || VideoCameraIcon,
-      title: "Image-to-Video AI", 
-      description: "Animate your images into dynamic clips.",
+      icon: VideoCamera,
+      title: "Image-to-Video", 
+      description: "Bring static photos to life with motion",
       features: [
-        { text: "720p & 1080p video generation", icon: Monitor },
-        { text: "Stitch up to 10s clips into longer videos", icon: Clock },
-        { text: "AI Concierge Mode (guided video creation)", icon: Layers }
+        "720p & 1080p video generation",
+        "Stitch up to 10s clips into longer videos",
+        "AI Concierge Mode (guided video creation)"
       ],
       href: "/image-to-video",
-      color: "from-purple-600 to-purple-800"
+      demo: {
+        type: "animated-image",
+        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=300&fit=crop&auto=format",
+        caption: "Bring photos to life."
+      }
     }
   ];
 
@@ -115,94 +129,183 @@ export default function DiscoverServicesSection() {
     }
   };
 
+  const renderDemo = (service: any, index: number) => {
+    const { demo } = service;
+    
+    if (demo.type === "before-after") {
+      return (
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+          <div className="relative w-full h-full">
+            {/* Before image */}
+            <img 
+              src={demo.beforeImage} 
+              alt="Before enhancement"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+            />
+            {/* After image */}
+            <img 
+              src={demo.afterImage} 
+              alt="After enhancement"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
+            />
+            {/* Slider control */}
+            <div 
+              className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize z-10 group-hover:w-2 transition-all duration-200"
+              style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+              onMouseDown={(e) => {
+                const rect = e.currentTarget.parentElement?.getBoundingClientRect();
+                const handleMouseMove = (moveEvent: MouseEvent) => {
+                  if (rect) {
+                    const newPosition = ((moveEvent.clientX - rect.left) / rect.width) * 100;
+                    setSliderPosition(Math.max(0, Math.min(100, newPosition)));
+                  }
+                };
+                const handleMouseUp = () => {
+                  document.removeEventListener('mousemove', handleMouseMove);
+                  document.removeEventListener('mouseup', handleMouseUp);
+                };
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('mouseup', handleMouseUp);
+              }}
+            >
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center">
+                <Sliders className="w-3 h-3 text-gray-600" />
+              </div>
+            </div>
+          </div>
+          <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+            {demo.caption}
+          </div>
+        </div>
+      );
+    }
+    
+    if (demo.type === "generated-image") {
+      return (
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+          <img 
+            src={demo.image} 
+            alt={demo.prompt}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="absolute bottom-3 left-3 text-white">
+            <div className="text-xs opacity-75 mb-1">Prompt: "{demo.prompt}"</div>
+            <div className="text-sm font-medium">{demo.caption}</div>
+          </div>
+        </div>
+      );
+    }
+    
+    if (demo.type === "video") {
+      return (
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={demo.videoUrl} type="video/mp4" />
+          </video>
+          <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+            {demo.caption}
+          </div>
+        </div>
+      );
+    }
+    
+    if (demo.type === "animated-image") {
+      return (
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+          <img 
+            src={demo.image} 
+            alt="Portrait photo"
+            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+          <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+            {demo.caption}
+          </div>
+        </div>
+      );
+    }
+    
+    return null;
+  };
+
   return (
     <section ref={sectionRef} className="py-20 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
           <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            Discover Our <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">AI Services</span>
+            See Lorepic <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">in Action</span>
           </h2>
           <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
-            Choose from our powerful suite of AI-driven tools designed to elevate your creative projects
+            Experience our AI-powered tools through interactive demos and real examples
           </p>
         </div>
 
-        <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 ${
+        {/* Services with Interactive Demos */}
+        <div className={`space-y-16 ${
           isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
         }`}>
-          {services.map((service) => {
+          {services.map((service, index) => {
             const IconComponent = service.icon;
             
             return (
-              <div
-                key={service.id}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full flex flex-col"
-                data-testid={`service-card-${service.id}`}
-                onClick={() => handleServiceClick(service.id, service.href)}
-              >
-                {/* Icon with gradient background */}
-                <div className="flex justify-center mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <IconComponent className="w-8 h-8 text-white" weight="duotone" />
+              <div key={service.id} className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Left Column: Service Details */}
+                <div className="order-2 lg:order-1">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mr-4">
+                      <IconComponent className="w-6 h-6 text-white" weight="duotone" />
+                    </div>
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+                      {service.title}
+                    </h3>
                   </div>
-                </div>
-                
-                <h3 className="text-lg xl:text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors whitespace-nowrap text-center">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
+                  
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
 
-                {/* Features list */}
-                <ul className="space-y-3 mb-8 flex-grow">
-                  {service.features.map((feature, index) => {
-                    const FeatureIcon = feature.icon;
-                    return (
-                      <li key={index} className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
-                        <FeatureIcon className="text-purple-600 dark:text-purple-400 mr-3 w-4 h-4 flex-shrink-0" />
-                        <span>{feature.text}</span>
+                  {/* Features list */}
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="text-gray-600 dark:text-gray-300 flex items-center">
+                        <div className="w-2 h-2 bg-purple-600 rounded-full mr-3 flex-shrink-0" />
+                        <span>{feature}</span>
                       </li>
-                    );
-                  })}
-                </ul>
+                    ))}
+                  </ul>
 
-                {/* CTA Button */}
-                <div className="mt-auto">
+                  {/* CTA Button */}
                   <Button
-                    className="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 whitespace-nowrap"
+                    onClick={() => handleServiceClick(service.id, service.href)}
+                    className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 group"
                     data-testid={`service-cta-${service.id}`}
                   >
                     Try Now For Free
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </div>
 
-                {/* Hover overlay effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                {/* Right Column: Interactive Demo */}
+                <div className="order-1 lg:order-2">
+                  {renderDemo(service, index)}
+                </div>
               </div>
             );
           })}
-        </div>
-
-        {/* Bottom CTA section */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            New to AI creation? Start with our most popular service
-          </p>
-          <Button
-            size="lg" 
-            onClick={() => handleServiceClick("text-to-image", "/generate")}
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            data-testid="popular-service-cta"
-          >
-            <PaintBrushBroad className="mr-2 w-5 h-5" weight="duotone" />
-            Generate Your First AI Image
-          </Button>
         </div>
       </div>
     </section>
