@@ -109,8 +109,9 @@ export default function DiscoverServicesSection() {
       ],
       href: "/image-to-video",
       demo: {
-        type: "video",
-        videoUrl: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+        type: "photo-to-video",
+        staticImage: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800&h=600&fit=crop&auto=format&q=95",
+        animatedVideo: "https://videos.pexels.com/video-files/4825382/4825382-hd_1920_1080_30fps.mp4",
         caption: "From photo → to video."
       }
     }
@@ -236,6 +237,57 @@ export default function DiscoverServicesSection() {
           >
             <source src={demo.videoUrl} type="video/mp4" />
           </video>
+          <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+            {demo.caption}
+          </div>
+        </div>
+      );
+    }
+    
+    if (demo.type === "photo-to-video") {
+      const [showVideo, setShowVideo] = useState(false);
+      
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setShowVideo(prev => !prev);
+        }, 3000); // Switch every 3 seconds
+        
+        return () => clearInterval(interval);
+      }, []);
+      
+      return (
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-800">
+          {/* Static Image */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-0' : 'opacity-100'}`}>
+            <img 
+              src={demo.staticImage}
+              alt="Static photo"
+              className="w-full h-full object-cover"
+              loading="eager"
+              draggable={false}
+              onDragStart={(e) => e.preventDefault()}
+            />
+            <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-medium">
+              Photo
+            </div>
+          </div>
+          
+          {/* Animated Video */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-100' : 'opacity-0'}`}>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src={demo.animatedVideo} type="video/mp4" />
+            </video>
+            <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-medium">
+              Video
+            </div>
+          </div>
+          
           <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
             {demo.caption}
           </div>
