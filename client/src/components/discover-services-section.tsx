@@ -116,15 +116,15 @@ export default function DiscoverServicesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-fuchsia-500 to-purple-800">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
+          <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            Discover Our <span className="text-yellow-300">AI Services</span>
+            Discover Our <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">AI Services</span>
           </h2>
-          <p className={`text-xl text-white/90 max-w-3xl mx-auto ${
+          <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
             Choose from our powerful suite of AI-driven tools designed to elevate your creative projects

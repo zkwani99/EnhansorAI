@@ -59,7 +59,7 @@ export default function FinalCTASection() {
   ];
 
   return (
-    <section ref={sectionRef} className="relative py-24 overflow-hidden bg-gradient-to-b from-fuchsia-500 to-purple-800">
+    <section ref={sectionRef} className="relative py-24 overflow-hidden bg-white dark:bg-black">
       {/* Background decorations for visual interest */}
       <div className="absolute inset-0 opacity-50 dark:opacity-100"></div>
       

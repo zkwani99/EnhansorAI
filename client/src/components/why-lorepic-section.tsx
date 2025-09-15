@@ -89,17 +89,17 @@ export default function WhyLorepicSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-fuchsia-500 to-purple-800"
+      className="py-20 bg-white dark:bg-black"
       data-testid="built-to-stand-out-section"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-4xl lg:text-5xl text-white mb-6 font-semibold ${
+          <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 font-semibold ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            Built to <span className="text-yellow-300">Stand Out</span>
+            Built to <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Stand Out</span>
           </h2>
-          <p className={`text-xl text-white/90 max-w-4xl mx-auto ${
+          <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
             Discover what makes Lorepic the preferred choice for professionals and businesses worldwide
@@ -117,7 +117,7 @@ export default function WhyLorepicSection() {
             return (
               <div
                 key={index}
-                className={`group bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 rounded-xl p-6 shadow-sm hover:shadow-lg hover:shadow-white/20 transition-all duration-300 transform hover:-translate-y-1 ${
+                className={`group bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-purple-200 dark:hover:border-purple-500 rounded-xl p-6 shadow-sm hover:shadow-lg dark:hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-1 ${
                   isVisible ? `animate-in fade-in slide-in-from-bottom-4 duration-700 ${delayClasses[index]}` : 'opacity-0 translate-y-4'
                 }`}
                 data-testid={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
@@ -126,11 +126,11 @@ export default function WhyLorepicSection() {
                   {/* Content with just emoji icon */}
                   <div className="flex items-center space-x-2 mb-3">
                     <span className="text-lg">{feature.emoji}</span>
-                    <h3 className="text-lg font-semibold text-white group-hover:text-yellow-300 transition-colors">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
                       {feature.title}
                     </h3>
                   </div>
-                  <p className="text-sm text-white/80 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -141,22 +141,22 @@ export default function WhyLorepicSection() {
 
         {/* Trust Indicators */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center justify-center space-x-8 bg-white/10 backdrop-blur-sm rounded-xl px-8 py-6 border border-white/20 shadow-sm">
+          <div className="inline-flex items-center justify-center space-x-8 bg-gray-50 dark:bg-gray-800 rounded-xl px-8 py-6 border border-gray-100 dark:border-gray-700 shadow-sm">
             <div className="flex -space-x-3">
-              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
               <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
               <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
               <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
               <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=face&auto=format" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" />
             </div>
             <div className="text-left">
-              <div className="text-lg text-white font-semibold">1000+ Creators</div>
-              <div className="text-sm text-white/80">Growing every day</div>
+              <div className="text-lg text-gray-900 dark:text-white font-semibold">1000+ Creators</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Growing every day</div>
             </div>
-            <div className="h-8 w-px bg-white/30"></div>
+            <div className="h-8 w-px bg-gray-200 dark:bg-gray-600"></div>
             <div className="text-left">
-              <div className="text-lg text-white font-semibold">99.9% Uptime</div>
-              <div className="text-sm text-white/80">Always available</div>
+              <div className="text-lg text-gray-900 dark:text-white font-semibold">99.9% Uptime</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Always available</div>
             </div>
           </div>
         </div>
