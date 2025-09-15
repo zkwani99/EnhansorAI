@@ -93,8 +93,8 @@ export default function DiscoverServicesSection() {
       href: "/video",
       demo: {
         type: "text-to-video",
-        prompt: "Astronaut walking on Mars with Earth visible in the sky",
-        videoUrl: "https://videos.pexels.com/video-files/6985001/6985001-hd_1920_1080_25fps.mp4",
+        prompt: "Aerial view of ocean waves crashing on a pristine beach",
+        videoUrl: "https://videos.pexels.com/video-files/4631568/4631568-uhd_2560_1440_24fps.mp4",
         caption: "From text → to video."
       }
     },
