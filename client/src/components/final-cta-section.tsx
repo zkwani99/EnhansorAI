@@ -79,7 +79,7 @@ export default function FinalCTASection() {
           }`}>
             Ready to Transform Your
             <br />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-fuchsia-500 via-pink-500 to-fuchsia-400 bg-clip-text text-transparent">
               Creative Process?
             </span>
           </h2>
