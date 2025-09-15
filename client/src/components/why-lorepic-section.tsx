@@ -150,14 +150,14 @@ export default function WhyLorepicSection() {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center justify-center space-x-8 bg-gray-50 dark:bg-gray-800 rounded-xl px-8 py-6 border border-gray-100 dark:border-gray-700 shadow-sm">
             <div className="flex -space-x-3">
-              <div className="w-10 h-10 bg-purple-600 rounded-full border-2 border-white dark:border-gray-800 shadow-sm"></div>
-              <div className="w-10 h-10 bg-blue-600 rounded-full border-2 border-white dark:border-gray-800 shadow-sm"></div>
-              <div className="w-10 h-10 bg-green-600 rounded-full border-2 border-white dark:border-gray-800 shadow-sm"></div>
-              <div className="w-10 h-10 bg-orange-600 rounded-full border-2 border-white dark:border-gray-800 shadow-sm"></div>
-              <div className="w-10 h-10 bg-pink-600 rounded-full border-2 border-white dark:border-gray-800 shadow-sm"></div>
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b86d1b92?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Creator" className="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 shadow-sm object-cover" />
             </div>
             <div className="text-left">
-              <div className="text-lg text-gray-900 dark:text-white font-semibold">50,000+ Creators</div>
+              <div className="text-lg text-gray-900 dark:text-white font-semibold">1000+ Creators</div>
               <div className="text-sm text-gray-600 dark:text-gray-300">Growing every day</div>
             </div>
             <div className="h-8 w-px bg-gray-200 dark:bg-gray-600"></div>
