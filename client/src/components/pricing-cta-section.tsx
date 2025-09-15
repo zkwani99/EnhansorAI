@@ -27,7 +27,7 @@ export default function PricingCTASection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Free Credits CTA */}
         <div className="relative">
