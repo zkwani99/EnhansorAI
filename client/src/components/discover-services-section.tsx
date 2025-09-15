@@ -92,9 +92,10 @@ export default function DiscoverServicesSection() {
       ],
       href: "/video",
       demo: {
-        type: "video",
-        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        caption: "Turn your ideas into cinematic clips."
+        type: "text-to-video",
+        prompt: "Astronaut walking on Mars with Earth visible in the sky",
+        videoUrl: "https://videos.pexels.com/video-files/8474629/8474629-uhd_2560_1440_24fps.mp4",
+        caption: "From text → to video."
       }
     },
     {
@@ -237,6 +238,57 @@ export default function DiscoverServicesSection() {
           >
             <source src={demo.videoUrl} type="video/mp4" />
           </video>
+          <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
+            {demo.caption}
+          </div>
+        </div>
+      );
+    }
+    
+    if (demo.type === "text-to-video") {
+      const [showVideo, setShowVideo] = useState(false);
+      
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setShowVideo(prev => !prev);
+        }, 4000); // Switch every 4 seconds
+        
+        return () => clearInterval(interval);
+      }, []);
+      
+      return (
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg bg-gray-900">
+          {/* Text Prompt Display */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-0' : 'opacity-100'} flex items-center justify-center p-6`}>
+            <div className="text-center">
+              <div className="text-sm text-white/60 mb-3 font-medium">✨ Text Prompt</div>
+              <div className="text-white text-lg font-semibold leading-relaxed max-w-sm">
+                "{demo.prompt}"
+              </div>
+              <div className="mt-4 flex items-center justify-center text-white/40 text-xs">
+                <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse mr-2"></div>
+                Generating video...
+              </div>
+            </div>
+          </div>
+          
+          {/* Generated Video */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-100' : 'opacity-0'}`}>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src={demo.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute top-3 left-3 bg-black/70 text-white px-2 py-1 rounded text-xs font-medium">
+              Generated Video
+            </div>
+          </div>
+          
           <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
             {demo.caption}
           </div>
