@@ -74,7 +74,7 @@ export default function DiscoverServicesSection() {
       href: "/generate",
       demo: {
         type: "generated-image",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop&auto=format&q=95",
+        image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&h=300&fit=crop&auto=format&q=95",
         prompt: "A futuristic city at sunset",
         caption: "From text → to art."
       }
