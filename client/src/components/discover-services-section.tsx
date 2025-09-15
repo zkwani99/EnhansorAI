@@ -11,6 +11,7 @@ import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
+import cityDemo from "@assets/generated_images/futuristic_city_sunset_cyberpunk_e000e9a7.png";
 
 export default function DiscoverServicesSection() {
   const { isAuthenticated } = useAuth();
@@ -74,7 +75,7 @@ export default function DiscoverServicesSection() {
       href: "/generate",
       demo: {
         type: "generated-image",
-        image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&h=300&fit=crop&auto=format&q=95",
+        image: cityDemo,
         prompt: "A futuristic city at sunset",
         caption: "From text → to art."
       }
@@ -213,10 +214,6 @@ export default function DiscoverServicesSection() {
             loading="eager"
             draggable={false}
             onDragStart={(e) => e.preventDefault()}
-            onError={(e) => {
-              console.error('Failed to load Text-to-Image demo image:', e);
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           <div className="absolute bottom-3 left-3 text-white">
