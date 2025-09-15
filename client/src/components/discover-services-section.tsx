@@ -57,8 +57,7 @@ export default function DiscoverServicesSection() {
       href: "/enhance",
       demo: {
         type: "before-after",
-        beforeImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=75&fit=crop&auto=format&q=10",
-        afterImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&h=750&fit=crop&auto=format&q=95",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=95",
         caption: "Upscale & restore in seconds."
       }
     },
@@ -160,31 +159,27 @@ export default function DiscoverServicesSection() {
           className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg cursor-ew-resize select-none"
           onPointerDown={handlePointerDown}
         >
-          {/* High-resolution "After" image - base layer */}
+          {/* Single high-quality base image */}
           <img 
-            src={demo.afterImage} 
-            alt="After enhancement"
+            src={demo.image} 
+            alt="Image Enhancement Demo"
             className="absolute inset-0 w-full h-full object-cover"
             draggable={false}
             onDragStart={(e) => e.preventDefault()}
             loading="eager"
           />
           
-          {/* Low-resolution "Before" image - overlay */}
+          {/* Quality degradation overlay for "Before" side */}
           <div 
-            className="absolute inset-0 overflow-hidden"
-            style={{ width: `${sliderPosition}%` }}
-          >
-            <img 
-              src={demo.beforeImage} 
-              alt="Before enhancement"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ imageRendering: 'pixelated' }}
-              draggable={false}
-              onDragStart={(e) => e.preventDefault()}
-              loading="eager"
-            />
-          </div>
+            className="absolute inset-0"
+            style={{ 
+              width: `${sliderPosition}%`,
+              backdropFilter: 'blur(1px) contrast(0.95) saturate(0.95)',
+              WebkitBackdropFilter: 'blur(1px) contrast(0.95) saturate(0.95)',
+              background: 'rgba(255,255,255,0.001)',
+              pointerEvents: 'none'
+            }}
+          />
           
           {/* Vertical divider line */}
           <div 
