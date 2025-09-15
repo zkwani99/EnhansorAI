@@ -190,7 +190,7 @@ export default function HeroSection() {
           {/* Trust Indicators */}
           <div className="text-center">
             <p className="text-gray-300 text-lg mb-8">
-              ✨ Start Creating for Free • No Credit Card Required • 50 Free Credits
+              ✨ Start Creating for Free • No Credit Card Required
             </p>
             
             {/* Hero Stats */}
