@@ -59,9 +59,9 @@ export default function FinalCTASection() {
   ];
 
   return (
-    <section ref={sectionRef} className="relative py-24 overflow-hidden">
-      {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/50 to-blue-900/50"></div>
+    <section ref={sectionRef} className="relative py-24 overflow-hidden bg-white dark:bg-black">
+      {/* Background decorations for visual interest */}
+      <div className="absolute inset-0 opacity-50 dark:opacity-100"></div>
       
       {/* Background decorations */}
       <div className="absolute inset-0">
@@ -74,7 +74,7 @@ export default function FinalCTASection() {
         
         {/* Main CTA Content */}
         <div className="text-center mb-16">
-          <h2 className={`text-5xl lg:text-7xl font-semibold text-white mb-8 leading-tight tracking-tight ${
+          <h2 className={`text-5xl lg:text-7xl font-semibold text-gray-900 dark:text-white mb-8 leading-tight tracking-tight ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
             Ready to Transform Your
@@ -83,10 +83,10 @@ export default function FinalCTASection() {
               Creative Process?
             </span>
           </h2>
-          <p className={`text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed ${
+          <p className={`text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
-            Join thousands of creators who are already using AI to produce stunning content faster than ever before. Start your journey today with <span className="text-white font-semibold">free credits</span>.
+            Join thousands of creators who are already using AI to produce stunning content faster than ever before. Start your journey today with <span className="text-gray-900 dark:text-white font-semibold">free credits</span>.
           </p>
           
           {/* CTA Buttons */}
@@ -109,7 +109,7 @@ export default function FinalCTASection() {
               size="lg"
               variant="outline"
               onClick={handleComparePlans}
-              className="bg-white/10 text-white hover:bg-white/20 border-2 border-white/30 hover:border-white/50 px-10 py-6 rounded-2xl text-xl font-semibold backdrop-blur-sm transition-all duration-300 min-w-[280px]"
+              className="bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-white/20 border-2 border-gray-300 dark:border-white/30 hover:border-gray-400 dark:hover:border-white/50 px-10 py-6 rounded-2xl text-xl font-semibold backdrop-blur-sm transition-all duration-300 min-w-[280px]"
               data-testid="button-final-compare-plans"
             >
               View All Plans
@@ -124,11 +124,11 @@ export default function FinalCTASection() {
         }`}>
           {stats.map((stat, index) => (
             <div key={index} className="text-center" data-testid={`stat-${index}`}>
-              <div className="inline-flex items-center justify-center p-4 bg-white/10 rounded-2xl mb-4 backdrop-blur-sm">
-                <stat.icon className="w-8 h-8 text-purple-400" />
+              <div className="inline-flex items-center justify-center p-4 bg-gray-100 dark:bg-white/10 rounded-2xl mb-4 backdrop-blur-sm">
+                <stat.icon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
-              <div className="text-gray-300">{stat.label}</div>
+              <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">{stat.number}</div>
+              <div className="text-gray-600 dark:text-gray-300">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -137,14 +137,14 @@ export default function FinalCTASection() {
         <div className={`relative ${
           isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500' : 'opacity-0 translate-y-4'
         }`}>
-          <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+          <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-gray-200 dark:border-white/10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
               {trustPoints.map((point, index) => (
                 <div key={index} className="flex items-center justify-center md:justify-start" data-testid={`trust-point-${index}`}>
-                  <div className="flex items-center justify-center p-3 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl mr-4">
-                    <point.icon className="w-6 h-6 text-purple-400" />
+                  <div className="flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-500/20 dark:to-blue-500/20 rounded-xl mr-4">
+                    <point.icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                   </div>
-                  <span className="text-white font-medium">{point.text}</span>
+                  <span className="text-gray-900 dark:text-white font-medium">{point.text}</span>
                 </div>
               ))}
             </div>
@@ -153,7 +153,7 @@ export default function FinalCTASection() {
 
         {/* Final message */}
         <div className="text-center mt-12">
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
             No credit card required • Cancel anytime • Join 50,000+ creators worldwide
           </p>
         </div>
