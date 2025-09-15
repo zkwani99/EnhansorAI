@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Wand2, ImageIcon, VideoIcon, Clapperboard, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
+import { ArrowRight, Settings, Camera, Play, RotateCcw, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
@@ -36,7 +36,7 @@ export default function DiscoverServicesSection() {
   const services = [
     {
       id: "image-enhancement",
-      icon: Wand2,
+      icon: Settings,
       title: "Image Enhancement",
       description: "Enhance photos in high resolution in seconds.",
       features: [
@@ -49,7 +49,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "text-to-image", 
-      icon: ImageIcon,
+      icon: Camera,
       title: "Text-to-Image AI",
       description: "Generate stunning visuals from any text.",
       features: [
@@ -62,7 +62,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "text-to-video",
-      icon: VideoIcon,
+      icon: Play,
       title: "Text-to-Video AI",
       description: "Turn scripts into engaging short videos.",
       features: [
@@ -75,7 +75,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "image-to-video",
-      icon: Clapperboard,
+      icon: RotateCcw,
       title: "Image-to-Video AI", 
       description: "Animate your images into dynamic clips.",
       features: [
@@ -119,7 +119,7 @@ export default function DiscoverServicesSection() {
           </p>
         </div>
 
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ${
+        <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 ${
           isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
         }`}>
           {services.map((service) => {
@@ -133,11 +133,13 @@ export default function DiscoverServicesSection() {
                 onClick={() => handleServiceClick(service.id, service.href)}
               >
                 {/* Icon with gradient background */}
-                <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  <IconComponent className="w-8 h-8 text-white" />
+                <div className="flex justify-center mb-6">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors whitespace-nowrap">
+                <h3 className="text-xl xl:text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors leading-tight">
                   {service.title}
                 </h3>
                 
@@ -186,7 +188,7 @@ export default function DiscoverServicesSection() {
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             data-testid="popular-service-cta"
           >
-            <ImageIcon className="mr-2 w-5 h-5" />
+            <Camera className="mr-2 w-5 h-5" />
             Generate Your First AI Image
           </Button>
         </div>
