@@ -18,7 +18,7 @@ export default function DiscoverServicesSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeService, setActiveService] = useState(0);
   const [sliderPosition, setSliderPosition] = useState(50);
-  const [isAutoMoving, setIsAutoMoving] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -42,20 +42,6 @@ export default function DiscoverServicesSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-moving slider animation
-  useEffect(() => {
-    if (!isAutoMoving) return;
-    
-    const interval = setInterval(() => {
-      setSliderPosition(prev => {
-        if (prev >= 90) return 10;
-        if (prev <= 10) return 90;
-        return prev > 50 ? prev + 20 : prev - 20;
-      });
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, [isAutoMoving]);
 
   const services = [
     {
@@ -150,11 +136,7 @@ export default function DiscoverServicesSection() {
     
     if (demo.type === "before-after") {
       return (
-        <div 
-          className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group"
-          onMouseEnter={() => setIsAutoMoving(false)}
-          onMouseLeave={() => setIsAutoMoving(true)}
-        >
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
           <div className="relative w-full h-full">
             {/* Before image */}
             <img 
@@ -179,16 +161,15 @@ export default function DiscoverServicesSection() {
               After
             </div>
             
-            {/* Invisible slider control - no visible line */}
+            {/* Manual slider control */}
             <div 
-              className="absolute top-0 bottom-0 w-8 cursor-ew-resize z-10 opacity-0 hover:opacity-100 transition-opacity duration-300"
+              className="absolute top-0 bottom-0 w-8 cursor-ew-resize z-10 opacity-0 hover:opacity-100 transition-all duration-200"
               style={{ 
                 left: `${sliderPosition}%`, 
-                transform: 'translateX(-50%)',
-                transition: isAutoMoving ? 'left 3s ease-in-out' : 'none'
+                transform: 'translateX(-50%)'
               }}
               onMouseDown={(e) => {
-                setIsAutoMoving(false);
+                setIsDragging(true);
                 const rect = e.currentTarget.parentElement?.getBoundingClientRect();
                 const handleMouseMove = (moveEvent: MouseEvent) => {
                   if (rect) {
@@ -199,13 +180,13 @@ export default function DiscoverServicesSection() {
                 const handleMouseUp = () => {
                   document.removeEventListener('mousemove', handleMouseMove);
                   document.removeEventListener('mouseup', handleMouseUp);
-                  setTimeout(() => setIsAutoMoving(true), 2000);
+                  setIsDragging(false);
                 };
                 document.addEventListener('mousemove', handleMouseMove);
                 document.addEventListener('mouseup', handleMouseUp);
               }}
             >
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 hover:bg-white/30 hover:scale-110">
                 <Sliders className="w-4 h-4 text-white" />
               </div>
             </div>
