@@ -1,5 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Settings, Camera, Play, RotateCcw, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
+import { ArrowRight, Monitor, Layers, Clock, Paintbrush, Check, Film } from "lucide-react";
+import { 
+  ImageSquare, 
+  PaintBrushBroad, 
+  FilmSlate, 
+  VideoCamera 
+} from "@phosphor-icons/react";
+import { 
+  PhotoIcon,
+  SparklesIcon,
+  FilmIcon,
+  VideoCameraIcon
+} from "@heroicons/react/24/solid";
 import { Button } from "@/components/ui/button";
 import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
@@ -36,7 +48,7 @@ export default function DiscoverServicesSection() {
   const services = [
     {
       id: "image-enhancement",
-      icon: Settings,
+      icon: ImageSquare || PhotoIcon,
       title: "Image Enhancement",
       description: "Enhance photos in high resolution in seconds.",
       features: [
@@ -49,7 +61,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "text-to-image", 
-      icon: Camera,
+      icon: PaintBrushBroad || SparklesIcon,
       title: "Text-to-Image AI",
       description: "Generate stunning visuals from any text.",
       features: [
@@ -62,7 +74,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "text-to-video",
-      icon: Play,
+      icon: FilmSlate || FilmIcon,
       title: "Text-to-Video AI",
       description: "Turn scripts into engaging short videos.",
       features: [
@@ -75,7 +87,7 @@ export default function DiscoverServicesSection() {
     },
     {
       id: "image-to-video",
-      icon: RotateCcw,
+      icon: VideoCamera || VideoCameraIcon,
       title: "Image-to-Video AI", 
       description: "Animate your images into dynamic clips.",
       features: [
@@ -135,7 +147,7 @@ export default function DiscoverServicesSection() {
                 {/* Icon with gradient background */}
                 <div className="flex justify-center mb-6">
                   <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                    <IconComponent className="w-8 h-8 text-white" weight="duotone" />
                   </div>
                 </div>
                 
@@ -188,7 +200,7 @@ export default function DiscoverServicesSection() {
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             data-testid="popular-service-cta"
           >
-            <Camera className="mr-2 w-5 h-5" />
+            <PaintBrushBroad className="mr-2 w-5 h-5" weight="duotone" />
             Generate Your First AI Image
           </Button>
         </div>
