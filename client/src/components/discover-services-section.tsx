@@ -94,7 +94,7 @@ export default function DiscoverServicesSection() {
       demo: {
         type: "text-to-video",
         prompt: "Astronaut walking on Mars with Earth visible in the sky",
-        videoUrl: "https://videos.pexels.com/video-files/8474629/8474629-uhd_2560_1440_24fps.mp4",
+        videoUrl: "https://videos.pexels.com/video-files/6985001/6985001-uhd_2560_1440_24fps.mp4",
         caption: "From text → to video."
       }
     },
@@ -280,6 +280,16 @@ export default function DiscoverServicesSection() {
               muted 
               playsInline
               className="w-full h-full object-cover"
+              onError={(e) => {
+                console.error('Text-to-Video failed to load:', e);
+                console.error('Video source:', demo.videoUrl);
+              }}
+              onLoadStart={() => {
+                console.log('Text-to-Video loading started:', demo.videoUrl);
+              }}
+              onCanPlay={() => {
+                console.log('Text-to-Video can play:', demo.videoUrl);
+              }}
             >
               <source src={demo.videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
