@@ -245,23 +245,35 @@ export default function DiscoverServicesSection() {
     
     if (demo.type === "animated-image") {
       return (
-        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group">
+        <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group bg-gray-100 dark:bg-gray-800">
           <img 
             src={demo.image} 
             alt="Portrait photo"
-            className="w-full h-full object-cover animate-pulse"
+            className="w-full h-full object-cover"
             style={{
-              animation: 'breathe 3s ease-in-out infinite'
+              animation: 'breathe 4s ease-in-out infinite, subtle-pulse 2s ease-in-out infinite alternate'
             }}
+            loading="eager"
+            draggable={false}
+            onDragStart={(e) => e.preventDefault()}
           />
-          {/* Continuous shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-          {/* Floating particles effect */}
+          
+          {/* Multiple animated overlays for stronger effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-300/30 to-transparent animate-shimmer" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-300/20 to-transparent" style={{ animation: 'shimmer 3s linear infinite reverse' }} />
+          
+          {/* Larger floating particles */}
           <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white/60 rounded-full animate-float-1" />
-            <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white/60 rounded-full animate-float-2" />
-            <div className="absolute bottom-1/3 left-1/2 w-1 h-1 bg-white/60 rounded-full animate-float-3" />
+            <div className="absolute top-[20%] left-[25%] w-2 h-2 bg-purple-400/80 rounded-full animate-float-1" />
+            <div className="absolute top-[40%] right-[30%] w-3 h-3 bg-blue-400/70 rounded-full animate-float-2" />
+            <div className="absolute bottom-[35%] left-[60%] w-2 h-2 bg-pink-400/80 rounded-full animate-float-3" />
+            <div className="absolute top-[60%] left-[15%] w-1.5 h-1.5 bg-cyan-400/90 rounded-full animate-float-1" style={{ animationDelay: '1.5s' }} />
+            <div className="absolute bottom-[50%] right-[20%] w-2.5 h-2.5 bg-indigo-400/70 rounded-full animate-float-2" style={{ animationDelay: '2s' }} />
           </div>
+          
+          {/* Pulsing border effect */}
+          <div className="absolute inset-0 border-2 border-purple-400/50 rounded-xl" style={{ animation: 'pulse-border 3s ease-in-out infinite' }} />
+          
           <div className="absolute bottom-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium">
             {demo.caption}
           </div>

@@ -254,7 +254,17 @@ html, body {
 
   @keyframes breathe {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.08); }
+  }
+
+  @keyframes subtle-pulse {
+    0% { filter: brightness(1) contrast(1); }
+    100% { filter: brightness(1.1) contrast(1.05); }
+  }
+
+  @keyframes pulse-border {
+    0%, 100% { border-color: rgba(168, 85, 247, 0.3); transform: scale(1); }
+    50% { border-color: rgba(168, 85, 247, 0.8); transform: scale(1.02); }
   }
 
   @keyframes shimmer {
