@@ -152,7 +152,7 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-pink-400 via-purple-500 to-blue-600">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-fuchsia-500 to-purple-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

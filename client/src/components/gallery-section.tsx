@@ -195,7 +195,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section ref={sectionRef} id="gallery" className="py-20 bg-gradient-to-b from-pink-400 via-purple-500 to-blue-600 relative" data-testid="gallery-section">
+      <section ref={sectionRef} id="gallery" className="py-20 bg-gradient-to-b from-fuchsia-500 to-purple-800 relative" data-testid="gallery-section">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
