@@ -152,7 +152,7 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -201,7 +201,7 @@ export default function TemplatesSection() {
           {getFilteredTemplates().map((template) => (
             <Card
               key={template.id}
-              className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
+              className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 transform hover:-translate-y-2 cursor-pointer flex flex-col h-full"
               data-testid={`template-card-${template.id}`}
             >
               <div className="relative">
@@ -260,7 +260,7 @@ export default function TemplatesSection() {
                 </div>
               </div>
 
-              <CardContent className="p-6">
+              <CardContent className="p-6 flex flex-col h-full">
                 <div className="mb-4">
                   <h3 className="font-semibold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                     {template.title}
@@ -288,21 +288,21 @@ export default function TemplatesSection() {
                   )}
                 </div>
 
-                {/* Bottom section with category and CTA */}
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">
-                      {template.category}
-                    </span>
-                  </div>
-                  <Button
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                    data-testid={`button-use-template-${template.id}`}
-                  >
-                    Use Template
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                {/* Category */}
+                <div className="mb-4 flex-grow">
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">
+                    {template.category}
+                  </span>
                 </div>
+
+                {/* Use Template button at bottom */}
+                <Button
+                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mt-auto"
+                  data-testid={`button-use-template-${template.id}`}
+                >
+                  Use Template
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
               </CardContent>
             </Card>
           ))}
