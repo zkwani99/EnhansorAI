@@ -90,7 +90,7 @@ export default function Navigation() {
               <img 
                 src={logoImage} 
                 alt="Lorepic" 
-                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent"
+                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-0 outline-none filter-none"
                 data-testid="logo-home-link"
               />
             </Link>

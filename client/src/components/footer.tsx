@@ -42,7 +42,7 @@ export default function Footer() {
                 <img 
                   src={logoImage} 
                   alt="Lorepic" 
-                  className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent"
+                  className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-0 outline-none filter-none"
                   data-testid="footer-logo-home-link"
                 />
               </Link>
