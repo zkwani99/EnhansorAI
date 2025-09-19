@@ -24,7 +24,7 @@ export default function GallerySection() {
   
   // Scroll-triggered background effect
   const backgroundRef = useScrollBackground({
-    backgroundColor: "#000000",
+    sectionId: "gallery",
     threshold: 0.3,
     rootMargin: "0px"
   });
@@ -326,7 +326,7 @@ export default function GallerySection() {
       <section 
         ref={combinedRef} 
         id="gallery" 
-        className="py-20 bg-gray-900 dark:bg-black relative" 
+        className="py-20 bg-transparent relative" 
         data-testid="gallery-section"
       >
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

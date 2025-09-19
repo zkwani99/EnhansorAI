@@ -1,13 +1,33 @@
 import { useEffect, useRef } from "react";
 
 interface UseScrollBackgroundOptions {
-  backgroundColor: string;
+  sectionId: string;
   threshold?: number;
   rootMargin?: string;
 }
 
+// Global state to track which sections are intersecting
+const activeSections = new Set<string>();
+
+function updateBackgroundState() {
+  const documentElement = document.documentElement;
+  const isDarkMode = documentElement.classList.contains('dark');
+  
+  // Skip effect in dark mode to avoid conflicts
+  if (isDarkMode) {
+    documentElement.classList.remove('scroll-dark');
+    return;
+  }
+  
+  if (activeSections.size > 0) {
+    documentElement.classList.add('scroll-dark');
+  } else {
+    documentElement.classList.remove('scroll-dark');
+  }
+}
+
 export function useScrollBackground({
-  backgroundColor = "#000000",
+  sectionId,
   threshold = 0.3,
   rootMargin = "0px"
 }: UseScrollBackgroundOptions) {
@@ -16,17 +36,12 @@ export function useScrollBackground({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const body = document.body;
-        
         if (entry.isIntersecting) {
-          // Section is in view - apply dark background
-          body.style.backgroundColor = backgroundColor;
-          body.style.transition = "background-color 0.6s ease-in-out";
+          activeSections.add(sectionId);
         } else {
-          // Section is out of view - revert to default (white)
-          body.style.backgroundColor = "#ffffff";
-          body.style.transition = "background-color 0.6s ease-in-out";
+          activeSections.delete(sectionId);
         }
+        updateBackgroundState();
       },
       {
         threshold,
@@ -40,10 +55,11 @@ export function useScrollBackground({
 
     return () => {
       observer.disconnect();
-      // Clean up - reset to white background on unmount
-      document.body.style.backgroundColor = "#ffffff";
+      // Clean up - remove this section from active sections
+      activeSections.delete(sectionId);
+      updateBackgroundState();
     };
-  }, [backgroundColor, threshold, rootMargin]);
+  }, [sectionId, threshold, rootMargin]);
 
   return sectionRef;
 }

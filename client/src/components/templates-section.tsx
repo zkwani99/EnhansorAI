@@ -12,7 +12,7 @@ export default function TemplatesSection() {
   
   // Scroll-triggered background effect
   const backgroundRef = useScrollBackground({
-    backgroundColor: "#000000",
+    sectionId: "templates",
     threshold: 0.3,
     rootMargin: "0px"
   });
@@ -170,7 +170,7 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section ref={combinedRef} className="py-20 bg-white dark:bg-black">
+    <section ref={combinedRef} className="py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
