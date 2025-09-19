@@ -88,7 +88,7 @@ export default function Navigation() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
               <Logo 
-                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 text-gray-900 dark:text-white"
+                className="h-14 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 text-gray-900 dark:text-white"
               />
             </Link>
           </div>

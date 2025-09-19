@@ -39,9 +39,9 @@ export default function Footer() {
           <div className="col-span-1">
             <div className="flex items-center mb-3">
               <Link href="/">
-                <Logo 
-                  className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 text-gray-900 dark:text-white"
-                />
+              <Logo 
+                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 text-gray-900 dark:text-white"
+              />
               </Link>
             </div>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
