@@ -3,11 +3,29 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Image as ImageIcon, Video, Sparkles, Zap, Eye, Star, Layers } from "lucide-react";
+import { useScrollBackground } from "@/hooks/useScrollBackground";
 
 export default function TemplatesSection() {
   const [filterType, setFilterType] = useState("all");
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  
+  // Scroll-triggered background effect
+  const backgroundRef = useScrollBackground({
+    backgroundColor: "#000000",
+    threshold: 0.3,
+    rootMargin: "0px"
+  });
+  
+  // Combined ref callback to handle both visibility and background effects
+  const combinedRef = (element: HTMLElement | null) => {
+    if (sectionRef.current !== element) {
+      (sectionRef as any).current = element;
+    }
+    if (backgroundRef.current !== element) {
+      (backgroundRef as any).current = element;
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -152,7 +170,7 @@ export default function TemplatesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white dark:bg-black">
+    <section ref={combinedRef} className="py-20 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
