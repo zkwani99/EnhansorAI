@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { signOut } from "@/lib/supabaseAuth";
 import { useTheme } from "@/components/theme-provider";
 import { Link, useLocation } from "wouter";
+import logoImage from "@assets/image_1758291503731.png";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -87,7 +88,7 @@ export default function Navigation() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
               <img 
-                src="/@assets/image_1758291503731.png" 
+                src={logoImage} 
                 alt="Lorepic" 
                 className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200"
                 data-testid="logo-home-link"

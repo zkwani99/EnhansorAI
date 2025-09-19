@@ -1,5 +1,6 @@
 import { Sparkles, CreditCard, HelpCircle, MessageCircle, FileText, BookOpen, Code, FileText as GuideIcon } from "lucide-react";
 import { Link } from "wouter";
+import logoImage from "@assets/image_1758291503731.png";
 
 export default function Footer() {
   const helpfulLinks = [
@@ -39,7 +40,7 @@ export default function Footer() {
             <div className="flex items-center mb-3">
               <Link href="/">
                 <img 
-                  src="/@assets/image_1758291503731.png" 
+                  src={logoImage} 
                   alt="Lorepic" 
                   className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200"
                   data-testid="footer-logo-home-link"
