@@ -85,9 +85,14 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <div className="text-2xl font-bold gradient-text dark:text-white">
-              Lorepic
-            </div>
+            <Link href="/">
+              <img 
+                src="/@assets/image_1758291503731.png" 
+                alt="Lorepic" 
+                className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                data-testid="logo-home-link"
+              />
+            </Link>
           </div>
           
           {/* Desktop Navigation Links */}

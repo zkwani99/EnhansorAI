@@ -37,10 +37,14 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1">
             <div className="flex items-center mb-3">
-              <div className="w-8 h-8 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-lg flex items-center justify-center mr-2">
-                <Sparkles className="text-white" size={18} />
-              </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-gray-100">Lorepic</span>
+              <Link href="/">
+                <img 
+                  src="/@assets/image_1758291503731.png" 
+                  alt="Lorepic" 
+                  className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                  data-testid="footer-logo-home-link"
+                />
+              </Link>
             </div>
             <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
               Lorepic — AI tools to enhance, generate, and create. Smarter visuals, faster.
