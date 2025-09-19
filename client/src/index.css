@@ -79,21 +79,21 @@ html, body {
   transition: background-color 0.6s ease-in-out, color 0.3s ease;
 }
 
-/* Scroll-triggered dark background effect */
-html.scroll-dark,
-html.scroll-dark body {
-  background-color: #000000 !important;
+/* Scroll-triggered background effect using CSS variables */
+#app-shell[data-scroll-dark="true"] {
+  --background: 0 0% 0%; /* Black background */
+  --foreground: 0 0% 100%; /* White text */
 }
 
-/* Ensure text is readable on dark scroll background */
-html.scroll-dark .templates-header {
+/* Only apply scroll effect in light mode */
+html:not(.dark) #app-shell[data-scroll-dark="true"] {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+}
+
+/* Force high contrast for headings that don't use CSS variables */
+#app-shell[data-scroll-dark="true"] .force-contrast {
   color: #ffffff !important;
-}
-
-/* Disable scroll effect in dark mode to prevent conflicts */
-.dark.scroll-dark,
-.dark.scroll-dark body {
-  background-color: hsl(var(--background)) !important;
 }
 
 /* Respect user's motion preferences */
@@ -102,7 +102,7 @@ html.scroll-dark .templates-header {
     transition: color 0.3s ease;
   }
   
-  html.scroll-dark {
+  #app-shell {
     transition: none;
   }
 }
