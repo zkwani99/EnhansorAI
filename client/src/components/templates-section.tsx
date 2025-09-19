@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Image as ImageIcon, Video, Sparkles, Zap, Eye, Star, Layers } from "lucide-react";
-import { useScrollBackground } from "@/hooks/useScrollBackground";
+import { useSimpleScrollBackground } from "@/hooks/useSimpleScrollBackground";
 
 export default function TemplatesSection() {
   const [filterType, setFilterType] = useState("all");
@@ -11,10 +11,8 @@ export default function TemplatesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   
   // Scroll-triggered background effect
-  const backgroundRef = useScrollBackground({
-    sectionId: "templates",
-    threshold: 0.1,
-    rootMargin: "100px 0px 100px 0px"
+  const backgroundRef = useSimpleScrollBackground({
+    sectionId: "templates"
   });
   
   // Combined ref callback to handle both visibility and background effects

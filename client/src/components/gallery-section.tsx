@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Play, ChevronLeft, ChevronRight, X, ArrowRight } from "lucide-react";
-import { useScrollBackground } from "@/hooks/useScrollBackground";
+import { useSimpleScrollBackground } from "@/hooks/useSimpleScrollBackground";
 
 interface GalleryItem {
   id: number;
@@ -23,10 +23,8 @@ export default function GallerySection() {
   const scrollRefs = useRef<Record<string, HTMLDivElement>>({});
   
   // Scroll-triggered background effect
-  const backgroundRef = useScrollBackground({
-    sectionId: "gallery",
-    threshold: 0.1,
-    rootMargin: "100px 0px 100px 0px"
+  const backgroundRef = useSimpleScrollBackground({
+    sectionId: "gallery"
   });
   
   // Combined ref callback to handle both visibility and background effects
