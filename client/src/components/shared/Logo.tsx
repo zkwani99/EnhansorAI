@@ -20,9 +20,9 @@ export default function Logo({ className = "h-8 w-auto" }: LogoProps) {
         fill="none"
       />
       
-      {/* Lightning bolt - vertical zigzag matching your design */}
+      {/* Lightning bolt - correct direction matching your design */}
       <path 
-        d="M14 6L10 6L12 12L9 12L15 26L13 18L16 18L14 6Z" 
+        d="M10 6L14 6L12 12L15 12L9 26L11 18L8 18L10 6Z" 
         fill="currentColor"
       />
       
