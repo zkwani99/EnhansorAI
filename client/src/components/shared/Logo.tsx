@@ -22,11 +22,17 @@ export default function Logo({ className = "h-8 w-auto" }: LogoProps) {
         fill="none"
       />
       
-      {/* Lightning bolt - classic zigzag */}
+      {/* Magic wand - perfect for AI content creation */}
       <path 
-        d="M10.5 6 L13.5 6 L11.8 9.5 L14 9.5 L9.5 16 L11 12 L9 12 Z" 
-        fill="currentColor"
+        d="M9 7 L15 13 M15 13 L14 12 M15 13 L16 14" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        strokeLinecap="round"
       />
+      {/* Sparkles around the wand tip */}
+      <circle cx="16" cy="12" r="0.8" fill="currentColor"/>
+      <circle cx="17" cy="14" r="0.6" fill="currentColor"/>
+      <circle cx="15" cy="15" r="0.5" fill="currentColor"/>
       
       {/* Text: Lorepic */}
       <text 
