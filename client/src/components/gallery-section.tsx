@@ -25,8 +25,8 @@ export default function GallerySection() {
   // Scroll-triggered background effect
   const backgroundRef = useScrollBackground({
     sectionId: "gallery",
-    threshold: 0.6,
-    rootMargin: "0px 0px -30% 0px"
+    threshold: 0.1,
+    rootMargin: "200px 0px 0px 0px"
   });
   
   // Combined ref callback to handle both visibility and background effects
