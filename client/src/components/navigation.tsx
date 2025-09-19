@@ -13,7 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { signOut } from "@/lib/supabaseAuth";
 import { useTheme } from "@/components/theme-provider";
 import { Link, useLocation } from "wouter";
-import logoImage from "@assets/image_1758291503731.png";
+import logoImage from "@assets/lorepic-logo.svg";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

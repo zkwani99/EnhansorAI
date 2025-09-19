@@ -1,0 +1,10 @@
+<svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield -->
+  <path d="M8 4C8 4 12 2 16 2C20 2 24 4 24 4C24 4 24.5 8 24 14C23.5 20 20 26 16 28C12 26 8.5 20 8 14C7.5 8 8 4 8 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  
+  <!-- Lightning bolt -->
+  <path d="M14 8L18 8L15 16L18 16L14 24L16 16L13 16L14 8Z" fill="currentColor"/>
+  
+  <!-- Text: Lorepic -->
+  <text x="32" y="21" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="currentColor">Lorepic</text>
+</svg>

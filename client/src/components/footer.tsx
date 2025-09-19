@@ -1,6 +1,6 @@
 import { Sparkles, CreditCard, HelpCircle, MessageCircle, FileText, BookOpen, Code, FileText as GuideIcon } from "lucide-react";
 import { Link } from "wouter";
-import logoImage from "@assets/image_1758291503731.png";
+import logoImage from "@assets/lorepic-logo.svg";
 
 export default function Footer() {
   const helpfulLinks = [
