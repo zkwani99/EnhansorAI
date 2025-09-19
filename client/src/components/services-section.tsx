@@ -70,17 +70,17 @@ export default function ServicesSection() {
     switch (color) {
       case "blue":
         return {
-          border: "border-purple-100 hover:border-purple-600",
-          icon: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
-          checkIcon: "text-purple-700",
-          button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800"
+          border: "border-fuchsia-100 hover:border-fuchsia-600",
+          icon: "bg-gradient-to-br from-fuchsia-500 to-pink-400",
+          checkIcon: "text-fuchsia-600",
+          button: "bg-gradient-to-r from-fuchsia-500 to-pink-400"
         };
       case "purple":
         return {
-          border: "border-purple-100 hover:border-purple-600",
-          icon: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
-          checkIcon: "text-purple-700",
-          button: "bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800"
+          border: "border-fuchsia-100 hover:border-fuchsia-600",
+          icon: "bg-gradient-to-br from-fuchsia-500 to-pink-400",
+          checkIcon: "text-fuchsia-600",
+          button: "bg-gradient-to-r from-fuchsia-500 to-pink-400"
         };
       case "orange":
         return {
@@ -120,7 +120,7 @@ export default function ServicesSection() {
               <Card
                 key={service.id}
                 id={service.id}
-                className={`group bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02] border ${colorClasses.border} h-full`}
+                className={`group bg-white dark:bg-black rounded-2xl shadow-lg hover:shadow-2xl hover:border-fuchsia-500 hover:shadow-fuchsia-500/20 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02] border ${colorClasses.border} h-full`}
                 data-testid={`card-service-${service.id}`}
               >
                 <CardContent className="p-6 h-full flex flex-col">

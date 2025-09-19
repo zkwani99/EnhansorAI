@@ -12,28 +12,28 @@ export default function WhyLorepicSection() {
       emoji: "🚀",
       title: "Speed",
       description: "Fast AI processing with smooth results.",
-      color: "from-purple-500 to-violet-500",
+      color: "from-fuchsia-500 to-pink-500",
     },
     {
       icon: Star,
       emoji: "⭐",
       title: "Quality",
       description: "High-resolution outputs tailored for professionals.",
-      color: "from-purple-600 to-pink-500",
+      color: "from-fuchsia-500 to-pink-400",
     },
     {
       icon: Shield,
       emoji: "🔒",
       title: "Security",
       description: "Safe, encrypted, and privacy-focused.",
-      color: "from-purple-700 to-indigo-500",
+      color: "from-fuchsia-600 to-pink-500",
     },
     {
       icon: RotateCcw,
       emoji: "🔄",
       title: "Flexibility",
       description: "Adaptable to different creative workflows.",
-      color: "from-purple-800 to-violet-600",
+      color: "from-fuchsia-600 to-pink-600",
     },
     {
       icon: DollarSign,
@@ -61,7 +61,7 @@ export default function WhyLorepicSection() {
       emoji: "🎨",
       title: "Multi-Format Creativity",
       description: "Images, text-to-image, text-to-video, and image-to-video in one place.",
-      color: "from-pink-500 to-purple-500",
+      color: "from-pink-500 to-fuchsia-500",
     }
   ];
 
@@ -97,7 +97,7 @@ export default function WhyLorepicSection() {
           <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 font-semibold ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            Built to <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Stand Out</span>
+            Built to <span className="bg-gradient-to-r from-fuchsia-500 to-pink-400 bg-clip-text text-transparent">Stand Out</span>
           </h2>
           <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'

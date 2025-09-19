@@ -121,7 +121,7 @@ export default function HeroSection() {
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
             Bring Your Ideas to Life with{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-fuchsia-400 via-pink-500 to-fuchsia-500 bg-clip-text text-transparent">
               AI-Powered Creativity
             </span>
           </h1>

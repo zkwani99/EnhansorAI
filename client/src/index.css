@@ -81,14 +81,14 @@ html, body {
 
 /* Fix gradient text in dark mode */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  background: linear-gradient(135deg, #d946ef, #ec4899, #f97316);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
+  background: linear-gradient(135deg, #e879f9, #f472b6, #fb7185);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -221,11 +221,11 @@ html, body {
 /* Custom gradient utilities */
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-orange));
+    background: linear-gradient(135deg, #d946ef, #ec4899, #f97316);
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-orange));
+    background: linear-gradient(135deg, #d946ef, #ec4899, #f97316);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

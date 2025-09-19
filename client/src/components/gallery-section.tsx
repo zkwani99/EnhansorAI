@@ -316,7 +316,7 @@ export default function GallerySection() {
             <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
               isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
             }`}>
-              Gallery & <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Examples</span>
+              Gallery & <span className="bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent">Examples</span>
             </h2>
             <p className={`text-xl text-gray-300 max-w-3xl mx-auto ${
               isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
@@ -336,7 +336,7 @@ export default function GallerySection() {
                   <h3 className="text-2xl font-bold text-white">{category.title}</h3>
                   <Button 
                     variant="ghost" 
-                    className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10"
+                    className="text-fuchsia-400 hover:text-pink-300 hover:bg-fuchsia-500/10"
                     data-testid={`button-see-all-${category.id}`}
                   >
                     See All

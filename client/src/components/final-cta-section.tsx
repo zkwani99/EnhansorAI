@@ -65,9 +65,9 @@ export default function FinalCTASection() {
       
       {/* Background decorations */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-fuchsia-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-fuchsia-500/5 to-pink-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,11 +94,11 @@ export default function FinalCTASection() {
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300' : 'opacity-0 translate-y-4'
           }`}>
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl blur opacity-60 group-hover:opacity-100 transition duration-500"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-500 to-pink-400 rounded-2xl blur opacity-60 group-hover:opacity-100 transition duration-500"></div>
               <Button
                 size="lg"
                 onClick={handleTryFree}
-                className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 px-10 py-6 rounded-2xl text-xl font-bold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 min-w-[280px]"
+                className="relative bg-gradient-to-r from-fuchsia-500 to-pink-400 text-white hover:from-fuchsia-600 hover:to-pink-500 px-10 py-6 rounded-2xl text-xl font-bold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 min-w-[280px]"
                 data-testid="button-final-try-free"
               >
                 <Rocket className="mr-3" size={24} />
@@ -125,7 +125,7 @@ export default function FinalCTASection() {
           {stats.map((stat, index) => (
             <div key={index} className="text-center" data-testid={`stat-${index}`}>
               <div className="inline-flex items-center justify-center p-4 bg-gray-100 dark:bg-white/10 rounded-2xl mb-4 backdrop-blur-sm">
-                <stat.icon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                <stat.icon className="w-8 h-8 text-fuchsia-600 dark:text-pink-400" />
               </div>
               <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">{stat.number}</div>
               <div className="text-gray-600 dark:text-gray-300">{stat.label}</div>
@@ -141,8 +141,8 @@ export default function FinalCTASection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
               {trustPoints.map((point, index) => (
                 <div key={index} className="flex items-center justify-center md:justify-start" data-testid={`trust-point-${index}`}>
-                  <div className="flex items-center justify-center p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-500/20 dark:to-blue-500/20 rounded-xl mr-4">
-                    <point.icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                  <div className="flex items-center justify-center p-3 bg-gradient-to-r from-fuchsia-100 to-pink-100 dark:from-fuchsia-500/20 dark:to-pink-500/20 rounded-xl mr-4">
+                    <point.icon className="w-6 h-6 text-fuchsia-600 dark:text-pink-400" />
                   </div>
                   <span className="text-gray-900 dark:text-white font-medium">{point.text}</span>
                 </div>
