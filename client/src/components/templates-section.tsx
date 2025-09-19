@@ -14,7 +14,7 @@ export default function TemplatesSection() {
   const backgroundRef = useScrollBackground({
     sectionId: "templates",
     threshold: 0.1,
-    rootMargin: "200px 0px 0px 0px"
+    rootMargin: "100px 0px 100px 0px"
   });
   
   // Combined ref callback to handle both visibility and background effects

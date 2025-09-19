@@ -35,12 +35,22 @@ export function ScrollBackgroundProvider({ children }: ScrollBackgroundProviderP
       const shouldBeActive = activeSections.current.size > 0;
       const isDarkMode = document.documentElement.classList.contains('dark');
       
+      console.log('[ScrollBackground] Update:', {
+        activeSections: Array.from(activeSections.current),
+        shouldBeActive,
+        isActive,
+        isDarkMode
+      });
+      
       // Only apply scroll effect in light mode
-      if (!isDarkMode && shouldBeActive !== isActive) {
-        setIsActive(shouldBeActive);
-        
-        if (appShellRef.current) {
-          appShellRef.current.setAttribute('data-scroll-dark', shouldBeActive.toString());
+      if (!isDarkMode) {
+        if (shouldBeActive !== isActive) {
+          setIsActive(shouldBeActive);
+          
+          if (appShellRef.current) {
+            appShellRef.current.setAttribute('data-scroll-dark', shouldBeActive.toString());
+            console.log('[ScrollBackground] Set data-scroll-dark to:', shouldBeActive);
+          }
         }
       } else if (isDarkMode && isActive) {
         // Disable scroll effect in dark mode

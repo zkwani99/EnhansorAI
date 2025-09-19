@@ -26,7 +26,7 @@ export default function GallerySection() {
   const backgroundRef = useScrollBackground({
     sectionId: "gallery",
     threshold: 0.1,
-    rootMargin: "200px 0px 0px 0px"
+    rootMargin: "100px 0px 100px 0px"
   });
   
   // Combined ref callback to handle both visibility and background effects

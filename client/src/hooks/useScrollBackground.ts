@@ -10,7 +10,7 @@ interface UseScrollBackgroundOptions {
 export function useScrollBackground({
   sectionId,
   threshold = 0.1,
-  rootMargin = "200px 0px 0px 0px"
+  rootMargin = "100px 0px 100px 0px"
 }: UseScrollBackgroundOptions) {
   const { activate, getScrollRoot } = useScrollBackgroundContext();
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,6 +22,10 @@ export function useScrollBackground({
       ([entry]) => {
         // Activate as soon as the section starts entering the viewport
         const isIntersecting = entry.isIntersecting;
+        console.log(`[ScrollBackground] ${sectionId} intersection:`, {
+          isIntersecting,
+          intersectionRatio: entry.intersectionRatio
+        });
         activate(sectionId, isIntersecting);
       },
       {
