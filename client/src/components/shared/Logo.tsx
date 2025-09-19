@@ -12,17 +12,19 @@ export default function Logo({ className = "h-8 w-auto" }: LogoProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* Shield outline - traditional heraldic shield shape */}
+      {/* Shield with proper heraldic shape */}
       <path 
-        d="M12 2C8 2 4 4 4 4V14C4 20 8 26 12 30C16 26 20 20 20 14V4S16 2 12 2Z" 
+        d="M12 2 C9.5 2, 7 3, 7 4 V12 C7 18, 9.5 22, 12 26 C14.5 22, 17 18, 17 12 V4 C17 3, 14.5 2, 12 2 Z" 
         stroke="currentColor" 
-        strokeWidth="1.5" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
         fill="none"
       />
       
-      {/* Lightning bolt - exact classic shape matching your reference */}
+      {/* Lightning bolt - classic zigzag */}
       <path 
-        d="M9 7L14 7L11 15L15 15L9 25L13 17L10 17L9 7Z" 
+        d="M10.5 6 L13.5 6 L11.8 9.5 L14 9.5 L9.5 16 L11 12 L9 12 Z" 
         fill="currentColor"
       />
       
