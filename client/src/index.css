@@ -80,12 +80,19 @@ html, body {
 }
 
 /* Scroll-triggered dark background effect */
-html.scroll-dark {
-  background-color: #000000;
+html.scroll-dark,
+html.scroll-dark body {
+  background-color: #000000 !important;
+}
+
+/* Ensure text is readable on dark scroll background */
+html.scroll-dark .templates-header {
+  color: #ffffff !important;
 }
 
 /* Disable scroll effect in dark mode to prevent conflicts */
-.dark .scroll-dark {
+.dark.scroll-dark,
+.dark.scroll-dark body {
   background-color: hsl(var(--background)) !important;
 }
 
