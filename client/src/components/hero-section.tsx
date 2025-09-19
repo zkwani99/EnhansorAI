@@ -140,7 +140,7 @@ export default function HeroSection() {
             <Button 
               size="lg"
               onClick={handleStartFree}
-              className="bg-gradient-to-b from-fuchsia-500 to-pink-400 hover:from-fuchsia-600 hover:to-pink-500 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              className="bg-gradient-to-b from-fuchsia-500 to-purple-700 hover:from-fuchsia-600 hover:to-purple-800 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               data-testid="button-start-free"
             >
               Start For Free
