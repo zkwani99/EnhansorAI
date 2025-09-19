@@ -80,6 +80,11 @@ html, body {
 }
 
 /* Scroll-triggered background effect using CSS variables */
+/* Apply smooth transition for background change */
+#app-shell {
+  transition: background-color 0.8s ease-in-out, color 0.3s ease;
+}
+
 #app-shell[data-scroll-dark="true"] {
   --background: 0 0% 0%; /* Black background */
   --foreground: 0 0% 100%; /* White text */
