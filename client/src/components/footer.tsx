@@ -1,6 +1,6 @@
 import { Sparkles, CreditCard, HelpCircle, MessageCircle, FileText, BookOpen, Code, FileText as GuideIcon } from "lucide-react";
 import { Link } from "wouter";
-import logoImage from "@assets/lorepic-logo.svg";
+import Logo from "@/components/shared/Logo";
 
 export default function Footer() {
   const helpfulLinks = [
@@ -39,11 +39,8 @@ export default function Footer() {
           <div className="col-span-1">
             <div className="flex items-center mb-3">
               <Link href="/">
-                <img 
-                  src={logoImage} 
-                  alt="Lorepic" 
-                  className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-0 outline-none filter-none"
-                  data-testid="footer-logo-home-link"
+                <Logo 
+                  className="h-10 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 text-gray-900 dark:text-white"
                 />
               </Link>
             </div>

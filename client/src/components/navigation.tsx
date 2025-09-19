@@ -13,7 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { signOut } from "@/lib/supabaseAuth";
 import { useTheme } from "@/components/theme-provider";
 import { Link, useLocation } from "wouter";
-import logoImage from "@assets/lorepic-logo.svg";
+import Logo from "@/components/shared/Logo";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -87,11 +87,8 @@ export default function Navigation() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
-              <img 
-                src={logoImage} 
-                alt="Lorepic" 
-                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-0 outline-none filter-none"
-                data-testid="logo-home-link"
+              <Logo 
+                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200 text-gray-900 dark:text-white"
               />
             </Link>
           </div>
