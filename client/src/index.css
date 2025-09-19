@@ -81,17 +81,26 @@ html, body {
 
 /* Fix gradient text in dark mode */
 .gradient-text {
-  background: linear-gradient(135deg, #d946ef, #ec4899, #f97316);
+  background: linear-gradient(180deg, #d946ef, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(135deg, #e879f9, #f472b6, #fb7185);
+  background: linear-gradient(180deg, #e879f9, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Primary gradient utility for buttons and backgrounds */
+.gradient-primary {
+  background: linear-gradient(180deg, #d946ef, #7c3aed);
+}
+
+.gradient-primary:hover {
+  background: linear-gradient(180deg, #c026d3, #6d28d9);
 }
 
 .dark {

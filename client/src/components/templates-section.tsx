@@ -159,7 +159,7 @@ export default function TemplatesSection() {
           <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            AI Template <span className="bg-gradient-to-r from-fuchsia-500 to-pink-400 bg-clip-text text-transparent">Library</span>
+            AI Template <span className="bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent">Library</span>
           </h2>
           <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
@@ -182,8 +182,8 @@ export default function TemplatesSection() {
                 onClick={() => setFilterType(button.id)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 border-2 shadow-lg hover:shadow-xl transform hover:scale-105 ${
                   isActive
-                    ? "bg-gradient-to-r from-fuchsia-500 to-pink-400 text-white border-transparent shadow-fuchsia-500/30"
-                    : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-fuchsia-300 dark:hover:border-pink-600 hover:bg-fuchsia-50 dark:hover:bg-gray-700"
+                    ? "bg-gradient-to-b from-fuchsia-500 to-purple-700 text-white border-transparent shadow-fuchsia-500/30"
+                    : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-fuchsia-300 dark:hover:border-purple-600 hover:bg-fuchsia-50 dark:hover:bg-gray-700"
                 }`}
                 data-testid={`filter-${button.id}`}
               >
@@ -201,7 +201,7 @@ export default function TemplatesSection() {
           {getFilteredTemplates().map((template) => (
             <Card
               key={template.id}
-              className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-fuchsia-300 dark:hover:border-pink-600 hover:shadow-2xl hover:shadow-fuchsia-500/10 transition-all duration-500 transform hover:-translate-y-2 cursor-pointer flex flex-col h-full"
+              className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-fuchsia-300 dark:hover:border-purple-600 hover:shadow-2xl hover:shadow-fuchsia-500/10 transition-all duration-500 transform hover:-translate-y-2 cursor-pointer flex flex-col h-full"
               data-testid={`template-card-${template.id}`}
             >
               <div className="relative">
@@ -214,7 +214,7 @@ export default function TemplatesSection() {
                 
                 {/* Enhanced overlay with multiple gradients */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                 
                 {/* Popular badge */}
                 {template.popular && (
@@ -262,7 +262,7 @@ export default function TemplatesSection() {
 
               <CardContent className="p-6 flex flex-col h-full">
                 <div className="mb-4">
-                  <h3 className="font-semibold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-fuchsia-600 dark:group-hover:text-pink-400 transition-colors">
+                  <h3 className="font-semibold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-fuchsia-600 dark:group-hover:text-purple-400 transition-colors">
                     {template.title}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-2">
@@ -276,7 +276,7 @@ export default function TemplatesSection() {
                     <Badge 
                       key={tag} 
                       variant="outline" 
-                      className="text-xs px-3 py-1 border-fuchsia-200 dark:border-pink-800 text-fuchsia-600 dark:text-pink-300 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20"
+                      className="text-xs px-3 py-1 border-fuchsia-200 dark:border-purple-800 text-fuchsia-600 dark:text-purple-300 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20"
                     >
                       {tag}
                     </Badge>
@@ -297,7 +297,7 @@ export default function TemplatesSection() {
 
                 {/* Use Template button at bottom */}
                 <Button
-                  className="w-full bg-gradient-to-r from-fuchsia-500 to-pink-400 hover:from-fuchsia-600 hover:to-pink-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mt-auto"
+                  className="w-full bg-gradient-to-b from-fuchsia-500 to-purple-700 hover:from-fuchsia-600 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mt-auto"
                   data-testid={`button-use-template-${template.id}`}
                 >
                   Use Template

@@ -97,7 +97,7 @@ export default function Navigation() {
               <DropdownMenu open={openDropdown === 'tools'} onOpenChange={(open) => setOpenDropdown(open ? 'tools' : null)}>
                 <DropdownMenuTrigger asChild>
                   <button 
-                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
                     onMouseEnter={() => setOpenDropdown('tools')}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
@@ -114,7 +114,7 @@ export default function Navigation() {
                     <DropdownMenuItem
                       key={item.id}
                       onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : ''}`}
+                      className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : ''}`}
                       data-testid={`dropdown-tools-${item.id}`}
                     >
                       {item.name}
@@ -127,7 +127,7 @@ export default function Navigation() {
               <DropdownMenu open={openDropdown === 'explore'} onOpenChange={(open) => setOpenDropdown(open ? 'explore' : null)}>
                 <DropdownMenuTrigger asChild>
                   <button 
-                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
                     onMouseEnter={() => setOpenDropdown('explore')}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
@@ -144,7 +144,7 @@ export default function Navigation() {
                     <DropdownMenuItem
                       key={item.id}
                       onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : ''}`}
+                      className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : ''}`}
                       data-testid={`dropdown-explore-${item.id}`}
                     >
                       {item.name}
@@ -156,7 +156,7 @@ export default function Navigation() {
               {/* Pricing - CTA Button */}
               <Link href="/pricing">
                 <button
-                  className={`bg-gradient-to-r from-fuchsia-500 to-pink-400 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:from-fuchsia-600 hover:to-pink-500 hover:shadow-lg transform hover:-translate-y-0.5 ${location.includes('pricing') ? 'ring-2 ring-fuchsia-300' : ''}`}
+                  className={`bg-gradient-to-b from-fuchsia-500 to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:from-fuchsia-600 hover:to-purple-800 hover:shadow-lg transform hover:-translate-y-0.5 ${location.includes('pricing') ? 'ring-2 ring-fuchsia-400' : ''}`}
                   data-testid="nav-pricing-cta"
                 >
                   Pricing
@@ -167,7 +167,7 @@ export default function Navigation() {
               <DropdownMenu open={openDropdown === 'developers'} onOpenChange={(open) => setOpenDropdown(open ? 'developers' : null)}>
                 <DropdownMenuTrigger asChild>
                   <button 
-                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                    className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
                     onMouseEnter={() => setOpenDropdown('developers')}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
@@ -184,7 +184,7 @@ export default function Navigation() {
                     <DropdownMenuItem
                       key={item.id}
                       onClick={() => handleNavClick(item)}
-                      className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : ''}`}
+                      className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : ''}`}
                       data-testid={`dropdown-developers-${item.id}`}
                     >
                       {item.name}
@@ -198,7 +198,7 @@ export default function Navigation() {
                 <DropdownMenu open={openDropdown === 'account'} onOpenChange={(open) => setOpenDropdown(open ? 'account' : null)}>
                   <DropdownMenuTrigger asChild>
                     <button 
-                      className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
+                      className="flex items-center text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 px-3 py-2 text-sm font-medium transition-all duration-200 group"
                       onMouseEnter={() => setOpenDropdown('account')}
                       onMouseLeave={() => setOpenDropdown(null)}
                     >
@@ -222,7 +222,7 @@ export default function Navigation() {
                             handleNavClick(item);
                           }
                         }}
-                        className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : ''}`}
+                        className={`cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200 ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : ''}`}
                         data-testid={`dropdown-account-${item.id}`}
                       >
                         {item.name === 'Logout' && <LogOut className="w-4 h-4 mr-2" />}
@@ -249,7 +249,7 @@ export default function Navigation() {
                 Sign In
               </Button>
               <Button
-                className="bg-gradient-to-r from-fuchsia-500 to-pink-400 text-white hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+                className="bg-gradient-to-b from-fuchsia-500 to-purple-700 text-white hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
                 onClick={() => import('@/lib/authRedirect').then(({ startGoogleSignIn }) => startGoogleSignIn())}
                 data-testid="button-sign-up"
               >
@@ -261,7 +261,7 @@ export default function Navigation() {
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 transition-all duration-200"
+                className="text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 transition-all duration-200"
                 data-testid="button-theme-toggle"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
               >
@@ -295,7 +295,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                     data-testid={`mobile-nav-tools-${item.id}`}
                   >
                     {item.name}
@@ -310,7 +310,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                     data-testid={`mobile-nav-explore-${item.id}`}
                   >
                     {item.name}
@@ -323,7 +323,7 @@ export default function Navigation() {
                 <Link href="/pricing">
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`w-full bg-gradient-to-r from-fuchsia-500 to-pink-400 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:from-fuchsia-600 hover:to-pink-500 ${location.includes('pricing') ? 'ring-2 ring-fuchsia-300' : ''}`}
+                    className={`w-full bg-gradient-to-b from-fuchsia-500 to-purple-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:from-fuchsia-600 hover:to-purple-800 ${location.includes('pricing') ? 'ring-2 ring-fuchsia-400' : ''}`}
                     data-testid="mobile-nav-pricing-cta"
                   >
                     Pricing
@@ -338,7 +338,7 @@ export default function Navigation() {
                   <button
                     key={item.id}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200'}`}
+                    className={`block w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                     data-testid={`mobile-nav-developers-${item.id}`}
                   >
                     {item.name}
@@ -351,7 +351,7 @@ export default function Navigation() {
                 <Button
                   variant="ghost"
                   onClick={toggleTheme}
-                  className="w-full text-gray-600 dark:text-gray-400 hover:text-purple-700 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200 dark:hover:bg-purple-900/20 justify-start"
+                  className="w-full text-gray-600 dark:text-gray-400 hover:text-purple-700 hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200 dark:hover:bg-purple-900/20 justify-start"
                   data-testid="mobile-button-theme-toggle"
                 >
                   {theme === 'light' ? <Moon className="w-4 h-4 mr-2" /> : <Sun className="w-4 h-4 mr-2" />}
@@ -375,7 +375,7 @@ export default function Navigation() {
                           }
                           setIsMobileMenuOpen(false);
                         }}
-                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-600 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-600 dark:hover:text-pink-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 dark:text-gray-200'}`}
+                        className={`flex items-center w-full text-left px-3 py-2 text-sm font-medium transition-colors rounded-md ${isActiveRoute(item.route || '') ? 'bg-fuchsia-50 text-fuchsia-500 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:text-fuchsia-500 dark:hover:text-purple-400 hover:bg-fuchsia-50 dark:hover:bg-purple-900/20 dark:text-gray-200'}`}
                         data-testid={`mobile-nav-account-${item.id}`}
                       >
                         {item.name === 'Logout' && <LogOut className="w-4 h-4 mr-2" />}
@@ -398,7 +398,7 @@ export default function Navigation() {
                       Sign In
                     </Button>
                     <Button
-                      className="bg-gradient-to-r from-fuchsia-500 to-pink-400 text-white justify-start"
+                      className="bg-gradient-to-b from-fuchsia-500 to-purple-700 text-white justify-start"
                       onClick={() => {
                         window.location.href = '/api/login';
                         setIsMobileMenuOpen(false);

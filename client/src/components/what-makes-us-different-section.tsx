@@ -99,16 +99,16 @@ export default function WhatMakesUsDifferentSection() {
               >
                 {/* Icon Container */}
                 <div className="relative mb-6 flex justify-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="text-white" size={32} />
                   </div>
                   {/* Subtle glow effect */}
-                  <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 rounded-2xl opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 w-16 h-16 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-2xl opacity-20 blur-lg group-hover:opacity-30 transition-opacity duration-300"></div>
                 </div>
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:via-purple-700 group-hover:to-purple-800 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:bg-gradient-to-b group-hover:from-fuchsia-500 group-hover:to-purple-700 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                     {feature.title}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">

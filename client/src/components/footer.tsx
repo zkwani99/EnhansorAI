@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1">
             <div className="flex items-center mb-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-fuchsia-500 to-pink-400 rounded-lg flex items-center justify-center mr-2">
+              <div className="w-8 h-8 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-lg flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={18} />
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-gray-100">Lorepic</span>
@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Helpful Links */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-5 h-5 bg-gradient-to-r from-fuchsia-500 to-pink-400 rounded-full flex items-center justify-center mr-2">
+              <div className="w-5 h-5 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-full flex items-center justify-center mr-2">
                 <Sparkles className="text-white" size={12} />
               </div>
               <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Helpful Links</h4>
@@ -60,7 +60,7 @@ export default function Footer() {
                 const IconComponent = link.icon;
                 return (
                   <li key={link.name} className="flex items-center cursor-pointer" onClick={link.action}>
-                    <IconComponent className="text-fuchsia-600 mr-2" size={14} />
+                    <IconComponent className="text-fuchsia-500 mr-2" size={14} />
                     <span className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">{link.name}</span>
                   </li>
                 );
@@ -71,7 +71,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-5 h-5 bg-gradient-to-r from-fuchsia-500 to-pink-400 rounded-full flex items-center justify-center mr-2">
+              <div className="w-5 h-5 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-full flex items-center justify-center mr-2">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
               </div>
               <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Company</h4>
@@ -95,7 +95,7 @@ export default function Footer() {
           {/* Resources */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="w-5 h-5 bg-gradient-to-r from-fuchsia-500 to-pink-400 rounded-full flex items-center justify-center mr-2">
+              <div className="w-5 h-5 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-full flex items-center justify-center mr-2">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
               </div>
               <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Resources</h4>
@@ -107,7 +107,7 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link href={link.href}>
                       <div className="flex items-center cursor-pointer">
-                        <IconComponent className="text-fuchsia-600 mr-2" size={14} />
+                        <IconComponent className="text-fuchsia-500 mr-2" size={14} />
                         <span className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">{link.name}</span>
                       </div>
                     </Link>

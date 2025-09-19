@@ -97,7 +97,7 @@ export default function WhyLorepicSection() {
           <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 font-semibold ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            Built to <span className="bg-gradient-to-r from-fuchsia-500 to-pink-400 bg-clip-text text-transparent">Stand Out</span>
+            Built to <span className="bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent">Stand Out</span>
           </h2>
           <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
