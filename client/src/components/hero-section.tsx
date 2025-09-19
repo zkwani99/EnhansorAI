@@ -196,19 +196,19 @@ export default function HeroSection() {
             {/* Hero Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent" data-testid="stat-images-processed">
+                <div className="text-3xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-images-processed">
                   10K+
                 </div>
                 <div className="text-gray-300 mt-1">Images Enhanced</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent" data-testid="stat-videos-generated">
+                <div className="text-3xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-videos-generated">
                   5K+
                 </div>
                 <div className="text-gray-300 mt-1">Videos Created</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent" data-testid="stat-happy-users">
+                <div className="text-3xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-happy-users">
                   50K+
                 </div>
                 <div className="text-gray-300 mt-1">Happy Users</div>

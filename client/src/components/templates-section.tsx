@@ -310,7 +310,7 @@ export default function TemplatesSection() {
 
         {/* Bottom CTA section */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-2xl p-8 border border-purple-100 dark:border-purple-800">
+          <div className="bg-gradient-to-b from-fuchsia-50 to-purple-50 dark:from-fuchsia-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-fuchsia-200 dark:border-purple-800">
             <h3 className="text-2xl text-gray-900 dark:text-white mb-4">
               🎨 Ready to Create Something Amazing?
             </h3>
@@ -321,7 +321,7 @@ export default function TemplatesSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-gradient-to-b from-fuchsia-500 to-purple-700 hover:from-fuchsia-600 hover:to-purple-800 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 data-testid="button-browse-all-templates"
               >
                 <Layers className="w-5 h-5 mr-2" />

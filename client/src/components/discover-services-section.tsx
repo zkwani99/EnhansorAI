@@ -417,7 +417,7 @@ export default function DiscoverServicesSection() {
           <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
-            See Lorepic <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">in Action</span>
+            See Lorepic <span className="bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent">in Action</span>
           </h2>
           <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
@@ -438,7 +438,7 @@ export default function DiscoverServicesSection() {
                 {/* Left Column: Service Details */}
                 <div className="order-2 lg:order-1">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-gradient-to-b from-fuchsia-500 to-purple-700 rounded-xl flex items-center justify-center mr-4">
                       <IconComponent className="w-6 h-6 text-white" weight="duotone" />
                     </div>
                     <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
@@ -454,7 +454,7 @@ export default function DiscoverServicesSection() {
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="text-gray-600 dark:text-gray-300 flex items-center">
-                        <div className="w-2 h-2 bg-purple-600 rounded-full mr-3 flex-shrink-0" />
+                        <div className="w-2 h-2 bg-fuchsia-500 rounded-full mr-3 flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -463,7 +463,7 @@ export default function DiscoverServicesSection() {
                   {/* CTA Button */}
                   <Button
                     onClick={() => handleServiceClick(service.id, service.href)}
-                    className="bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 group"
+                    className="bg-gradient-to-b from-fuchsia-500 to-purple-700 hover:from-fuchsia-600 hover:to-purple-800 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 group"
                     data-testid={`service-cta-${service.id}`}
                   >
                     Try Now For Free
