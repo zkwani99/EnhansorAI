@@ -158,12 +158,12 @@ export default function TemplatesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 templates-header">
-          <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 force-contrast ${
+          <h2 className={`text-4xl lg:text-5xl text-white mb-6 ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700' : 'opacity-0 translate-y-4'
           }`}>
             AI Template <span className="bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent">Library</span>
           </h2>
-          <p className={`text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto force-contrast ${
+          <p className={`text-xl text-gray-300 max-w-3xl mx-auto ${
             isVisible ? 'animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150' : 'opacity-0 translate-y-4'
           }`}>
             Jumpstart your creativity with professionally crafted templates. 

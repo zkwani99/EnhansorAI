@@ -310,7 +310,7 @@ export default function GallerySection() {
       <section 
         ref={sectionRef} 
         id="gallery" 
-        className="py-20 bg-slate-900 relative" 
+        className="py-20 bg-slate-900 text-white relative" 
         data-testid="gallery-section"
       >
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
