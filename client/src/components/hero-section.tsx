@@ -190,28 +190,28 @@ export default function HeroSection() {
           {/* Trust Indicators */}
           <div className="text-center">
             <p className="text-gray-300 text-lg mb-8">
-              ✨ Start Creating for Free • No Credit Card Required
+              ✓ Start Creating for Free             ✓ No Credit Card Required             ✓ Cancel anytime
             </p>
             
             {/* Hero Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-images-processed">
-                  10K+
+                <div className="text-2xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-images-processed">
+                  7K+
                 </div>
-                <div className="text-gray-300 mt-1">Images Enhanced</div>
+                <div className="text-gray-300 mt-1 text-sm">Images Enhanced</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-videos-generated">
+                <div className="text-2xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-videos-generated">
                   5K+
                 </div>
-                <div className="text-gray-300 mt-1">Videos Created</div>
+                <div className="text-gray-300 mt-1 text-sm">Videos Created</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-happy-users">
-                  50K+
+                <div className="text-2xl font-bold bg-gradient-to-b from-fuchsia-500 to-purple-700 bg-clip-text text-transparent" data-testid="stat-happy-users">
+                  1K+
                 </div>
-                <div className="text-gray-300 mt-1">Happy Users</div>
+                <div className="text-gray-300 mt-1 text-sm">Happy Users</div>
               </div>
             </div>
           </div>
