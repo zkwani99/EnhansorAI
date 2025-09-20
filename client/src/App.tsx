@@ -55,7 +55,7 @@ function App() {
         <div 
           id="app-shell" 
           className="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] transition-all duration-700 ease-in-out"
-          style={{ transition: 'background-color 0.3s ease-in-out, color 0.2s ease' }}
+          style={{ transition: 'background-color 0.15s ease-out, color 0.1s ease' }}
         >
           <TooltipProvider>
             <Toaster />
