@@ -411,14 +411,8 @@ export default function DiscoverServicesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-slate-900 text-white relative" data-testid="see-in-action-section">
-      {/* Top curved divider - dark background extending from WhyLorepicSection above */}
-      <CurvedDivider 
-        position="top" 
-        fillColor="#0f172a" 
-      />
-      
-      {/* Bottom curved divider - dark background extending to GallerySection below */}
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white relative" data-testid="see-in-action-section">
+      {/* Bottom curved divider - slate-900 background extending to GallerySection below */}
       <CurvedDivider 
         position="bottom" 
         fillColor="#0f172a" 
