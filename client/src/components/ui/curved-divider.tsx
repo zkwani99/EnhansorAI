@@ -25,11 +25,11 @@ export function CurvedDivider({
         aria-hidden="true"
       >
         {position === 'top' ? (
-          // Top curve: mostly straight with very gentle curves at edges only
-          <path d="M0,0 L150,0 Q300,20 900,20 Q1050,0 1200,0 L1200,100 L0,100 Z" />
+          // Top: short cubic curves only at edges, straight middle (Leadpages style)
+          <path d="M0,0 C40,0 80,10 120,0 L1080,0 C1120,10 1160,0 1200,0 L1200,100 L0,100 Z" />
         ) : (
-          // Bottom curve: mostly straight with very gentle curves at edges only
-          <path d="M0,100 L150,100 Q300,80 900,80 Q1050,100 1200,100 L1200,0 L0,0 Z" />
+          // Bottom: short cubic curves only at edges, straight middle (Leadpages style)
+          <path d="M0,100 C40,100 80,90 120,100 L1080,100 C1120,90 1160,100 1200,100 L1200,0 L0,0 Z" />
         )}
       </svg>
     </div>
