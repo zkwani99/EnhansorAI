@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Play, ChevronLeft, ChevronRight, X, ArrowRight } from "lucide-react";
-import { useSimpleScrollBackground } from "@/hooks/useSimpleScrollBackground";
 
 interface GalleryItem {
   id: number;
@@ -22,20 +21,7 @@ export default function GallerySection() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRefs = useRef<Record<string, HTMLDivElement>>({});
   
-  // Scroll-triggered background effect
-  const backgroundRef = useSimpleScrollBackground({
-    sectionId: "gallery"
-  });
   
-  // Combined ref callback to handle both visibility and background effects
-  const combinedRef = (element: HTMLElement | null) => {
-    if (sectionRef.current !== element) {
-      (sectionRef as any).current = element;
-    }
-    if (backgroundRef.current !== element) {
-      (backgroundRef as any).current = element;
-    }
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -322,9 +308,9 @@ export default function GallerySection() {
   return (
     <>
       <section 
-        ref={combinedRef} 
+        ref={sectionRef} 
         id="gallery" 
-        className="py-20 bg-transparent relative" 
+        className="py-20 bg-slate-900 relative" 
         data-testid="gallery-section"
       >
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
