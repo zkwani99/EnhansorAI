@@ -411,7 +411,7 @@ export default function DiscoverServicesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white relative" data-testid="see-in-action-section">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-black text-gray-900 dark:text-white relative" data-testid="see-in-action-section">
       {/* Bottom curved divider - slate-900 background extending to GallerySection below */}
       <CurvedDivider 
         position="bottom" 

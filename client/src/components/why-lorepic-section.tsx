@@ -90,7 +90,7 @@ export default function WhyLorepicSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white relative"
+      className="py-20 bg-white dark:bg-black text-gray-900 dark:text-white relative"
       data-testid="built-to-stand-out-section"
     >
       {/* Top curved divider - black background extending from HeroSection above */}

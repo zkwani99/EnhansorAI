@@ -14,22 +14,22 @@ export function CurvedDivider({
       className={`absolute left-0 w-full overflow-hidden leading-none pointer-events-none ${
         position === 'top' ? '-top-px' : '-bottom-px'
       } ${className}`}
-      style={{ height: '60px' }}
+      style={{ height: '100px' }}
     >
       <svg
         className="relative block w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1200 120"
+        viewBox="0 0 1200 100"
         preserveAspectRatio="none"
         fill={fillColor}
         aria-hidden="true"
       >
         {position === 'top' ? (
-          // Concave curve at top (opening upward)
-          <path d="M0,120 C300,0 900,0 1200,120 L1200,0 L0,0 Z" />
+          // Convex curve at top (Leadpages style - bulging down into section)
+          <path d="M0,0 C600,50 600,50 1200,0 L1200,100 L0,100 Z" />
         ) : (
-          // Concave curve at bottom (opening downward)
-          <path d="M0,0 C300,120 900,120 1200,0 L1200,120 L0,120 Z" />
+          // Convex curve at bottom (Leadpages style - bulging up from section)
+          <path d="M0,100 C600,50 600,50 1200,100 L1200,0 L0,0 Z" />
         )}
       </svg>
     </div>
