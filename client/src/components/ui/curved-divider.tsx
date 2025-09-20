@@ -11,7 +11,7 @@ export function CurvedDivider({
 }: CurvedDividerProps) {
   return (
     <div 
-      className={`absolute left-0 w-full overflow-hidden leading-none ${
+      className={`absolute left-0 w-full overflow-hidden leading-none pointer-events-none ${
         position === 'top' ? '-top-px' : '-bottom-px'
       } ${className}`}
       style={{ height: '60px' }}
@@ -22,6 +22,7 @@ export function CurvedDivider({
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
         fill={fillColor}
+        aria-hidden="true"
       >
         {position === 'top' ? (
           // Concave curve at top (opening upward)
