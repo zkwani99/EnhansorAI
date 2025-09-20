@@ -7,6 +7,7 @@ import {
   VideoCamera 
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { CurvedDivider } from "@/components/ui/curved-divider";
 import { redirectToService } from "@/lib/authRedirect";
 import { isReviewMode } from "@/lib/reviewMode";
 import { useAuth } from "@/hooks/useAuth";
@@ -410,7 +411,20 @@ export default function DiscoverServicesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white dark:bg-black">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-black relative">
+      {/* Top curved divider */}
+      <CurvedDivider 
+        position="top" 
+        fillColor="#f8fafc" 
+        className="text-gray-50 dark:text-gray-900"
+      />
+      
+      {/* Bottom curved divider */}
+      <CurvedDivider 
+        position="bottom" 
+        fillColor="#f8fafc" 
+        className="text-gray-50 dark:text-gray-900"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { CurvedDivider } from "@/components/ui/curved-divider";
 import { Zap, Star, Shield, RotateCcw, DollarSign, Ticket, BookOpen, Palette } from "lucide-react";
 
 export default function WhyLorepicSection() {
@@ -89,9 +90,22 @@ export default function WhyLorepicSection() {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-white dark:bg-black"
+      className="py-20 bg-white dark:bg-black relative"
       data-testid="built-to-stand-out-section"
     >
+      {/* Top curved divider */}
+      <CurvedDivider 
+        position="top" 
+        fillColor="#f8fafc" 
+        className="text-gray-50 dark:text-gray-900"
+      />
+      
+      {/* Bottom curved divider */}
+      <CurvedDivider 
+        position="bottom" 
+        fillColor="#f8fafc" 
+        className="text-gray-50 dark:text-gray-900"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className={`text-4xl lg:text-5xl text-gray-900 dark:text-white mb-6 font-semibold ${
